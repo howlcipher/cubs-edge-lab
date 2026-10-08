@@ -1,0 +1,7 @@
+data/raw/
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.howlplane/
+.control_plane/
