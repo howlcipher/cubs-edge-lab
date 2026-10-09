@@ -1,0 +1,1 @@
+{"_fixture":"synthetic","transactions":[{"id":1,"person":{"id":900000001},"date":"2022-11-01","typeCode":"SYNTHETIC","description":"Synthetic event"}],"stats":[{"group":{"displayName":"pitching"},"splits":[{"sport":{"id":12},"stat":{"inningsPitched":"12.2","gamesPlayed":4}}]}]}
