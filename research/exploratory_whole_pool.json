@@ -1,0 +1,2409 @@
+{
+  "config": {
+    "authorization": "Owner authorization dated 2026-10-09T07:10Z: local-only use of already-fetched MLB Stats API data; publish aggregates and short attributed examples only.",
+    "cohort_years": [
+      2018,
+      2019,
+      2021,
+      2022,
+      2023,
+      2024
+    ],
+    "training_years": [
+      2018,
+      2019,
+      2021,
+      2022,
+      2023
+    ],
+    "rolling_origin_test_years": [
+      2021,
+      2022,
+      2023
+    ],
+    "validation_year": 2024,
+    "holdout_excluded": 2025,
+    "top_k": [
+      25,
+      50,
+      100
+    ],
+    "l2_grid": [
+      0.01,
+      0.1,
+      1.0,
+      10.0
+    ],
+    "chosen_l2_strength": 0.01,
+    "bootstrap_resamples": 2000,
+    "bootstrap_seed": 43017,
+    "bootstrap_interval_percentile": 95,
+    "comparator_rule": "2024 whole-pool top-50 hits; ties B2, B0, B1, P",
+    "population_assumption": "Whole-pool training for all populations; the 2024-selected L2 strength is reused for rolling-origin years.",
+    "b2_assumption": "B2 trains on no-MLB-in-Y rows only.",
+    "source": "MLBAM, MLB Stats API"
+  },
+  "comparator": "B0",
+  "validation": {
+    "whole_pool": {
+      "n": 636,
+      "positives": 91,
+      "base_rate": 0.143082,
+      "rankings": {
+        "B0": {
+          "top_k": {
+            "25": {
+              "hits": 19,
+              "precision": 0.76
+            },
+            "50": {
+              "hits": 32,
+              "precision": 0.64
+            },
+            "100": {
+              "hits": 50,
+              "precision": 0.5
+            }
+          },
+          "auroc": 0.83948
+        },
+        "B1": {
+          "top_k": {
+            "25": {
+              "hits": 20,
+              "precision": 0.8
+            },
+            "50": {
+              "hits": 24,
+              "precision": 0.48
+            },
+            "100": {
+              "hits": 46,
+              "precision": 0.46
+            }
+          },
+          "auroc": 0.818893
+        },
+        "B2": {
+          "top_k": {
+            "25": {
+              "hits": 11,
+              "precision": 0.44
+            },
+            "50": {
+              "hits": 20,
+              "precision": 0.4
+            },
+            "100": {
+              "hits": 35,
+              "precision": 0.35
+            }
+          },
+          "auroc": 0.726888
+        },
+        "P": {
+          "top_k": {
+            "25": {
+              "hits": 16,
+              "precision": 0.64
+            },
+            "50": {
+              "hits": 25,
+              "precision": 0.5
+            },
+            "100": {
+              "hits": 51,
+              "precision": 0.51
+            }
+          },
+          "auroc": 0.737998
+        },
+        "M": {
+          "top_k": {
+            "25": {
+              "hits": 20,
+              "precision": 0.8
+            },
+            "50": {
+              "hits": 38,
+              "precision": 0.76
+            },
+            "100": {
+              "hits": 53,
+              "precision": 0.53
+            }
+          },
+          "auroc": 0.823047
+        }
+      },
+      "calibration": [
+        {
+          "bin": 0,
+          "count": 455,
+          "mean_probability": 0.04087,
+          "outcome_rate": 0.059341
+        },
+        {
+          "bin": 1,
+          "count": 69,
+          "mean_probability": 0.145787,
+          "outcome_rate": 0.144928
+        },
+        {
+          "bin": 2,
+          "count": 32,
+          "mean_probability": 0.247141,
+          "outcome_rate": 0.1875
+        },
+        {
+          "bin": 3,
+          "count": 19,
+          "mean_probability": 0.335369,
+          "outcome_rate": 0.157895
+        },
+        {
+          "bin": 4,
+          "count": 11,
+          "mean_probability": 0.456715,
+          "outcome_rate": 0.636364
+        },
+        {
+          "bin": 5,
+          "count": 12,
+          "mean_probability": 0.540594,
+          "outcome_rate": 0.75
+        },
+        {
+          "bin": 6,
+          "count": 11,
+          "mean_probability": 0.645478,
+          "outcome_rate": 0.636364
+        },
+        {
+          "bin": 7,
+          "count": 9,
+          "mean_probability": 0.750645,
+          "outcome_rate": 0.666667
+        },
+        {
+          "bin": 8,
+          "count": 10,
+          "mean_probability": 0.845504,
+          "outcome_rate": 0.8
+        },
+        {
+          "bin": 9,
+          "count": 8,
+          "mean_probability": 0.941143,
+          "outcome_rate": 1.0
+        }
+      ],
+      "bootstrap_m_minus_baseline": {
+        "B0": {
+          "resamples": 2000,
+          "seed": 43017,
+          "valid_resamples": 2000,
+          "mean_difference": -0.016329,
+          "percentile_95": [
+            -0.048764,
+            0.014118
+          ]
+        },
+        "B1": {
+          "resamples": 2000,
+          "seed": 43017,
+          "valid_resamples": 2000,
+          "mean_difference": 0.004523,
+          "percentile_95": [
+            -0.025169,
+            0.034079
+          ]
+        },
+        "B2": {
+          "resamples": 2000,
+          "seed": 43017,
+          "valid_resamples": 2000,
+          "mean_difference": 0.096418,
+          "percentile_95": [
+            0.061617,
+            0.133022
+          ]
+        },
+        "P": {
+          "resamples": 2000,
+          "seed": 43017,
+          "valid_resamples": 2000,
+          "mean_difference": 0.085272,
+          "percentile_95": [
+            0.047619,
+            0.123688
+          ]
+        }
+      }
+    },
+    "pitchers": {
+      "n": 372,
+      "positives": 57,
+      "base_rate": 0.153226,
+      "rankings": {
+        "B0": {
+          "top_k": {
+            "25": {
+              "hits": 19,
+              "precision": 0.76
+            },
+            "50": {
+              "hits": 26,
+              "precision": 0.52
+            },
+            "100": {
+              "hits": 39,
+              "precision": 0.39
+            }
+          },
+          "auroc": 0.815483
+        },
+        "B1": {
+          "top_k": {
+            "25": {
+              "hits": 13,
+              "precision": 0.52
+            },
+            "50": {
+              "hits": 23,
+              "precision": 0.46
+            },
+            "100": {
+              "hits": 32,
+              "precision": 0.32
+            }
+          },
+          "auroc": 0.797271
+        },
+        "B2": {
+          "top_k": {
+            "25": {
+              "hits": 10,
+              "precision": 0.4
+            },
+            "50": {
+              "hits": 16,
+              "precision": 0.32
+            },
+            "100": {
+              "hits": 31,
+              "precision": 0.31
+            }
+          },
+          "auroc": 0.72988
+        },
+        "P": {
+          "top_k": {
+            "25": {
+              "hits": 15,
+              "precision": 0.6
+            },
+            "50": {
+              "hits": 28,
+              "precision": 0.56
+            },
+            "100": {
+              "hits": 33,
+              "precision": 0.33
+            }
+          },
+          "auroc": 0.711612
+        },
+        "M": {
+          "top_k": {
+            "25": {
+              "hits": 21,
+              "precision": 0.84
+            },
+            "50": {
+              "hits": 28,
+              "precision": 0.56
+            },
+            "100": {
+              "hits": 38,
+              "precision": 0.38
+            }
+          },
+          "auroc": 0.825453
+        }
+      },
+      "calibration": [
+        {
+          "bin": 0,
+          "count": 257,
+          "mean_probability": 0.040118,
+          "outcome_rate": 0.070039
+        },
+        {
+          "bin": 1,
+          "count": 42,
+          "mean_probability": 0.153731,
+          "outcome_rate": 0.142857
+        },
+        {
+          "bin": 2,
+          "count": 26,
+          "mean_probability": 0.247661,
+          "outcome_rate": 0.192308
+        },
+        {
+          "bin": 3,
+          "count": 15,
+          "mean_probability": 0.3329,
+          "outcome_rate": 0.066667
+        },
+        {
+          "bin": 4,
+          "count": 6,
+          "mean_probability": 0.444335,
+          "outcome_rate": 0.833333
+        },
+        {
+          "bin": 5,
+          "count": 8,
+          "mean_probability": 0.529427,
+          "outcome_rate": 0.875
+        },
+        {
+          "bin": 6,
+          "count": 8,
+          "mean_probability": 0.645114,
+          "outcome_rate": 0.75
+        },
+        {
+          "bin": 7,
+          "count": 2,
+          "mean_probability": 0.751426,
+          "outcome_rate": 0.5
+        },
+        {
+          "bin": 8,
+          "count": 3,
+          "mean_probability": 0.863427,
+          "outcome_rate": 1.0
+        },
+        {
+          "bin": 9,
+          "count": 5,
+          "mean_probability": 0.942893,
+          "outcome_rate": 1.0
+        }
+      ],
+      "bootstrap_m_minus_baseline": {
+        "B0": {
+          "resamples": 2000,
+          "seed": 43017,
+          "valid_resamples": 2000,
+          "mean_difference": 0.010257,
+          "percentile_95": [
+            -0.030324,
+            0.049568
+          ]
+        },
+        "B1": {
+          "resamples": 2000,
+          "seed": 43017,
+          "valid_resamples": 2000,
+          "mean_difference": 0.028577,
+          "percentile_95": [
+            -0.003008,
+            0.060373
+          ]
+        },
+        "B2": {
+          "resamples": 2000,
+          "seed": 43017,
+          "valid_resamples": 2000,
+          "mean_difference": 0.095391,
+          "percentile_95": [
+            0.04497,
+            0.143987
+          ]
+        },
+        "P": {
+          "resamples": 2000,
+          "seed": 43017,
+          "valid_resamples": 2000,
+          "mean_difference": 0.114094,
+          "percentile_95": [
+            0.068537,
+            0.159736
+          ]
+        }
+      }
+    },
+    "hitters": {
+      "n": 264,
+      "positives": 34,
+      "base_rate": 0.128788,
+      "rankings": {
+        "B0": {
+          "top_k": {
+            "25": {
+              "hits": 17,
+              "precision": 0.68
+            },
+            "50": {
+              "hits": 24,
+              "precision": 0.48
+            },
+            "100": {
+              "hits": 28,
+              "precision": 0.28
+            }
+          },
+          "auroc": 0.876598
+        },
+        "B1": {
+          "top_k": {
+            "25": {
+              "hits": 20,
+              "precision": 0.8
+            },
+            "50": {
+              "hits": 24,
+              "precision": 0.48
+            },
+            "100": {
+              "hits": 29,
+              "precision": 0.29
+            }
+          },
+          "auroc": 0.888747
+        },
+        "B2": {
+          "top_k": {
+            "25": {
+              "hits": 8,
+              "precision": 0.32
+            },
+            "50": {
+              "hits": 13,
+              "precision": 0.26
+            },
+            "100": {
+              "hits": 22,
+              "precision": 0.22
+            }
+          },
+          "auroc": 0.714962
+        },
+        "P": {
+          "top_k": {
+            "25": {
+              "hits": 12,
+              "precision": 0.48
+            },
+            "50": {
+              "hits": 22,
+              "precision": 0.44
+            },
+            "100": {
+              "hits": 24,
+              "precision": 0.24
+            }
+          },
+          "auroc": 0.780051
+        },
+        "M": {
+          "top_k": {
+            "25": {
+              "hits": 16,
+              "precision": 0.64
+            },
+            "50": {
+              "hits": 25,
+              "precision": 0.5
+            },
+            "100": {
+              "hits": 26,
+              "precision": 0.26
+            }
+          },
+          "auroc": 0.818798
+        }
+      },
+      "calibration": [
+        {
+          "bin": 0,
+          "count": 198,
+          "mean_probability": 0.041847,
+          "outcome_rate": 0.045455
+        },
+        {
+          "bin": 1,
+          "count": 27,
+          "mean_probability": 0.133429,
+          "outcome_rate": 0.148148
+        },
+        {
+          "bin": 2,
+          "count": 6,
+          "mean_probability": 0.244892,
+          "outcome_rate": 0.166667
+        },
+        {
+          "bin": 3,
+          "count": 4,
+          "mean_probability": 0.344626,
+          "outcome_rate": 0.5
+        },
+        {
+          "bin": 4,
+          "count": 5,
+          "mean_probability": 0.471572,
+          "outcome_rate": 0.4
+        },
+        {
+          "bin": 5,
+          "count": 4,
+          "mean_probability": 0.562928,
+          "outcome_rate": 0.5
+        },
+        {
+          "bin": 6,
+          "count": 3,
+          "mean_probability": 0.646451,
+          "outcome_rate": 0.333333
+        },
+        {
+          "bin": 7,
+          "count": 7,
+          "mean_probability": 0.750422,
+          "outcome_rate": 0.714286
+        },
+        {
+          "bin": 8,
+          "count": 7,
+          "mean_probability": 0.837823,
+          "outcome_rate": 0.714286
+        },
+        {
+          "bin": 9,
+          "count": 3,
+          "mean_probability": 0.938225,
+          "outcome_rate": 1.0
+        }
+      ],
+      "bootstrap_m_minus_baseline": {
+        "B0": {
+          "resamples": 2000,
+          "seed": 43017,
+          "valid_resamples": 2000,
+          "mean_difference": -0.058187,
+          "percentile_95": [
+            -0.114416,
+            -0.014062
+          ]
+        },
+        "B1": {
+          "resamples": 2000,
+          "seed": 43017,
+          "valid_resamples": 2000,
+          "mean_difference": -0.070099,
+          "percentile_95": [
+            -0.120751,
+            -0.027494
+          ]
+        },
+        "B2": {
+          "resamples": 2000,
+          "seed": 43017,
+          "valid_resamples": 2000,
+          "mean_difference": 0.102789,
+          "percentile_95": [
+            0.046726,
+            0.161152
+          ]
+        },
+        "P": {
+          "resamples": 2000,
+          "seed": 43017,
+          "valid_resamples": 2000,
+          "mean_difference": 0.03885,
+          "percentile_95": [
+            -0.019222,
+            0.100012
+          ]
+        }
+      }
+    }
+  },
+  "rolling_origin": {
+    "2021": {
+      "whole_pool": {
+        "n": 901,
+        "positives": 174,
+        "base_rate": 0.193119,
+        "rankings": {
+          "B0": {
+            "top_k": {
+              "25": {
+                "hits": 24,
+                "precision": 0.96
+              },
+              "50": {
+                "hits": 41,
+                "precision": 0.82
+              },
+              "100": {
+                "hits": 73,
+                "precision": 0.73
+              }
+            },
+            "auroc": 0.898757
+          },
+          "B1": {
+            "top_k": {
+              "25": {
+                "hits": 21,
+                "precision": 0.84
+              },
+              "50": {
+                "hits": 39,
+                "precision": 0.78
+              },
+              "100": {
+                "hits": 56,
+                "precision": 0.56
+              }
+            },
+            "auroc": 0.876132
+          },
+          "B2": {
+            "top_k": {
+              "25": {
+                "hits": 10,
+                "precision": 0.4
+              },
+              "50": {
+                "hits": 21,
+                "precision": 0.42
+              },
+              "100": {
+                "hits": 45,
+                "precision": 0.45
+              }
+            },
+            "auroc": 0.836519
+          },
+          "P": {
+            "top_k": {
+              "25": {
+                "hits": 15,
+                "precision": 0.6
+              },
+              "50": {
+                "hits": 28,
+                "precision": 0.56
+              },
+              "100": {
+                "hits": 61,
+                "precision": 0.61
+              }
+            },
+            "auroc": 0.834776
+          },
+          "M": {
+            "top_k": {
+              "25": {
+                "hits": 22,
+                "precision": 0.88
+              },
+              "50": {
+                "hits": 43,
+                "precision": 0.86
+              },
+              "100": {
+                "hits": 80,
+                "precision": 0.8
+              }
+            },
+            "auroc": 0.913516
+          }
+        },
+        "calibration": [
+          {
+            "bin": 0,
+            "count": 614,
+            "mean_probability": 0.042197,
+            "outcome_rate": 0.032573
+          },
+          {
+            "bin": 1,
+            "count": 94,
+            "mean_probability": 0.144571,
+            "outcome_rate": 0.297872
+          },
+          {
+            "bin": 2,
+            "count": 77,
+            "mean_probability": 0.244042,
+            "outcome_rate": 0.506494
+          },
+          {
+            "bin": 3,
+            "count": 33,
+            "mean_probability": 0.337769,
+            "outcome_rate": 0.636364
+          },
+          {
+            "bin": 4,
+            "count": 23,
+            "mean_probability": 0.446494,
+            "outcome_rate": 0.652174
+          },
+          {
+            "bin": 5,
+            "count": 21,
+            "mean_probability": 0.550468,
+            "outcome_rate": 0.857143
+          },
+          {
+            "bin": 6,
+            "count": 15,
+            "mean_probability": 0.642879,
+            "outcome_rate": 0.733333
+          },
+          {
+            "bin": 7,
+            "count": 19,
+            "mean_probability": 0.746817,
+            "outcome_rate": 0.947368
+          },
+          {
+            "bin": 8,
+            "count": 5,
+            "mean_probability": 0.844676,
+            "outcome_rate": 0.8
+          },
+          {
+            "bin": 9,
+            "count": 0,
+            "mean_probability": null,
+            "outcome_rate": null
+          }
+        ],
+        "bootstrap_m_minus_baseline": {
+          "B0": {
+            "resamples": 2000,
+            "seed": 43017,
+            "valid_resamples": 2000,
+            "mean_difference": 0.014655,
+            "percentile_95": [
+              -0.001056,
+              0.031501
+            ]
+          },
+          "B1": {
+            "resamples": 2000,
+            "seed": 43017,
+            "valid_resamples": 2000,
+            "mean_difference": 0.037162,
+            "percentile_95": [
+              0.017282,
+              0.057749
+            ]
+          },
+          "B2": {
+            "resamples": 2000,
+            "seed": 43017,
+            "valid_resamples": 2000,
+            "mean_difference": 0.07692,
+            "percentile_95": [
+              0.059154,
+              0.096678
+            ]
+          },
+          "P": {
+            "resamples": 2000,
+            "seed": 43017,
+            "valid_resamples": 2000,
+            "mean_difference": 0.07899,
+            "percentile_95": [
+              0.056478,
+              0.102335
+            ]
+          }
+        }
+      },
+      "pitchers": {
+        "n": 520,
+        "positives": 107,
+        "base_rate": 0.205769,
+        "rankings": {
+          "B0": {
+            "top_k": {
+              "25": {
+                "hits": 18,
+                "precision": 0.72
+              },
+              "50": {
+                "hits": 34,
+                "precision": 0.68
+              },
+              "100": {
+                "hits": 67,
+                "precision": 0.67
+              }
+            },
+            "auroc": 0.887013
+          },
+          "B1": {
+            "top_k": {
+              "25": {
+                "hits": 16,
+                "precision": 0.64
+              },
+              "50": {
+                "hits": 35,
+                "precision": 0.7
+              },
+              "100": {
+                "hits": 63,
+                "precision": 0.63
+              }
+            },
+            "auroc": 0.88208
+          },
+          "B2": {
+            "top_k": {
+              "25": {
+                "hits": 9,
+                "precision": 0.36
+              },
+              "50": {
+                "hits": 22,
+                "precision": 0.44
+              },
+              "100": {
+                "hits": 48,
+                "precision": 0.48
+              }
+            },
+            "auroc": 0.839628
+          },
+          "P": {
+            "top_k": {
+              "25": {
+                "hits": 12,
+                "precision": 0.48
+              },
+              "50": {
+                "hits": 28,
+                "precision": 0.56
+              },
+              "100": {
+                "hits": 63,
+                "precision": 0.63
+              }
+            },
+            "auroc": 0.816252
+          },
+          "M": {
+            "top_k": {
+              "25": {
+                "hits": 21,
+                "precision": 0.84
+              },
+              "50": {
+                "hits": 39,
+                "precision": 0.78
+              },
+              "100": {
+                "hits": 67,
+                "precision": 0.67
+              }
+            },
+            "auroc": 0.904981
+          }
+        },
+        "calibration": [
+          {
+            "bin": 0,
+            "count": 329,
+            "mean_probability": 0.041616,
+            "outcome_rate": 0.030395
+          },
+          {
+            "bin": 1,
+            "count": 62,
+            "mean_probability": 0.146004,
+            "outcome_rate": 0.290323
+          },
+          {
+            "bin": 2,
+            "count": 65,
+            "mean_probability": 0.246004,
+            "outcome_rate": 0.507692
+          },
+          {
+            "bin": 3,
+            "count": 25,
+            "mean_probability": 0.333821,
+            "outcome_rate": 0.68
+          },
+          {
+            "bin": 4,
+            "count": 12,
+            "mean_probability": 0.441653,
+            "outcome_rate": 0.583333
+          },
+          {
+            "bin": 5,
+            "count": 9,
+            "mean_probability": 0.548748,
+            "outcome_rate": 0.888889
+          },
+          {
+            "bin": 6,
+            "count": 8,
+            "mean_probability": 0.643142,
+            "outcome_rate": 0.625
+          },
+          {
+            "bin": 7,
+            "count": 8,
+            "mean_probability": 0.73976,
+            "outcome_rate": 0.875
+          },
+          {
+            "bin": 8,
+            "count": 2,
+            "mean_probability": 0.867107,
+            "outcome_rate": 1.0
+          },
+          {
+            "bin": 9,
+            "count": 0,
+            "mean_probability": null,
+            "outcome_rate": null
+          }
+        ],
+        "bootstrap_m_minus_baseline": {
+          "B0": {
+            "resamples": 2000,
+            "seed": 43017,
+            "valid_resamples": 2000,
+            "mean_difference": 0.0179,
+            "percentile_95": [
+              0.000326,
+              0.036138
+            ]
+          },
+          "B1": {
+            "resamples": 2000,
+            "seed": 43017,
+            "valid_resamples": 2000,
+            "mean_difference": 0.022765,
+            "percentile_95": [
+              0.000756,
+              0.045701
+            ]
+          },
+          "B2": {
+            "resamples": 2000,
+            "seed": 43017,
+            "valid_resamples": 2000,
+            "mean_difference": 0.064989,
+            "percentile_95": [
+              0.039171,
+              0.091485
+            ]
+          },
+          "P": {
+            "resamples": 2000,
+            "seed": 43017,
+            "valid_resamples": 2000,
+            "mean_difference": 0.088499,
+            "percentile_95": [
+              0.056995,
+              0.120442
+            ]
+          }
+        }
+      },
+      "hitters": {
+        "n": 381,
+        "positives": 67,
+        "base_rate": 0.175853,
+        "rankings": {
+          "B0": {
+            "top_k": {
+              "25": {
+                "hits": 23,
+                "precision": 0.92
+              },
+              "50": {
+                "hits": 39,
+                "precision": 0.78
+              },
+              "100": {
+                "hits": 58,
+                "precision": 0.58
+              }
+            },
+            "auroc": 0.922759
+          },
+          "B1": {
+            "top_k": {
+              "25": {
+                "hits": 21,
+                "precision": 0.84
+              },
+              "50": {
+                "hits": 39,
+                "precision": 0.78
+              },
+              "100": {
+                "hits": 56,
+                "precision": 0.56
+              }
+            },
+            "auroc": 0.909259
+          },
+          "B2": {
+            "top_k": {
+              "25": {
+                "hits": 8,
+                "precision": 0.32
+              },
+              "50": {
+                "hits": 25,
+                "precision": 0.5
+              },
+              "100": {
+                "hits": 45,
+                "precision": 0.45
+              }
+            },
+            "auroc": 0.828358
+          },
+          "P": {
+            "top_k": {
+              "25": {
+                "hits": 16,
+                "precision": 0.64
+              },
+              "50": {
+                "hits": 33,
+                "precision": 0.66
+              },
+              "100": {
+                "hits": 56,
+                "precision": 0.56
+              }
+            },
+            "auroc": 0.861085
+          },
+          "M": {
+            "top_k": {
+              "25": {
+                "hits": 22,
+                "precision": 0.88
+              },
+              "50": {
+                "hits": 41,
+                "precision": 0.82
+              },
+              "100": {
+                "hits": 57,
+                "precision": 0.57
+              }
+            },
+            "auroc": 0.921475
+          }
+        },
+        "calibration": [
+          {
+            "bin": 0,
+            "count": 285,
+            "mean_probability": 0.042868,
+            "outcome_rate": 0.035088
+          },
+          {
+            "bin": 1,
+            "count": 32,
+            "mean_probability": 0.141794,
+            "outcome_rate": 0.3125
+          },
+          {
+            "bin": 2,
+            "count": 12,
+            "mean_probability": 0.233413,
+            "outcome_rate": 0.5
+          },
+          {
+            "bin": 3,
+            "count": 8,
+            "mean_probability": 0.350107,
+            "outcome_rate": 0.5
+          },
+          {
+            "bin": 4,
+            "count": 11,
+            "mean_probability": 0.451775,
+            "outcome_rate": 0.727273
+          },
+          {
+            "bin": 5,
+            "count": 12,
+            "mean_probability": 0.551758,
+            "outcome_rate": 0.833333
+          },
+          {
+            "bin": 6,
+            "count": 7,
+            "mean_probability": 0.642579,
+            "outcome_rate": 0.857143
+          },
+          {
+            "bin": 7,
+            "count": 11,
+            "mean_probability": 0.751949,
+            "outcome_rate": 1.0
+          },
+          {
+            "bin": 8,
+            "count": 3,
+            "mean_probability": 0.829722,
+            "outcome_rate": 0.666667
+          },
+          {
+            "bin": 9,
+            "count": 0,
+            "mean_probability": null,
+            "outcome_rate": null
+          }
+        ],
+        "bootstrap_m_minus_baseline": {
+          "B0": {
+            "resamples": 2000,
+            "seed": 43017,
+            "valid_resamples": 2000,
+            "mean_difference": -0.000781,
+            "percentile_95": [
+              -0.031134,
+              0.034007
+            ]
+          },
+          "B1": {
+            "resamples": 2000,
+            "seed": 43017,
+            "valid_resamples": 2000,
+            "mean_difference": 0.012367,
+            "percentile_95": [
+              -0.018698,
+              0.048389
+            ]
+          },
+          "B2": {
+            "resamples": 2000,
+            "seed": 43017,
+            "valid_resamples": 2000,
+            "mean_difference": 0.092887,
+            "percentile_95": [
+              0.063342,
+              0.123078
+            ]
+          },
+          "P": {
+            "resamples": 2000,
+            "seed": 43017,
+            "valid_resamples": 2000,
+            "mean_difference": 0.060078,
+            "percentile_95": [
+              0.028626,
+              0.09327
+            ]
+          }
+        }
+      }
+    },
+    "2022": {
+      "whole_pool": {
+        "n": 852,
+        "positives": 177,
+        "base_rate": 0.207746,
+        "rankings": {
+          "B0": {
+            "top_k": {
+              "25": {
+                "hits": 24,
+                "precision": 0.96
+              },
+              "50": {
+                "hits": 44,
+                "precision": 0.88
+              },
+              "100": {
+                "hits": 80,
+                "precision": 0.8
+              }
+            },
+            "auroc": 0.906976
+          },
+          "B1": {
+            "top_k": {
+              "25": {
+                "hits": 21,
+                "precision": 0.84
+              },
+              "50": {
+                "hits": 42,
+                "precision": 0.84
+              },
+              "100": {
+                "hits": 65,
+                "precision": 0.65
+              }
+            },
+            "auroc": 0.890061
+          },
+          "B2": {
+            "top_k": {
+              "25": {
+                "hits": 15,
+                "precision": 0.6
+              },
+              "50": {
+                "hits": 32,
+                "precision": 0.64
+              },
+              "100": {
+                "hits": 57,
+                "precision": 0.57
+              }
+            },
+            "auroc": 0.852354
+          },
+          "P": {
+            "top_k": {
+              "25": {
+                "hits": 19,
+                "precision": 0.76
+              },
+              "50": {
+                "hits": 32,
+                "precision": 0.64
+              },
+              "100": {
+                "hits": 66,
+                "precision": 0.66
+              }
+            },
+            "auroc": 0.839975
+          },
+          "M": {
+            "top_k": {
+              "25": {
+                "hits": 24,
+                "precision": 0.96
+              },
+              "50": {
+                "hits": 48,
+                "precision": 0.96
+              },
+              "100": {
+                "hits": 90,
+                "precision": 0.9
+              }
+            },
+            "auroc": 0.935618
+          }
+        },
+        "calibration": [
+          {
+            "bin": 0,
+            "count": 518,
+            "mean_probability": 0.038989,
+            "outcome_rate": 0.025097
+          },
+          {
+            "bin": 1,
+            "count": 84,
+            "mean_probability": 0.142901,
+            "outcome_rate": 0.095238
+          },
+          {
+            "bin": 2,
+            "count": 52,
+            "mean_probability": 0.239753,
+            "outcome_rate": 0.346154
+          },
+          {
+            "bin": 3,
+            "count": 36,
+            "mean_probability": 0.34794,
+            "outcome_rate": 0.472222
+          },
+          {
+            "bin": 4,
+            "count": 28,
+            "mean_probability": 0.452957,
+            "outcome_rate": 0.392857
+          },
+          {
+            "bin": 5,
+            "count": 24,
+            "mean_probability": 0.54664,
+            "outcome_rate": 0.541667
+          },
+          {
+            "bin": 6,
+            "count": 21,
+            "mean_probability": 0.642109,
+            "outcome_rate": 0.809524
+          },
+          {
+            "bin": 7,
+            "count": 18,
+            "mean_probability": 0.748132,
+            "outcome_rate": 0.833333
+          },
+          {
+            "bin": 8,
+            "count": 25,
+            "mean_probability": 0.853196,
+            "outcome_rate": 0.84
+          },
+          {
+            "bin": 9,
+            "count": 46,
+            "mean_probability": 0.951437,
+            "outcome_rate": 0.956522
+          }
+        ],
+        "bootstrap_m_minus_baseline": {
+          "B0": {
+            "resamples": 2000,
+            "seed": 43017,
+            "valid_resamples": 2000,
+            "mean_difference": 0.028416,
+            "percentile_95": [
+              0.014744,
+              0.04312
+            ]
+          },
+          "B1": {
+            "resamples": 2000,
+            "seed": 43017,
+            "valid_resamples": 2000,
+            "mean_difference": 0.045318,
+            "percentile_95": [
+              0.027167,
+              0.064311
+            ]
+          },
+          "B2": {
+            "resamples": 2000,
+            "seed": 43017,
+            "valid_resamples": 2000,
+            "mean_difference": 0.083082,
+            "percentile_95": [
+              0.059666,
+              0.105756
+            ]
+          },
+          "P": {
+            "resamples": 2000,
+            "seed": 43017,
+            "valid_resamples": 2000,
+            "mean_difference": 0.095377,
+            "percentile_95": [
+              0.074903,
+              0.11722
+            ]
+          }
+        }
+      },
+      "pitchers": {
+        "n": 483,
+        "positives": 99,
+        "base_rate": 0.204969,
+        "rankings": {
+          "B0": {
+            "top_k": {
+              "25": {
+                "hits": 20,
+                "precision": 0.8
+              },
+              "50": {
+                "hits": 38,
+                "precision": 0.76
+              },
+              "100": {
+                "hits": 67,
+                "precision": 0.67
+              }
+            },
+            "auroc": 0.891546
+          },
+          "B1": {
+            "top_k": {
+              "25": {
+                "hits": 16,
+                "precision": 0.64
+              },
+              "50": {
+                "hits": 32,
+                "precision": 0.64
+              },
+              "100": {
+                "hits": 62,
+                "precision": 0.62
+              }
+            },
+            "auroc": 0.887284
+          },
+          "B2": {
+            "top_k": {
+              "25": {
+                "hits": 14,
+                "precision": 0.56
+              },
+              "50": {
+                "hits": 25,
+                "precision": 0.5
+              },
+              "100": {
+                "hits": 57,
+                "precision": 0.57
+              }
+            },
+            "auroc": 0.8493
+          },
+          "P": {
+            "top_k": {
+              "25": {
+                "hits": 17,
+                "precision": 0.68
+              },
+              "50": {
+                "hits": 30,
+                "precision": 0.6
+              },
+              "100": {
+                "hits": 62,
+                "precision": 0.62
+              }
+            },
+            "auroc": 0.819721
+          },
+          "M": {
+            "top_k": {
+              "25": {
+                "hits": 24,
+                "precision": 0.96
+              },
+              "50": {
+                "hits": 43,
+                "precision": 0.86
+              },
+              "100": {
+                "hits": 69,
+                "precision": 0.69
+              }
+            },
+            "auroc": 0.925032
+          }
+        },
+        "calibration": [
+          {
+            "bin": 0,
+            "count": 285,
+            "mean_probability": 0.036434,
+            "outcome_rate": 0.031579
+          },
+          {
+            "bin": 1,
+            "count": 50,
+            "mean_probability": 0.1507,
+            "outcome_rate": 0.08
+          },
+          {
+            "bin": 2,
+            "count": 36,
+            "mean_probability": 0.240637,
+            "outcome_rate": 0.305556
+          },
+          {
+            "bin": 3,
+            "count": 25,
+            "mean_probability": 0.354669,
+            "outcome_rate": 0.52
+          },
+          {
+            "bin": 4,
+            "count": 18,
+            "mean_probability": 0.445813,
+            "outcome_rate": 0.388889
+          },
+          {
+            "bin": 5,
+            "count": 19,
+            "mean_probability": 0.547153,
+            "outcome_rate": 0.631579
+          },
+          {
+            "bin": 6,
+            "count": 15,
+            "mean_probability": 0.643511,
+            "outcome_rate": 0.8
+          },
+          {
+            "bin": 7,
+            "count": 7,
+            "mean_probability": 0.75026,
+            "outcome_rate": 0.714286
+          },
+          {
+            "bin": 8,
+            "count": 12,
+            "mean_probability": 0.84119,
+            "outcome_rate": 0.833333
+          },
+          {
+            "bin": 9,
+            "count": 16,
+            "mean_probability": 0.941854,
+            "outcome_rate": 1.0
+          }
+        ],
+        "bootstrap_m_minus_baseline": {
+          "B0": {
+            "resamples": 2000,
+            "seed": 43017,
+            "valid_resamples": 2000,
+            "mean_difference": 0.033372,
+            "percentile_95": [
+              0.014987,
+              0.052826
+            ]
+          },
+          "B1": {
+            "resamples": 2000,
+            "seed": 43017,
+            "valid_resamples": 2000,
+            "mean_difference": 0.037367,
+            "percentile_95": [
+              0.015184,
+              0.06028
+            ]
+          },
+          "B2": {
+            "resamples": 2000,
+            "seed": 43017,
+            "valid_resamples": 2000,
+            "mean_difference": 0.07584,
+            "percentile_95": [
+              0.04563,
+              0.106583
+            ]
+          },
+          "P": {
+            "resamples": 2000,
+            "seed": 43017,
+            "valid_resamples": 2000,
+            "mean_difference": 0.105302,
+            "percentile_95": [
+              0.076978,
+              0.136087
+            ]
+          }
+        }
+      },
+      "hitters": {
+        "n": 369,
+        "positives": 78,
+        "base_rate": 0.211382,
+        "rankings": {
+          "B0": {
+            "top_k": {
+              "25": {
+                "hits": 24,
+                "precision": 0.96
+              },
+              "50": {
+                "hits": 45,
+                "precision": 0.9
+              },
+              "100": {
+                "hits": 66,
+                "precision": 0.66
+              }
+            },
+            "auroc": 0.934488
+          },
+          "B1": {
+            "top_k": {
+              "25": {
+                "hits": 21,
+                "precision": 0.84
+              },
+              "50": {
+                "hits": 42,
+                "precision": 0.84
+              },
+              "100": {
+                "hits": 65,
+                "precision": 0.65
+              }
+            },
+            "auroc": 0.933606
+          },
+          "B2": {
+            "top_k": {
+              "25": {
+                "hits": 18,
+                "precision": 0.72
+              },
+              "50": {
+                "hits": 29,
+                "precision": 0.58
+              },
+              "100": {
+                "hits": 52,
+                "precision": 0.52
+              }
+            },
+            "auroc": 0.859503
+          },
+          "P": {
+            "top_k": {
+              "25": {
+                "hits": 18,
+                "precision": 0.72
+              },
+              "50": {
+                "hits": 37,
+                "precision": 0.74
+              },
+              "100": {
+                "hits": 66,
+                "precision": 0.66
+              }
+            },
+            "auroc": 0.865913
+          },
+          "M": {
+            "top_k": {
+              "25": {
+                "hits": 24,
+                "precision": 0.96
+              },
+              "50": {
+                "hits": 46,
+                "precision": 0.92
+              },
+              "100": {
+                "hits": 69,
+                "precision": 0.69
+              }
+            },
+            "auroc": 0.949775
+          }
+        },
+        "calibration": [
+          {
+            "bin": 0,
+            "count": 233,
+            "mean_probability": 0.042115,
+            "outcome_rate": 0.017167
+          },
+          {
+            "bin": 1,
+            "count": 34,
+            "mean_probability": 0.131433,
+            "outcome_rate": 0.117647
+          },
+          {
+            "bin": 2,
+            "count": 16,
+            "mean_probability": 0.237764,
+            "outcome_rate": 0.4375
+          },
+          {
+            "bin": 3,
+            "count": 11,
+            "mean_probability": 0.332647,
+            "outcome_rate": 0.363636
+          },
+          {
+            "bin": 4,
+            "count": 10,
+            "mean_probability": 0.465816,
+            "outcome_rate": 0.4
+          },
+          {
+            "bin": 5,
+            "count": 5,
+            "mean_probability": 0.544689,
+            "outcome_rate": 0.2
+          },
+          {
+            "bin": 6,
+            "count": 6,
+            "mean_probability": 0.638604,
+            "outcome_rate": 0.833333
+          },
+          {
+            "bin": 7,
+            "count": 11,
+            "mean_probability": 0.746778,
+            "outcome_rate": 0.909091
+          },
+          {
+            "bin": 8,
+            "count": 13,
+            "mean_probability": 0.864279,
+            "outcome_rate": 0.846154
+          },
+          {
+            "bin": 9,
+            "count": 30,
+            "mean_probability": 0.956549,
+            "outcome_rate": 0.933333
+          }
+        ],
+        "bootstrap_m_minus_baseline": {
+          "B0": {
+            "resamples": 2000,
+            "seed": 43017,
+            "valid_resamples": 2000,
+            "mean_difference": 0.015082,
+            "percentile_95": [
+              -0.003928,
+              0.041501
+            ]
+          },
+          "B1": {
+            "resamples": 2000,
+            "seed": 43017,
+            "valid_resamples": 2000,
+            "mean_difference": 0.016532,
+            "percentile_95": [
+              -0.009323,
+              0.0471
+            ]
+          },
+          "B2": {
+            "resamples": 2000,
+            "seed": 43017,
+            "valid_resamples": 2000,
+            "mean_difference": 0.090728,
+            "percentile_95": [
+              0.059006,
+              0.125326
+            ]
+          },
+          "P": {
+            "resamples": 2000,
+            "seed": 43017,
+            "valid_resamples": 2000,
+            "mean_difference": 0.083151,
+            "percentile_95": [
+              0.053283,
+              0.114141
+            ]
+          }
+        }
+      }
+    },
+    "2023": {
+      "whole_pool": {
+        "n": 825,
+        "positives": 171,
+        "base_rate": 0.207273,
+        "rankings": {
+          "B0": {
+            "top_k": {
+              "25": {
+                "hits": 25,
+                "precision": 1.0
+              },
+              "50": {
+                "hits": 43,
+                "precision": 0.86
+              },
+              "100": {
+                "hits": 72,
+                "precision": 0.72
+              }
+            },
+            "auroc": 0.882415
+          },
+          "B1": {
+            "top_k": {
+              "25": {
+                "hits": 21,
+                "precision": 0.84
+              },
+              "50": {
+                "hits": 36,
+                "precision": 0.72
+              },
+              "100": {
+                "hits": 53,
+                "precision": 0.53
+              }
+            },
+            "auroc": 0.857682
+          },
+          "B2": {
+            "top_k": {
+              "25": {
+                "hits": 12,
+                "precision": 0.48
+              },
+              "50": {
+                "hits": 25,
+                "precision": 0.5
+              },
+              "100": {
+                "hits": 46,
+                "precision": 0.46
+              }
+            },
+            "auroc": 0.80201
+          },
+          "P": {
+            "top_k": {
+              "25": {
+                "hits": 14,
+                "precision": 0.56
+              },
+              "50": {
+                "hits": 31,
+                "precision": 0.62
+              },
+              "100": {
+                "hits": 63,
+                "precision": 0.63
+              }
+            },
+            "auroc": 0.817426
+          },
+          "M": {
+            "top_k": {
+              "25": {
+                "hits": 22,
+                "precision": 0.88
+              },
+              "50": {
+                "hits": 41,
+                "precision": 0.82
+              },
+              "100": {
+                "hits": 76,
+                "precision": 0.76
+              }
+            },
+            "auroc": 0.887896
+          }
+        },
+        "calibration": [
+          {
+            "bin": 0,
+            "count": 533,
+            "mean_probability": 0.036739,
+            "outcome_rate": 0.046904
+          },
+          {
+            "bin": 1,
+            "count": 61,
+            "mean_probability": 0.145631,
+            "outcome_rate": 0.163934
+          },
+          {
+            "bin": 2,
+            "count": 47,
+            "mean_probability": 0.246872,
+            "outcome_rate": 0.319149
+          },
+          {
+            "bin": 3,
+            "count": 21,
+            "mean_probability": 0.348158,
+            "outcome_rate": 0.428571
+          },
+          {
+            "bin": 4,
+            "count": 20,
+            "mean_probability": 0.449462,
+            "outcome_rate": 0.35
+          },
+          {
+            "bin": 5,
+            "count": 36,
+            "mean_probability": 0.552576,
+            "outcome_rate": 0.666667
+          },
+          {
+            "bin": 6,
+            "count": 18,
+            "mean_probability": 0.662061,
+            "outcome_rate": 0.722222
+          },
+          {
+            "bin": 7,
+            "count": 26,
+            "mean_probability": 0.764165,
+            "outcome_rate": 0.653846
+          },
+          {
+            "bin": 8,
+            "count": 26,
+            "mean_probability": 0.859173,
+            "outcome_rate": 0.730769
+          },
+          {
+            "bin": 9,
+            "count": 37,
+            "mean_probability": 0.947607,
+            "outcome_rate": 0.864865
+          }
+        ],
+        "bootstrap_m_minus_baseline": {
+          "B0": {
+            "resamples": 2000,
+            "seed": 43017,
+            "valid_resamples": 2000,
+            "mean_difference": 0.005719,
+            "percentile_95": [
+              -0.01556,
+              0.027606
+            ]
+          },
+          "B1": {
+            "resamples": 2000,
+            "seed": 43017,
+            "valid_resamples": 2000,
+            "mean_difference": 0.03063,
+            "percentile_95": [
+              0.008709,
+              0.054806
+            ]
+          },
+          "B2": {
+            "resamples": 2000,
+            "seed": 43017,
+            "valid_resamples": 2000,
+            "mean_difference": 0.085828,
+            "percentile_95": [
+              0.059602,
+              0.112266
+            ]
+          },
+          "P": {
+            "resamples": 2000,
+            "seed": 43017,
+            "valid_resamples": 2000,
+            "mean_difference": 0.070411,
+            "percentile_95": [
+              0.047449,
+              0.092627
+            ]
+          }
+        }
+      },
+      "pitchers": {
+        "n": 509,
+        "positives": 113,
+        "base_rate": 0.222004,
+        "rankings": {
+          "B0": {
+            "top_k": {
+              "25": {
+                "hits": 19,
+                "precision": 0.76
+              },
+              "50": {
+                "hits": 41,
+                "precision": 0.82
+              },
+              "100": {
+                "hits": 68,
+                "precision": 0.68
+              }
+            },
+            "auroc": 0.871659
+          },
+          "B1": {
+            "top_k": {
+              "25": {
+                "hits": 13,
+                "precision": 0.52
+              },
+              "50": {
+                "hits": 32,
+                "precision": 0.64
+              },
+              "100": {
+                "hits": 61,
+                "precision": 0.61
+              }
+            },
+            "auroc": 0.853312
+          },
+          "B2": {
+            "top_k": {
+              "25": {
+                "hits": 14,
+                "precision": 0.56
+              },
+              "50": {
+                "hits": 25,
+                "precision": 0.5
+              },
+              "100": {
+                "hits": 52,
+                "precision": 0.52
+              }
+            },
+            "auroc": 0.802539
+          },
+          "P": {
+            "top_k": {
+              "25": {
+                "hits": 17,
+                "precision": 0.68
+              },
+              "50": {
+                "hits": 31,
+                "precision": 0.62
+              },
+              "100": {
+                "hits": 64,
+                "precision": 0.64
+              }
+            },
+            "auroc": 0.805388
+          },
+          "M": {
+            "top_k": {
+              "25": {
+                "hits": 19,
+                "precision": 0.76
+              },
+              "50": {
+                "hits": 37,
+                "precision": 0.74
+              },
+              "100": {
+                "hits": 68,
+                "precision": 0.68
+              }
+            },
+            "auroc": 0.878341
+          }
+        },
+        "calibration": [
+          {
+            "bin": 0,
+            "count": 323,
+            "mean_probability": 0.03282,
+            "outcome_rate": 0.052632
+          },
+          {
+            "bin": 1,
+            "count": 35,
+            "mean_probability": 0.15351,
+            "outcome_rate": 0.257143
+          },
+          {
+            "bin": 2,
+            "count": 37,
+            "mean_probability": 0.24995,
+            "outcome_rate": 0.351351
+          },
+          {
+            "bin": 3,
+            "count": 16,
+            "mean_probability": 0.35347,
+            "outcome_rate": 0.4375
+          },
+          {
+            "bin": 4,
+            "count": 15,
+            "mean_probability": 0.44474,
+            "outcome_rate": 0.4
+          },
+          {
+            "bin": 5,
+            "count": 29,
+            "mean_probability": 0.546807,
+            "outcome_rate": 0.689655
+          },
+          {
+            "bin": 6,
+            "count": 13,
+            "mean_probability": 0.656483,
+            "outcome_rate": 0.769231
+          },
+          {
+            "bin": 7,
+            "count": 14,
+            "mean_probability": 0.763608,
+            "outcome_rate": 0.785714
+          },
+          {
+            "bin": 8,
+            "count": 12,
+            "mean_probability": 0.86538,
+            "outcome_rate": 0.666667
+          },
+          {
+            "bin": 9,
+            "count": 15,
+            "mean_probability": 0.953932,
+            "outcome_rate": 0.8
+          }
+        ],
+        "bootstrap_m_minus_baseline": {
+          "B0": {
+            "resamples": 2000,
+            "seed": 43017,
+            "valid_resamples": 2000,
+            "mean_difference": 0.006498,
+            "percentile_95": [
+              -0.016246,
+              0.029648
+            ]
+          },
+          "B1": {
+            "resamples": 2000,
+            "seed": 43017,
+            "valid_resamples": 2000,
+            "mean_difference": 0.025225,
+            "percentile_95": [
+              0.003637,
+              0.047946
+            ]
+          },
+          "B2": {
+            "resamples": 2000,
+            "seed": 43017,
+            "valid_resamples": 2000,
+            "mean_difference": 0.075891,
+            "percentile_95": [
+              0.042356,
+              0.107261
+            ]
+          },
+          "P": {
+            "resamples": 2000,
+            "seed": 43017,
+            "valid_resamples": 2000,
+            "mean_difference": 0.072626,
+            "percentile_95": [
+              0.043449,
+              0.104231
+            ]
+          }
+        }
+      },
+      "hitters": {
+        "n": 316,
+        "positives": 58,
+        "base_rate": 0.183544,
+        "rankings": {
+          "B0": {
+            "top_k": {
+              "25": {
+                "hits": 25,
+                "precision": 1.0
+              },
+              "50": {
+                "hits": 41,
+                "precision": 0.82
+              },
+              "100": {
+                "hits": 51,
+                "precision": 0.51
+              }
+            },
+            "auroc": 0.920476
+          },
+          "B1": {
+            "top_k": {
+              "25": {
+                "hits": 21,
+                "precision": 0.84
+              },
+              "50": {
+                "hits": 36,
+                "precision": 0.72
+              },
+              "100": {
+                "hits": 51,
+                "precision": 0.51
+              }
+            },
+            "auroc": 0.90417
+          },
+          "B2": {
+            "top_k": {
+              "25": {
+                "hits": 14,
+                "precision": 0.56
+              },
+              "50": {
+                "hits": 22,
+                "precision": 0.44
+              },
+              "100": {
+                "hits": 41,
+                "precision": 0.41
+              }
+            },
+            "auroc": 0.799051
+          },
+          "P": {
+            "top_k": {
+              "25": {
+                "hits": 13,
+                "precision": 0.52
+              },
+              "50": {
+                "hits": 30,
+                "precision": 0.6
+              },
+              "100": {
+                "hits": 47,
+                "precision": 0.47
+              }
+            },
+            "auroc": 0.841219
+          },
+          "M": {
+            "top_k": {
+              "25": {
+                "hits": 21,
+                "precision": 0.84
+              },
+              "50": {
+                "hits": 39,
+                "precision": 0.78
+              },
+              "100": {
+                "hits": 50,
+                "precision": 0.5
+              }
+            },
+            "auroc": 0.909316
+          }
+        },
+        "calibration": [
+          {
+            "bin": 0,
+            "count": 210,
+            "mean_probability": 0.042768,
+            "outcome_rate": 0.038095
+          },
+          {
+            "bin": 1,
+            "count": 26,
+            "mean_probability": 0.135025,
+            "outcome_rate": 0.038462
+          },
+          {
+            "bin": 2,
+            "count": 10,
+            "mean_probability": 0.235481,
+            "outcome_rate": 0.2
+          },
+          {
+            "bin": 3,
+            "count": 5,
+            "mean_probability": 0.331159,
+            "outcome_rate": 0.4
+          },
+          {
+            "bin": 4,
+            "count": 5,
+            "mean_probability": 0.463628,
+            "outcome_rate": 0.2
+          },
+          {
+            "bin": 5,
+            "count": 7,
+            "mean_probability": 0.576476,
+            "outcome_rate": 0.571429
+          },
+          {
+            "bin": 6,
+            "count": 5,
+            "mean_probability": 0.676563,
+            "outcome_rate": 0.6
+          },
+          {
+            "bin": 7,
+            "count": 12,
+            "mean_probability": 0.764815,
+            "outcome_rate": 0.5
+          },
+          {
+            "bin": 8,
+            "count": 14,
+            "mean_probability": 0.853852,
+            "outcome_rate": 0.785714
+          },
+          {
+            "bin": 9,
+            "count": 22,
+            "mean_probability": 0.943294,
+            "outcome_rate": 0.909091
+          }
+        ],
+        "bootstrap_m_minus_baseline": {
+          "B0": {
+            "resamples": 2000,
+            "seed": 43017,
+            "valid_resamples": 2000,
+            "mean_difference": -0.012756,
+            "percentile_95": [
+              -0.056,
+              0.037359
+            ]
+          },
+          "B1": {
+            "resamples": 2000,
+            "seed": 43017,
+            "valid_resamples": 2000,
+            "mean_difference": 0.003718,
+            "percentile_95": [
+              -0.042905,
+              0.055556
+            ]
+          },
+          "B2": {
+            "resamples": 2000,
+            "seed": 43017,
+            "valid_resamples": 2000,
+            "mean_difference": 0.110258,
+            "percentile_95": [
+              0.075117,
+              0.150679
+            ]
+          },
+          "P": {
+            "resamples": 2000,
+            "seed": 43017,
+            "valid_resamples": 2000,
+            "mean_difference": 0.067583,
+            "percentile_95": [
+              0.036995,
+              0.101099
+            ]
+          }
+        }
+      }
+    }
+  }
+}
