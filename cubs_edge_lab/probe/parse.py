@@ -73,6 +73,7 @@ def stats(payload):
             if 'inningsPitched' in stat:
                 innings_outs(stat['inningsPitched'])
             result.append({
+                'person_id': (split.get('person') or split.get('player') or {}).get('id'),
                 'sport_id': (split.get('sport') or {}).get('id'),
                 'team_id': (split.get('team') or {}).get('id'),
                 'date': split.get('date'), 'stat': stat,

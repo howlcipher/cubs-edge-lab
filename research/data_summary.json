@@ -1,0 +1,1359 @@
+{
+  "label": "FACT",
+  "cohorts": {
+    "2018": {
+      "pool_size": 584,
+      "matched": 530,
+      "unmatched": 54,
+      "unmatched_reasons": {
+        "no_season_y_stats_in_cached_levels": 54,
+        "person_record_missing": 0
+      },
+      "no_mlb_in_y": 399,
+      "no_mlb_in_y_known_denominator": 530,
+      "no_mlb_in_y_share": 0.7528301886792453,
+      "null_person_transaction_rows": 0
+    },
+    "2019": {
+      "pool_size": 629,
+      "matched": 566,
+      "unmatched": 63,
+      "unmatched_reasons": {
+        "no_season_y_stats_in_cached_levels": 63,
+        "person_record_missing": 0
+      },
+      "no_mlb_in_y": 402,
+      "no_mlb_in_y_known_denominator": 566,
+      "no_mlb_in_y_share": 0.7102473498233216,
+      "null_person_transaction_rows": 0
+    },
+    "2021": {
+      "pool_size": 901,
+      "matched": 849,
+      "unmatched": 52,
+      "unmatched_reasons": {
+        "no_season_y_stats_in_cached_levels": 52,
+        "person_record_missing": 0
+      },
+      "no_mlb_in_y": 504,
+      "no_mlb_in_y_known_denominator": 849,
+      "no_mlb_in_y_share": 0.5936395759717314,
+      "null_person_transaction_rows": 0
+    },
+    "2022": {
+      "pool_size": 852,
+      "matched": 800,
+      "unmatched": 52,
+      "unmatched_reasons": {
+        "no_season_y_stats_in_cached_levels": 52,
+        "person_record_missing": 0
+      },
+      "no_mlb_in_y": 458,
+      "no_mlb_in_y_known_denominator": 800,
+      "no_mlb_in_y_share": 0.5725,
+      "null_person_transaction_rows": 0
+    },
+    "2023": {
+      "pool_size": 825,
+      "matched": 765,
+      "unmatched": 60,
+      "unmatched_reasons": {
+        "no_season_y_stats_in_cached_levels": 60,
+        "person_record_missing": 0
+      },
+      "no_mlb_in_y": 465,
+      "no_mlb_in_y_known_denominator": 765,
+      "no_mlb_in_y_share": 0.6078431372549019,
+      "null_person_transaction_rows": 0
+    },
+    "2024": {
+      "pool_size": 636,
+      "matched": 597,
+      "unmatched": 39,
+      "unmatched_reasons": {
+        "no_season_y_stats_in_cached_levels": 39,
+        "person_record_missing": 0
+      },
+      "no_mlb_in_y": 413,
+      "no_mlb_in_y_known_denominator": 597,
+      "no_mlb_in_y_share": 0.6917922948073701,
+      "null_person_transaction_rows": 0
+    },
+    "2025": {
+      "pool_size": 836,
+      "matched": 799,
+      "unmatched": 37,
+      "unmatched_reasons": {
+        "no_season_y_stats_in_cached_levels": 37,
+        "person_record_missing": 0
+      },
+      "no_mlb_in_y": 456,
+      "no_mlb_in_y_known_denominator": 799,
+      "no_mlb_in_y_share": 0.5707133917396746,
+      "null_person_transaction_rows": 0
+    }
+  },
+  "cubs": [
+    {
+      "year": 2021,
+      "minor_contracts": 41,
+      "spring_invitations": 3,
+      "overlap": 3,
+      "other_signing_unmatched": 12,
+      "monthly_union_matches": true,
+      "monthly_only_ids": 0,
+      "full_window_only_ids": 0,
+      "combined": 41,
+      "groups": [
+        {
+          "type_code": "ASG",
+          "type_desc": "Assigned",
+          "row_count": 89
+        },
+        {
+          "type_code": "CLW",
+          "type_desc": "Claimed Off Waivers",
+          "row_count": 3
+        },
+        {
+          "type_code": "DES",
+          "type_desc": "Designated for Assignment",
+          "row_count": 2
+        },
+        {
+          "type_code": "DFA",
+          "type_desc": "Declared Free Agency",
+          "row_count": 6
+        },
+        {
+          "type_code": "OPT",
+          "type_desc": "Optioned",
+          "row_count": 9
+        },
+        {
+          "type_code": "OUT",
+          "type_desc": "Outrighted",
+          "row_count": 8
+        },
+        {
+          "type_code": "SC",
+          "type_desc": "Status Change",
+          "row_count": 91
+        },
+        {
+          "type_code": "SE",
+          "type_desc": "Selected",
+          "row_count": 2
+        },
+        {
+          "type_code": "SFA",
+          "type_desc": "Signed as Free Agent",
+          "row_count": 53
+        },
+        {
+          "type_code": "TR",
+          "type_desc": "Trade",
+          "row_count": 3
+        }
+      ],
+      "examples": [
+        {
+          "id": 525194,
+          "date": "2021-11-12",
+          "type_code": "SFA",
+          "match_status": "matched"
+        },
+        {
+          "id": 525207,
+          "date": "2021-11-12",
+          "type_code": "SFA",
+          "match_status": "matched"
+        },
+        {
+          "id": 525205,
+          "date": "2021-11-12",
+          "type_code": "SFA",
+          "match_status": "matched"
+        },
+        {
+          "id": 525210,
+          "date": "2021-11-12",
+          "type_code": "SFA",
+          "match_status": "matched"
+        },
+        {
+          "id": 600952,
+          "date": "2021-11-19",
+          "type_code": "SFA",
+          "match_status": "matched"
+        }
+      ]
+    },
+    {
+      "year": 2022,
+      "minor_contracts": 38,
+      "spring_invitations": 0,
+      "overlap": 0,
+      "other_signing_unmatched": 10,
+      "monthly_union_matches": true,
+      "monthly_only_ids": 0,
+      "full_window_only_ids": 0,
+      "combined": 38,
+      "groups": [
+        {
+          "type_code": "ASG",
+          "type_desc": "Assigned",
+          "row_count": 73
+        },
+        {
+          "type_code": "CLW",
+          "type_desc": "Claimed Off Waivers",
+          "row_count": 4
+        },
+        {
+          "type_code": "DES",
+          "type_desc": "Designated for Assignment",
+          "row_count": 6
+        },
+        {
+          "type_code": "DFA",
+          "type_desc": "Declared Free Agency",
+          "row_count": 6
+        },
+        {
+          "type_code": "NUM",
+          "type_desc": "Number Change",
+          "row_count": 1
+        },
+        {
+          "type_code": "OPT",
+          "type_desc": "Optioned",
+          "row_count": 11
+        },
+        {
+          "type_code": "OUT",
+          "type_desc": "Outrighted",
+          "row_count": 14
+        },
+        {
+          "type_code": "REL",
+          "type_desc": "Released",
+          "row_count": 2
+        },
+        {
+          "type_code": "RTN",
+          "type_desc": "Returned",
+          "row_count": 1
+        },
+        {
+          "type_code": "SC",
+          "type_desc": "Status Change",
+          "row_count": 152
+        },
+        {
+          "type_code": "SE",
+          "type_desc": "Selected",
+          "row_count": 6
+        },
+        {
+          "type_code": "SFA",
+          "type_desc": "Signed as Free Agent",
+          "row_count": 48
+        },
+        {
+          "type_code": "TR",
+          "type_desc": "Trade",
+          "row_count": 4
+        }
+      ],
+      "examples": [
+        {
+          "id": 604936,
+          "date": "2022-12-01",
+          "type_code": "SFA",
+          "match_status": "matched"
+        },
+        {
+          "id": 662533,
+          "date": "2022-12-05",
+          "type_code": "SFA",
+          "match_status": "matched"
+        },
+        {
+          "id": 663297,
+          "date": "2022-12-12",
+          "type_code": "SFA",
+          "match_status": "matched"
+        },
+        {
+          "id": 663289,
+          "date": "2022-12-13",
+          "type_code": "SFA",
+          "match_status": "matched"
+        },
+        {
+          "id": 663299,
+          "date": "2022-12-13",
+          "type_code": "SFA",
+          "match_status": "matched"
+        }
+      ]
+    },
+    {
+      "year": 2023,
+      "minor_contracts": 41,
+      "spring_invitations": 2,
+      "overlap": 2,
+      "other_signing_unmatched": 3,
+      "monthly_union_matches": true,
+      "monthly_only_ids": 0,
+      "full_window_only_ids": 0,
+      "combined": 41,
+      "groups": [
+        {
+          "type_code": "ASG",
+          "type_desc": "Assigned",
+          "row_count": 76
+        },
+        {
+          "type_code": "CLW",
+          "type_desc": "Claimed Off Waivers",
+          "row_count": 4
+        },
+        {
+          "type_code": "CU",
+          "type_desc": "Recalled",
+          "row_count": 1
+        },
+        {
+          "type_code": "DES",
+          "type_desc": "Designated for Assignment",
+          "row_count": 2
+        },
+        {
+          "type_code": "DFA",
+          "type_desc": "Declared Free Agency",
+          "row_count": 10
+        },
+        {
+          "type_code": "OPT",
+          "type_desc": "Optioned",
+          "row_count": 12
+        },
+        {
+          "type_code": "OUT",
+          "type_desc": "Outrighted",
+          "row_count": 1
+        },
+        {
+          "type_code": "SC",
+          "type_desc": "Status Change",
+          "row_count": 32
+        },
+        {
+          "type_code": "SE",
+          "type_desc": "Selected",
+          "row_count": 5
+        },
+        {
+          "type_code": "SFA",
+          "type_desc": "Signed as Free Agent",
+          "row_count": 44
+        },
+        {
+          "type_code": "TR",
+          "type_desc": "Trade",
+          "row_count": 4
+        }
+      ],
+      "examples": [
+        {
+          "id": 732696,
+          "date": "2023-11-08",
+          "type_code": "SFA",
+          "match_status": "matched"
+        },
+        {
+          "id": 733957,
+          "date": "2023-11-28",
+          "type_code": "SFA",
+          "match_status": "matched"
+        },
+        {
+          "id": 733962,
+          "date": "2023-11-28",
+          "type_code": "SFA",
+          "match_status": "matched"
+        },
+        {
+          "id": 733955,
+          "date": "2023-11-28",
+          "type_code": "SFA",
+          "match_status": "matched"
+        },
+        {
+          "id": 734450,
+          "date": "2023-11-29",
+          "type_code": "SFA",
+          "match_status": "matched"
+        }
+      ]
+    },
+    {
+      "year": 2024,
+      "minor_contracts": 65,
+      "spring_invitations": 3,
+      "overlap": 3,
+      "other_signing_unmatched": 6,
+      "monthly_union_matches": true,
+      "monthly_only_ids": 0,
+      "full_window_only_ids": 0,
+      "combined": 65,
+      "groups": [
+        {
+          "type_code": "ASG",
+          "type_desc": "Assigned",
+          "row_count": 75
+        },
+        {
+          "type_code": "CLW",
+          "type_desc": "Claimed Off Waivers",
+          "row_count": 2
+        },
+        {
+          "type_code": "DES",
+          "type_desc": "Designated for Assignment",
+          "row_count": 13
+        },
+        {
+          "type_code": "DFA",
+          "type_desc": "Declared Free Agency",
+          "row_count": 9
+        },
+        {
+          "type_code": "NUM",
+          "type_desc": "Number Change",
+          "row_count": 1
+        },
+        {
+          "type_code": "OPT",
+          "type_desc": "Optioned",
+          "row_count": 11
+        },
+        {
+          "type_code": "OUT",
+          "type_desc": "Outrighted",
+          "row_count": 5
+        },
+        {
+          "type_code": "R5",
+          "type_desc": "Rule 5 Selection",
+          "row_count": 1
+        },
+        {
+          "type_code": "REL",
+          "type_desc": "Released",
+          "row_count": 2
+        },
+        {
+          "type_code": "SC",
+          "type_desc": "Status Change",
+          "row_count": 23
+        },
+        {
+          "type_code": "SE",
+          "type_desc": "Selected",
+          "row_count": 4
+        },
+        {
+          "type_code": "SFA",
+          "type_desc": "Signed as Free Agent",
+          "row_count": 71
+        },
+        {
+          "type_code": "TR",
+          "type_desc": "Trade",
+          "row_count": 14
+        }
+      ],
+      "examples": [
+        {
+          "id": 807719,
+          "date": "2024-11-22",
+          "type_code": "SFA",
+          "match_status": "matched"
+        },
+        {
+          "id": 807121,
+          "date": "2024-11-26",
+          "type_code": "SFA",
+          "match_status": "matched"
+        },
+        {
+          "id": 809341,
+          "date": "2024-12-12",
+          "type_code": "SFA",
+          "match_status": "matched"
+        },
+        {
+          "id": 808437,
+          "date": "2024-12-13",
+          "type_code": "SFA",
+          "match_status": "matched"
+        },
+        {
+          "id": 808435,
+          "date": "2024-12-15",
+          "type_code": "SFA",
+          "match_status": "matched"
+        }
+      ]
+    },
+    {
+      "year": 2025,
+      "minor_contracts": 66,
+      "spring_invitations": 1,
+      "overlap": 1,
+      "other_signing_unmatched": 9,
+      "monthly_union_matches": true,
+      "monthly_only_ids": 0,
+      "full_window_only_ids": 0,
+      "combined": 66,
+      "groups": [
+        {
+          "type_code": "ASG",
+          "type_desc": "Assigned",
+          "row_count": 86
+        },
+        {
+          "type_code": "CLW",
+          "type_desc": "Claimed Off Waivers",
+          "row_count": 5
+        },
+        {
+          "type_code": "DES",
+          "type_desc": "Designated for Assignment",
+          "row_count": 2
+        },
+        {
+          "type_code": "DFA",
+          "type_desc": "Declared Free Agency",
+          "row_count": 14
+        },
+        {
+          "type_code": "NUM",
+          "type_desc": "Number Change",
+          "row_count": 1
+        },
+        {
+          "type_code": "OPT",
+          "type_desc": "Optioned",
+          "row_count": 12
+        },
+        {
+          "type_code": "OUT",
+          "type_desc": "Outrighted",
+          "row_count": 1
+        },
+        {
+          "type_code": "R5M",
+          "type_desc": "Rule 5 Draft Minors",
+          "row_count": 3
+        },
+        {
+          "type_code": "SC",
+          "type_desc": "Status Change",
+          "row_count": 36
+        },
+        {
+          "type_code": "SE",
+          "type_desc": "Selected",
+          "row_count": 6
+        },
+        {
+          "type_code": "SFA",
+          "type_desc": "Signed as Free Agent",
+          "row_count": 75
+        },
+        {
+          "type_code": "TR",
+          "type_desc": "Trade",
+          "row_count": 3
+        }
+      ],
+      "examples": [
+        {
+          "id": 876625,
+          "date": "2025-11-10",
+          "type_code": "SFA",
+          "match_status": "matched"
+        },
+        {
+          "id": 876626,
+          "date": "2025-11-10",
+          "type_code": "SFA",
+          "match_status": "matched"
+        },
+        {
+          "id": 876627,
+          "date": "2025-11-10",
+          "type_code": "SFA",
+          "match_status": "matched"
+        },
+        {
+          "id": 876624,
+          "date": "2025-11-10",
+          "type_code": "SFA",
+          "match_status": "matched"
+        },
+        {
+          "id": 878083,
+          "date": "2025-11-18",
+          "type_code": "SFA",
+          "match_status": "matched"
+        }
+      ]
+    }
+  ],
+  "stats_coverage": [
+    {
+      "season": 2017,
+      "sport_id": 1,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 1229,
+      "expected": 1229
+    },
+    {
+      "season": 2017,
+      "sport_id": 1,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 755,
+      "expected": 755
+    },
+    {
+      "season": 2017,
+      "sport_id": 11,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 1592,
+      "expected": 1592
+    },
+    {
+      "season": 2017,
+      "sport_id": 11,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 1394,
+      "expected": 1394
+    },
+    {
+      "season": 2017,
+      "sport_id": 12,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 1132,
+      "expected": 1132
+    },
+    {
+      "season": 2017,
+      "sport_id": 12,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 888,
+      "expected": 888
+    },
+    {
+      "season": 2017,
+      "sport_id": 13,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 829,
+      "expected": 829
+    },
+    {
+      "season": 2017,
+      "sport_id": 13,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 958,
+      "expected": 958
+    },
+    {
+      "season": 2017,
+      "sport_id": 14,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 729,
+      "expected": 729
+    },
+    {
+      "season": 2017,
+      "sport_id": 14,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 852,
+      "expected": 852
+    },
+    {
+      "season": 2018,
+      "sport_id": 1,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 1270,
+      "expected": 1270
+    },
+    {
+      "season": 2018,
+      "sport_id": 1,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 799,
+      "expected": 799
+    },
+    {
+      "season": 2018,
+      "sport_id": 11,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 1297,
+      "expected": 1297
+    },
+    {
+      "season": 2018,
+      "sport_id": 11,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 1047,
+      "expected": 1047
+    },
+    {
+      "season": 2018,
+      "sport_id": 12,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 1147,
+      "expected": 1147
+    },
+    {
+      "season": 2018,
+      "sport_id": 12,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 955,
+      "expected": 955
+    },
+    {
+      "season": 2018,
+      "sport_id": 13,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 800,
+      "expected": 800
+    },
+    {
+      "season": 2018,
+      "sport_id": 13,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 1020,
+      "expected": 1020
+    },
+    {
+      "season": 2018,
+      "sport_id": 14,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 734,
+      "expected": 734
+    },
+    {
+      "season": 2018,
+      "sport_id": 14,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 849,
+      "expected": 849
+    },
+    {
+      "season": 2019,
+      "sport_id": 1,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 1287,
+      "expected": 1287
+    },
+    {
+      "season": 2019,
+      "sport_id": 1,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 831,
+      "expected": 831
+    },
+    {
+      "season": 2019,
+      "sport_id": 11,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 1665,
+      "expected": 1665
+    },
+    {
+      "season": 2019,
+      "sport_id": 11,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 1515,
+      "expected": 1515
+    },
+    {
+      "season": 2019,
+      "sport_id": 12,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 1142,
+      "expected": 1142
+    },
+    {
+      "season": 2019,
+      "sport_id": 12,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 970,
+      "expected": 970
+    },
+    {
+      "season": 2019,
+      "sport_id": 13,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 824,
+      "expected": 824
+    },
+    {
+      "season": 2019,
+      "sport_id": 13,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 1023,
+      "expected": 1023
+    },
+    {
+      "season": 2019,
+      "sport_id": 14,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 756,
+      "expected": 756
+    },
+    {
+      "season": 2019,
+      "sport_id": 14,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 884,
+      "expected": 884
+    },
+    {
+      "season": 2020,
+      "sport_id": 1,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 620,
+      "expected": 620
+    },
+    {
+      "season": 2020,
+      "sport_id": 1,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 735,
+      "expected": 735
+    },
+    {
+      "season": 2020,
+      "sport_id": 11,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 0,
+      "expected": 0
+    },
+    {
+      "season": 2020,
+      "sport_id": 11,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 0,
+      "expected": 0
+    },
+    {
+      "season": 2020,
+      "sport_id": 12,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 0,
+      "expected": 0
+    },
+    {
+      "season": 2020,
+      "sport_id": 12,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 0,
+      "expected": 0
+    },
+    {
+      "season": 2020,
+      "sport_id": 13,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 0,
+      "expected": 0
+    },
+    {
+      "season": 2020,
+      "sport_id": 13,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 0,
+      "expected": 0
+    },
+    {
+      "season": 2020,
+      "sport_id": 14,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 0,
+      "expected": 0
+    },
+    {
+      "season": 2020,
+      "sport_id": 14,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 0,
+      "expected": 0
+    },
+    {
+      "season": 2021,
+      "sport_id": 1,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 1374,
+      "expected": 1374
+    },
+    {
+      "season": 2021,
+      "sport_id": 1,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 909,
+      "expected": 909
+    },
+    {
+      "season": 2021,
+      "sport_id": 11,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 1506,
+      "expected": 1506
+    },
+    {
+      "season": 2021,
+      "sport_id": 11,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 1178,
+      "expected": 1178
+    },
+    {
+      "season": 2021,
+      "sport_id": 12,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 916,
+      "expected": 916
+    },
+    {
+      "season": 2021,
+      "sport_id": 12,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 938,
+      "expected": 938
+    },
+    {
+      "season": 2021,
+      "sport_id": 13,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 837,
+      "expected": 837
+    },
+    {
+      "season": 2021,
+      "sport_id": 13,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 1011,
+      "expected": 1011
+    },
+    {
+      "season": 2021,
+      "sport_id": 14,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 908,
+      "expected": 908
+    },
+    {
+      "season": 2021,
+      "sport_id": 14,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 1143,
+      "expected": 1143
+    },
+    {
+      "season": 2022,
+      "sport_id": 1,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 794,
+      "expected": 794
+    },
+    {
+      "season": 2022,
+      "sport_id": 1,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 871,
+      "expected": 871
+    },
+    {
+      "season": 2022,
+      "sport_id": 11,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 1014,
+      "expected": 1014
+    },
+    {
+      "season": 2022,
+      "sport_id": 11,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 1258,
+      "expected": 1258
+    },
+    {
+      "season": 2022,
+      "sport_id": 12,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 770,
+      "expected": 770
+    },
+    {
+      "season": 2022,
+      "sport_id": 12,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 1032,
+      "expected": 1032
+    },
+    {
+      "season": 2022,
+      "sport_id": 13,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 795,
+      "expected": 795
+    },
+    {
+      "season": 2022,
+      "sport_id": 13,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 994,
+      "expected": 994
+    },
+    {
+      "season": 2022,
+      "sport_id": 14,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 945,
+      "expected": 945
+    },
+    {
+      "season": 2022,
+      "sport_id": 14,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 1209,
+      "expected": 1209
+    },
+    {
+      "season": 2023,
+      "sport_id": 1,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 769,
+      "expected": 769
+    },
+    {
+      "season": 2023,
+      "sport_id": 1,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 863,
+      "expected": 863
+    },
+    {
+      "season": 2023,
+      "sport_id": 11,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 931,
+      "expected": 931
+    },
+    {
+      "season": 2023,
+      "sport_id": 11,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 1242,
+      "expected": 1242
+    },
+    {
+      "season": 2023,
+      "sport_id": 12,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 801,
+      "expected": 801
+    },
+    {
+      "season": 2023,
+      "sport_id": 12,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 1033,
+      "expected": 1033
+    },
+    {
+      "season": 2023,
+      "sport_id": 13,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 789,
+      "expected": 789
+    },
+    {
+      "season": 2023,
+      "sport_id": 13,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 989,
+      "expected": 989
+    },
+    {
+      "season": 2023,
+      "sport_id": 14,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 917,
+      "expected": 917
+    },
+    {
+      "season": 2023,
+      "sport_id": 14,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 1158,
+      "expected": 1158
+    },
+    {
+      "season": 2024,
+      "sport_id": 1,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 742,
+      "expected": 742
+    },
+    {
+      "season": 2024,
+      "sport_id": 1,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 855,
+      "expected": 855
+    },
+    {
+      "season": 2024,
+      "sport_id": 11,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 885,
+      "expected": 885
+    },
+    {
+      "season": 2024,
+      "sport_id": 11,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 1234,
+      "expected": 1234
+    },
+    {
+      "season": 2024,
+      "sport_id": 12,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 742,
+      "expected": 742
+    },
+    {
+      "season": 2024,
+      "sport_id": 12,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 972,
+      "expected": 972
+    },
+    {
+      "season": 2024,
+      "sport_id": 13,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 769,
+      "expected": 769
+    },
+    {
+      "season": 2024,
+      "sport_id": 13,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 991,
+      "expected": 991
+    },
+    {
+      "season": 2024,
+      "sport_id": 14,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 905,
+      "expected": 905
+    },
+    {
+      "season": 2024,
+      "sport_id": 14,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 1187,
+      "expected": 1187
+    },
+    {
+      "season": 2025,
+      "sport_id": 1,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 765,
+      "expected": 765
+    },
+    {
+      "season": 2025,
+      "sport_id": 1,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 873,
+      "expected": 873
+    },
+    {
+      "season": 2025,
+      "sport_id": 11,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 920,
+      "expected": 920
+    },
+    {
+      "season": 2025,
+      "sport_id": 11,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 1264,
+      "expected": 1264
+    },
+    {
+      "season": 2025,
+      "sport_id": 12,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 772,
+      "expected": 772
+    },
+    {
+      "season": 2025,
+      "sport_id": 12,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 1017,
+      "expected": 1017
+    },
+    {
+      "season": 2025,
+      "sport_id": 13,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 789,
+      "expected": 789
+    },
+    {
+      "season": 2025,
+      "sport_id": 13,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 1040,
+      "expected": 1040
+    },
+    {
+      "season": 2025,
+      "sport_id": 14,
+      "group": "hitting",
+      "status": "COMPLETE",
+      "rows": 922,
+      "expected": 922
+    },
+    {
+      "season": 2025,
+      "sport_id": 14,
+      "group": "pitching",
+      "status": "COMPLETE",
+      "rows": 1223,
+      "expected": 1223
+    }
+  ],
+  "k_basis": 41,
+  "age_status": {
+    "label": "FACT",
+    "unknown_by_cohort": {
+      "2018": 0,
+      "2019": 0,
+      "2021": 0,
+      "2022": 0,
+      "2023": 0,
+      "2024": 0,
+      "2025": 0
+    },
+    "reason": null
+  },
+  "cubs_rules": {
+    "minor_contract": "\\bminor[ -]league contract\\b",
+    "invitation": "\\b(?:non[ -]roster invit\\w*|spring training invit\\w*|invit\\w*(?:\\s+\\w+){0,5}\\s+(?:to\\s+)?(?:spring training|camp))",
+    "unmatched_signing_like": "\\b(?:signed|signs|signing)\\b"
+  }
+}

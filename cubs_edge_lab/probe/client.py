@@ -42,7 +42,7 @@ def atomic_json(path, value, indent=2):
 
 
 class Client:
-    def __init__(self, root, session=None, offline=False):
+    def __init__(self, root, session=None, offline=False, request_cap=220):
         self.root = Path(root)
         self.session = session or requests.Session()
         self.offline = offline
@@ -51,6 +51,8 @@ class Client:
         self.manifest_path = self.root / 'research/raw_manifest.json'
         self.entries = (json.loads(self.manifest_path.read_text())
                         if self.manifest_path.exists() else [])
+        self.request_cap = request_cap
+        self.new_request_count = 0
 
     def get(self, endpoint, **params):
         with self.lock:
@@ -70,6 +72,8 @@ class Client:
         else:
             if self.offline:
                 raise ApiError('Offline cache miss: ' + endpoint)
+            if self.new_request_count >= self.request_cap:
+                raise ApiError('New request budget exceeded')
             self.limiter.wait()
             try:
                 response = self.session.get(
@@ -78,6 +82,7 @@ class Client:
             except requests.RequestException as exc:
                 raise ApiError(f'{endpoint}: {exc}') from exc
             raw = response.content
+            self.new_request_count += 1
             digest = hashlib.sha256(raw).hexdigest()
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_bytes(raw)
