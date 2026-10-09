@@ -102,6 +102,7 @@ class PublicationTests(unittest.TestCase):
             "validation.json": 200_000,
             "EXPERIMENT.md": 100_000,
             "exploratory_whole_pool.json": 200_000,
+            "cubs_case.json": 100_000,
         }
         research = ROOT / "research"
         self.assertEqual({p.name for p in research.iterdir()}, set(limits))
@@ -140,6 +141,19 @@ class PublicationTests(unittest.TestCase):
             self.assertLessEqual(len(study["examples"]), 5)
             for example in study["examples"]:
                 self.assertEqual(set(example), {"record", "query"})
+        cubs_case = json.loads((research / "cubs_case.json").read_bytes())
+        self.assertLessEqual(len(cubs_case["examples"]), 5)
+        for example in cubs_case["examples"]:
+            self.assertEqual(
+                set(example),
+                {
+                    "cohort_year",
+                    "person_id",
+                    "election_date",
+                    "signing_date",
+                    "outcome_season",
+                },
+            )
 
     def test_manifest_metadata_only(self):
         path = ROOT / "research/raw_manifest.json"
