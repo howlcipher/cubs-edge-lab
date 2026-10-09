@@ -1,0 +1,91 @@
+{
+  "as_of_date": "2026-10-09",
+  "cohort_years": [
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "cohorts": [
+    {
+      "cohort_year": 2021,
+      "cubs_signed": 14,
+      "cubs_signed_no_mlb_in_y": 6,
+      "cubs_signed_no_mlb_in_y_outcome_positive": 1,
+      "cubs_signed_outcome_positive": 3,
+      "league_no_mlb_in_y_outcome_positive": 14,
+      "outcome_season": 2022,
+      "share_display": "0.071429",
+      "share_of_league_no_mlb_positives": 0.07142857142857142
+    },
+    {
+      "cohort_year": 2022,
+      "cubs_signed": 12,
+      "cubs_signed_no_mlb_in_y": 3,
+      "cubs_signed_no_mlb_in_y_outcome_positive": 0,
+      "cubs_signed_outcome_positive": 1,
+      "league_no_mlb_in_y_outcome_positive": 12,
+      "outcome_season": 2023,
+      "share_display": "0.000000",
+      "share_of_league_no_mlb_positives": 0.0
+    },
+    {
+      "cohort_year": 2023,
+      "cubs_signed": 10,
+      "cubs_signed_no_mlb_in_y": 3,
+      "cubs_signed_no_mlb_in_y_outcome_positive": 1,
+      "cubs_signed_outcome_positive": 6,
+      "league_no_mlb_in_y_outcome_positive": 22,
+      "outcome_season": 2024,
+      "share_display": "0.045455",
+      "share_of_league_no_mlb_positives": 0.045454545454545456
+    },
+    {
+      "cohort_year": 2024,
+      "cubs_signed": 8,
+      "cubs_signed_no_mlb_in_y": 4,
+      "cubs_signed_no_mlb_in_y_outcome_positive": 0,
+      "cubs_signed_outcome_positive": 0,
+      "league_no_mlb_in_y_outcome_positive": 23,
+      "outcome_season": 2025,
+      "share_display": "0.000000",
+      "share_of_league_no_mlb_positives": 0.0
+    }
+  ],
+  "examples": [
+    {
+      "cohort_year": 2021,
+      "election_date": "2021-11-07",
+      "outcome_season": 2022,
+      "person_id": 643410,
+      "signing_date": "2021-12-15"
+    },
+    {
+      "cohort_year": 2023,
+      "election_date": "2023-11-17",
+      "outcome_season": 2024,
+      "person_id": 681799,
+      "signing_date": "2023-12-02"
+    }
+  ],
+  "interpretation": "illustrates the size of the opportunity only; not a recommendation",
+  "join_key": "person_id only",
+  "matching_rules": {
+    "case_insensitive": true,
+    "minor_contract_regex": "\\bminor[ -]league contract\\b",
+    "spring_invitation_regex": "\\b(?:non[ -]roster invit\\w*|spring training invit\\w*|invit\\w*(?:\\s+\\w+){0,5}\\s+(?:to\\s+)?(?:spring training|camp))"
+  },
+  "method_status": "failed its pre-registered test",
+  "signing_window": "player election date through March 31 of cohort year + 1, inclusive",
+  "source": "MLBAM, MLB Stats API; cached local responses",
+  "team_id": 112,
+  "thresholds": {
+    "ip": 20,
+    "pa": 50
+  },
+  "unknowns": [
+    "availability",
+    "contract terms",
+    "competing offers"
+  ]
+}

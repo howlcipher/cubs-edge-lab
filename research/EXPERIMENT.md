@@ -401,3 +401,24 @@ EXPLORATORY UNKNOWN: The 2025 cohort was not evaluated.
 EXPLORATORY UNKNOWN: Whether differences exceed sampling noise beyond these bootstrap intervals is unknown.
 EXPLORATORY UNKNOWN: Stability of the single L2 choice is unknown.
 <!-- EXPLORATORY WHOLE POOL END -->
+
+## Cubs case (descriptive)
+
+FACT: Dated 2026-10-09; source: MLBAM, MLB Stats API; cached local responses; Cubs team ID 112.
+FACT: Cohorts: 2021, 2022, 2023, 2024; outcome thresholds: at least 50 MLB PA or 20 MLB IP in the following season, any club.
+FACT: A qualifying Cubs transaction matches the recorded minor-contract or spring-invitation rules and falls within the player's election-date-through-March-31 window, inclusive; joins use person_id only.
+
+FACT: Counts and shares by cohort are:
+| Evidence | Cohort | Outcome season | Cubs signed | Signed, positive | No MLB in Y signed | No MLB in Y signed, positive | League no-MLB-in-Y positives | Cubs share of those positives |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| FACT | 2021 | 2022 | 14 | 3 | 6 | 1 | 14 | 0.071429 |
+| FACT | 2022 | 2023 | 12 | 1 | 3 | 0 | 12 | 0.000000 |
+| FACT | 2023 | 2024 | 10 | 6 | 3 | 1 | 22 | 0.045455 |
+| FACT | 2024 | 2025 | 8 | 0 | 4 | 0 | 23 | 0.000000 |
+
+FACT: The method failed its pre-registered test.
+INFERENCE: This case illustrates the size of the opportunity only; not a recommendation.
+UNKNOWN: Availability, contract terms, and competing offers are unknown.
+FACT: Examples below are limited to five and identify people by person ID with source dates.
+FACT: Cohort 2021, person ID 643410: election 2021-11-07, Cubs transaction 2021-12-15, outcome season 2022.
+FACT: Cohort 2023, person ID 681799: election 2023-11-17, Cubs transaction 2023-12-02, outcome season 2024.

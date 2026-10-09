@@ -405,7 +405,10 @@ def write_outputs(root, payload):
     primary = report_path.read_bytes()
     text = primary.decode()
     if START in text and END in text:
-        prefix = text[: text.index(START)]
+        start = text.index(START)
+        end = text.index(END, start) + len(END)
+        prefix = text[:start]
+        suffix = text[end:]
         repaired = prefix[:-1] if prefix.endswith("\n\n") else prefix
         if (
             hashlib.sha256(repaired.encode()).hexdigest()
@@ -414,12 +417,13 @@ def write_outputs(root, payload):
             prefix = repaired
     else:
         prefix = text
+        suffix = ""
     section = render_section(payload)
     json_path = research / "exploratory_whole_pool.json"
     atomic_json(json_path, payload)
     temporary = report_path.with_suffix(".md.tmp")
     separator = "" if prefix.endswith("\n") else "\n"
-    temporary.write_text(prefix + separator + section)
+    temporary.write_text(prefix + separator + section.rstrip() + suffix)
     temporary.replace(report_path)
 
 

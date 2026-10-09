@@ -238,18 +238,28 @@ class ExploratoryWholePoolTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
             self.fixture(root)
+            report_path = root / "research/EXPERIMENT.md"
+            report_path.write_bytes(
+                b"primary report sentinel\n"
+                + exploratory_whole_pool.START.encode()
+                + b"\nold exploratory section\n"
+                + exploratory_whole_pool.END.encode()
+                + b"\n\n## Cubs case (descriptive)\nFACT: preserved tail\n"
+            )
             validation = (root / "research/validation.json").read_bytes()
             report = (root / "research/EXPERIMENT.md").read_bytes()
             self.assertEqual(
                 main(["--root", str(root), "--resamples", "25"]), 0
             )
             first = (root / "research/EXPERIMENT.md").read_bytes()
+            self.assertIn(b"## Cubs case (descriptive)", first)
+            self.assertIn(b"FACT: preserved tail", first)
             json_text = (
                 root / "research/exploratory_whole_pool.json"
             ).read_text()
             section = first.decode().split(
                 "<!-- EXPLORATORY WHOLE POOL START -->", 1
-            )[1]
+            )[1].split("<!-- EXPLORATORY WHOLE POOL END -->", 1)[0]
             section = "<!-- EXPLORATORY WHOLE POOL START -->" + section
             for token in _tokens(section):
                 self.assertIn(
@@ -283,7 +293,10 @@ class ExploratoryWholePoolTests(unittest.TestCase):
             self.assertEqual(
                 (root / "research/validation.json").read_bytes(), validation
             )
-            self.assertTrue(first.startswith(report))
+            self.assertEqual(
+                first.split(exploratory_whole_pool.START.encode(), 1)[0],
+                report.split(exploratory_whole_pool.START.encode(), 1)[0],
+            )
             self.assertEqual(
                 main(["--root", str(root), "--resamples", "25"]), 0
             )
@@ -317,9 +330,9 @@ class ExploratoryWholePoolTests(unittest.TestCase):
                 "exploratory output is generated after implementation tests"
             )
         payload = json.loads(output.read_text())
-        section = report.split(b"<!-- EXPLORATORY WHOLE POOL START -->", 1)[
-            1
-        ].decode()
+        section = report.split(
+            b"<!-- EXPLORATORY WHOLE POOL START -->", 1
+        )[1].split(b"<!-- EXPLORATORY WHOLE POOL END -->", 1)[0].decode()
         for token in _tokens(section):
             self.assertIn(token, _json_number_tokens(payload))
         self.assertIn(
