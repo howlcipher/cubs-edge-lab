@@ -149,12 +149,22 @@ MLBAM's terms; no response content is published. Run `fetch` before
 command writes ignored ID-joined cohort tables and aggregate-only
 `research/data_summary.json` and `research/DATA.md`.
 
+The separately labeled exploratory whole-pool analysis can be regenerated offline
+from already-fetched local data with `python3 -m cubs_edge_lab.exploratory_whole_pool --root .`.
+It writes aggregate-only `research/exploratory_whole_pool.json` and an exploratory
+section in `research/EXPERIMENT.md`; its scope follows the owner's 2026-10-09
+authorization for local-only use of cached MLB Stats API data and excludes the
+2025 holdout. Re-running `python3 -m cubs_edge_lab.triage_cli evaluate` rewrites
+`EXPERIMENT.md` from the primary result and therefore removes that section; run
+the exploratory command again afterward.
+
 `python3 -m cubs_edge_lab.triage_cli evaluate` builds outcomes for cohorts 2018–2024 from cached league-wide MLB statistics and writes aggregate-only `research/validation.json` plus its JSON-derived `research/EXPERIMENT.md`; it is offline and never evaluates the 2025 holdout. Run `evaluate` before `preregister`. After a complete, non-early-stop validation, `python3 -m cubs_edge_lab.triage_cli preregister` hashes every `cubs_edge_lab/triage*.py` file and `research/validation.json`. Editing, adding, or deleting any triage module invalidates preregistration. Preregistration refuses missing validation or an early stop. The 2025 outcome builder refuses to run unless every hash matches; the 2025 holdout remains unevaluated.
 
 The cohort selector joins transaction person IDs to season split IDs only.
 Feature and outcome helpers enforce season and holdout boundaries; missing
 source measurements are not silently converted into measured results. This
-data-acquisition stage produces cohort tables and aggregate coverage reports;
-the separate evaluation stage has not been run and no outcome labels or
-holdout result are produced. Existing response contents remain local and are
-not included in the repository.
+data-acquisition stage produces cohort tables and aggregate coverage reports.
+The primary evaluation has been run and is documented in
+`research/validation.json` and `research/EXPERIMENT.md`; the 2025 holdout has
+not been evaluated and no holdout result is produced. Existing response
+contents remain local and are not included in the repository.

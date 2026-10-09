@@ -4,7 +4,6 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
-from unittest.mock import Mock
 
 from cubs_edge_lab.triage import age_on, outcome, rank, select_cohort
 from cubs_edge_lab.triage_cli import fetch
@@ -23,14 +22,30 @@ class TriageTests(unittest.TestCase):
         from cubs_edge_lab.triage_eval import evaluate_rows
 
         rows = [
-            {"person_id": 1, "positive": True, "mlb_pa_y": 0,
-             "mlb_ip_y": 0, "highest_level": 1, "age": 30,
-             "ops": 0.1, "k_bb_pct": 0.0, "met_threshold_y": False,
-             "no_mlb_appearance_y": True},
-            {"person_id": 2, "positive": False, "mlb_pa_y": 0,
-             "mlb_ip_y": 0, "highest_level": 1, "age": 20,
-             "ops": 0.9, "k_bb_pct": 0.0, "met_threshold_y": False,
-             "no_mlb_appearance_y": True},
+            {
+                "person_id": 1,
+                "positive": True,
+                "mlb_pa_y": 0,
+                "mlb_ip_y": 0,
+                "highest_level": 1,
+                "age": 30,
+                "ops": 0.1,
+                "k_bb_pct": 0.0,
+                "met_threshold_y": False,
+                "no_mlb_appearance_y": True,
+            },
+            {
+                "person_id": 2,
+                "positive": False,
+                "mlb_pa_y": 0,
+                "mlb_ip_y": 0,
+                "highest_level": 1,
+                "age": 20,
+                "ops": 0.9,
+                "k_bb_pct": 0.0,
+                "met_threshold_y": False,
+                "no_mlb_appearance_y": True,
+            },
         ]
         result = evaluate_rows(rows)
         # B0 tie-break favors the younger non-outcome player; B1 favors its
@@ -42,10 +57,20 @@ class TriageTests(unittest.TestCase):
         from cubs_edge_lab.triage import as_of_features
 
         stats = [
-            {"person_id": 7, "season": 2023, "sport_id": 1,
-             "group": "hitting", "stat": {"plateAppearances": 11}},
-            {"person_id": 7, "season": 2024, "sport_id": 1,
-             "group": "hitting", "stat": {"plateAppearances": 99}},
+            {
+                "person_id": 7,
+                "season": 2023,
+                "sport_id": 1,
+                "group": "hitting",
+                "stat": {"plateAppearances": 11},
+            },
+            {
+                "person_id": 7,
+                "season": 2024,
+                "sport_id": 1,
+                "group": "hitting",
+                "stat": {"plateAppearances": 99},
+            },
         ]
         transactions = [
             {"player_id": 7, "date": "2023-11-01", "description": "old"},
@@ -56,24 +81,45 @@ class TriageTests(unittest.TestCase):
         )
         self.assertEqual(result["age"], 23)
         self.assertEqual(result["mlb_pa_y"], 11)
-        descriptions = [r["description"]
-                        for r in result["transactions_as_of"]]
+        descriptions = [r["description"] for r in result["transactions_as_of"]]
         self.assertEqual(descriptions, ["old"])
 
     def test_feature_rates_classification_and_baseball_innings(self):
         from cubs_edge_lab.triage import as_of_features
 
         rows = [
-            {"person_id": 5, "season": 2023, "sport_id": 11,
-             "group": "hitting", "stat": {
-                 "plateAppearances": 100, "baseOnBalls": 10,
-                 "strikeOuts": 20, "ops": ".800"}},
-            {"person_id": 5, "season": 2023, "sport_id": 11,
-             "group": "pitching", "stat": {
-                 "inningsPitched": "12.1", "strikeOuts": 15,
-                 "baseOnBalls": 3, "battersFaced": 50, "era": "3.50"}},
-            {"person_id": 5, "season": 2022, "sport_id": 1,
-             "group": "pitching", "stat": {"inningsPitched": "1.2"}},
+            {
+                "person_id": 5,
+                "season": 2023,
+                "sport_id": 11,
+                "group": "hitting",
+                "stat": {
+                    "plateAppearances": 100,
+                    "baseOnBalls": 10,
+                    "strikeOuts": 20,
+                    "ops": ".800",
+                },
+            },
+            {
+                "person_id": 5,
+                "season": 2023,
+                "sport_id": 11,
+                "group": "pitching",
+                "stat": {
+                    "inningsPitched": "12.1",
+                    "strikeOuts": 15,
+                    "baseOnBalls": 3,
+                    "battersFaced": 50,
+                    "era": "3.50",
+                },
+            },
+            {
+                "person_id": 5,
+                "season": 2022,
+                "sport_id": 1,
+                "group": "pitching",
+                "stat": {"inningsPitched": "1.2"},
+            },
         ]
         result = as_of_features(5, "2023-11-01", "2000-01-01", rows)
         self.assertEqual(result["player_type"], "pitcher")
@@ -225,10 +271,16 @@ class TriageTests(unittest.TestCase):
         self.assertEqual([x["person_id"] for x in rank(rows, "M")], [1, 2])
 
     def test_rankings_level_age_missing_age_and_id_tiebreaks(self):
-        base = {"mlb_pa_y": 0, "mlb_ip_y": 0, "ops": .5,
-                "k_bb_pct": .1, "m_probability": .5,
-                "b2_probability": .5, "met_threshold_y": False,
-                "player_type": "hitter"}
+        base = {
+            "mlb_pa_y": 0,
+            "mlb_ip_y": 0,
+            "ops": 0.5,
+            "k_bb_pct": 0.1,
+            "m_probability": 0.5,
+            "b2_probability": 0.5,
+            "met_threshold_y": False,
+            "player_type": "hitter",
+        }
         rows = [
             {**base, "person_id": 4, "highest_level": 14, "age": 20},
             {**base, "person_id": 3, "highest_level": 13, "age": None},
@@ -236,8 +288,9 @@ class TriageTests(unittest.TestCase):
             {**base, "person_id": 1, "highest_level": 11, "age": 22},
         ]
         for method in ("B0", "B1"):
-            self.assertEqual([r["person_id"] for r in rank(rows, method)],
-                             [1, 2, 3, 4])
+            self.assertEqual(
+                [r["person_id"] for r in rank(rows, method)], [1, 2, 3, 4]
+            )
 
     def test_auc_calibration_bootstrap(self):
         self.assertEqual(auc([0, 1], [0.5, 0.5]), 0.5)
@@ -298,18 +351,33 @@ class TriageTests(unittest.TestCase):
             with self.assertRaises(RuntimeError):
                 guard_outcome_build(root, 2025)
             self.assertTrue(guard_outcome_build(root, 2024))
+
         class FakeClient:
-            def __init__(self, root): self.root, self.calls = root, []
+            def __init__(self, root):
+                self.root, self.calls = root, []
+
             def get(self, endpoint, **params):
                 self.calls.append((endpoint, params))
                 if endpoint == "stats":
-                    return {"stats": [{"group": {"displayName": params["group"]},
-                                      "totalSplits": 0, "splits": []}]}
+                    return {
+                        "stats": [
+                            {
+                                "group": {"displayName": params["group"]},
+                                "totalSplits": 0,
+                                "splits": [],
+                            }
+                        ]
+                    }
                 return {"transactions": []}
+
         with tempfile.TemporaryDirectory() as directory:
             client = FakeClient(Path(directory))
             fetch(client)
-        stat_seasons = [params.get("season") for endpoint, params in client.calls if endpoint == "stats"]
+        stat_seasons = [
+            params.get("season")
+            for endpoint, params in client.calls
+            if endpoint == "stats"
+        ]
         self.assertTrue(stat_seasons)
         self.assertLess(max(stat_seasons), 2026)
         with self.assertRaises(ValueError):
@@ -328,8 +396,10 @@ class TriageTests(unittest.TestCase):
             [{"age": 20}, {"age": None}, {"age": 30}], [0, 0, 1], ["age"]
         )
         self.assertEqual(model.means, [25.0])
-        self.assertEqual(model.predict_proba([{"age": None}], ["age"]),
-                         model.predict_proba([{"age": 25}], ["age"]))
+        self.assertEqual(
+            model.predict_proba([{"age": None}], ["age"]),
+            model.predict_proba([{"age": 25}], ["age"]),
+        )
 
 
 if __name__ == "__main__":

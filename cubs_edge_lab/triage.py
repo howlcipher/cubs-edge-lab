@@ -74,8 +74,14 @@ def as_of_features(
     # MLB Stats API sport IDs used here are ordered from MLB (1) down through
     # AAA (11), AA (12), A (13), and Rookie (14). The smallest represented ID
     # is therefore the highest level reached in the season.
-    level = min((int(r.get("sport_id") or 0) for r in current
-                 if int(r.get("sport_id") or 0) > 0), default=0)
+    level = min(
+        (
+            int(r.get("sport_id") or 0)
+            for r in current
+            if int(r.get("sport_id") or 0) > 0
+        ),
+        default=0,
+    )
     pitching = [r for r in current if r.get("group") == "pitching"]
 
     def number(value):
@@ -85,12 +91,20 @@ def as_of_features(
             return 0.0
 
     def total(group_rows, key):
-        return sum(number((r.get("stat") or {}).get(key, 0))
-                   for r in group_rows)
+        return sum(
+            number((r.get("stat") or {}).get(key, 0)) for r in group_rows
+        )
 
     def innings(rows):
-        return sum(innings_outs(str((r.get("stat") or {}).get(
-            "inningsPitched", "0.0"))) for r in rows) / 3
+        return (
+            sum(
+                innings_outs(
+                    str((r.get("stat") or {}).get("inningsPitched", "0.0"))
+                )
+                for r in rows
+            )
+            / 3
+        )
 
     level_rows = [r for r in current if r.get("sport_id") == level]
     level_hit = [r for r in level_rows if r.get("group") == "hitting"]
@@ -104,11 +118,13 @@ def as_of_features(
     batters = total(level_pitch, "battersFaced")
     mlb_y = [r for r in current if r.get("sport_id") == 1]
     mlb_appearance_y = any(
-        number((r.get("stat") or {}).get("gamesPlayed", 0)) > 0
-        for r in mlb_y
+        number((r.get("stat") or {}).get("gamesPlayed", 0)) > 0 for r in mlb_y
     )
-    prior = [r for r in stats if int(r["season"]) == election.year - 1
-             and r.get("sport_id") == 1]
+    prior = [
+        r
+        for r in stats
+        if int(r["season"]) == election.year - 1 and r.get("sport_id") == 1
+    ]
     return {
         "person_id": player_id,
         "age": age_on(birth_date, election),
@@ -116,22 +132,26 @@ def as_of_features(
         "season_stats": stats,
         "player_type": "pitcher" if pitching else "hitter",
         "pa": pa,
-        "ops": max((number((r.get("stat") or {}).get("ops", 0))
-                    for r in level_hit), default=0.0),
+        "ops": max(
+            (number((r.get("stat") or {}).get("ops", 0)) for r in level_hit),
+            default=0.0,
+        ),
         "bb_pct": walks / pa if pa else 0.0,
         "k_pct": strikeouts / pa if pa else 0.0,
         "ip": ip,
-        "k_bb_pct": ((p_strikeouts - p_walks) / batters
-                     if batters else 0.0),
-        "era": max((number((r.get("stat") or {}).get("era", 0))
-                    for r in level_pitch), default=0.0),
+        "k_bb_pct": ((p_strikeouts - p_walks) / batters if batters else 0.0),
+        "era": max(
+            (number((r.get("stat") or {}).get("era", 0)) for r in level_pitch),
+            default=0.0,
+        ),
         "mlb_pa_y": total(
             [r for r in mlb_y if r.get("group") == "hitting"],
             "plateAppearances",
         ),
         "mlb_appearance_y": mlb_appearance_y,
-        "mlb_ip_y": innings([r for r in mlb_y
-                             if r.get("group") == "pitching"]),
+        "mlb_ip_y": innings(
+            [r for r in mlb_y if r.get("group") == "pitching"]
+        ),
         "mlb_pa_y1": total(
             [r for r in prior if r.get("group") == "hitting"],
             "plateAppearances",
@@ -189,7 +209,12 @@ def rank(rows, method):
         age = number(row, "age")
         hitter = primary_segment(row) == "hitter"
         if method == "B0":
-            return (-(pa + ip), level_score(row) or 999, age if row.get("age") is not None else float("inf"), int(row["person_id"]))
+            return (
+                -(pa + ip),
+                level_score(row) or 999,
+                age if row.get("age") is not None else float("inf"),
+                int(row["person_id"]),
+            )
         if method == "B1":
             return (
                 level_score(row) or 999,
@@ -213,8 +238,11 @@ def rank(rows, method):
 
 def attach_features(cohort, people, stats_rows, transaction_rows):
     """Build ID-joined decision rows; names are never read or emitted."""
-    people_by_id = {row.get("person_id"): row for row in people
-                    if row.get("person_id") is not None}
+    people_by_id = {
+        row.get("person_id"): row
+        for row in people
+        if row.get("person_id") is not None
+    }
     output = []
     missing_birth_date = 0
     missing_person = 0
@@ -230,15 +258,20 @@ def attach_features(cohort, people, stats_rows, transaction_rows):
         else:
             birth_date = person["birth_date"]
         features = as_of_features(
-            person_id, member["date"], birth_date, stats_rows,
+            person_id,
+            member["date"],
+            birth_date,
+            stats_rows,
             transaction_rows,
         )
         if not person.get("birth_date"):
             features["age"] = None
         features["no_mlb_appearance_y"] = not features["mlb_appearance_y"]
         output.append({**features, "election_date": member["date"]})
-    return output, {"missing_person": missing_person,
-                    "missing_birth_date": missing_birth_date}
+    return output, {
+        "missing_person": missing_person,
+        "missing_birth_date": missing_birth_date,
+    }
 
 
 def coverage(pool, features, attach_reasons=None):
@@ -256,8 +289,10 @@ def coverage(pool, features, attach_reasons=None):
         if row is None:
             reasons["person_record_missing"] += 1
             continue
-        if not any(int(stat.get("season", 0)) == int(member["date"][:4])
-                   for stat in row.get("season_stats", [])):
+        if not any(
+            int(stat.get("season", 0)) == int(member["date"][:4])
+            for stat in row.get("season_stats", [])
+        ):
             reasons["no_season_y_stats_in_cached_levels"] += 1
         else:
             known_mlb += 1
@@ -265,8 +300,12 @@ def coverage(pool, features, attach_reasons=None):
                 no_mlb += 1
     unmatched = sum(reasons.values())
     matched = len(pool) - unmatched
-    return {"pool_size": len(pool), "matched": matched,
-            "unmatched": unmatched, "unmatched_reasons": reasons,
-            "no_mlb_in_y": no_mlb,
-            "no_mlb_in_y_known_denominator": known_mlb,
-            "no_mlb_in_y_share": no_mlb / known_mlb if known_mlb else None}
+    return {
+        "pool_size": len(pool),
+        "matched": matched,
+        "unmatched": unmatched,
+        "unmatched_reasons": reasons,
+        "no_mlb_in_y": no_mlb,
+        "no_mlb_in_y_known_denominator": known_mlb,
+        "no_mlb_in_y_share": no_mlb / known_mlb if known_mlb else None,
+    }

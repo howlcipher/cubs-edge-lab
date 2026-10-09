@@ -12,8 +12,10 @@ BOOTSTRAP_SEED = 43017
 L2_GRID = (0.01, 0.1, 1.0, 10.0)
 PRIMARY_K_CANDIDATES = (25, 50, 100)
 # Frozen before measuring the Cubs transaction counts.
-MINOR_CONTRACT_PATTERN = r'\bminor[ -]league contract\b'
-INVITATION_PATTERN = (r'\b(?:non[ -]roster invit\w*|spring training invit\w*|'
-                      r'invit\w*(?:\s+\w+){0,5}\s+(?:to\s+)?'
-                      r'(?:spring training|camp))')
-OTHER_SIGNING_PATTERN = r'\b(?:signed|signs|signing)\b'
+MINOR_CONTRACT_PATTERN = r"\bminor[ -]league contract\b"
+INVITATION_PATTERN = (
+    r"\b(?:non[ -]roster invit\w*|spring training invit\w*|"
+    r"invit\w*(?:\s+\w+){0,5}\s+(?:to\s+)?"
+    r"(?:spring training|camp))"
+)
+OTHER_SIGNING_PATTERN = r"\b(?:signed|signs|signing)\b"

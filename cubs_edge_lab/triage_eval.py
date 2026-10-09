@@ -103,9 +103,13 @@ def paired_bootstrap(
 def choose_comparator(validation_metrics):
     """Select top-50 baseline; ties follow B2, B0, B1, P."""
     order = {"B2": 3, "B0": 2, "B1": 1, "P": 0}
-    return max(order, key=lambda name: (
-        validation_metrics[name]["top_k"]["50"]["hits"], order[name]
-    ))
+    return max(
+        order,
+        key=lambda name: (
+            validation_metrics[name]["top_k"]["50"]["hits"],
+            order[name],
+        ),
+    )
 
 
 def sha256_file(path):
@@ -123,9 +127,10 @@ def preregistration_payload(root):
     files.append(root / "research/validation.json")
     missing = [path for path in files if not path.is_file()]
     if missing:
-        raise RuntimeError("missing evaluation inputs: " + ", ".join(
-            str(path.relative_to(root)) for path in missing
-        ))
+        raise RuntimeError(
+            "missing evaluation inputs: "
+            + ", ".join(str(path.relative_to(root)) for path in missing)
+        )
     hashes = {str(path.relative_to(root)): sha256_file(path) for path in files}
     combined = hashlib.sha256(
         json.dumps(hashes, sort_keys=True).encode()
@@ -181,14 +186,26 @@ class LogisticModel:
     def fit(self, rows, labels, features):
         if not rows or len(rows) != len(labels):
             raise ValueError("rows and labels must have equal nonzero length")
-        raw = [[(float(row[key]) if row.get(key) is not None else None)
-                for key in features] for row in rows]
+        raw = [
+            [
+                (float(row[key]) if row.get(key) is not None else None)
+                for key in features
+            ]
+            for row in rows
+        ]
         means_raw = []
         for j in range(len(features)):
             available = [row[j] for row in raw if row[j] is not None]
-            means_raw.append(sum(available) / len(available) if available else 0.0)
-        matrix = [[means_raw[j] if value is None else value
-                   for j, value in enumerate(row)] for row in raw]
+            means_raw.append(
+                sum(available) / len(available) if available else 0.0
+            )
+        matrix = [
+            [
+                means_raw[j] if value is None else value
+                for j, value in enumerate(row)
+            ]
+            for row in raw
+        ]
         width = len(features)
         self.means = [
             sum(row[j] for row in matrix) / len(matrix) for j in range(width)
@@ -228,8 +245,15 @@ class LogisticModel:
         result = []
         for row in rows:
             values = [
-                ((float(row[key]) if row.get(key) is not None else self.means[j])
-                 - self.means[j]) / self.scales[j]
+                (
+                    (
+                        float(row[key])
+                        if row.get(key) is not None
+                        else self.means[j]
+                    )
+                    - self.means[j]
+                )
+                / self.scales[j]
                 for j, key in enumerate(features)
             ]
             linear = self.weights[0] + sum(
@@ -251,20 +275,41 @@ def build_outcomes(root, year, players, stats_by_player):
     return result
 
 
-MODEL_FEATURES = ("mlb_pa_y", "mlb_ip_y", "highest_level", "age",
-                  "ops", "bb_pct", "k_pct", "k_bb_pct", "era",
-                  "mlb_pa_y1", "mlb_ip_y1")
+MODEL_FEATURES = (
+    "mlb_pa_y",
+    "mlb_ip_y",
+    "highest_level",
+    "age",
+    "ops",
+    "bb_pct",
+    "k_pct",
+    "k_bb_pct",
+    "era",
+    "mlb_pa_y1",
+    "mlb_ip_y1",
+)
 B2_FEATURES = ("mlb_pa_y", "mlb_ip_y", "highest_level", "age")
 
 
 def top_metrics(rows, method, ks=TOP_K):
-    ordered = sorted(rows, key=lambda row: row.get("rankings", {}).get(
-        method, (float("inf"),)) if isinstance(row.get("rankings", {}).get(
-            method), (int, float)) else row.get("rankings", {}).get(method, 0))
+    ordered = sorted(
+        rows,
+        key=lambda row: (
+            row.get("rankings", {}).get(method, (float("inf"),))
+            if isinstance(row.get("rankings", {}).get(method), (int, float))
+            else row.get("rankings", {}).get(method, 0)
+        ),
+    )
     labels = [bool(row.get("positive")) for row in ordered]
-    return {str(k): {"hits": sum(labels[:k]),
-                     "precision": (sum(labels[:k]) / min(k, len(labels))
-                                   if rows else None)} for k in ks}
+    return {
+        str(k): {
+            "hits": sum(labels[:k]),
+            "precision": (
+                sum(labels[:k]) / min(k, len(labels)) if rows else None
+            ),
+        }
+        for k in ks
+    }
 
 
 def evaluate_rows(rows, training_rows=(), strength=1.0):
@@ -275,17 +320,18 @@ def evaluate_rows(rows, training_rows=(), strength=1.0):
     training = list(training_rows)
     if training and len({int(bool(r["positive"])) for r in training}) == 2:
         model = LogisticModel(strength=strength).fit(
-            training, [int(bool(r["positive"])) for r in training],
+            training,
+            [int(bool(r["positive"])) for r in training],
             MODEL_FEATURES,
         )
         probabilities = model.predict_proba(rows, MODEL_FEATURES)
     else:
         probabilities = [0.5] * len(rows)
-    b2_training = [r for r in training
-                   if r.get("no_mlb_appearance_y", False)]
-    if (len({int(bool(r["positive"])) for r in b2_training}) == 2):
+    b2_training = [r for r in training if r.get("no_mlb_appearance_y", False)]
+    if len({int(bool(r["positive"])) for r in b2_training}) == 2:
         b2_model = LogisticModel(strength=1.0).fit(
-            b2_training, [int(bool(r["positive"])) for r in b2_training],
+            b2_training,
+            [int(bool(r["positive"])) for r in b2_training],
             B2_FEATURES,
         )
         b2_probabilities = b2_model.predict_proba(rows, B2_FEATURES)
@@ -306,40 +352,55 @@ def evaluate_rows(rows, training_rows=(), strength=1.0):
         top = {
             str(k): {
                 "hits": sum(bool(row["positive"]) for row in ordered[:k]),
-                "precision": (sum(bool(row["positive"])
-                                  for row in ordered[:k]) /
-                              min(k, len(ordered))),
+                "precision": (
+                    sum(bool(row["positive"]) for row in ordered[:k])
+                    / min(k, len(ordered))
+                ),
             }
             for k in TOP_K
         }
         # AUC consumes scores aligned to the original row order. Rank-based
         # methods receive their own deterministic ordinal scores.
-        ordinal = {row["person_id"]: len(ordered) - i
-                   for i, row in enumerate(ordered)}
+        ordinal = {
+            row["person_id"]: len(ordered) - i for i, row in enumerate(ordered)
+        }
         if method == "M":
             method_scores = [r["m_probability"] for r in scored]
         elif method == "B2":
             method_scores = [r["b2_probability"] for r in scored]
         elif method == "P":
-            method_scores = [float(bool(r.get("met_threshold_y")))
-                             for r in scored]
+            method_scores = [
+                float(bool(r.get("met_threshold_y"))) for r in scored
+            ]
         else:
             method_scores = [ordinal[r["person_id"]] for r in scored]
-        rankings[method] = {"top_k": top,
-                            "auroc": auc(labels, method_scores)}
-    return {"n": len(rows), "positives": sum(labels),
-            "base_rate": sum(labels) / len(labels), "rankings": rankings,
-            "calibration": calibration(labels, probabilities)}
+        rankings[method] = {"top_k": top, "auroc": auc(labels, method_scores)}
+    return {
+        "n": len(rows),
+        "positives": sum(labels),
+        "base_rate": sum(labels) / len(labels),
+        "rankings": rankings,
+        "calibration": calibration(labels, probabilities),
+    }
 
 
 def choose_strength(training_rows, validation_rows):
     """Choose L2 once by validation primary-segment top-50 hits."""
-    validation_rows = [row for row in validation_rows
-                       if row.get("no_mlb_appearance_y", False)]
+    validation_rows = [
+        row for row in validation_rows if row.get("no_mlb_appearance_y", False)
+    ]
     scores = []
     for strength in L2_GRID:
         result = evaluate_rows(validation_rows, training_rows, strength)
-        scores.append((result.get("rankings", {}).get("M", {})
-                       .get("top_k", {}).get("50", {}).get("hits", 0),
-                       -L2_GRID.index(strength), strength))
+        scores.append(
+            (
+                result.get("rankings", {})
+                .get("M", {})
+                .get("top_k", {})
+                .get("50", {})
+                .get("hits", 0),
+                -L2_GRID.index(strength),
+                strength,
+            )
+        )
     return max(scores)[2]
