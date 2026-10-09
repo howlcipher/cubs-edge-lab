@@ -1,0 +1,222 @@
+{
+  "config": {
+    "cohort_years": [
+      2018,
+      2019,
+      2021,
+      2022,
+      2023,
+      2024
+    ],
+    "training_years": [
+      2018,
+      2019,
+      2021,
+      2022,
+      2023
+    ],
+    "validation_year": 2024,
+    "rolling_origin_test_years": [
+      2021,
+      2022,
+      2023
+    ],
+    "holdout_excluded": 2025,
+    "early_stop_positive_minimum": 30,
+    "top_k": [
+      25,
+      50,
+      100
+    ],
+    "bootstrap_resamples": 2000,
+    "bootstrap_seed": 43017,
+    "l2_grid": [
+      0.01,
+      0.1,
+      1.0,
+      10.0
+    ],
+    "thresholds": {
+      "pa": 50,
+      "ip": 20,
+      "2019_scale": "60/162"
+    },
+    "features": [
+      "mlb_pa_y",
+      "mlb_ip_y",
+      "highest_level",
+      "age",
+      "ops",
+      "bb_pct",
+      "k_pct",
+      "k_bb_pct",
+      "era",
+      "mlb_pa_y1",
+      "mlb_ip_y1"
+    ]
+  },
+  "base_rates": {
+    "2018": {
+      "primary": {
+        "n": 452,
+        "positives": 20,
+        "positive_rate": 0.044248,
+        "any_appearance": 48
+      },
+      "pitchers": {
+        "n": 206,
+        "positives": 7,
+        "positive_rate": 0.033981,
+        "any_appearance": 25
+      },
+      "hitters": {
+        "n": 246,
+        "positives": 13,
+        "positive_rate": 0.052846,
+        "any_appearance": 23
+      },
+      "whole_pool": {
+        "n": 584,
+        "positives": 57,
+        "positive_rate": 0.097603,
+        "any_appearance": 109
+      }
+    },
+    "2019": {
+      "primary": {
+        "n": 465,
+        "positives": 12,
+        "positive_rate": 0.025806,
+        "any_appearance": 27
+      },
+      "pitchers": {
+        "n": 231,
+        "positives": 9,
+        "positive_rate": 0.038961,
+        "any_appearance": 18
+      },
+      "hitters": {
+        "n": 234,
+        "positives": 3,
+        "positive_rate": 0.012821,
+        "any_appearance": 9
+      },
+      "whole_pool": {
+        "n": 629,
+        "positives": 68,
+        "positive_rate": 0.108108,
+        "any_appearance": 106
+      }
+    },
+    "2021": {
+      "primary": {
+        "n": 555,
+        "positives": 14,
+        "positive_rate": 0.025225,
+        "any_appearance": 57
+      },
+      "pitchers": {
+        "n": 299,
+        "positives": 8,
+        "positive_rate": 0.026756,
+        "any_appearance": 34
+      },
+      "hitters": {
+        "n": 256,
+        "positives": 6,
+        "positive_rate": 0.023438,
+        "any_appearance": 23
+      },
+      "whole_pool": {
+        "n": 901,
+        "positives": 174,
+        "positive_rate": 0.193119,
+        "any_appearance": 257
+      }
+    },
+    "2022": {
+      "primary": {
+        "n": 509,
+        "positives": 12,
+        "positive_rate": 0.023576,
+        "any_appearance": 40
+      },
+      "pitchers": {
+        "n": 275,
+        "positives": 7,
+        "positive_rate": 0.025455,
+        "any_appearance": 27
+      },
+      "hitters": {
+        "n": 234,
+        "positives": 5,
+        "positive_rate": 0.021368,
+        "any_appearance": 13
+      },
+      "whole_pool": {
+        "n": 852,
+        "positives": 177,
+        "positive_rate": 0.207746,
+        "any_appearance": 255
+      }
+    },
+    "2023": {
+      "primary": {
+        "n": 523,
+        "positives": 22,
+        "positive_rate": 0.042065,
+        "any_appearance": 51
+      },
+      "pitchers": {
+        "n": 307,
+        "positives": 15,
+        "positive_rate": 0.04886,
+        "any_appearance": 31
+      },
+      "hitters": {
+        "n": 216,
+        "positives": 7,
+        "positive_rate": 0.032407,
+        "any_appearance": 20
+      },
+      "whole_pool": {
+        "n": 825,
+        "positives": 171,
+        "positive_rate": 0.207273,
+        "any_appearance": 237
+      }
+    },
+    "2024": {
+      "primary": {
+        "n": 451,
+        "positives": 23,
+        "positive_rate": 0.050998,
+        "any_appearance": 54
+      },
+      "pitchers": {
+        "n": 249,
+        "positives": 15,
+        "positive_rate": 0.060241,
+        "any_appearance": 30
+      },
+      "hitters": {
+        "n": 202,
+        "positives": 8,
+        "positive_rate": 0.039604,
+        "any_appearance": 24
+      },
+      "whole_pool": {
+        "n": 636,
+        "positives": 91,
+        "positive_rate": 0.143082,
+        "any_appearance": 154
+      }
+    }
+  },
+  "chosen_l2_strength": null,
+  "early_stop": true,
+  "early_stop_reason": "validation primary positives below 30",
+  "validation": null,
+  "rolling_origin": null,
+  "chosen_comparator": null
+}

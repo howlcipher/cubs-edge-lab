@@ -340,7 +340,23 @@ def main(argv=None):
     data.add_argument("--root", type=Path, default=Path.cwd())
     pre = sub.add_parser("preregister")
     pre.add_argument("--root", type=Path, default=Path.cwd())
+    evaluation = sub.add_parser("evaluate")
+    evaluation.add_argument("--root", type=Path, default=Path.cwd())
     args = parser.parse_args(argv)
+    if args.command == "evaluate":
+        from .triage_experiment import evaluate
+        from .triage_report import render
+        root = args.root
+        payload = evaluate(root)
+        research = root / "research"
+        research.mkdir(parents=True, exist_ok=True)
+        atomic_json(research / "validation.json", payload)
+        report = render(payload)
+        target = research / "EXPERIMENT.md"
+        temporary = target.with_suffix(".md.tmp")
+        temporary.write_text(report)
+        temporary.replace(target)
+        return 0
     if args.command == "preregister":
         validation = args.root / "research/validation.json"
         if not validation.is_file():

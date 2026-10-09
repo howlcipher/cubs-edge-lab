@@ -78,7 +78,8 @@ class PublicationTests(unittest.TestCase):
     def test_publication_allowlist_and_bounds(self):
         limits = {'summary.json': 100_000, 'raw_manifest.json': 600_000,
                   'FEASIBILITY.md': 100_000, 'DATA.md': 200_000,
-                  'data_summary.json': 200_000}
+                  'data_summary.json': 200_000,
+                  'validation.json': 200_000, 'EXPERIMENT.md': 100_000}
         research = ROOT / 'research'
         self.assertEqual({p.name for p in research.iterdir()}, set(limits))
         for name, limit in limits.items():

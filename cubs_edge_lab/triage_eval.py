@@ -66,6 +66,10 @@ def paired_bootstrap(
     resamples=BOOTSTRAP_RESAMPLES,
     seed=BOOTSTRAP_SEED,
 ):
+    aligned = sorted(zip(labels, model_scores, comparator_scores))
+    labels = [item[0] for item in aligned]
+    model_scores = [item[1] for item in aligned]
+    comparator_scores = [item[2] for item in aligned]
     rng = random.Random(seed)
     differences = []
     size = len(labels)
@@ -96,23 +100,32 @@ def paired_bootstrap(
     }
 
 
+def choose_comparator(validation_metrics):
+    """Select top-50 baseline; ties follow B2, B0, B1, P."""
+    order = {"B2": 3, "B0": 2, "B1": 1, "P": 0}
+    return max(order, key=lambda name: (
+        validation_metrics[name]["top_k"]["50"]["hits"], order[name]
+    ))
+
+
 def sha256_file(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
 def evaluation_files(root):
     root = Path(root)
-    return [
-        root / "cubs_edge_lab/triage.py",
-        root / "cubs_edge_lab/triage_eval.py",
-        root / "cubs_edge_lab/triage_config.py",
-    ]
+    return sorted((root / "cubs_edge_lab").glob("triage*.py"))
 
 
 def preregistration_payload(root):
     root = Path(root)
     files = evaluation_files(root)
     files.append(root / "research/validation.json")
+    missing = [path for path in files if not path.is_file()]
+    if missing:
+        raise RuntimeError("missing evaluation inputs: " + ", ".join(
+            str(path.relative_to(root)) for path in missing
+        ))
     hashes = {str(path.relative_to(root)): sha256_file(path) for path in files}
     combined = hashlib.sha256(
         json.dumps(hashes, sort_keys=True).encode()
@@ -133,7 +146,12 @@ def require_preregistered_holdout(root):
         raise RuntimeError(
             "2025 holdout is locked: malformed preregistration"
         ) from exc
-    expected = preregistration_payload(root)
+    try:
+        expected = preregistration_payload(root)
+    except (OSError, ValueError) as exc:
+        raise RuntimeError(
+            "2025 holdout is locked: validation or evaluation code is missing"
+        ) from exc
     if recorded != expected:
         raise RuntimeError(
             "2025 holdout is locked: preregistration hashes do not match"
@@ -163,9 +181,14 @@ class LogisticModel:
     def fit(self, rows, labels, features):
         if not rows or len(rows) != len(labels):
             raise ValueError("rows and labels must have equal nonzero length")
-        matrix = [
-            [float(row.get(key, 0) or 0) for key in features] for row in rows
-        ]
+        raw = [[(float(row[key]) if row.get(key) is not None else None)
+                for key in features] for row in rows]
+        means_raw = []
+        for j in range(len(features)):
+            available = [row[j] for row in raw if row[j] is not None]
+            means_raw.append(sum(available) / len(available) if available else 0.0)
+        matrix = [[means_raw[j] if value is None else value
+                   for j, value in enumerate(row)] for row in raw]
         width = len(features)
         self.means = [
             sum(row[j] for row in matrix) / len(matrix) for j in range(width)
@@ -205,7 +228,8 @@ class LogisticModel:
         result = []
         for row in rows:
             values = [
-                (float(row.get(key, 0) or 0) - self.means[j]) / self.scales[j]
+                ((float(row[key]) if row.get(key) is not None else self.means[j])
+                 - self.means[j]) / self.scales[j]
                 for j, key in enumerate(features)
             ]
             linear = self.weights[0] + sum(

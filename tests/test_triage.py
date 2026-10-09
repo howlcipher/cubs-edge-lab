@@ -182,6 +182,7 @@ class TriageTests(unittest.TestCase):
                 2019,
             )["positive"]
         )
+        self.assertFalse(outcome([], 2023)["positive"])
         self.assertTrue(
             outcome([{"group": "hitting", "stat": {"gamesPlayed": 1}}], 2023)[
                 "any_appearance"
@@ -217,11 +218,26 @@ class TriageTests(unittest.TestCase):
                 "player_type": "hitter",
             },
         ]
-        self.assertEqual([x["person_id"] for x in rank(rows, "B0")], [2, 1])
-        self.assertEqual([x["person_id"] for x in rank(rows, "B1")], [2, 1])
+        self.assertEqual([x["person_id"] for x in rank(rows, "B0")], [1, 2])
+        self.assertEqual([x["person_id"] for x in rank(rows, "B1")], [1, 2])
         self.assertEqual([x["person_id"] for x in rank(rows, "B2")], [1, 2])
         self.assertEqual([x["person_id"] for x in rank(rows, "P")], [1, 2])
         self.assertEqual([x["person_id"] for x in rank(rows, "M")], [1, 2])
+
+    def test_rankings_level_age_missing_age_and_id_tiebreaks(self):
+        base = {"mlb_pa_y": 0, "mlb_ip_y": 0, "ops": .5,
+                "k_bb_pct": .1, "m_probability": .5,
+                "b2_probability": .5, "met_threshold_y": False,
+                "player_type": "hitter"}
+        rows = [
+            {**base, "person_id": 4, "highest_level": 14, "age": 20},
+            {**base, "person_id": 3, "highest_level": 13, "age": None},
+            {**base, "person_id": 2, "highest_level": 11, "age": 24},
+            {**base, "person_id": 1, "highest_level": 11, "age": 22},
+        ]
+        for method in ("B0", "B1"):
+            self.assertEqual([r["person_id"] for r in rank(rows, method)],
+                             [1, 2, 3, 4])
 
     def test_auc_calibration_bootstrap(self):
         self.assertEqual(auc([0, 1], [0.5, 0.5]), 0.5)
@@ -248,6 +264,9 @@ class TriageTests(unittest.TestCase):
                 root / "cubs_edge_lab/triage.py",
                 root / "cubs_edge_lab/triage_eval.py",
                 root / "cubs_edge_lab/triage_config.py",
+                root / "cubs_edge_lab/triage_cli.py",
+                root / "cubs_edge_lab/triage_experiment.py",
+                root / "cubs_edge_lab/triage_report.py",
                 root / "research/validation.json",
             ]:
                 path.parent.mkdir(parents=True, exist_ok=True)
@@ -259,6 +278,18 @@ class TriageTests(unittest.TestCase):
                 json.dumps(payload)
             )
             self.assertTrue(guard_outcome_build(root, 2025))
+            (root / "research/validation.json").unlink()
+            with self.assertRaises(RuntimeError):
+                guard_outcome_build(root, 2025)
+            (root / "research/validation.json").write_text("{}")
+            payload = preregistration_payload(root)
+            (root / "research/preregistration.json").write_text(
+                json.dumps(payload)
+            )
+            (root / "cubs_edge_lab/triage_new.py").write_text("new file")
+            with self.assertRaises(RuntimeError):
+                guard_outcome_build(root, 2025)
+            (root / "cubs_edge_lab/triage_new.py").unlink()
             (root / "cubs_edge_lab/triage.py").write_text("mismatch")
             with self.assertRaises(RuntimeError):
                 guard_outcome_build(root, 2025)
@@ -291,6 +322,14 @@ class TriageTests(unittest.TestCase):
         self.assertEqual(model.means, [1.0])
         self.assertEqual(model.scales, [1.0])
         self.assertGreater(model.predict_proba([{"x": 2}], ["x"])[0], 0.5)
+
+    def test_logistic_model_imputes_missing_value_with_training_mean(self):
+        model = LogisticModel(iterations=20).fit(
+            [{"age": 20}, {"age": None}, {"age": 30}], [0, 0, 1], ["age"]
+        )
+        self.assertEqual(model.means, [25.0])
+        self.assertEqual(model.predict_proba([{"age": None}], ["age"]),
+                         model.predict_proba([{"age": 25}], ["age"]))
 
 
 if __name__ == "__main__":
