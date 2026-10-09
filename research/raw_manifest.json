@@ -5870,5 +5870,2519 @@
     "byte_size": 160282,
     "file": "data/raw/dd879b1af610148697676f5238e79f8d1774540756e5e7a32eee3d7b7e06eed4.json",
     "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2025,
+      "sportIds": 1,
+      "playerPool": "ALL",
+      "limit": 1,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:21.366517+00:00",
+    "sha256": "0c5844dc94189682166a3b818f6fad51865f9a4820234d1229343b666bf5dde8",
+    "byte_size": 1383,
+    "file": "data/raw/5d39d810e5c4c46d1e20f3a7a1da4767453ca33edc52f132bd216655235cdad6.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2017,
+      "sportIds": 1,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:24.948894+00:00",
+    "sha256": "d4f6a353814c64d3e164011534215267c017bbee1636eb6261070efa721121d9",
+    "byte_size": 1072655,
+    "file": "data/raw/6ac79fa1d4251d3b25ae039f253e17e21edf6110915a5fa7241d5bbd2b052aa5.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2017,
+      "sportIds": 1,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 1000
+    },
+    "retrieved_utc": "2026-10-09T13:29:25.413167+00:00",
+    "sha256": "3a9463f959f5a92b812a6516d17ac3d8c8504ccb5cb3e34ae0e2b7fc804c7603",
+    "byte_size": 456365,
+    "file": "data/raw/cca9422db8ae6fcf564267d35b191eaeda1fd5160496e2b2a9d4c0bf61faa178.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2017,
+      "sportIds": 1,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:25.926673+00:00",
+    "sha256": "3ffab5e561f0cf194a4c51dea8d6638c223d83a1827af446b320da7fedb76369",
+    "byte_size": 1153892,
+    "file": "data/raw/4c00a0c994d7363364dd7feac6bcfcdd87830bce41fb8550ee0cfeab1f512bfa.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2017,
+      "sportIds": 11,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:26.504924+00:00",
+    "sha256": "e41329ef1d7813d22f6bc967fbfe4b814e05e0ab1660870dd383a6ac3c64db22",
+    "byte_size": 1034461,
+    "file": "data/raw/d16660a27df4a8e4c5c8d93447e0555a3684569091ea4b479b0bd71c267a92e2.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2017,
+      "sportIds": 11,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 1000
+    },
+    "retrieved_utc": "2026-10-09T13:29:26.929312+00:00",
+    "sha256": "04cf4b88457e716efc296896fab834d58dc2a8143e1b6e9d47d7dfabf340b17b",
+    "byte_size": 603104,
+    "file": "data/raw/55d03c837a87eb44e195c02d50fef419f44d7c16295f4766a30fda6bef615561.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2017,
+      "sportIds": 11,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:27.680452+00:00",
+    "sha256": "3c510645460d35203ce37697ad39c1290d9ac86623bbc7fd20c8c225aa0b5424",
+    "byte_size": 1542520,
+    "file": "data/raw/c3afbe375a9de88e2ac321156dc25411e38df61ba8c050e0420fd3279637ceab.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2017,
+      "sportIds": 11,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 1000
+    },
+    "retrieved_utc": "2026-10-09T13:29:28.016163+00:00",
+    "sha256": "085a4cdccee5db6d3afdc8a8abb56f089c7ed7d16979373c0a2285e9bb6d07bd",
+    "byte_size": 606009,
+    "file": "data/raw/e11d1c4bd6a0ba44ec75e9f990bdc39dd228d09b781d9a73c8b9a02814158a4b.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2017,
+      "sportIds": 12,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:28.470054+00:00",
+    "sha256": "81699d20fdc2dc88e46d5decea379b617c740342d35cd4085ffe0e9a0658033b",
+    "byte_size": 1077920,
+    "file": "data/raw/7023e0848df01df1f3bc678d43f756299e4aaf0e12d87eeedc2c69d5d3a9be99.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2017,
+      "sportIds": 12,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 1000
+    },
+    "retrieved_utc": "2026-10-09T13:29:28.911374+00:00",
+    "sha256": "3b3ae29e091e9cca009bbc3c0397817c136264a488c471abd71889a5d9c1adcc",
+    "byte_size": 305076,
+    "file": "data/raw/d05a93e3e20bd7ddc4fb7920d5810a75d80e9b7c93f78155fb31c9a1319dc477.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2017,
+      "sportIds": 12,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:29.502171+00:00",
+    "sha256": "16f911ee57eee4c31b34eecea8b28d51ea5a542067fab34e319d7246daba8b8a",
+    "byte_size": 1358151,
+    "file": "data/raw/6743b9a79c3a021c72c1c0735f04036729cf7eba05db99359424abf1b6ee5efa.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2017,
+      "sportIds": 13,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:29.944706+00:00",
+    "sha256": "1283386bc50892c0f49bb17cb4aa771f80f8b9edc45d81e6803aa270111f3945",
+    "byte_size": 857119,
+    "file": "data/raw/ccb076e724f14860a4ed1d0c06d4e40a047810f869f0c153bfbf6cfd3489ac4b.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2017,
+      "sportIds": 13,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:30.486783+00:00",
+    "sha256": "4cc80c340d40034d43eb4d347ca632adcff94c31f8b7286cb8a97417ba78421a",
+    "byte_size": 1467221,
+    "file": "data/raw/a27e0ae2d36470622a16bd48c3630079f7a6da25713bc9ea67ab27ce77a4b0e1.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2017,
+      "sportIds": 14,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:30.946514+00:00",
+    "sha256": "f4a3c9bcd3db03f63f4ccfb9f39aa5dadbeb12a8f612e615557ec076d6cba379",
+    "byte_size": 756397,
+    "file": "data/raw/64a6e7782ffad58bbd6da3e4fe93a5bc1e010006d86aac7bf3d5b326af366ad7.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2017,
+      "sportIds": 14,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:31.403720+00:00",
+    "sha256": "4d3f4cc1b7686e94558790a4f1d8503c1d2ebce07aa03c342e5414aaa0d8fb8a",
+    "byte_size": 1307621,
+    "file": "data/raw/7cc89167a8c9b713a086bf0939d3a3710ae0042163a6a0861d619bd8c28631da.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2018,
+      "sportIds": 1,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:31.981192+00:00",
+    "sha256": "67fde4b2cfff9e7f52ee59f6972a331699f870abe951610179010dfb5302e99c",
+    "byte_size": 1072533,
+    "file": "data/raw/f90d7c82dfa1e5979d6380ae5b9f24b18d309d171b16d4f7adf0438409aea9ee.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2018,
+      "sportIds": 1,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 1000
+    },
+    "retrieved_utc": "2026-10-09T13:29:32.363751+00:00",
+    "sha256": "be291ce5637c746cbd42da79fae78db77da472973bb2820fb78dc320b7a0db5c",
+    "byte_size": 504705,
+    "file": "data/raw/233a4fc45fd7890dc0ae4a6dde8071900cefbdb753ea1f07eb04c34f2f4f411c.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2018,
+      "sportIds": 1,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:32.963294+00:00",
+    "sha256": "6c2f6dc7623cb7cdea905b739ab50b85f018c28c35ad09ae66e092f537da677e",
+    "byte_size": 1220673,
+    "file": "data/raw/ddf005a72eef6de0021a6ae03f5a8288b609ef35b6e0696dc0294c0b9d356a1c.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2018,
+      "sportIds": 11,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:33.473471+00:00",
+    "sha256": "015b9bb79523e3cc3350418d9452d16c3ed20cb352dcabbb8ee6be3485cb1295",
+    "byte_size": 1078364,
+    "file": "data/raw/327e3af52dad9c8fca4e9a1db5b7e0d6c848864f04853721a5a561142901875a.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2018,
+      "sportIds": 11,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 1000
+    },
+    "retrieved_utc": "2026-10-09T13:29:33.951837+00:00",
+    "sha256": "c61ef8f9dffa666dd60a97d2de63254410a7765836754f24fb9febf6d7048671",
+    "byte_size": 390669,
+    "file": "data/raw/1103d114c905650d977ea265af1daa6bc53625a27ddfec4d1e20582756324520.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2018,
+      "sportIds": 11,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:34.522225+00:00",
+    "sha256": "02151a25441b29c656e9eca4e25bd8e736f3d9b5e42d458a791f2dafc3cb3f90",
+    "byte_size": 1528064,
+    "file": "data/raw/c7ae3e25c3709c5a47e0f05240aca615900be7a629fe2ab921b223914e34ac42.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2018,
+      "sportIds": 11,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 1000
+    },
+    "retrieved_utc": "2026-10-09T13:29:34.910595+00:00",
+    "sha256": "8f685b3dd62f30a41ff7f5eaeb1fbfc05dd58afa3d5d3be692bf6efee483316d",
+    "byte_size": 71884,
+    "file": "data/raw/ade0701c34fe4500efd9464f94f59c7ee73d9efb551efa8b98ce3ba3caa0935f.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2018,
+      "sportIds": 12,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:35.453754+00:00",
+    "sha256": "822e49fc4c958ca4df6b5199790a3bd8d1da0818476feacefe6a5da824a377d4",
+    "byte_size": 1077623,
+    "file": "data/raw/10ba90a1500402d57cbbd471bca2a6343e5df8bdd6a69a1644b62327d6b49950.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2018,
+      "sportIds": 12,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 1000
+    },
+    "retrieved_utc": "2026-10-09T13:29:35.912660+00:00",
+    "sha256": "fb4c73cb8dd42336ba35ffecaca05ebccec260a00e3f42bfd325c34af58958ad",
+    "byte_size": 337496,
+    "file": "data/raw/df6426902be820fb9f6667e6e514af8cc36efee823edfb8caf18691c9c87e060.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2018,
+      "sportIds": 12,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:36.419446+00:00",
+    "sha256": "66c627ce20df255018e14134a684d90fb87c4f46ecb5acfa089e2bfab992b288",
+    "byte_size": 1460322,
+    "file": "data/raw/91a3736146e3498c29eae88eae011f9ed9c03abb97e4e29be5fc6c293f4ae8ca.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2018,
+      "sportIds": 13,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:36.913854+00:00",
+    "sha256": "774d2004aa6e4dd69a43a66d9855cc3901f4cf191ff3e37050db75c1888115ef",
+    "byte_size": 827345,
+    "file": "data/raw/39f8cc7dce5bff2c22bd829bc045dffba8d522cc9c3039e69885ee2e14567993.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2018,
+      "sportIds": 13,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:37.409739+00:00",
+    "sha256": "95da657393188a639b853f101de49dd89704e6cc42d5106f41dd499c7e8ad077",
+    "byte_size": 1537510,
+    "file": "data/raw/1d9b152c131d751de3a3060e591a24610b2dc55839dc107534f5972b93d6415b.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2018,
+      "sportIds": 13,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 1000
+    },
+    "retrieved_utc": "2026-10-09T13:29:37.844031+00:00",
+    "sha256": "f09bee4651cca7ddd6859548e9523a2d65530fcbe946d219aadb2cbe93bfb87c",
+    "byte_size": 38492,
+    "file": "data/raw/fe5587dc90ed13d5ea0ddd7ec1f25d13ff25f7da8384eb2ab162aea04af9ce3b.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2018,
+      "sportIds": 14,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:38.366039+00:00",
+    "sha256": "6ae1487b3ab10bf188e6650b84f85eaf7b3e92a61f40a3bdf2d3d26d70c0ed14",
+    "byte_size": 761484,
+    "file": "data/raw/66cfdd820c25beb73a1a69d6da5f77a2753cc3a38d386ca63c97d191e5d9e950.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2018,
+      "sportIds": 14,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:38.987354+00:00",
+    "sha256": "f9d093aeae99dd58f2d91fdc39f8664fdc6622a6f60e76cf9be06ac3af26d1c5",
+    "byte_size": 1303219,
+    "file": "data/raw/1b82ccefe29e60304b82ba83d5e3d4dd9509411cdc53a7ac1ce8e904ffc99aa1.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2019,
+      "sportIds": 1,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:39.480346+00:00",
+    "sha256": "da0a1341e895503fde99adb9d7c6a9479b546f35840cd6ced62efa269bb2bdb0",
+    "byte_size": 1072694,
+    "file": "data/raw/59949a5c83606e07498e550757eccb19c108bab9329913235152e16dc72c71c7.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2019,
+      "sportIds": 1,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 1000
+    },
+    "retrieved_utc": "2026-10-09T13:29:39.853850+00:00",
+    "sha256": "3a69e0baeef4354586d24332a74d9ad3a8fa9739c87322bdcfb339a64e7411c5",
+    "byte_size": 521817,
+    "file": "data/raw/b1f1284a249c3689bd54b0fc04a93d6771f08481a12d42246a6b9e88dd179859.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2019,
+      "sportIds": 1,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:40.454188+00:00",
+    "sha256": "f7059a367d50d6ed41d40ddc1bb59ba0fbc7e82f1407983f0cb526c4ae1b9864",
+    "byte_size": 1269358,
+    "file": "data/raw/ef4ae79d45237107626d943a6953c40f4cf35e4158272c5e4cffbe79c8159acc.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2019,
+      "sportIds": 11,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:40.933549+00:00",
+    "sha256": "69cdbeb1fbc6f28dbdddbe5df80033892be94d40a5bc7f5b710e01a9eb5f2fec",
+    "byte_size": 1033316,
+    "file": "data/raw/997eda0307707a5102663291092e3fd58acc24087cfe2325bc0db8f5e23fe6e3.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2019,
+      "sportIds": 11,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 1000
+    },
+    "retrieved_utc": "2026-10-09T13:29:41.489660+00:00",
+    "sha256": "dba8443f525bd5f0096eac868bfa104abf9705027bee8054c29b2cb4227b1be8",
+    "byte_size": 676168,
+    "file": "data/raw/0a76ace4c7d16b43ef1e653dae497c4d52ca54e4b5b0adaf65d08f7c8a5223f0.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2019,
+      "sportIds": 11,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:41.953328+00:00",
+    "sha256": "865691b554e35bfe2b9c83eb538cf1c230828c77547ae7149a605e73eb965b6a",
+    "byte_size": 1529882,
+    "file": "data/raw/287546759ef975763db7d8168759ebe2ae601f83942a1f2aa68c973784317ffb.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2019,
+      "sportIds": 11,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 1000
+    },
+    "retrieved_utc": "2026-10-09T13:29:42.504609+00:00",
+    "sha256": "940d0d459d8be68b729fa84e4c93de4525959824fc78342165d2743ea41386f1",
+    "byte_size": 788419,
+    "file": "data/raw/6f4be87c77d5c349228a2ebdc29196e59c3da2a4344a3db663dc04e75dd6d838.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2019,
+      "sportIds": 12,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:42.966732+00:00",
+    "sha256": "2163cce4c98ad0a9fc024fb5abaaa341bd9010115daec3c0203c20a1aa5a90d4",
+    "byte_size": 1077337,
+    "file": "data/raw/fc1f5e800cc935fc2619b98c69f1d0de0a75b2433c62e5f2f77da5d4b2803dba.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2019,
+      "sportIds": 12,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 1000
+    },
+    "retrieved_utc": "2026-10-09T13:29:43.402268+00:00",
+    "sha256": "6a38e340abc2ca20c283c836413379e2ee5ed927184016d80b77b19039f26c50",
+    "byte_size": 335395,
+    "file": "data/raw/6ae4dfc96e080b80be654a2b94b324bdc023a03a844ece1958e097126cf282d9.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2019,
+      "sportIds": 12,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:44.009469+00:00",
+    "sha256": "7ec5ef3a80a501106b5a7299c083972fcea0d846f95cb0b22627d386e5106ba4",
+    "byte_size": 1482583,
+    "file": "data/raw/c7722d0a5dabda076b9bba2ca984bb03eec38d0864d5180165d7b8d010396fbd.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2019,
+      "sportIds": 13,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:44.428406+00:00",
+    "sha256": "6026dcca396f7268594850173a76d733f2064cc532055812a7c77b0699ea7afc",
+    "byte_size": 851440,
+    "file": "data/raw/e2efdbdbcc914132e60face9ac99126b59584ed63bdd3116482dbd62c3730b39.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2019,
+      "sportIds": 13,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:45.024420+00:00",
+    "sha256": "6f721f708effa8ee3ecbf50af9e035bcc014ce1893fb2daee31ca5b8f49ccd96",
+    "byte_size": 1530654,
+    "file": "data/raw/3daf9f8b454506028594ec35a5b46c3133a0e2cfccff9c9519dcec9bdeab05f1.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2019,
+      "sportIds": 13,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 1000
+    },
+    "retrieved_utc": "2026-10-09T13:29:45.417438+00:00",
+    "sha256": "1202b8d013bf3dae6ab5aebc82afaf7a11041211fd6db989c9de9ee10ad274e9",
+    "byte_size": 35417,
+    "file": "data/raw/7bd5e0be654c11a8d4a74ab8073fb6984907ab9d5e4e52ed5ee06ec58a64dab3.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2019,
+      "sportIds": 14,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:45.926128+00:00",
+    "sha256": "5af7e9f3ee27ec4149f30553b9bb74b326dd410f0f04068dd87f589828aea65d",
+    "byte_size": 783669,
+    "file": "data/raw/fdb6e4d226b7b33af180b20ff2f635a2a2c14b8c3cafe97ffb66100c29d64f65.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2019,
+      "sportIds": 14,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:46.481829+00:00",
+    "sha256": "79992c2893d8b6b5a33801d043e39ad3b81f4080225d9d9896dfb1638eafa29e",
+    "byte_size": 1356129,
+    "file": "data/raw/38b673cc206705113179f27070aaf056bf4526e7db0b17a44e773f3f7f882b08.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2020,
+      "sportIds": 1,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:46.878749+00:00",
+    "sha256": "60a5ab0cc36c99bbbe322e1f0479bc5049a51b8eea4a2344eb0fb6c4c9869f5a",
+    "byte_size": 634789,
+    "file": "data/raw/89b10c58f8e3a8513bff16cc28bf13a1ebd045882334743769a55f028512fcb9.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2020,
+      "sportIds": 1,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:47.466604+00:00",
+    "sha256": "6f6e128c1f0f55f4445d9ec10ddb175f0a89475db94e931dddc7a97252c1ac62",
+    "byte_size": 1118447,
+    "file": "data/raw/79ff746dcba86c117c034cb78cde3c7eec0c0ebd99e44a175cc6f51725812045.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2020,
+      "sportIds": 11,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:47.784737+00:00",
+    "sha256": "3776d374a81adf28991f9fef8391ffccc35f0a351f1a432c3871b7a0b043568c",
+    "byte_size": 372,
+    "file": "data/raw/dd98afbe054de12d0a48d7721cbe1f9761b4e95c5f1b7cad7b9ae00d2562ebef.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2020,
+      "sportIds": 11,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:48.290902+00:00",
+    "sha256": "4c525c89c2d4e00a8b526d68cfcca03fd8456a993fa574b037242b0b8bade384",
+    "byte_size": 373,
+    "file": "data/raw/0ab42cf37b44e082dd8553201d039510a7c5dd3312f69378a225a52ebbbc449d.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2020,
+      "sportIds": 12,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:48.785813+00:00",
+    "sha256": "3776d374a81adf28991f9fef8391ffccc35f0a351f1a432c3871b7a0b043568c",
+    "byte_size": 372,
+    "file": "data/raw/47cad340631307dc319843a614bb41c45cf723b87d73939d3e51c4e12d060269.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2020,
+      "sportIds": 12,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:49.285132+00:00",
+    "sha256": "4c525c89c2d4e00a8b526d68cfcca03fd8456a993fa574b037242b0b8bade384",
+    "byte_size": 373,
+    "file": "data/raw/aa7fe2815f3364d7bae92f46207a06baa25aad843c2f7e5d57614790df85c28a.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2020,
+      "sportIds": 13,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:49.795491+00:00",
+    "sha256": "3776d374a81adf28991f9fef8391ffccc35f0a351f1a432c3871b7a0b043568c",
+    "byte_size": 372,
+    "file": "data/raw/c7fe7e4b8590b4bbd2fa6918e79915aae2452e7a22a37e915dc2c606e1ce7236.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2020,
+      "sportIds": 13,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:50.301508+00:00",
+    "sha256": "4c525c89c2d4e00a8b526d68cfcca03fd8456a993fa574b037242b0b8bade384",
+    "byte_size": 373,
+    "file": "data/raw/0fe6c41354cb64cd7314f00db3e9afc66f50ffa9b1d00a6cb345c08e5f3ded09.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2020,
+      "sportIds": 14,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:50.801071+00:00",
+    "sha256": "3776d374a81adf28991f9fef8391ffccc35f0a351f1a432c3871b7a0b043568c",
+    "byte_size": 372,
+    "file": "data/raw/a276bf196b01ca75504aee8773aa950dce4bbe5f9bbaf47ce179547968647fc2.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2020,
+      "sportIds": 14,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:51.291592+00:00",
+    "sha256": "4c525c89c2d4e00a8b526d68cfcca03fd8456a993fa574b037242b0b8bade384",
+    "byte_size": 373,
+    "file": "data/raw/a6ba3c203bbceeb7d10ff2fdd0fe1051e1191ad95985705d2caeeb3305c9fc1f.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2021,
+      "sportIds": 1,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:52.033732+00:00",
+    "sha256": "573ae04fd768c720edf95948beada286ac30fb7bf12e20604559ea342ab8749e",
+    "byte_size": 1072618,
+    "file": "data/raw/e2fbc7570f99be99d4bc641887b2fc5020e8c8f64e9ca8c79d58bcf963b1269b.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2021,
+      "sportIds": 1,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 1000
+    },
+    "retrieved_utc": "2026-10-09T13:29:52.494979+00:00",
+    "sha256": "bb35ddbd87bb620cc47973915ed92cd60ff07ccdd03a365c0f7213dce7f131ef",
+    "byte_size": 596435,
+    "file": "data/raw/a8efee233510753f96016655605b509ee53867c063d773bcc552a9ec7883d579.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2021,
+      "sportIds": 1,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:53.008424+00:00",
+    "sha256": "6063e2ffac8f8f883ce9e88f823863d107b77cb6066a9b8d56aa43cdfe519c70",
+    "byte_size": 1387561,
+    "file": "data/raw/f50fd1831ec310095d6224af640e065c76cfaa41c8710c7759dff323ee9b6ae9.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2021,
+      "sportIds": 11,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:53.424899+00:00",
+    "sha256": "5097060977b39f3360e8e5b76c11890b1c42073c4fd4fab2625c1b8e4ccb7dac",
+    "byte_size": 1032620,
+    "file": "data/raw/0df7c5a7ff517ad64a9797abef84898f35278b0e14d33aad1f38affa907185c2.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2021,
+      "sportIds": 11,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 1000
+    },
+    "retrieved_utc": "2026-10-09T13:29:53.962063+00:00",
+    "sha256": "8e34bfe1ceec9435fcd98416250cf077c07007240dc1ee49bf944ee1d10258f3",
+    "byte_size": 518709,
+    "file": "data/raw/79221df5f2d73c30788c20cc1f66ca294c1dc35a4c4c2d5a4c1a06dac3f731d3.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2021,
+      "sportIds": 11,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:54.531451+00:00",
+    "sha256": "bfb913a81d7022f6d5fa743c28797663fcaaf3e4d75ddb613dbc877f910512a2",
+    "byte_size": 1529669,
+    "file": "data/raw/5fd2e1f288cfabbfaa21dbf3b7b608d286a98879e4a745bff7ca0ad4bd9ef7c9.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2021,
+      "sportIds": 11,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 1000
+    },
+    "retrieved_utc": "2026-10-09T13:29:54.987919+00:00",
+    "sha256": "741892b20818911cfb94cbd8432e12e64cddb94f4257224b3a0a192beb65a8a2",
+    "byte_size": 272065,
+    "file": "data/raw/589599f8ae18d082e4755e9ef61ca8a8406a0dade6198940bb75254b424dd026.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2021,
+      "sportIds": 12,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:55.458485+00:00",
+    "sha256": "ceefaf8bdaa3872d68bf36f22abbd499204c293a5b53f6f06d5432054af5f423",
+    "byte_size": 943859,
+    "file": "data/raw/312f7d5804485c199fe57460fc928caccd1c3afbf3a78db533957023a04d9de5.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2021,
+      "sportIds": 12,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:55.974140+00:00",
+    "sha256": "af5d4ae0d4f3d62d3cccffb63eb5532ed0fd91fbf4df6ba9dfb463ebe3ba0588",
+    "byte_size": 1435542,
+    "file": "data/raw/7dc01ecdd650d5ab2a295b9e12ac2ab7ad0526ea06831e3a96e59ae10fe6a79a.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2021,
+      "sportIds": 13,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:56.437847+00:00",
+    "sha256": "cf976ecb2c0a0774d93c72a914049582b29f2a05107eb248c5b7567e32db9415",
+    "byte_size": 863198,
+    "file": "data/raw/b3d00fab4bc0a2fddb85143339ad7d0db3fd7d55d03f4956dca10432b944fa93.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2021,
+      "sportIds": 13,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:57.008785+00:00",
+    "sha256": "b865584cc70faf01a9c00461649069c714f40236298868b0e7f0bd23611b5029",
+    "byte_size": 1530310,
+    "file": "data/raw/fd7e0cb6cd74822ab794297894c872bcb0344f5f0f88a5d2c9b0e46a3a68b006.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2021,
+      "sportIds": 13,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 1000
+    },
+    "retrieved_utc": "2026-10-09T13:29:57.407282+00:00",
+    "sha256": "968f8404f59b1a3fb0f3c5a46274d67d6afc0d0e20b986346564e1e020354223",
+    "byte_size": 21706,
+    "file": "data/raw/848c4a7c10ec27ef07ced0ba42a49ac43aa1395694e83a07368f47b8ac5fa58f.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2021,
+      "sportIds": 14,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:57.965764+00:00",
+    "sha256": "f3ec5948477f4ebdf9ca77c6805843234b010823a3fea53272e9ea91ea8056ea",
+    "byte_size": 935542,
+    "file": "data/raw/4a895c24842c2724ddd5b3d61e2f1e0fd50b1b8cb2ee8c30ae9f64e269125a32.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2021,
+      "sportIds": 14,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:58.565966+00:00",
+    "sha256": "5815df6a8756314e2f90c0c0b00e66462253e4be66e51e9392a7c52d97849468",
+    "byte_size": 1527998,
+    "file": "data/raw/fbc956769b485f0632c92e60a10809bfc3673d139f30de3a06686bc066df182d.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2021,
+      "sportIds": 14,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 1000
+    },
+    "retrieved_utc": "2026-10-09T13:29:58.853392+00:00",
+    "sha256": "2d8ebbde4bcb566f0e353b286917902628538689bfe891122a9c1e86e666438e",
+    "byte_size": 218493,
+    "file": "data/raw/e18447cd6bde618a3f7d3204df3bb2a9c4a60d62f0f714faa94a2cc30185d9a6.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2022,
+      "sportIds": 1,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:29:59.443797+00:00",
+    "sha256": "44ac1610bfda4cb594effa32a728aba9e756fecd163408b2525c1c6bd98c9599",
+    "byte_size": 815324,
+    "file": "data/raw/f318bccad0f4b98218592efa598665005ce8e6c8d0ccdc951cf31017d9dbfa80.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2022,
+      "sportIds": 1,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:30:00.008302+00:00",
+    "sha256": "fd7fb55b0a903cbe74885cfab53142b23a73f629e6140b83809eba183c7baad8",
+    "byte_size": 1329776,
+    "file": "data/raw/4ad7046dc703491c6039b389d5c1911998e74caa47a5eb1d19294a58cd507f93.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2022,
+      "sportIds": 11,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:30:00.479043+00:00",
+    "sha256": "1ceab80ca12f919a19da71007b7b4fb75916cb2cf216a9f2026afb467122f92a",
+    "byte_size": 1044301,
+    "file": "data/raw/72d0ecc0340869a5bc9e13962109609b41fe273da03b013701901fe241e52901.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2022,
+      "sportIds": 11,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 1000
+    },
+    "retrieved_utc": "2026-10-09T13:30:00.844364+00:00",
+    "sha256": "80d68f519efc20c16d70ab0cfbfd5fc670c88c1c18e02e5a18a6243b2b0048a5",
+    "byte_size": 89547,
+    "file": "data/raw/15edb5c79f6ae6c618aabdb64d90706632a5596c988348b244106fd39408c02b.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2022,
+      "sportIds": 11,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:30:01.556239+00:00",
+    "sha256": "1f6fbc1ddab968a10a671387dbbd65b26949fe17cb8201dcfc81ebf396286f03",
+    "byte_size": 1528258,
+    "file": "data/raw/b2e2d418b29f795b386bd07dae4d633dae4ba39976a10b5d23f1a01d9153e8e3.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2022,
+      "sportIds": 11,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 1000
+    },
+    "retrieved_utc": "2026-10-09T13:30:01.954874+00:00",
+    "sha256": "b14833fdfb8aafc24c2fd8026249e154166a5d9fb0f35e48709f48f261753b95",
+    "byte_size": 394384,
+    "file": "data/raw/477fdd23cc09149830f1d2ee1726ff181f9551810eefe0112a6e6965a9b48917.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2022,
+      "sportIds": 12,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:30:02.386966+00:00",
+    "sha256": "37fa6cc652c024481f42fe9529514644b853b8ba7b4fa0d7e475bb349d5522a4",
+    "byte_size": 795681,
+    "file": "data/raw/0bd51409cda6a74e9de4c048207e8b745836580984557625d2b009d2c6d442ed.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2022,
+      "sportIds": 12,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:30:03.043661+00:00",
+    "sha256": "33ebb03c7540b639cdc731aee0271f653dd673281ad3b4b133bb9a530e1fa0a9",
+    "byte_size": 1530110,
+    "file": "data/raw/acec3e8f1eace30b208620ed8b21bb75e88120eb7720efedbfbdf8fa0a5d92d6.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2022,
+      "sportIds": 12,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 1000
+    },
+    "retrieved_utc": "2026-10-09T13:30:03.411636+00:00",
+    "sha256": "c5174ec97b73cfb42f50dba6477757a063681616edbd5777160e7700cb08916e",
+    "byte_size": 49125,
+    "file": "data/raw/26e940829a41d2971765d4115e0f1013d926acd8764cfd9ede4f711db55a35fc.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2022,
+      "sportIds": 13,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:30:04.035219+00:00",
+    "sha256": "82dd69f5fd20dd7ce14412e0ce46e9b04e4f063b4c9389d1c9f08a62afea5673",
+    "byte_size": 819839,
+    "file": "data/raw/70c89000a3b715902a630093dff070e02449dc31c7f4eebd66d197d2f5caa3ac.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2022,
+      "sportIds": 13,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:30:04.504413+00:00",
+    "sha256": "a89ae1dfe4b77b8b6582ae82dcecb62b1d03b0a88a329f009d5684972c9e8a30",
+    "byte_size": 1519542,
+    "file": "data/raw/38b578a8533e828a056717d539038c13effd0191fbf5424a5c8cc4680ab9064b.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2022,
+      "sportIds": 14,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:30:04.984994+00:00",
+    "sha256": "0c4fcb8cb9fd4f350e456ef9403d811380753851292af20753574ace770669a6",
+    "byte_size": 973590,
+    "file": "data/raw/1be730ff58e570274e6dd51d5359b94a6cddf9d40d836eb6d2a6dd03962533b7.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2022,
+      "sportIds": 14,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:30:05.519425+00:00",
+    "sha256": "fde75a77f7e2346fb562544094d17a17ad7da3b5e0017fad248620190187eb24",
+    "byte_size": 1531777,
+    "file": "data/raw/1d9a51d80a1abe26449eb74920cec080e3cc433e616c151f5bad92fa485adc1e.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2022,
+      "sportIds": 14,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 1000
+    },
+    "retrieved_utc": "2026-10-09T13:30:05.954799+00:00",
+    "sha256": "d0be5978f24f379e0a0b88347a4ace9304190bc168e868049de9bca7f5dc22c0",
+    "byte_size": 322211,
+    "file": "data/raw/dcd116c29d4922e7271858a2a0ddbbcf97a99b62c97be59bb30b3efe20f11d50.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2023,
+      "sportIds": 1,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:30:06.456197+00:00",
+    "sha256": "1434de28fbc752eabb57804b184823fdf521f731169c22b71c7ad098c5986c5c",
+    "byte_size": 789840,
+    "file": "data/raw/3f8225f708128caeab6ec43bc16cc87008a37ba38d098abf7c338b4ad9335f08.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2023,
+      "sportIds": 1,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:30:07.051050+00:00",
+    "sha256": "8fb532797c229434c33a165506232cfac116071cf3e3322df9ab3eb5b116df75",
+    "byte_size": 1317904,
+    "file": "data/raw/3a70aad2c2c38ee767a3959295c82849317b65a0ab3d912a3c30fb5ba9c56973.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2023,
+      "sportIds": 11,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:30:07.462425+00:00",
+    "sha256": "de2c8689aa227d579a12ad6ad3ed63bdc808f5b4878cbf58c4e45c5fd6db1300",
+    "byte_size": 960071,
+    "file": "data/raw/949c0d42290870c9b91bab1f0ae6fd345ffd591c1fb1b93673e5ee32010b000f.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2023,
+      "sportIds": 11,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:30:08.054231+00:00",
+    "sha256": "6a1dda69a35be854d8c64ed5251ba266f8f5e4625c155de9803d8ddbd0b68e75",
+    "byte_size": 1529390,
+    "file": "data/raw/3df985457d2cdc9195bda565684c15eba9c33dc1cf6b8a612104bd5772c0eadc.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2023,
+      "sportIds": 11,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 1000
+    },
+    "retrieved_utc": "2026-10-09T13:30:08.458353+00:00",
+    "sha256": "ab9396681460a67248b9f5bd62136a8c50a4ba8452cd18fe989f15d6a22f4dbc",
+    "byte_size": 369680,
+    "file": "data/raw/7b81e30906006353049957beaa98d0627ea58779fd9bcfde3a4fa9797879d89c.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2023,
+      "sportIds": 12,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:30:08.945189+00:00",
+    "sha256": "c7c2092c6ba1143ca703cc3c0dad55cb479ac5f5705c9273f8d98c1340f9299c",
+    "byte_size": 827057,
+    "file": "data/raw/f1c2ce6b5fc5d65ffee1240467609c843dd74cafafc55c8ed9e504bcd3f59099.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2023,
+      "sportIds": 12,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:30:09.519565+00:00",
+    "sha256": "7ad26765a758bd510cfbdb75f393f20653cd38b73c25ba8643eed887bd4bca00",
+    "byte_size": 1530452,
+    "file": "data/raw/498b0e7cc945457723bfdae241d5869d9d4688494f53504368d4721da48b1e50.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2023,
+      "sportIds": 12,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 1000
+    },
+    "retrieved_utc": "2026-10-09T13:30:09.922270+00:00",
+    "sha256": "c14f9be072657dbe0d5319fdeeffd5a542c02cccfd64be72333c54f709a60f86",
+    "byte_size": 50625,
+    "file": "data/raw/a500539c6f9a3cc1b3952e72cf01786acc5f0b34798f4cd179ee9044a652594b.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2023,
+      "sportIds": 13,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:30:10.453344+00:00",
+    "sha256": "15464c407c09b29ce44e5655f4a00a6694eecef02db978fb74f629a7a07d725a",
+    "byte_size": 813877,
+    "file": "data/raw/834f1e4b51d61b0cef11b57c8093291e5ab2a4f50a865698be9828a7bedb9ea6.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2023,
+      "sportIds": 13,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:30:10.928919+00:00",
+    "sha256": "13c8da5f3d256f5f048bf8a5245a8b4cf033c5d07d481b338e8b27220e79c8a7",
+    "byte_size": 1512115,
+    "file": "data/raw/a7698f2fed068195d520a98aa63bd1dea5aef8f398893062d0e418ecd4ad8c28.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2023,
+      "sportIds": 14,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:30:11.382832+00:00",
+    "sha256": "5f1e2ab8b6e52cfb8874365d085186d8754967372ccb51398110f9bddbab28f3",
+    "byte_size": 945208,
+    "file": "data/raw/10e180c61bd780ea3b56899688ecb61ce8c044eb981b180f8bb45d5ef06d06c4.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2023,
+      "sportIds": 14,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:30:12.050827+00:00",
+    "sha256": "6d47aa0458ce9d42bdc30db58856cc95fe2137b5e54c10ebc6bc375d9b56f7be",
+    "byte_size": 1527648,
+    "file": "data/raw/f25197c894a8c22f4928d63b29ec37911265de5b5cce65e58109c0cee0b81d7f.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2023,
+      "sportIds": 14,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 1000
+    },
+    "retrieved_utc": "2026-10-09T13:30:12.447805+00:00",
+    "sha256": "1c494247f201e6006fb3541db8bf1a6a876342e9bb0abb29a98f4aa645ad795c",
+    "byte_size": 241054,
+    "file": "data/raw/7fff45af5bf22eb7e082e0a86949eab29bb51a00ed5557bff87bc6f91f9b986f.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2024,
+      "sportIds": 1,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:30:12.874506+00:00",
+    "sha256": "8bb44c15db16a8f8cfe2bccc08e5ad304be72ca38960a101de2454175dabd8c8",
+    "byte_size": 762369,
+    "file": "data/raw/881d083f4b59a23d27dc1930c34f58a3fa688769abed6041cab6809cc73c6149.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2024,
+      "sportIds": 1,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:30:13.859707+00:00",
+    "sha256": "f00d025220bb6ccacc24784de50c42f4a8135d7690af6026aeace9172dcdb225",
+    "byte_size": 1305371,
+    "file": "data/raw/258922c5fe8dc30aed408d78ba375bcdfd033c89f96f6242bf72008db92666f7.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2024,
+      "sportIds": 11,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:30:14.148620+00:00",
+    "sha256": "aeecc0e93f362a6b2b8d2c207ecae21a06ed2914bb7cfebe5860f3e9527e439a",
+    "byte_size": 913010,
+    "file": "data/raw/f150cc2286aa0aa64781795176717ea49ed8955774801b13b2d9939c98664f8c.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2024,
+      "sportIds": 11,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:30:14.733555+00:00",
+    "sha256": "3027dba47f8fdd9347f0042b34136dc6ddd3760004ce9ae93a46c78a73aa0dcc",
+    "byte_size": 1529576,
+    "file": "data/raw/faf79f1ef962a75795dc72e53e29b8c807d74508a01dfbe5ff8eeffb9dc00faf.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2024,
+      "sportIds": 11,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 1000
+    },
+    "retrieved_utc": "2026-10-09T13:30:15.166553+00:00",
+    "sha256": "7f5adba567ddfa4859c13852223417d671bb7929de93b59d953daba212d257d8",
+    "byte_size": 357289,
+    "file": "data/raw/fdb1df3e3473dcf566585b583c492a5f15297e9c1dfccc869a370984f7970078.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2024,
+      "sportIds": 12,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:30:15.585819+00:00",
+    "sha256": "0b51cd4b0a0945ce6f80309eacd51195c6ee98716c11c0f5d00587ad726ff860",
+    "byte_size": 766511,
+    "file": "data/raw/92d939873469bdb7e3ea5d6701da8c510d5ada47b9f6a32ffd9e231310088784.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2024,
+      "sportIds": 12,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:30:16.170259+00:00",
+    "sha256": "d7ba19aa79fc58172922a3de9d8534198fe0a47025036dbcd8355ee173071601",
+    "byte_size": 1486883,
+    "file": "data/raw/5b56ab6fa55933939b2f3f45d9dc79af413f72546c6abe7c12255bd161b869da.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2024,
+      "sportIds": 13,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:30:16.530600+00:00",
+    "sha256": "efedfc15d88214c6f970345f03a58685f2a54a1975349fc2573dae2bf0c28da5",
+    "byte_size": 793339,
+    "file": "data/raw/5a0e34f3352b31d1547ebbc78bb0962dce5f065abdff8273d75a762d3e5d0391.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2024,
+      "sportIds": 13,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:30:17.177434+00:00",
+    "sha256": "d1a6c4d1bde9753c8424f4e529f09e6299bda3714c8288f1e3009f0abe8c10c6",
+    "byte_size": 1514847,
+    "file": "data/raw/a95604517abeae4b0eb039f1663ebb905a66abc699d479e3e857708c5c448199.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2024,
+      "sportIds": 14,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:30:17.609350+00:00",
+    "sha256": "f6b481e7b78f7b20817d4ad2710a3a87bd625fc03e39fdf25d53ede00e0b9433",
+    "byte_size": 932792,
+    "file": "data/raw/d5d7bdb31b8f78f3104b96d0884eb50273060153fee1d8f342c2df2b15396e09.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2024,
+      "sportIds": 14,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:30:18.082288+00:00",
+    "sha256": "86422c59f05fe4fe33fa850eb7a033abf9dc14396dbad4e8ebd7545c21f94b8d",
+    "byte_size": 1527151,
+    "file": "data/raw/5a5ef6d048b1af8982eea5fed80e34c826aef0ccd5662f6d64e18393e027b90c.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2024,
+      "sportIds": 14,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 1000
+    },
+    "retrieved_utc": "2026-10-09T13:30:18.797285+00:00",
+    "sha256": "eb496e3b04dfa491267228363904ece510c8b850bb5ab7d7cb51b5602f08b9a4",
+    "byte_size": 285587,
+    "file": "data/raw/aea25d8927a92bdc267707f9e828308daa66b5f29bc64a557c51a47eac1b4b8d.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2025,
+      "sportIds": 1,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:30:19.117187+00:00",
+    "sha256": "a1e6455e8758ea0350b07bbcfe0126d1f5e71b56616ff819211677e7a1094935",
+    "byte_size": 785729,
+    "file": "data/raw/8bee4fe5b40ae95f76757757e95a5e04ab68493833dccc7eb0fb17472fdfde40.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2025,
+      "sportIds": 1,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:30:19.582580+00:00",
+    "sha256": "18085f1ff299af1724d677928fae14166429658971bd62a14dc59e6cb2be5392",
+    "byte_size": 1332730,
+    "file": "data/raw/fa15b49e5334fbde8d0144528cce887ea53840ccb87659e75b67783d7e88a81f.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2025,
+      "sportIds": 11,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:30:20.148716+00:00",
+    "sha256": "e7d84f7975b4957bf631200e544e367ce3e17bdbf706fe04d401e8143155883f",
+    "byte_size": 948511,
+    "file": "data/raw/6a671183226cdeb37260011b5d5dfea3cd8e3e8c3a9ce70f83c656d55814d5a0.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2025,
+      "sportIds": 11,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:30:20.618524+00:00",
+    "sha256": "3af910af8ea2a069f0b341a38b064c9c3855712714e66cf168922e84564777e9",
+    "byte_size": 1528586,
+    "file": "data/raw/abd5f6c49ceafc10369f99a48ea952fa80c2b40b62d39f2cecb450815ca6ae4a.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2025,
+      "sportIds": 11,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 1000
+    },
+    "retrieved_utc": "2026-10-09T13:30:21.124460+00:00",
+    "sha256": "6de270af26ac7ccf2ccd0e539729a0dd1e3555e6b39b6569becb3c4ee808076f",
+    "byte_size": 403660,
+    "file": "data/raw/032a842529a62c4588d0c17f30c89735274eb0414caa85d82d7d92e837dcb1bb.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2025,
+      "sportIds": 12,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:30:21.587211+00:00",
+    "sha256": "13a4dce8e69bfe1d41b44b6b2351607124b4f4ce0b1d54316c0b7ee0a543ee5e",
+    "byte_size": 797500,
+    "file": "data/raw/5482dacb4d8f3ee8300a3b01d4609c5a0d33d026ce5ba78a90e76d6db57fd245.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2025,
+      "sportIds": 12,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:30:22.084199+00:00",
+    "sha256": "75a7d54cc6a5b71f68632daae9469a71d7909cb913f7ab40daceac0173412ef4",
+    "byte_size": 1529830,
+    "file": "data/raw/94784cba7cc90d3a43ecd18888f834ed5e805d311e84d55e4259a5df3be6bab2.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2025,
+      "sportIds": 12,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 1000
+    },
+    "retrieved_utc": "2026-10-09T13:30:22.564253+00:00",
+    "sha256": "4b4a944b4cd98e2850c89937f732e9b4d1f2c4cbb522fdd9a9dae107bdf75a85",
+    "byte_size": 26291,
+    "file": "data/raw/6d7fd535e42d4ab89c1f0f40ee02e7673c3085a721de81f53fe04fd38b92275c.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2025,
+      "sportIds": 13,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:30:23.096942+00:00",
+    "sha256": "dec286d4ab596d4421fdd3fe07b7644de9d15d17eb6c3fffd8b132ec5f440e72",
+    "byte_size": 814143,
+    "file": "data/raw/e55db404b3b86f61da0a4049cd22248a1c5ce703853da3e9a1c552c02cbd5601.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2025,
+      "sportIds": 13,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:30:23.684332+00:00",
+    "sha256": "3fd1e95381ad99b94309613db98ee66669d8f97054d76ab954713f6a6ecf65ea",
+    "byte_size": 1530112,
+    "file": "data/raw/cc8f93a67f2629e01ba3573ba96d5fe92687857df3bc9a415c02feb68a0e9ddc.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2025,
+      "sportIds": 13,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 1000
+    },
+    "retrieved_utc": "2026-10-09T13:30:24.017859+00:00",
+    "sha256": "e81d13c5f63d5c2d877924c1619983a4b8f500dd48c68b55ebfa4fb297cab3e1",
+    "byte_size": 64384,
+    "file": "data/raw/7566adb8a3fe9c4231dd802d90eba4912ce3a177bbd11b84ad3d74d02e89a49d.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "hitting",
+      "season": 2025,
+      "sportIds": 14,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:30:24.623975+00:00",
+    "sha256": "5e8f805ffa42099b1a0b4923f8ad9d1146758b27c36d3855a750f21c1e322409",
+    "byte_size": 949926,
+    "file": "data/raw/e143a10702a82e94c1f1a505ac4e7941e60e3199db5b9064df18d318ceb5507e.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2025,
+      "sportIds": 14,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 0
+    },
+    "retrieved_utc": "2026-10-09T13:30:25.173307+00:00",
+    "sha256": "e693f0afbca320936e0022ba79fcf2c08497bbd3511b5e95b7da6105c97333ff",
+    "byte_size": 1526657,
+    "file": "data/raw/6ade60bfa2fb8c57ae9c79c17b1ef8c2d1a5602a12256580bc00532cf8f32f61.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/stats",
+    "params": {
+      "stats": "season",
+      "group": "pitching",
+      "season": 2025,
+      "sportIds": 14,
+      "playerPool": "ALL",
+      "limit": 1000,
+      "offset": 1000
+    },
+    "retrieved_utc": "2026-10-09T13:30:25.539920+00:00",
+    "sha256": "75f43586a64efd1418d322708244c11687ee8c7b38db68d01bff6f5861a3a002",
+    "byte_size": 340435,
+    "file": "data/raw/fe2f12650eef2b43cb205ead749b2003260b26c462dcb4a3f1eac57a1a90d767.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/transactions",
+    "params": {
+      "teamId": 112,
+      "startDate": "2021-11-01",
+      "endDate": "2021-11-30"
+    },
+    "retrieved_utc": "2026-10-09T13:31:04.997925+00:00",
+    "sha256": "f4d99b12bd114b7b71a95e7b62f4226c33a253154834b05f9aa1ba0249400ccc",
+    "byte_size": 13747,
+    "file": "data/raw/01e3d125574fe8cc9995e0fcb3b23afa72b279e387e9b0024f5a83eb02467ef6.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/transactions",
+    "params": {
+      "teamId": 112,
+      "startDate": "2021-12-01",
+      "endDate": "2021-12-31"
+    },
+    "retrieved_utc": "2026-10-09T13:31:05.560689+00:00",
+    "sha256": "a8f1d32e356a52c428d5c246b869a3ba98f721478b1de1c46e565f8821d3805e",
+    "byte_size": 5948,
+    "file": "data/raw/d31699d4dfe65866f03d48c9d4bc3db46ff374f1242537d60f523fb61fe2140d.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/transactions",
+    "params": {
+      "teamId": 112,
+      "startDate": "2022-01-01",
+      "endDate": "2022-01-31"
+    },
+    "retrieved_utc": "2026-10-09T13:31:06.030934+00:00",
+    "sha256": "8993da9a743140b53e8bb2067fd5651f5460fcb8a6838c513e9e79f011934837",
+    "byte_size": 5972,
+    "file": "data/raw/84de961e00bfc4a41fff2bbbc8b8c993aca1c391a638b725af0d20586fca7f8e.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/transactions",
+    "params": {
+      "teamId": 112,
+      "startDate": "2022-02-01",
+      "endDate": "2022-02-28"
+    },
+    "retrieved_utc": "2026-10-09T13:31:06.437306+00:00",
+    "sha256": "251a5ba3043ea6d44d09571c3f86a2c575d04ac40670094f624214ab6782944d",
+    "byte_size": 2890,
+    "file": "data/raw/52f3d1d70f3d1da3550b01499e35504c29fe94a5715eb8f2a546b1a62dc51d8b.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/transactions",
+    "params": {
+      "teamId": 112,
+      "startDate": "2022-03-01",
+      "endDate": "2022-03-31"
+    },
+    "retrieved_utc": "2026-10-09T13:31:07.023808+00:00",
+    "sha256": "12646d471e7aa0debbd4c53ed4a9735d0228f02ffaff6118c3c2d4f2db2a6eca",
+    "byte_size": 79305,
+    "file": "data/raw/3ce3536eb17196bbafd4b3d7f1445ca5b33149c10c20c6e358d40fc9df0bddc5.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/transactions",
+    "params": {
+      "teamId": 112,
+      "startDate": "2021-11-01",
+      "endDate": "2022-03-31"
+    },
+    "retrieved_utc": "2026-10-09T13:31:07.452543+00:00",
+    "sha256": "f0e81eeea5c31e5f6fe914c8bf5219ce8f726460cd55971184b469c258709f6a",
+    "byte_size": 107074,
+    "file": "data/raw/2a49d995643b183a6e8ee1b24040ffc75a69fd203eecddc117d433cc954fa62c.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/transactions",
+    "params": {
+      "teamId": 112,
+      "startDate": "2022-11-01",
+      "endDate": "2022-11-30"
+    },
+    "retrieved_utc": "2026-10-09T13:31:08.052565+00:00",
+    "sha256": "80e352eac6322663fc5467eb56a8885840628798cc523cee75e8a71fe74b64b6",
+    "byte_size": 12611,
+    "file": "data/raw/1b3b4db8b4f9360ee0f781091e68185331cc922f43dcc902b8949a3d6640a720.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/transactions",
+    "params": {
+      "teamId": 112,
+      "startDate": "2022-12-01",
+      "endDate": "2022-12-31"
+    },
+    "retrieved_utc": "2026-10-09T13:31:08.526270+00:00",
+    "sha256": "6df3ea6363b678c05c21b51443306ee34270e4aa57e47a6d339c906435defd88",
+    "byte_size": 15261,
+    "file": "data/raw/3ebf78c25d8d8bf817395e94b30a5292c6e40d0e29dd44076fcc2e936174a839.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/transactions",
+    "params": {
+      "teamId": 112,
+      "startDate": "2023-01-01",
+      "endDate": "2023-01-31"
+    },
+    "retrieved_utc": "2026-10-09T13:31:09.019552+00:00",
+    "sha256": "37bc2830529afad612a95426931c568caeccb82a5c7aaee5c835f61d783abcb9",
+    "byte_size": 25343,
+    "file": "data/raw/e908b33e04f55252153de595f57d5808f173f28b0996947e7faaf44637cc48b9.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/transactions",
+    "params": {
+      "teamId": 112,
+      "startDate": "2023-02-01",
+      "endDate": "2023-02-28"
+    },
+    "retrieved_utc": "2026-10-09T13:31:09.546628+00:00",
+    "sha256": "d25b7b54a3c4cf49938dd8b03fdae18ccd7a4e89d6c090cd542c87de37d0bbad",
+    "byte_size": 48354,
+    "file": "data/raw/f57c8aeb5a5e6e5492002ad1b330deda8422579b3d1cbd519b6e8931048f5fd5.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/transactions",
+    "params": {
+      "teamId": 112,
+      "startDate": "2023-03-01",
+      "endDate": "2023-03-31"
+    },
+    "retrieved_utc": "2026-10-09T13:31:10.013631+00:00",
+    "sha256": "08552c1afc2a047e857195d3f45ec611abf1162628b669fde49f1e67c973c1f1",
+    "byte_size": 38231,
+    "file": "data/raw/86b44c3cb787fba379106d282ac9d019d937139f5929c94624e67bfa8a7733f8.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/transactions",
+    "params": {
+      "teamId": 112,
+      "startDate": "2022-11-01",
+      "endDate": "2023-03-31"
+    },
+    "retrieved_utc": "2026-10-09T13:31:10.527548+00:00",
+    "sha256": "671e49b6adf0b00bf2319f82ff7f83cbead3509a89c5250ed7b507b074310c58",
+    "byte_size": 139012,
+    "file": "data/raw/1fa3a8180d384dcc0c5ee47d348b8a70948fb76ab57319a4b8009f3544904400.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/transactions",
+    "params": {
+      "teamId": 112,
+      "startDate": "2023-11-01",
+      "endDate": "2023-11-30"
+    },
+    "retrieved_utc": "2026-10-09T13:31:10.942769+00:00",
+    "sha256": "e01418719b5e51021b4b35a3dad33b87ed1ce6cafc005bff7f236f53cd9a644b",
+    "byte_size": 11119,
+    "file": "data/raw/cf31c92012e5fbc6e0e18c6fbe178d674b0551418c5e542e5f9b9ac4baf77af8.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/transactions",
+    "params": {
+      "teamId": 112,
+      "startDate": "2023-12-01",
+      "endDate": "2023-12-31"
+    },
+    "retrieved_utc": "2026-10-09T13:31:11.530701+00:00",
+    "sha256": "78e0264dae99df05a2d63fc10dd98eaed2119ed9b4723fbe3a37732826a02930",
+    "byte_size": 3552,
+    "file": "data/raw/7b3443635801c18704c7abb5f50f8134ed71589bdee204d962360f3d4f5b585a.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/transactions",
+    "params": {
+      "teamId": 112,
+      "startDate": "2024-01-01",
+      "endDate": "2024-01-31"
+    },
+    "retrieved_utc": "2026-10-09T13:31:12.050244+00:00",
+    "sha256": "cf2b6b2c5dd8f278a7d9af253e0b18f9c6e09bcccc9a1ec815272615fb0808e9",
+    "byte_size": 10517,
+    "file": "data/raw/8416706aeb50035acfe795361d865c72cf5ce597b1a613bf9e195221d899ef1b.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/transactions",
+    "params": {
+      "teamId": 112,
+      "startDate": "2024-02-01",
+      "endDate": "2024-02-29"
+    },
+    "retrieved_utc": "2026-10-09T13:31:12.581496+00:00",
+    "sha256": "9cdeb287e24f38f13ec70475c327814d6ed8066e728cb8f01ce1e2a4f25b85fe",
+    "byte_size": 27215,
+    "file": "data/raw/d5758cb0d2f82e865bae3a0f1320932afdf7e9b5182b6fe0606e0b7eed70fe61.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/transactions",
+    "params": {
+      "teamId": 112,
+      "startDate": "2024-03-01",
+      "endDate": "2024-03-31"
+    },
+    "retrieved_utc": "2026-10-09T13:31:13.088876+00:00",
+    "sha256": "b6e66588f5c3e3bb2d6910ad6dfcad8b004c307a1a7bef17ff21dda50bf7b2ec",
+    "byte_size": 21378,
+    "file": "data/raw/9a3c425ec37f55f5efaf69fd49f80660be8b002ef46e2563c16f7da1695ef971.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/transactions",
+    "params": {
+      "teamId": 112,
+      "startDate": "2023-11-01",
+      "endDate": "2024-03-31"
+    },
+    "retrieved_utc": "2026-10-09T13:31:13.522939+00:00",
+    "sha256": "ab1e3bf02e086ed7cb5a405eeaa3b64a257911f47a791ea0fd38cb8416b5ba2e",
+    "byte_size": 72993,
+    "file": "data/raw/b59f175bc9587e8782b23158d7787241ee2c1dc3ddc7b6ff987eb6095eb7f2ab.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/transactions",
+    "params": {
+      "teamId": 112,
+      "startDate": "2024-11-01",
+      "endDate": "2024-11-30"
+    },
+    "retrieved_utc": "2026-10-09T13:31:14.048836+00:00",
+    "sha256": "0748269f81afe3c84e12525f3e631c3b73d1fd36fe6df3974e410c99f0267f93",
+    "byte_size": 13029,
+    "file": "data/raw/13faf75964b179028fd3c1e1a2d11c1633a8be0a76ca56c2ff08a9463d5b5af1.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/transactions",
+    "params": {
+      "teamId": 112,
+      "startDate": "2024-12-01",
+      "endDate": "2024-12-31"
+    },
+    "retrieved_utc": "2026-10-09T13:31:14.445864+00:00",
+    "sha256": "59fa4f5ca966ee09772f059fb7dd108deea7c6ca1088f18ef939fbcc3bb90668",
+    "byte_size": 10834,
+    "file": "data/raw/d1e55122a99c5091b01baf09272b3b60feb9ab4375d148f52496fc142ede8031.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/transactions",
+    "params": {
+      "teamId": 112,
+      "startDate": "2025-01-01",
+      "endDate": "2025-01-31"
+    },
+    "retrieved_utc": "2026-10-09T13:31:15.019202+00:00",
+    "sha256": "3f17daeaa3504f6172681768570e013d603ee27999e097e22b831622e081e571",
+    "byte_size": 23077,
+    "file": "data/raw/4c6223111a54d29c5e6908d527d0de4ff26c41cb08804dd2b5ad7cb85e93cf91.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/transactions",
+    "params": {
+      "teamId": 112,
+      "startDate": "2025-02-01",
+      "endDate": "2025-02-28"
+    },
+    "retrieved_utc": "2026-10-09T13:31:15.439889+00:00",
+    "sha256": "82c76fc29ea90de7f6dcd4f8e52de42b5d737750aaa6696a607bf723de3a65f3",
+    "byte_size": 29638,
+    "file": "data/raw/fa39a1c8d16787fbd906c8187330e8168d8594efe2b913020c5988c3f3d24b93.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/transactions",
+    "params": {
+      "teamId": 112,
+      "startDate": "2025-03-01",
+      "endDate": "2025-03-31"
+    },
+    "retrieved_utc": "2026-10-09T13:31:16.025615+00:00",
+    "sha256": "a6a5805b637e0b9a44114f875ef06fb42c05d1838e3e07572b19bd82083ae67b",
+    "byte_size": 17047,
+    "file": "data/raw/10d227d920e0640a1014143553d652209d3426e6cdbcf970a39d072d0d7e69a9.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/transactions",
+    "params": {
+      "teamId": 112,
+      "startDate": "2024-11-01",
+      "endDate": "2025-03-31"
+    },
+    "retrieved_utc": "2026-10-09T13:31:16.454216+00:00",
+    "sha256": "43ca6f8bbdb8c9cb6ec98d76b25be0839c37d4b52d41b75c0a0bdcf053910bd1",
+    "byte_size": 92837,
+    "file": "data/raw/e66aa8da9d18bc0ae5dafc398cc11326300b58afd9a1947dbca69589064d1cf4.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/transactions",
+    "params": {
+      "teamId": 112,
+      "startDate": "2025-11-01",
+      "endDate": "2025-11-30"
+    },
+    "retrieved_utc": "2026-10-09T13:31:17.019569+00:00",
+    "sha256": "ba67c39f5ea78e7a728d69becd2f1cdbd62afc0ee05a5503fb5c2b59978ae7d1",
+    "byte_size": 10796,
+    "file": "data/raw/afa20692cea35c748d7b34c4657d3c99425fff16f74604c45ff8efdfa1ebffbc.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/transactions",
+    "params": {
+      "teamId": 112,
+      "startDate": "2025-12-01",
+      "endDate": "2025-12-31"
+    },
+    "retrieved_utc": "2026-10-09T13:31:17.524732+00:00",
+    "sha256": "6b9bd194ba5c0baa8a1943b215ded110769b3bcfb1b8736e1ab75c784a8380c9",
+    "byte_size": 8614,
+    "file": "data/raw/22484405cc433ce1bab89945bdd6d294d401f04caefc4b84d94135f7eac244ed.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/transactions",
+    "params": {
+      "teamId": 112,
+      "startDate": "2026-01-01",
+      "endDate": "2026-01-31"
+    },
+    "retrieved_utc": "2026-10-09T13:31:18.044109+00:00",
+    "sha256": "06fae14ce343f4f97d5398924f09f9bcb341eeeaa0c7fc318a1672d8acc4a5e4",
+    "byte_size": 21282,
+    "file": "data/raw/6131bf56c35c0943c0aa76120a5bebadae2161a8e884970bc60fa9f3139f7fba.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/transactions",
+    "params": {
+      "teamId": 112,
+      "startDate": "2026-02-01",
+      "endDate": "2026-02-28"
+    },
+    "retrieved_utc": "2026-10-09T13:31:18.441427+00:00",
+    "sha256": "daf92bcdb79da389bb0bf20d7a486a6a1ea452063d37f1e8974ac2526d6c019c",
+    "byte_size": 30981,
+    "file": "data/raw/2cb47dba3cf1eb4f4dcacfd9291bf83a421e40ecc60531cc3afac4418fa88c90.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/transactions",
+    "params": {
+      "teamId": 112,
+      "startDate": "2026-03-01",
+      "endDate": "2026-03-31"
+    },
+    "retrieved_utc": "2026-10-09T13:31:19.020357+00:00",
+    "sha256": "eb237d5f67b6f2b64893face83e9c92ea2e96b2ad917cef5e2cb3814473ad1bd",
+    "byte_size": 21028,
+    "file": "data/raw/854d3fcd98d762e84ba4ea6bc2271ef37c348bc0b4ed0b23c33d9dec4eef2b61.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/transactions",
+    "params": {
+      "teamId": 112,
+      "startDate": "2025-11-01",
+      "endDate": "2026-03-31"
+    },
+    "retrieved_utc": "2026-10-09T13:31:19.518298+00:00",
+    "sha256": "4e51631bc19958f4f37ec0516d1cd180d161506c68509450cc1a118897fe8ff3",
+    "byte_size": 91913,
+    "file": "data/raw/64b9bcb86fd9e261232f8f1216d069c5f804d8dab94a5b78e2bffb02918418f2.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/people",
+    "params": {
+      "personIds": "519390,475857,543219,500207,607054,605476,606956,541640,450729,605125,606477,641471,593163,473724,527048,465753,605390,454975,608356,621149,542231,607320,622370,570488,646140,607240,448167,465629,542344,622693,592600,657424,610141,621529,572703,600887,516472,621132,452676,435063,542513,554374,607301,516664,593137,599096,592863,433586,519303,623526,519425,666775,543677,543652,622217,506997,605463,500610,607341,457422,518582,621194,605338,518445,575070,608707,572088,489365,622199,623168,572669,489232,491703,622097,670266,676828,621066,600861,474443,608650,542642,571473,622430,622700,593449,572365,519262,571439,593522,570826,608724,592341,606160,514923,622668,623393,527049,448159,621500,571911,664950,642417,641490,572128,543424,449181,502011,606959,607021,506924,502083,542289,612807,621590,606340,553968,621572,572863,519043,607172,457574,573669,514913,571474,622516,543141,488721,571751,622797,593619,645848,543321,458678,519240,592237,592203,602993,606189,592127,595275,519085,605304,572998,543459,543328,458085,593604,446192,595441,543819,593468,547171,621457,596028,527045,622759,458252,630155,460060,543482,572383,593527,593347,607471,466988,621520,594950,519421,545357,519345,446868,571685,542883,544759,543038,592398,545064,543518,591672,608037,596883,493472,519025,518577,623174,592547,621007,592464,458530,501800,605148,571712,621505,455605,665144,622556,518927,571467,606216,542419,516811,547176,572679,543716,547874,620986,502212,622092,499926,594747,606196,451089,596145,446264,501957,543105,592609,623148,591701,605227,622490,542932,664292,622806,570479,607185,605300,444520,673350,621037,502593,599813,592535,573113,623306,592144,602115,572225,607439,607249,554429,592570,546997,621094,451705,621044,463748,608711,578651,595919,657261,622384,622380,542436,605474,596018,622356,592165,594857,622234,621551,622698,594983,607333,608741,593444,543280,542194,502179,622497,543329,573041,595963,502087,623360,543214,623166,572371,543592,623912,664951,670616,455139,607387,571825,488681,572389,543506,462480,622435,502578,458689,571669,621468,572204,534606,621532,543942,542233,572955,543377,622194,605370,594986,543195,519071,607725,572308,625971,606190,596842,623238,542462,492841,571633,543883,518418,607294,572125,542993,622689,488912,570714,594872,519082,592346,641303,474039,570702,543496,622503,607741,592533,518568,485567,571757,542908,643440,613548,608364,621377,608685,502151,601707,664238,605381,608701,519296,664767,621173,456781,600892,543508,547181,593525,610143,592593,592139,622727,451775,571918,641789,625733,542963,592881,605479,593755,594867,608691,602850,622236,554238,605512,594772,593333,571787,543594,607399,607170,542669,518852,592592,545331,573088,623485,518725,541600,545346,621324,518468,622161,620982,625974,605378,582473,434682,502285,571681,564434,622524,622807,622211,607171,608734,506747,571529,601979,543041,622780,591758,607486,543017,622738,595943,592879,502523,592731,593427,642229,543456,518603,542621,641400,623437,624354,643527,519237,594940,606234,605509,623927,621034,500872,607751,621591,543266,572738,592629,595798,607318,596816,572000,595234,547184,542897,542432,593340,623188,621560,621036,599683,594740,532936,622561,593151,553891,571579,622365,571601,613552,670920,621705,518653,543155,576788,501851,594951,543532,605226,627262,594612,606335,622273,571440,433217,622762,622659,621471,608339,543611,618085,608167,542951,573166,621005,606470,621281,605183,537953,622270,542208,605260,668525,622196,623278,602928,572728,571798,621079,572391,607780,607355,542946,665093,602718,621203,488787,601974,573244,623982,600870,656044,543432,608381,622794,573064,608672,554234,593977,623180,542357,592244,664310,661377,623896,607369,592656,605346,641587,519259,600873,598286,471822,527043,489295,491696,628333,572750,518618,518715,571506,501593,491676,519326,502202,571946,572008,543257,453284,533167,591720,606995,543903,542921,543376,456713,606157,641958,519381,607572,657205,600965,592716,543302,571740,624586,571602,541645,570731,543359,458584,492802,527038,592094,642279,600921,605490,572143,500208,543510,571666,543935,608665,676786"
+    },
+    "retrieved_utc": "2026-10-09T13:31:39.054460+00:00",
+    "sha256": "77ed8076674ae3241fbf2c1c7cdfbce954fc137d2ba9734ef7f45833b4510997",
+    "byte_size": 552348,
+    "file": "data/raw/ae078b31f077b323ad90a9883ac1e4c8c7cbd1246ada90efe1d2659c13118ff6.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/people",
+    "params": {
+      "personIds": "542953,518858,518735,516770,542436,543532,501571,518875,456078,519058,592122,571431,607457,543228,576397,475582,544931,502706,472551,460086,605520,623911,642549,621437,543506,606162,477054,605462,607430,607473,595144,600873,593495,622556,621343,605509,621094,641561,621531,571685,624507,606189,641861,642620,572102,595426,642571,466988,605183,643275,608421,542908,456713,571602,457422,606227,643335,622703,571825,627218,643452,606467,502593,642282,506997,627500,458220,622171,571616,631225,625971,593679,621290,621088,543232,607635,641850,592630,608703,474319,608380,592712,517593,595918,527054,571740,501817,608665,453344,475479,467806,620445,600301,457477,543148,593525,621471,643414,608650,593574,605218,607780,623913,572182,602112,622338,473724,624425,640448,623278,620442,571800,621597,592620,643527,620444,640459,573009,621078,554054,514916,592256,642667,642488,572227,642720,676808,592422,606127,608167,642197,451705,623896,625974,607216,606993,622017,453172,543266,571863,543409,445060,640463,664701,476595,582494,641319,572389,645917,600861,608685,501983,519333,593468,643458,446185,608061,596143,605464,623173,544365,592629,640489,622400,489365,622561,642565,641980,519303,606291,446386,673666,642226,642681,275700,572096,571521,519346,571439,659003,602115,641646,623168,592464,656950,600290,641288,669207,593347,641323,644677,642712,488681,571474,542946,543258,571871,543482,641878,622382,594951,592723,640464,453923,608325,457787,601707,595263,542642,623279,644418,642333,607369,514913,624575,516472,545332,542993,641483,543056,642472,605253,641741,456124,642297,642345,622066,641392,622169,607240,518883,543456,571939,646301,642286,642308,642362,519237,548337,622541,542419,641685,640485,453203,461865,594736,621397,518542,544928,527048,608339,518813,518774,501659,643588,608323,488912,641913,644337,606256,622197,545346,608627,570489,622415,501647,629498,623166,605504,623319,621560,646081,682161,543589,571595,534737,519421,605343,606336,572669,621457,621132,621103,607179,642381,605125,601975,640441,543935,642396,543089,642005,553988,518568,622356,642694,518748,593977,641802,642298,623490,621209,630155,608368,657770,642140,457754,571772,641739,643419,621559,642688,608364,605478,452676,601974,620449,543234,571727,595255,573041,644403,672900,641870,542462,592604,543698,623360,534947,676828,623238,640460,643617,664767,571639,605227,592299,516952,434682,446192,572180,608382,594747,518603,545602,641872,545343,643392,446653,455605,657433,571993,487675,573088,643550,642239,592170,612792,629493,545338,594011,593580,602083,621289,644427,534812,601714,623980,451089,592279,542289,592189,592105,600921,623183,656561,609274,665009,600898,641569,488818,621529,595191,642231,542208,607471,570716,664014,595373,453284,591693,573046,594777,450306,450212,592804,595893,622576,606216,608356,623451,644433,642156,642716,642544,623992,578651,673205,543484,518902,621592,622774,669994,620978,621394,593527,592593,642399,641477,608715,489267,476633,668605,678236,621191,641959,543432,642857,641988,642279,636072,592232,525768,624419,642664,429722,608654,593800,543903,612797,629496,642853,641461,641892,621575,518490,642768,642769,573113,642031,595943,622362,600853,641388,641429,622492,642617,641891,623610,607895,622097,605248,642296,623180,631227,592614,573669,572089,635903,641296,571539,606956,622503,623395,682596,669235,543594,573062,457574,628366,672771,621591,621445,618085,592438,517414,621200,605381,594580,595345,506747,605439,643539,644407,554234,640017,502570,592329,571687,607320,641882,573064,642007,516653,630034,608601,621324,620440,642582,547173,595307,620986,621505,622797,666015,608381,621550,623393,446099,592130,593647,607486,631222,623182,643410,600931,596049,641958,642557,592647,622435,474029,516769,622490,605142,594772,571577,518577,518693,543331,594872,607021,572998,592530,622713,605463,622506,641641,592280,606478,465753,433217,573204,571751,463645,657623,667176,593670,501954,607068,686346,476225,596104,605152,570702,641501,622568,581527,656725,622807,595222,595885,657610,607345,457915,658648,622766,543376,543068,553869,488748,592612,608700,595375,624586,600858,592836,519306,593523,572033,596144,625510,534910,595014,518586,571974,542364,664139,658791,592332,606299,592717,571912,571882,543343,592094,573135,543768,592222,448855,519076,596748,514917,628338,607680,542881,670329,572073,621114,621350,570560,542921,570267,608365,605488,554340,641149,518865,545357"
+    },
+    "retrieved_utc": "2026-10-09T13:31:39.561282+00:00",
+    "sha256": "d499d09ddb8fa1f658fe288f743d6b5a201f9296dade5a9e79e7c0b96a905bff",
+    "byte_size": 595390,
+    "file": "data/raw/45c459f08abcebe2340fb8a5e489f2a86410f2a7187c8402c3db8d754c3c2c70.json",
+    "http_status": 200
+  },
+  {
+    "endpoint": "https://statsapi.mlb.com/api/v1/people",
+    "params": {
+      "personIds": "519048,518813,429722,435559,502481,465657,489446,425844,502171,573109,446099,607067,592789,519203,660294,547179,452657,519008,502327,488984,453284,543766,592351,455119,592696,501303,621043,554340,608665,548384,518553,608349,445276,543760,592662,502042,448281,453265,431148,543339,446321,453281,457918,592135,501981,596057,527054,570632,467092,543768,572096,543543,571946,472610,592178,518586,518774,518692,472551,520471,571710,456781,475479,502085,501593,542881,453192,571666,595879,519076,434378,503556,467827,474568,572816,608379,543281,519306,608369,405395,506702,444489,519326,543272,446372,592192,433589,489265,605151,593576,519043,502054,592826,474832,596115,572008,534910,628452,572020,571788,488671,544725,502706,503449,451594,518633,477132,453286,621035,474463,502239,475582,493603,593958,542454,605200,468504,453178,476454,573186,571901,448179,624424,446653,501925,451584,501381,592390,475054,547942,543228,500871,571927,544727,592743,502202,605164,571740,622110,624585,570663,572193,607074,542340,476704,516782,543101,592332,543475,445926,592767,455139,501571,430935,543521,443558,543022,622072,458731,503285,594777,461325,572122,605388,656941,641632,600474,592206,571912,605177,656186,572761,593372,518617,656547,642073,547379,642233,541645,457705,657611,456501,608671,546318,595284,571871,607680,523260,592626,605361,622772,592741,518397,542963,605359,605240,571718,605309,545350,453343,642003,543118,572204,621295,517008,607231,650959,596001,595939,458708,514917,571521,592656,658788,642773,622379,657424,547173,644364,607473,592205,596748,572365,665001,425772,607111,664856,663657,665834,657675,625510,663402,656004,650619,663649,641319,502212,572406,660799,660720,650883,664770,664324,688847,660745,642629,595263,621389,571539,642659,605254,665093,605346,518464,600853,592254,660671,664744,660717,664336,660619,656210,664926,607523,592455,623470,663368,605490,650306,518435,643400,605469,664236,640017,644396,518542,650544,571602,664928,641501,642720,624586,598271,621132,608356,623402,502593,669920,660615,658061,642565,660422,663749,642423,664990,664843,592723,661332,641343,688010,606981,593700,687613,670811,642451,643418,641855,670625,657247,684909,641980,595373,650518,605504,607752,676875,548337,572227,592848,664048,592879,642227,570489,661156,642772,594760,595237,665285,663411,547177,660506,663494,607430,547176,657610,607249,622194,592570,664051,642617,663809,663911,663792,642211,656259,597113,665138,607391,664954,663605,660639,607232,608597,609274,621082,658655,656656,663648,649700,656814,601714,660731,663799,657086,621079,571638,492802,622247,678912,596271,663359,622766,465753,656885,663930,643588,518748,543376,660563,489295,663772,660801,446185,533167,642563,660681,621559,622353,663341,642607,639238,641541,606993,690178,624507,664966,642578,624523,620442,642751,664750,543302,578428,644407,608841,622168,502748,640902,650506,543234,622101,660638,664027,657203,641838,514913,642496,650356,623507,642575,657766,605155,624427,621469,656807,605441,657740,460077,621068,621403,621086,641341,664573,346847,621399,641741,657434,664963,641988,641296,663953,643268,663975,656032,660437,611093,664202,660758,621531,660556,572180,622668,642707,605480,620446,657088,642609,542419,651002,656722,682096,592630,600466,656883,642530,664921,657101,621443,660842,657739,670087,572070,527048,532936,622446,593163,625506,621088,622441,502578,658647,546994,547184,669946,643603,656001,656274,660659,665018,664334,688873,571679,689656,678973,673872,641384,548431,596144,643327,623515,660875,605448,502253,621420,592863,650700,642601,664279,641852,642694,643590,476589,593647,641505,664060,594694,664918,656818,622459,656196,640737,664585,621397,646241,650380,656455,623214,660905,656494,621404,606208,596027,641878,534947,650958,641685,650841,592144,664910,592306,658069,605446,573127,665134,622063,664144,642012,665420,658531,641521,664116,664851,623182,642220,623354,623323,642520,600858,621290,656377,650560,543329,641851,514981,594953,624420,657426,650513,665417,608703,547185,620998,628709,660574,656077,670376,663375,670582,571800,643410,622797,605138,621532,664082,595893,621048,453344,573064,655996,665321,602929,592779,607374,660788,658792,547172,641323,664098,608325,650508,663386,663398,660632,650660,543883,663550,543219,682840,657511,642584,489149,621173,642513,660647,664871,641571,663535,571863,664088,660630,606189,572021,606162,519303,594772,656449,623381,650658,650142,661250,546992,641583,660674,606336,608691,621089,670946,660569,689229,657064,642239,657446,571439,621355,615695,664009,643271,545346,592527,660431,665734,572383,664375,571656,656450,676976,543308,607608,642736,643452,657728,592127,660798,518568,662928,665048,621258,665227,647309,570256,660631,621097,663545,660564,592604,605260,600944,608061,542194,660435,663718,664940,645291,660616,624419,593468,657093,631222,605253,570560,519390,621574,663692,621455,621050,623222,663383,664784,570257,656848,542921,642711,656431,543484,656727,641483,660714,650493,620982,608380,596825,605520,660663,594056,670329,661415,643358,623513,595885,656473,516685,641802,657253,650504,642279,605218,593523,660749,573669,626925,621514,606944,518649,669049,605335,640459,605233,664877,660587,669675,607352,663793,641561,670328,623434,664731,502285,621143,640464,607468,656561,657658,600902,660757,655316,596111,664849,657595,622075,664883,624418,622786,608339,621002,622256,612792,620444,622196,665032,663366,592329,582473,624407,543482,657697,571993,608701,542513,595438,665142,663533,664168,677585,689620,630034,474699,621154,660680,621256,643340,664011,642767,519393,543921,542979,543278,547181,621005,656977,571736,642840,622490,678270,656678,658724,677012,660522,673005,660662,656904,580792,607729,608328,660853,665661,660767,605255,641882,660734,642714,456701,657518,659070,657566,592230,663463,661426,660650,656462,660686,664330,666220,664942,506747,542208,643617,660818,645308,657022,660808,608383,642508,607179,641431,641453,640488,660710,665053,660614,623168,661440,663524,595426,605508,656008,659821,578570,660593,592348,622259,641796,656730,573668,664199,543056,643478,602922,663992,605194,676845,670768,621381,669064,592094,571510,606988,594838,607229,592622,596451,643230,592567,593833,645801,593144,665600,621446,595928,668665,675971,620454,671272,650968,641856,622666,607560,607755,596129,641771,641772,554239"
+    },
+    "retrieved_utc": "2026-10-09T13:31:39.963291+00:00",
+    "sha256": "141d0eee920f04eae74509434b49e8c473014166b90ec31e6f03596a782bf89f",
+    "byte_size": 435,
+    "file": "data/raw/0c76e2a3a7196357ceb23bf86dce6276d8cbea1abd1604078ef94adf8eed3126.json",
+    "http_status": 400
   }
 ]

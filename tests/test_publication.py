@@ -77,7 +77,8 @@ class PublicationTests(unittest.TestCase):
 
     def test_publication_allowlist_and_bounds(self):
         limits = {'summary.json': 100_000, 'raw_manifest.json': 600_000,
-                  'FEASIBILITY.md': 100_000}
+                  'FEASIBILITY.md': 100_000, 'DATA.md': 200_000,
+                  'data_summary.json': 200_000}
         research = ROOT / 'research'
         self.assertEqual({p.name for p in research.iterdir()}, set(limits))
         for name, limit in limits.items():
@@ -94,6 +95,15 @@ class PublicationTests(unittest.TestCase):
                 for child in value:
                     check(child)
         check(summary)
+        data_summary = json.loads((research / 'data_summary.json').read_bytes())
+        check(data_summary)
+        for offseason in data_summary['cubs']:
+            self.assertLessEqual(len(offseason['examples']), 5)
+            for example in offseason['examples']:
+                self.assertEqual(set(example), {
+                    'id', 'date', 'type_code', 'match_status'})
+                self.assertIn(example['match_status'], {
+                    'matched', 'unmatched_signing_like'})
         for study in summary['candidates'].values():
             self.assertLessEqual(len(study['examples']), 5)
             for example in study['examples']:

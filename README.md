@@ -132,3 +132,33 @@ those remain research limitations. Synthetic fixtures only exercise tests and
 never populate the research report.
 
 This probe is research only. It does not implement a candidate product.
+
+## November free-agent triage
+
+The triage implementation lives in `cubs_edge_lab/triage.py`,
+`cubs_edge_lab/triage_eval.py`, `cubs_edge_lab/triage_config.py`, and
+`cubs_edge_lab/triage_cli.py`. `python3 -m cubs_edge_lab.triage_cli fetch`
+uses the existing sequential, checksum-verified probe client and writes raw
+responses only below ignored `data/`; each newly fetched response is
+recorded in `research/raw_manifest.json`. The owner authorized this local-only,
+non-commercial research acquisition on 2026-10-09, based on their reading of
+MLBAM's terms; no response content is published. Run `fetch` before
+`python3 -m cubs_edge_lab.triage_cli data`. Statistics are limited to
+2017–2025; Cubs transactions for offseasons 2021–2025 extend through March
+2026, as these are transaction records rather than 2026 statistics. The data
+command writes ignored ID-joined cohort tables and aggregate-only
+`research/data_summary.json` and `research/DATA.md`.
+
+`python3 -m cubs_edge_lab.triage_cli preregister` is offline. After a complete,
+non-early-stop `research/validation.json` exists, it hashes the evaluation
+code, configuration, and validation results and writes
+`research/preregistration.json`. It refuses missing validation or an early
+stop. The 2025 outcome builder refuses to run unless those hashes match.
+
+The cohort selector joins transaction person IDs to season split IDs only.
+Feature and outcome helpers enforce season and holdout boundaries; missing
+source measurements are not silently converted into measured results. This
+data-acquisition stage produces cohort tables and aggregate coverage reports;
+the separate evaluation stage has not been run and no outcome labels or
+holdout result are produced. Existing response contents remain local and are
+not included in the repository.
