@@ -1,0 +1,1376 @@
+{
+  "candidates": {
+    "MILBFA": {
+      "rows": [
+        {
+          "season": 2018,
+          "matched_events": 585,
+          "counts": {
+            "A": {
+              "mlb": 52,
+              "minor": 530,
+              "unresolved": 3
+            },
+            "B": {
+              "minor": 417,
+              "mlb": 133,
+              "unresolved": 35
+            },
+            "agreement": 458,
+            "disagreement": 92,
+            "unresolved": 35,
+            "minor_only_proxy": 412,
+            "confirmed_minor_contract_elections": null
+          },
+          "query_refs": [
+            "ebd2d643b802c9a955d479e8d9a4295787470e7beae4c41709977849641724fd",
+            "6db44e773079b635b231065ac9a34e1de6f2d6eb29d17be05d65f77050bc1c30",
+            "a4025c3eb9a938cd68105e30468a7e9715be0d4983251167d5a66dfb9f3471c1",
+            "b30a502e68ab75f3347cb64f9bbdea67354fa14ee0944e8d3f7bdccb1cdf9bf1",
+            "c0c3d1c2e4eb2c3b26d8285895fa8b137abbc84dddb2fad6fb4b450819de405d",
+            "0c10954c4b65205bb49b9712ea7a1461632deff94966f9a87ed29b07dc425177",
+            "e9add5ec62922ff92b0454261f44ad3b664da9a7b493d53e3d2c229ff1010cff",
+            "d3b5086e64f07248160daa3724b09929a2947380d5c526e8dd30bf9d955ac140",
+            "f2fe6d5870b512c9adfe98f901ecf1f376e38f0fd79f191fe9fcf415cf9d7207",
+            "04fba7295cb66538c92bff6e10369e34b44e297e9db4a82c5d44481af36c9ec2",
+            "3c1a7cadf472a3854bdcaa6bb6fec265e967570884a4b37648e0b4467447de44",
+            "5d877b0aaaedbba261c261e3d629450c5d853c1022d704911af0708fe680efe2",
+            "d4197732f3140252f62629110515f92050a5b4721db43e2bb855878b906e33e5",
+            "2aa0693fecd2c099b738eec5f621863d60bb457e848f7d6661572b6bba8ab35b",
+            "eb9630f3bd16399ce19d79e715df5ba1cc6dc14dce3fe2fc4d9dfc13163eaab8",
+            "c6edce1d5e774836a5eab623f3285c70d5b938445b21957f897dcf7a1a67075b",
+            "9846da14d50c1046b84c26a4b6d57dd52ba3dde702198354e002edac141ecb42",
+            "b92b53a43ed3fb84223e19c933737bd082894fa59bb295c05fa643577c8bc6c5",
+            "8d5f72af87651052d0d5d0fbe0d987ec8fe1a5bf6f50515397736263b3007e40",
+            "abe0fc2c66daa79b17a70c0b4ce49956cdeb5ffde1acf5e79f7c7ba6b45d2504",
+            "af5268125b316ff6514386687847449edb2003949de296e8407a7ec721adb947",
+            "f936541f1937d362a962ef4fc65233c9e1167d07a2e9a7bcf48b69b61ba5ba91",
+            "4c71973a1dd3ab7c050f4c9d43e458f5c19718cbc2fa19ed12b517d10f411c5d",
+            "e1f9d578a37859814c9eb5e0cf697de2831f9690645a0eef0edd5b351575aacb",
+            "dd48a55151387e4d231e23396ef126257e2ffa889fee02bbb45fcb01b60c20ab",
+            "a6d626075b18c5f30547dc43f138eec4ac0ac8bf9085708aeff4625f3ae6b231",
+            "bded8ede7da90b05eb29a9ec8daa2887a249ce4184da74fb071fe1085200e23c",
+            "2faabce1325f46dc118d6ee4955842fc5187bf81933d654f2978ba32eab197d1",
+            "797d20021fad921cc1691ae2a21e28f65898116b761f8636158ea88979aaea1c",
+            "3b980089a8e9a6a8ecb890cecdf7661189b2257d34833406b0d220cab2518303",
+            "39cbf33a770176514eb543464254407073fd0e578984e515a0756bebb3755a92",
+            "3505f13be2141e5db75dfe4a8357ee512bbdb3821d1170c612d73f2973d7b77d",
+            "7086b85247d5ffa1e4442414802b8b35d76ef8ee3385ff5f961e758a5485d30a",
+            "23930d436ad7a33598f9736ac56d57778b056d58c07d48e1679899c55e41a7c8",
+            "8caa38494491423118b4f92dc9caf5a88782c2fbbb96b44e5a9e7019b4c769f8",
+            "c8436a1789d6c8962343f17e71f87a4ce0efadc4409feeb9cf9145c0ac4a9b2c",
+            "b1f97b1ad83ac7dc785e2f30cd4320ac6dd6179e78b43daa4a0477fc950d6d88",
+            "c76f95baff0f0e333e13069738540d6f0d3dc7c50b730fbe2cd04b369f05f924",
+            "bd95856be9aa8f62c0608968574ecb9a8574fa1cec8edcd407f35f60a1d72207",
+            "675aa2c0878446d76f102b1e83aa147773b3e4e44f4b689533ac234a13c96fa9",
+            "505be9f739992272dbfccf0399ea71be3e3b172411762081a0590b616d598308",
+            "d5fadf1ea3308e55997cc552083b04c88a0e3633dc3ee712a05c4cdd78740247",
+            "7fe0a056a8871517e38c10ec2a620bdda24312fb3db88feadb086f7d180ded5b"
+          ]
+        },
+        {
+          "season": 2019,
+          "matched_events": 631,
+          "counts": {
+            "A": {
+              "minor": 507,
+              "mlb": 84,
+              "unresolved": 40
+            },
+            "B": {
+              "mlb": 164,
+              "minor": 415,
+              "unresolved": 52
+            },
+            "agreement": 481,
+            "disagreement": 84,
+            "unresolved": 66,
+            "minor_only_proxy": 400,
+            "confirmed_minor_contract_elections": null
+          },
+          "query_refs": [
+            "a6a47913e8a6f4eee127f69ecd25702f741d3bcc49d274e5fc2967712ee28a56",
+            "bc6d19d860634e385d27891d1c4eec6a738bd3526b7ba32a272ec8268a9e97a2",
+            "db578904a37ba18eb9ff2a2e5d9aa835d401c061c8788689f45f71c8d968c8b0",
+            "eef9e5e1271b69d8d79ace10d84bebe8e4cd7d7ffefb21e0ab6adf00f507ba4b",
+            "7f58b94dc6fe86b47363b8b27b28fb37b0ea9fb75d685582a543608d9a1576d0",
+            "9c891f9ff0987feb5c2a87af9b5cc1ae2f5fba1de6741008abe4ff7d3237ddcb",
+            "9e0715c48831a31676e7ba17871c400f81a595d70a041514beca1cfebae22464",
+            "cbb183f2c2e7d253c19fb27d9b492f069555499889c7cf95e76922f42e62c8b2",
+            "86076b6be30113f5511c5f9c2d35b753ae4d9df58ff647f39e0f4e318eb02954",
+            "421c9ae0c8c6a794dec99ed5ec9b53a2ec52ec516a448ab83335e1f2e66d59c7",
+            "62cacacb19ef0d21607fb7117eb0d6d70dc5b442a7b872abfa7f250c857fde9c",
+            "360fce5271287e91ac4a456d71d597152b99178b901e90664ceada6976d99a17",
+            "048ab99cdaa65c63d5cc56a1de176ec1d5cdc126310a91e366a7a217bb20b579",
+            "17dbaa2411b090efbdffda002dbf837858ea3ce0568bd84cfaeab01f5bdbcbee",
+            "e9c5851c031e1c14f316554293ac54e374b88b8845bbda6006f3be2de40cb674",
+            "d66857664346f31596253c4d8ae4f425362bea89a03e6c81debbfd6bc311f3df",
+            "75d31a4e307966beac8616bcbd0b99303aa21d9ea34c845d03e3023406690bad",
+            "3c895c91b41bb663cf644ad6889711453d25a40ab9c267dd350d25f660f0e53e",
+            "8c7f076ed611c1ff99bb149ee4ec776ef5bcc0e53b14a547b451bef4cb67e390",
+            "8e998ff45f2a6b8b085e61fce87a9594ca24158e045c4b8badd2f10c39feb93b",
+            "bd40d5ca2af3da5909e8e614ebf969c9e33bf3edb581f6258ea3b8ded7db5bc4",
+            "0ae58ee0e869150b365398a59472507aefc065ebdac85352699a0a579b85b409",
+            "6bc01bacf9cf46c795be423a2ffc0a22fe797298a0fc654a7d523ef6021cb665",
+            "5f93bfa68e46b44c1e7912f55699b75a1bdda48dc626b31fec57c6269f09f8e7",
+            "7becbd17831a15f99abd54c9a032b71a0c2f2e2aa887f4b88ef88d1d3d57e3c0",
+            "a96546453566e231a3777e1460fbb43ccb0ba93da03520c0c94a7c5b5385baf2",
+            "a655ebeedb0aed9dc59907372658d37ce8092b54b8b25c792662aa910f47ee39",
+            "286840cf3b3aa24be5bc03ec252a297b2d48dbfbcf307f71e87974ff8d33f940",
+            "b67d19e667e8533f48cc4d446c590340c733fa15efc05039f70c427ab8b4ac46",
+            "9488f31ae1088a77b13334afe5aba8f28b6b43c41b283e8484929cbab1368b5b",
+            "b082e1667796a86253569743576b1c91c8c41fdc4d2da496b1c9075290b1916e",
+            "f9fc1c902cf2fdbeb8d6556eefcfbb5e12965bb418067770c097408b3715b48b",
+            "cb2293d057d5c4399470842fa7464df34e3cd8c03660b17e43b274bf2b947733",
+            "ad91860ff6d57a7edd75a469cc21cdc5ab3f964731ae0bfa6e31fdb9cbd8d39e",
+            "394fbcb5eadee94bc8cae8f19a3f65e811bda4c8279dcd0a8f590104e0b93201",
+            "f9123bcc51dbeee7a16d6c7cccdc33648abad28d79885fd6490c5442bb8b7a0b",
+            "4d06dcdca4663ac48892bc18a786587199a5aa62968a66295d20593f8469ea3d",
+            "780c7859c7ba9fdd55008e4596e02e5fa76b76afeed4e757022b18fd54574298",
+            "35ad9c202f807b18d6a95c6f8ef33971f9cc1ce8277394ea1f513dc60a7532d1",
+            "d58716f1b1b8f0feaab14a027165f580164e8329c0a396a1210ce74a11a0c549",
+            "c3c710231df52dca8a4c8573aaecf59d9eb7baba125000e7ca3e225a719eaf9b",
+            "de2eb39e4f3f2ebfc82195c8a7f73a4b4e3556ac03844c787441f75b4110eee0",
+            "741c4024ca989a6a11c197400570bacf1a74bdc516e74236ff81d92a1979006a",
+            "1768c8ec73d3555c1905614a114b0acb38ac37c670a161f8a87f824886964e9b",
+            "e8c2bd0dffdaa2f8a5cecfa6154568d564444a417c85396164b9a649e374fa69",
+            "f939735f2bed86e833c6084c65630c8e04592ad7fcfb04a091853a10bc3eb472",
+            "e590eade5b45ec9764041a6ea4ecc17dff1fe5f5080c8833876700d964a89dec",
+            "3d801540f4dab987610c7a1bba70dd04e55e39543e1c69503857d1e490dab170",
+            "6308b37e71c31bbd1a16af1d606d737f3481aded408c931dca20add3e4e74222"
+          ]
+        },
+        {
+          "season": 2021,
+          "matched_events": 908,
+          "counts": {
+            "A": {
+              "mlb": 232,
+              "minor": 673,
+              "unresolved": 3
+            },
+            "B": {
+              "mlb": 348,
+              "unresolved": 39,
+              "minor": 521
+            },
+            "agreement": 737,
+            "disagreement": 131,
+            "unresolved": 40,
+            "minor_only_proxy": 516,
+            "confirmed_minor_contract_elections": null
+          },
+          "query_refs": [
+            "4896d7aa74cb22a42d554f327ae41a31473d5164c7a203ef00dda9135f417000",
+            "61a8ce1725389089e1f94a72a2e5d11340fb4b94893bc2db34d27b408ca19c0d",
+            "051df463847c9efff55b9b427a3202dbbe3a37d5d818f20d882198e78084f68e",
+            "e37f7e59b46269272e413b7d3362fbc179d307edb46ece3b9025967bdda729f0",
+            "0cd3077d3c72e78b1adc6823611d466de13747cf195f84d0bd74e28eefcdfde5",
+            "4e5b1cae8223f0a5309dd3d614a6bbec606d637795a836c0b661c8e68b6faf15",
+            "40dfbbc0a96fa076b867148c3db470709e575a2ac2ea0870423b7041d9084ae2",
+            "9e71a9663ca5b8815deab9a05c179b260b29987d2c142fbd6930c33005f666b9",
+            "cfbba53ee0680f6d90ebac5ccaaa98182ba4156782593d0a3c6100a1a616b28a",
+            "772367fb494ea477a2740975d0797d4148188c6c59399bdc2d1fb5540aee13cc",
+            "e4248204da875cc2abcfca7c3696fbf8e402d408e045e6ab5285900cc7df1dc2",
+            "73e04947700cb51faae7886f6d31938e99b0c250cd84fc1159f6762c1feaa1e5",
+            "6b2885d81cf12ff7a6117b8b90fc52faee8e177e052e81eeef82be7fbfe7cdc5",
+            "c58225c1f714b2a88a6bf9ef09c04ee515af64c43649a384c8611154dd7b556f",
+            "65afca6e369e40952461dee3f5c884f1f0ea8f518bf2dd7dea7ed4ba45a97710",
+            "50e6f57d9d33f4ba12bced9816bbdb0ef88350cba96d2fe2dcbc816791ef5e86",
+            "9ce51cac787d1c82dbf25f1d56d28abfecfde116d77bd09a07d6117ea9482565",
+            "abebe72884bbc055c300ee32417ed6f56f9e4a151e5ff1f582f50e4f7926f896",
+            "0744ea8642b18cc77ae37ac52b6a24fb50da86f8f7d3a68abd71ddf4d740464a",
+            "3eb88e4a83b97424f7afcac0435a0c8f7bfc4cd9bb4f227458beee4af5a82954",
+            "07bb5123699a79288b26c5eb209b0457119dffde093e539644b947d563cac82b",
+            "10b02ea69cc3185ec4bc95e32c5e42a6cabdcb1ec4b6ea76e34bada8910f900b",
+            "7075acba37b96520d7695e2f179e07b45128fba07330173d96928b91d3e654d7",
+            "0a436c493d4e65758aef37db75337859bf3efa3baa08cc22f17da657c4361bef",
+            "12c959ed0a7a573035c59941fc99ad6866d9bd1f52ad39e28f3a3d6ebac3e497",
+            "b57f40ba7c8c4b69e791e349b840b911d1252648d884bf4f22f49e44137237b4",
+            "f0b8ed34af4b4f68b6f76bc7c4ac4d59c8c9fd3da340b430080eb6470b0bdc0e",
+            "97897b5c8d847232e3f4c37e6a26063bb86dae9964e6193592bd4c5d11ca55db",
+            "4a5e2e93f3ecbf2f2b0132f9593e049c97eeea4268b53353b63a69205b904b69",
+            "e24d51e5225a9a8d12f7a92b11e501a1ce3c3b27938742fbc4a1b7f86f465886",
+            "c5b7176b3cdf5fbcab6e3fb48ac1a21048fc8afdc1975104a3bb8bec17945492",
+            "69fb343eb71e38317618adbd871dea3840e2349e43fffde3f7a74e98c79d7d48",
+            "1f8d1954b69a4f27753a7f0ed5cd281dd3e6493e376261d58c6a1a7daeeadd67",
+            "3505690e0b42c0d672fe432501958df928cbaa93fdf17355187591cac82efd8b",
+            "da9bc553acefa792beaef95f1be86092fa113c45e5034d05d5bb7ab2cb146b46",
+            "6237298bebef448071c61996a3dfc5a021a40aa313dd1b69e078f7d7f585b37e",
+            "0ed57604c3be44a9651ad91b48a21c5e79a7849249b17eba7c7f653bb4c00f14",
+            "9945989c79c8b060a15b4c392230b8d5b6d5b9156b1cd9fb57d3273b776fe9a8",
+            "90043d3d8449b034d0aca0201b39dea74712a5274ea4deb7948de34560135d5c",
+            "63b3c99244b2dcfd3c8d69194ae0021ca5d83d1d3ec150905feca04e233414e5",
+            "2f226b4bba5b333297d1bb17894556fc369a3491ce6ef9e5c77e32ceba89f325",
+            "59ae26640dc1cfe5d18570b1e2216699003f9bdf1b12b79eda5a8caed66e4fd7",
+            "43adad07b1b0b6f51ea831aa9ed1131cc862366eb3414f406d132d523916857d",
+            "3a380557f87ec8268a35362149a2c4084ba79439e13373443dc2c2b95f3476b9",
+            "14d085f3b808a0090e1ee8424878e44dd377be3a00d51df0c25c2d536a0cd9ea",
+            "7c6c3c5681973d598b4b53dd10e093bcc2ce0fcd740883d6b35d2e6808d90823",
+            "5e5976d3a353f11567c277f681cf72ba172e090b76adba3fedde31607b9da98a",
+            "3d375205ccf80fc205b666c762d1ba7ebddb4c2cba8b7507a79b782c0405aca4",
+            "b3be5200f00ade40d8db680ee3776593a9e1c44f640892a4e8375b016d5001c1",
+            "5d16e5b17cb03f6f547122805955bf7d7ee01b59aef378a4897e2dfc076d1cef",
+            "e844fe724c72530f65bf69b642976b9b5e4025e1c723f898f8f768d6c7f959da",
+            "7facdb0cf5a4bb55d64579785f84c431fcef6d002fa9436a9081212754de22b3",
+            "819894756ee1858046f94aa23f9e3bc19779b7037caa3d21f42607befe02e39d",
+            "2322ecdbbfc1967bab2737b71ea54ab848a1d9d3d113f00b93cd3b006fc9fde3",
+            "a0951a4f1ace8ccf6cea2e2e55ca541462229c7045c5f53b268f1db05761ce75",
+            "1fb88971aa53af72252a465fbc50aa6d6a804d7cd020c08714db7b72413b8ef7",
+            "314a70986877e55a7846ff3c6931f5676402f3628d52edff98ef9ef06f122ffe",
+            "6bea28076056e7286e312a475bb385224ad7ae9761570ac2eb388756f1852489",
+            "97bc7069cbd032a9490a97ff4f62eddca0c891bc44315372e95f110eda114076",
+            "573d9d3986a686e6557b93f956dcf1c10f041089db0e3ce06583ea40f4dccd85",
+            "1fbe6d588097d0d5c5fcf2ecf82e29fece88bd31a5e68de3f3a83ac66f12bbb9",
+            "e44e575cbeb6fb08fa8a4753943dee34610692eda2dfb2417e0c3cce6e01c846",
+            "c55a8c089562c94bf6450d3c5abc7175d2d4be266f5362a5581b5afbb1f70efb",
+            "97d741a34c31d3a4cce0fd5c4f3c6b800459d1aa5bb1df4b3bfab249dd6bf959",
+            "97c0821828b51402626a3a323c68b35a5827ebdad7c26f05ffb847ba306d8cda",
+            "6ef901c1d067829c51868965495579d6b6a960865b1677bde2c8dea108e981c7",
+            "e7a761be860ce78e5568942af532b30d98029068abe92e2633622da5c67a528c"
+          ]
+        },
+        {
+          "season": 2022,
+          "matched_events": 854,
+          "counts": {
+            "A": {
+              "minor": 596,
+              "mlb": 252,
+              "unresolved": 6
+            },
+            "B": {
+              "mlb": 344,
+              "minor": 467,
+              "unresolved": 43
+            },
+            "agreement": 683,
+            "disagreement": 125,
+            "unresolved": 46,
+            "minor_only_proxy": 453,
+            "confirmed_minor_contract_elections": null
+          },
+          "query_refs": [
+            "de1d7be368ddf399270a6030aa606d6cc64a398312b89fe94669b31f25c54801",
+            "176819437d4a301ffa77e49c542b36016614bdd2cb71fef372242b34a335411b",
+            "017fab9d9928dc28b9faf777478ab133196bad914f61e627aad77fcd03693e7e",
+            "036fa69d696558d10671831eaf0b1022b0085e6a982e7a8a106d0161e0b1d621",
+            "743cbb877bef0ad6544a13577e3711aed7260ad29ec54bd5e5890cd437873a5c",
+            "ec024e0a2a077826139598e1214a0e6a4786be3a12c6f68bdb0a9986be0ba272",
+            "ae158bf54b488783672251b33ed9e0e8ddcafd5554c5904d26c576ea7853496b",
+            "1a0aa9e0f6cd6d30164f7d370a48d715c78c4b4e95ab9a7ab5a0dbb15e178a7e",
+            "fdf15fa58b097b84379d6c663d329f39f452262131a45dee0e637f5e04aa2613",
+            "2bcb1dc34f4453ca6d5b604e7ee86c4ecfbf164aeeeb50397df18c154cf31734",
+            "4772cf606be0c67328beb944546e33bee834b4120b8e46fcbccb0a8688622226",
+            "3e05ceffab117b81e962d1ce7b081f70a43338bd5cf4627384f861198f7116d8",
+            "2093fb12b64c5962e0dcc1b5a6cc779c584e4abd5925631a902d1a43f8ec96a4",
+            "611585dfe45f1de9e534785e0c69fcfcb574f231e3b04bf4c9ccbaa52dce6cf1",
+            "b2f747e0fb39160a817ccfeafae16dd00f82a87cdf339c8ec2b7ef1b6ca05d3e",
+            "0ba67798970c20e220acbfb40dd9fe37e4fcbf5c4548b8ab7ba6a88628801917",
+            "7e79598243328245dd620276ddc08df9344ad35a60ec1d4120d8cc3e285d0144",
+            "8a145c62dc331796c37eb39e356b1383e2b08595f543f59a25d118608354379a",
+            "24eee98f44af1b09135ddfda473428d06be81fac54f4bef32ab85555549fbff8",
+            "94758941769836bb22dfe1827cea65dfedbfcbbd5410092d35e28f809e70983b",
+            "5a073cf93d56b21e55f3da219c70c82ffd0f48a6f8b85ce111be76b4927a327e",
+            "e3bf1e43eb16a340d0a6eb5eb9e88fdfb4fe0bf882c26ef15e629073f1522e73",
+            "c35d53dbf4d9421e2400a2e12fc2a9495533e908b07a1dcf371aff83bdf209eb",
+            "9cbf8e538b398995f1191fc04674556cef892e518fd9f5bd04f2e61ad3175ae6",
+            "8d3c24839d38d489289d82f4b2ec79a1543cdce1d2a1985013d2a4085f8e3d35",
+            "5ea7ae5533728c2e11f12a1ac11dbb2b7fa928a66f68f24e528ed7674ee73c2a",
+            "6864b0d3ffa9655caf8b0a1a27799018e5e09343625a9cc704d6dc75a5fd8271",
+            "9f449dc6671b35f0f5966fb73448c1293e0b1ec2815c313e3f51e218f852b223",
+            "116f5d172a59793eed71e99a1e4677b2b714e4c03a5de6982da4d8509f255350",
+            "3b616e33de2a2951465ea99cd7edabe81fabb61b7146549757940a743530a3ce",
+            "a7fdc4fddf5154298f3ebb5823ab4863c094b5bad4c49c7aa75fdc1ecbd7058b",
+            "060f85e6e563e1911c8787b90ac0355445611d511a297b6ea16997d8394c1888",
+            "64464404e79d5e212cb2c5604d8b422643088658e755710041c8b8a904a1142c",
+            "2df90240d3eb92fb94df28eff2c6bbd3ba3857dfa93978bdd6668df95560a44b",
+            "bb5aec3cc53c5aa7054af2e5886ad6011b0b108d4dd0ac8b5025180f21a369f2",
+            "d0a2de231ef6c7b1e3ad306ea0c9919eccefffc20262ca5ab3db51c8a61701e1",
+            "2e267b5251b3310feacd04234423526b0b7c7255a0ec0e8120923bd0f568310d",
+            "de2af650f652ce699ee711b91cf1df1c5a11278de98329a16f71322dbb4faf79",
+            "600858bf43b6a36f3659ef1f3d93b4143090355b22332583f399fa302be7f92d",
+            "847538604dda29bfdc374b5113c4fa00d1096f6635732933276b051d3113a4a5",
+            "51beff2efabe9ed63b211a206e640a8ec40b4608ffd03d5bb0ee40c5c43ae89d",
+            "74d1d254b820c48f2316fe4848fb01ce75536d7c160db9fe0cb959de6a590754",
+            "51f8006fd5ec466e117115a194165100a295bb4876c705a2141baee6dcf6ec92",
+            "a5034281e1257e04dd51b57a6b57d8e4e5f55f4617d5f09c3b6a281d27c3e447",
+            "49bfde26d75f9f7d01322d60425ace63ad77879358b50dccac0b5abdf23543ea",
+            "995e2b445a1f39a5696843a4318022999b7eb751d65c12f162bdad261a857f09",
+            "5fedb312c47b0949af97ba99003cdcf33e167aea4ca786edf65cacb7783a9219",
+            "e26812ff6d852a69ff55935ef200aca3f983835df558e4f68841c3860fee41b7",
+            "f2c24628ac2e3bffb46aae2890a5eac83c120a90b0b373628bb42fc0a2f06ed0",
+            "af33ac9fb294b737aa7ec73779e00ace7ca0ebbb68bfa9e458a6fdc038a54d08",
+            "3adc278e96a6f8ec7966b85471cd5142c3ca2919d1fe2eb3706a1f919ee28c24",
+            "68155d3a9470c322ebc793d3c3285f320734299949cf8d50f4466024f2961b16",
+            "1df7d8223b804f292bde44bdd00ce3a09ca7001ca6bcae9a68c0827b1fc933ae",
+            "0d5af09fccb7e63a4d814b689f497c5cf1216ea20852ba77e2dc6bbb16ef4bd7",
+            "512988463cdda4aba7f74233d59c29205a57bc0264de490729f60f8abd3073c7",
+            "95ed859dd637c6a9d2eb05514e4aa0c64bf8922be0cadc11903a6ef44ec62801",
+            "78f33ab6e3fdf3edd68e6b635bd85e0eac717f3a34b66db33994b68c421eb33a",
+            "105f1e656436cfee51f51f9ded7e4757c0a99a62a69195f56aac212541ae0cef",
+            "22bbd0c96ece672519e223fe09cb89661cc858f6d57bfc330dbd18140795d2f5",
+            "e400257df8a530464e46975b52f2de2c83477ed85ca74e31ae623102f6603bf5",
+            "6a07e2017ebfafa73f75afcd3a093f6fd00c04bfd2ed211936df01b0df2b1da6"
+          ]
+        },
+        {
+          "season": 2023,
+          "matched_events": 833,
+          "counts": {
+            "A": {
+              "mlb": 249,
+              "minor": 583,
+              "unresolved": 1
+            },
+            "B": {
+              "mlb": 308,
+              "unresolved": 46,
+              "minor": 479
+            },
+            "agreement": 696,
+            "disagreement": 91,
+            "unresolved": 46,
+            "minor_only_proxy": 469,
+            "confirmed_minor_contract_elections": null
+          },
+          "query_refs": [
+            "a9cd79485aff85d75beb6954c6186b3c60ac658f7f7e29da8c01f919523e6c8b",
+            "45493c36c33ece662e6bf1ab70e8a88381426ece0108d62b82df4dd4397cfcef",
+            "d942d20512fa7fc6c1a399c725e6dffcacc97b8054c48f5da0b98598c4677a65",
+            "6688da66e91c36c1a7ee9d3f131e1c60bbd8513b7706ed31f10c4ab521f21e4f",
+            "bdd7ac0c873d56d7fbb4ec8295f876894c3aceef2e832c516428b67ccd6cf3a5",
+            "b0be18f0b4ec75d17e9ade7096f267868dfdca1503ac48c9e2e4880ad950788a",
+            "e34bb477cb7771c3dc054dcdcfc48892a34afe17f61c4178a23fae1bce50a56f",
+            "b933cc6f0d05bc592b7741d7fca9b5e7a71b92c1e1470750eb092625aec8523b",
+            "57d2828dcf239525c942cf0561ee41c3b8fa2e272b8565023ad37372968ae498",
+            "838f8ab4f995e9c048a1b7fe70415908ceebccecdf76cf1c4dc18586b1764094",
+            "34778eafcf1604a7e5dee1a1ed8a9ce8b57172b8e067ed43f434ab0d11e8a1f2",
+            "68c978fbcc6895862e04afc2d68b91fe6a1b9b24637590c780098713b6d2d136",
+            "0b36d9c938d64471802063565d14da59f2eeae7bac8d439135035691f237a5c0",
+            "90ccfe8d4f10587863e01781304d9b35b7d085f3ea6718b0ee4b4d7bfd7fec56",
+            "f885856df4cb0826d77795a49aae95f6320b0418499572523c7312435dc22fbb",
+            "66247bbf5369ea9c0c22185ad86d0ce8a8abac963ead0677874bf69a3ce7f72d",
+            "929e786bfcee9cb8d641efccf13b57e5f72bab7bf83de4c870881e0f5e1a7bca",
+            "409568f3d584052845ffcab0a49b6a611ba0ab75996207b8cc3b9c53ea887225",
+            "e02b5b4c840a59159627397ded556f7de883f1e01d9cc214ca006659b6dcc6fa",
+            "0ac489990bae6bf5d3bac799ebec75685b9ff0861322a6c814fe7aca24b1d710",
+            "c053d5ceb758d8193da472b4e7d2b381c03e204b34e12a1665ec81b9bb5593ef",
+            "866b1a1e77e237e5d986c25bb9e01d26b0c9da5e0d4e574e6df35b78585a67e3",
+            "723c260fa390cbb9673397bef76a99e696027ab5e415b73ad7f58a2983727b92",
+            "d631e65ca8a6b0bb623d5880aee671c4b4e6a6c6e8d4574b6c7fd0696fc5bb29",
+            "4f752aac066ee0be584194045854fd764a19c530fdfa565c9287d06e279ef565",
+            "b375d2a8fbd17e96bb7d27c2f1b5ae9636c80cad3c4a14e9917ec0fca5dec22b",
+            "91710a3b2f9aa5d83f58c134c3e6a44e915b9817fd6084a329a3b40ea876d13f",
+            "c6e8c2b34e5155c4a751f0e48be9c09c053673387361d44d8e83709d660b4540",
+            "6027e32c58632a9791aa24d201faa3ff61228d7d5c9a202bc2082e32aacef945",
+            "194e1b43058bab2ec07a9191bb4f960b0bce1737e6a169a7d8108a401d5235ff",
+            "3ca259b589e0e86d3973ff22fce4b087a355f388f589c36168f4d704c35a5c00",
+            "d3db683fe3f161fb55f636abfeb6f0fb789f74fd2808f7a2ead82bf52492a735",
+            "312632a708033c745a010ea7e488ed1f5361f4cef7eefc752108f634288400cc",
+            "312cb1cb60c2c83a2283d5e8160e9256407a93b109f23a07ec290986b0cf0df8",
+            "9f7c4901ab963c4240c897e50960e759a7f10d66b6a975cde88245a661323b0b",
+            "735831c97b0417e5c38d9adbe35f836a1bbefe90504c2403eff0270a13afcb2d",
+            "6de948a0957b68803e660ef3c9e3f10cf46e1a90d91860b9ed3c08dcc2738c8a",
+            "fd5c3afbb1bbaed8a275618964b3e4cd7ad79a06f4cd9982b6db5e5733db698a",
+            "b583d4117426ad423dd7386de412f1b35fc1844f94526f4933e030bc5dc6c1fa",
+            "1a614e209ca036184d3257d7388126b5c3e3bfef7443d2f5c814538ddc832769",
+            "4ef691c0470efc5e7974c259993a6367263d252abba4a0561ce707c105ff4a39",
+            "83ab3dcffef3438cfd817dff0c2775dfd9232bc167c71f9ec7feaaccec51ee67",
+            "08274e550a9e90cf68fea5b3e352b8961fcae87696b48293a571a5bcbc47562c",
+            "83e9d14b41491f8b8007398a550001be61c99f5b643b91f85eac87a91defdd43",
+            "a5d54d214d64fb196edaa250609e1c1023c6d711f4c1b61d652898bc2d5f30ea",
+            "8c2327580afffa3e7a0e1b8889df264aba88782d075ba88b096ab2b34cb9b156",
+            "1e620d27f94920cad2530534ce0188bbb308ab08c7dc2a75af1571a4d5a60282",
+            "62dc4703781b91b7a121cdd5713934a8063574ae1f76c1b14bb2ecedd844907e",
+            "f420a57ad80060a13b72c3732c86e118f3186aa5459f00cf0360c2dffe3ce9ba",
+            "de80331ffed84a7c15887a614f2d3d306d1f394fa0f85529a4386e572114f615",
+            "18b17591ca5132d580ca10e4d9e65354a81f083feb6b3f94bbad3f91a98aec6c",
+            "48026689b44de15663a838e5a86c36bb2b8da2d6799ad863634a5ea50c47fb4d",
+            "434ebef0dde6ae7a1c37c4b8734a4ae03018a3ed0664543b6e86726fb41d07f6",
+            "3208405c6396bfda5a22b64447d98c9d360718acef99f753ae4761b16ab90912",
+            "3acf938a58556d9d35f2e9bf4f285c2a7c1a79ea0ea93765bd07da2f06291310",
+            "4247a44a271bcad1dc50dc1915d58d0d946a8b804cd8eaee2ea4c9f2c7d6963f",
+            "419f0bea8b44cd0a4bd27ffec3d7ecaa7fd90114367c896a4bb4c7ca35555441",
+            "5b65986deea826fb47b3580f96007a8060971c5ee358630b65c6733c04722305",
+            "a099d695b382956a778a42fcedc3d1b86b81977848ac1a8833ce339071c42895",
+            "8339e59640af5faf7361b4cd01499603b605fa6568b03ce53f6a710f1628a8f6",
+            "8d881bdc2a839c79b05eb0b4cd9f48f6d06d57743ee4743cb09a88bba780a3f5"
+          ]
+        },
+        {
+          "season": 2024,
+          "matched_events": 638,
+          "counts": {
+            "A": {
+              "mlb": 101,
+              "minor": 537
+            },
+            "B": {
+              "mlb": 187,
+              "minor": 426,
+              "unresolved": 25
+            },
+            "agreement": 500,
+            "disagreement": 113,
+            "unresolved": 25,
+            "minor_only_proxy": 413,
+            "confirmed_minor_contract_elections": null
+          },
+          "query_refs": [
+            "4a5458e47863c94d09390996f2fe98514eda32194df96d3c33ed473f92ad94d2",
+            "20a288d48a47841c2afeb787f81e9ebddb039e824d1e539faca87b20b1f3e2b8",
+            "695f32589f2665fc8117225290a0dd8fd2f6a8f1efaf7bccad5045c3b0080441",
+            "3d56d8352a9b04dd55e8c7a5383ec6da54365638cd7acd4f918310b92edc2445",
+            "26f929bd4067213e2a8084d4a5e79f4df93e9df2ab5315f95924cbe863f1006e",
+            "abdf93577e865aa5481d74172092aa13e8f7f351efcf3949cf7e674f5f796499",
+            "69c84ec9fc4cb9f7c04a37a8096b75bdfd55d17b7708c2ef21422ff9a1b72dee",
+            "ca4de11437530e328cdb91325a4480a14330d1db2519de2a1b2fde7ac38669cb",
+            "373dfa18f81b1ee9fe75830148f3d400946fbb0bf628e7849682d2cffb144136",
+            "2258d4bf7888b19c78769847f9265253e6901b6ecfd5a6e48089f685f9ae2023",
+            "c94a432b0f00c3873cf1cdcc06dd91cdfb870532bfa17d2b5ce2eec90a91ab08",
+            "880a97ce2dd0b402eb10dfef8ff962cddc6539a45c9cd9802216bb88d99801c1",
+            "22811937cb629e5bf9a4ec5128aed74e68ee60f3fef57851deccafcced2014e3",
+            "8cb2fd66dcf8321856ddbe1301bbea705ecdce71fd2729c771b6fe4fb232a979",
+            "f5b45c239e85337b049f53226db1fd70e5f0f94ef517a17e1b6393b6b2f01c6b",
+            "2e2aa4c268ce1aae1d12980bdfaa17b7824610a5dcc27aee1dba5d2f39f43e1d",
+            "defea2be27c01d0805cc2b01bc1213205edb78cde0da7c1c723b686cf8d7b095",
+            "3ba4f001022c45b8d78bddc803c6adfcf55c034e4969beeff1c15a0cda03dcbe",
+            "f18d5c5c24ceebfe4b338390e9432a9645e188124cc26b29bc028f853cfb4d14",
+            "85eedc4a2a206cc64207536b0633ddc0d1b242abfe53ee28dd43ef38f0ea0990",
+            "aaac540a1c0651df497dd514478b53e4d117b0b9ecc5ecca92601fb544c0d83f",
+            "170fe7bfe735391d2a14b007be79d1cf98c2e246ca6dac6fa3aad2415b18033e",
+            "deb0954869182540d9574384f486a103a75a7a266d4e6889a9c23e4b0c4bea26",
+            "549263c71e0d0478c3a2108299bc2d08a936dd909ba66a376a189799b5b8fcb0",
+            "5d7ed6d7998d6ddf500eee340bd47eb4f7d357b42508f5b80c0344f63fa64902",
+            "dffeba9a7766f91490939aea343c3331034da409f24ae097b4afb37dd230851a",
+            "3a8866aa95f2e3f0bf67d49042357809378483bc0a2195c1438f1cc129a23e92",
+            "779bc8f52641880c6c4a4c083c9d659728ead05e00e18f516c111ede0c2c0df5",
+            "a89f2317f9ea5b19d56c246fab487b52f60337981fd42d909c7bb79a1109eeda",
+            "558a6c7ce3303d295379b35b9c7e45c1ecd21895ba4d594e06ef3ce84a29417b",
+            "22fb55384a7473cdcd9d2714068e3ad6a1c2903805431cfb643d1d7dbaf84400",
+            "e86b4d5e337ba282d82aa96c78982ff32fbf212b5e3e92c327a94deac8cc3673",
+            "64ab1be561ab41cf9be83b8966a26ffb174bcb94ffa3d48d59dc4cd84f5769d8",
+            "75573ddb697da5a58347b922390ef8e3f720a02d92ed5fd3588b1ab99aab1632",
+            "a1b37d88319595117e18fb11fde286892bc00257b0234380fc48998ab0a477c7",
+            "0888634e187bb35aff5c6d0222d903a7e8d2d4075abc7bbc7d60c0a67b6751be",
+            "2f31144194a7097ae786611e97fce86fc9a0ee5ca1b26b002f87b2a11a4b113e",
+            "54bdfe55a2e205041f3891c35351c5a11f8636b57e8877121bdc8c5ea6150dd5",
+            "7a95e97b4e63bc83d902cfa5fe4023975c855483420a408fbd1d7d0bcd92d8de",
+            "c1ed681cbd132b4914513c430af9c5e8333fe8323de2378c26464829e7b1b35c",
+            "4d4a3c69d2756dc96e1c57f753c45add18175730a728d398417839e3404fdca7",
+            "a162d859aaf2421e839ab97030a5825f0a4e04de5c62a90bc4cc6f318e3d29ca",
+            "117d5d9597f0a4992957761fa3de9a32502969a04cdf98aca8269f0c0124ef21",
+            "f0d1a752908daea7918769ced12df1d69e19264c59eeaaba6764355953eb6cf1",
+            "d4b683289ba52954ecaf573cca8c9011a82ce1fb4ed48377ad9caced73db2517",
+            "6440ac0f69d3e7898a6b3aee3a16c33ffae5e4557fc2b335d77ac1f9b6658bae",
+            "a22e2b7a9f2454631ddec38028f89e87f3abd811473245b3269c80a5f1815527",
+            "d91092faf830cb4b681f9a44242256190ab63719d0ce833e4c638eb8844142bd",
+            "21f73d8cb1a47fd1b21e2fb3ba0936c2f2ec0ae0867d81104a7157b79f9a201b"
+          ]
+        },
+        {
+          "season": 2025,
+          "matched_events": 839,
+          "counts": {
+            "A": {
+              "minor": 587,
+              "mlb": 251,
+              "unresolved": 1
+            },
+            "B": {
+              "mlb": 346,
+              "unresolved": 30,
+              "minor": 463
+            },
+            "agreement": 685,
+            "disagreement": 124,
+            "unresolved": 30,
+            "minor_only_proxy": 451,
+            "confirmed_minor_contract_elections": null
+          },
+          "query_refs": [
+            "e86551f311a4176fc22118f954852450455d807e2b35322f7ec36f202693e836",
+            "2603fe98065182a477030429709c36b43a618d8d64b459e7778554d75b1a0663",
+            "136f226e0a52b3b6be5d7dc630ed05223ccd279b184113fbbe2304c2f53eb92c",
+            "0bc7215e1471efb5648547bf9e106c83d367201b82a447def80131641e428af6",
+            "63f6bf8630932dc466f40ce7fc90206025c71568fdca3a0fb341890904bd6d3d",
+            "b3689288eed4379df5dc9896c0bc88952defaa5bd74ef145583b368c2a2a4072",
+            "04e8e5e175876c16a5ec8509b02f7838e373a88e26afbc1e3b53a100d4b93edc",
+            "72096b5aea84402d68ab62aacbc7248f0a9c5bc19834c4338997f6ce663f7a60",
+            "839b736647f0573847ac392fdff8413cb0d29f7fd21bedb8dc4e6e5f318ec6b6",
+            "c3d2d81a830ae36b9a065b665f397ddba0a8e5f3c51e2ab42259390f3f945ff1",
+            "98f4a717e34bdcc5b8163cbb40f8e11e936c284d79d755c96897d7a6aad93881",
+            "38a5228efb3e03b4902298c07904c1df076d7c29efbb6134805789030d153c85",
+            "5fccd295ca5d381a9e7f63b3e4f748f937bf1bcc0adb95ead896f1660adb79e1",
+            "a9cdc65a2efec91e2dc3c0bb7ac461b80517f6316413eef6fd38da4d242fb157",
+            "1235fc99fdbfab364bc3031288e49a96c31d5daa1a3104808e1ab34a86f90398",
+            "84bf79d32480c552445c763f12cfec10dd84cccf62127847f81ff4fd8ea06e38",
+            "8fe30cbf63c20c94ba5c57fff828cdb17fa2c8862eafedfcad18f3015a378a9b",
+            "577b34432e7d3f66618a73ba17f15311bb8a81781974417a813b7a63e11167c8",
+            "d00fac4b36a90a23097ee489301385a561bb510eb41efc1c5347a428437de3b7",
+            "36e5dca76bc5dc50a4ccee1971bd4431dd5057be06e23eb2342a4cd8a20b0e6d",
+            "2ec16045f13b2d473b20ec4b824f3e8f02db5f8f05c0ea0fd6f136c071383b79",
+            "05cfe3ea87df95ab8b95844e894d7f26dbdc4016b2f68facbd6c9bbbeb6e58e1",
+            "ad2bb16db5dcc8df33a5e84c120308deea98986bcf2893068a30cdd46f523585",
+            "6fc2d8070a0165728f6d5f03cc38ed94b96128c31b0f4da73b3a3bd4382c2ee4",
+            "fb0865eefc11c91c53e166ca5f6abf52cb6307356868e1e53c55d1aeeed0eec5",
+            "9605c84deb530aefc8a0e0da90a46e5af2abeafef04f3e01b832abdebaaee73c",
+            "4fd698ddcf540afb040f8c85d162d295937d41af0695e4a8919aa22c05746729",
+            "ef42e6e3411c8e61091028b21e9418b3e3294d750b66d39e5ea3cba78655dfce",
+            "1f92659134b9b75d014202563fbd23b3cd7eb6ed4c921b8cd4f8f1b3ddbefa32",
+            "67f2fee737e111c4025bd5c411ddcc7018da2b6726d3010eb9a87a88869961e3",
+            "837c8eaeb32f066339e28d32b3b601b1b70827ac269a51fff6cde7230e992730",
+            "4bba503b46c4aa49a04a0335adf1b296d4d0abaa4f4f0970a3a9d7bd3af2b739",
+            "e51bfce6f477e79ad9443a419d6c83f73eb6fa100f89f5cc632e2ed9eb776ed7",
+            "cf092db94bb1e08f5a6d8dff85e664da611188122f84939217608b6455effc9b",
+            "cad29166bac143b2f702b2529dfb246f0a0dbb3057480c9d27085cd8653f0984",
+            "8bde180643f32ab479066154f92a494c38deeb3ad7d047a79a7ffe9b81af2f74",
+            "58103aa9b57565b9946001e0b14edaeb92a9fa8b11d89f88ce256f9522a046b9",
+            "78dbc5054068e9686b40a0bf6ef72c9c8665f5210dfb60b5d8a6fb6dd7341bc3",
+            "82e7dd58f43502041c9166957cc05f9c2bfaa85f91cb5c5128b03520e56b6255",
+            "3067f3a94eb1894179f50f2c772d571bfc5a89098e76339ea80637469a9c1ab7",
+            "ffc4c1ebbb81b6de9752d34c4b83fb1f8b3440a33d333748985d2826b31742b5",
+            "645baa4d5b37f7cd73cda8fe157edf5f202cd32626a516a4b25b21cab0c89e65",
+            "c253b00f860ecbea960a1e165b0d9b869902f14a4ba14fc546cb9bd8c25c3d86",
+            "e64aaa87159d46f28f079e1fd7260bc12ad092dfa2968538566646f7a44e74a4",
+            "8d5fa64b22ee30a6fc75fd6b7139105dde5de3e8176b524646ef86bfb0ef3988",
+            "577053d25c97428495e8296fbb83717fccf16fd2ef3df654590c2199377cbaed",
+            "742d735f6fd433342e6f200fdd071639936a1c813a30d7a3442777c8685447b1",
+            "b8c4e6e62b87276816fe38dfacf06c126af6f0c66bb739bb707d44c96578e3cb",
+            "b3cc1c0c976fd51f02ce8b5a2b8cc5c5c29802e4e3e68339166ba6e181032a51",
+            "44f2fe53f7369b45f6042ceb562206d9828929ba31c7b212dd3c93f3a4cfa2da",
+            "afe78feab6dbe6209d7973c1a0ffbcc230f5a86ef5f0a5895f057ed5c443cb51",
+            "afbfb4305d0056bf5631b10d8bfc0c1746dbe22d19f0a57bcdd28d59f8fa29e4",
+            "77100a62b9638d04cc01d0c2af484cfd065ed8c376e77d81af49b7348cbcb249",
+            "071494506ff59c50557ce85578ba9a2b70728083abd4efac4d6b0447cf6a8283",
+            "338c24e1b2b36929ab24c7ea06bee7f1abc1d9db9e1e2f2a69ab02d3681b8e74",
+            "5e640ea5846ed3edbab4f43325d77d5e3836169ad0e6ca7866015818ab820e32",
+            "85f86cf5f80ee0683dc9fbe69fa55d9d18f39ffe5afe174795c85e7efeeeddee",
+            "9f926f3fafa05355ef42614accdc556fbf1e054bb1feed21bb9b34c05c0baad3",
+            "05edef1aef624010e72aa6c9b6acb04de62ce9cca3fa7a5c8b9aa55f7cf543c1",
+            "d45a514856d733c91e554a9ee95955690a057b9c745663a98db71fdc0ebb184d",
+            "6d6d71a690a1f9ff78b600ae45f33b7f24278a4b2cf977c66d51e649fa8b566e"
+          ]
+        }
+      ],
+      "examples": [
+        {
+          "record": {
+            "id": 381870,
+            "date": "2018-11-01",
+            "player_id": 519390,
+            "code": "DFA",
+            "type_desc": "Declared Free Agency",
+            "description": "C Stephen Vogt elected free agency.",
+            "from_team": null,
+            "to_team": 158
+          },
+          "query": {
+            "endpoint": "https://statsapi.mlb.com/api/v1/transactions",
+            "params": {
+              "startDate": "2018-11-01",
+              "endDate": "2018-12-31"
+            }
+          }
+        },
+        {
+          "record": {
+            "id": 382446,
+            "date": "2018-11-01",
+            "player_id": 475857,
+            "code": "DFA",
+            "type_desc": "Declared Free Agency",
+            "description": "RHP Ryan Cook elected free agency.",
+            "from_team": null,
+            "to_team": 529
+          },
+          "query": {
+            "endpoint": "https://statsapi.mlb.com/api/v1/transactions",
+            "params": {
+              "startDate": "2018-11-01",
+              "endDate": "2018-12-31"
+            }
+          }
+        },
+        {
+          "record": {
+            "id": 381842,
+            "date": "2018-11-01",
+            "player_id": 543219,
+            "code": "DFA",
+            "type_desc": "Declared Free Agency",
+            "description": "LHP Sean Gilmartin elected free agency.",
+            "from_team": null,
+            "to_team": 568
+          },
+          "query": {
+            "endpoint": "https://statsapi.mlb.com/api/v1/transactions",
+            "params": {
+              "startDate": "2018-11-01",
+              "endDate": "2018-12-31"
+            }
+          }
+        },
+        {
+          "record": {
+            "id": 381879,
+            "date": "2018-11-01",
+            "player_id": 500207,
+            "code": "DFA",
+            "type_desc": "Declared Free Agency",
+            "description": "C Jhonatan Solano elected free agency.",
+            "from_team": null,
+            "to_team": 120
+          },
+          "query": {
+            "endpoint": "https://statsapi.mlb.com/api/v1/transactions",
+            "params": {
+              "startDate": "2018-11-01",
+              "endDate": "2018-12-31"
+            }
+          }
+        },
+        {
+          "record": {
+            "id": 381843,
+            "date": "2018-11-01",
+            "player_id": 607054,
+            "code": "DFA",
+            "type_desc": "Declared Free Agency",
+            "description": "3B Jace Peterson elected free agency.",
+            "from_team": null,
+            "to_team": 568
+          },
+          "query": {
+            "endpoint": "https://statsapi.mlb.com/api/v1/transactions",
+            "params": {
+              "startDate": "2018-11-01",
+              "endDate": "2018-12-31"
+            }
+          }
+        }
+      ],
+      "verdict": "PARTIAL",
+      "reason": "Proxy counts measure team level and season play, not minor-league contract status. Confirmed minor-league-only election counts remain unknown."
+    },
+    "RULE5": {
+      "rows": [
+        {
+          "season": 2015,
+          "rows": 3852,
+          "matched_events": 0,
+          "text_matched_events": 0,
+          "window_union_matches": true,
+          "identifiers": [],
+          "r5_without_text": 0,
+          "dr_with_text": 0,
+          "dr_without_text": 0,
+          "query_refs": [
+            "e83e2af36748d5acc7bb1efef4ef1e2d4af8f052dc4886110f8fbde75885a313"
+          ]
+        },
+        {
+          "season": 2016,
+          "rows": 3708,
+          "matched_events": 0,
+          "text_matched_events": 0,
+          "window_union_matches": true,
+          "identifiers": [],
+          "r5_without_text": 0,
+          "dr_with_text": 0,
+          "dr_without_text": 0,
+          "query_refs": [
+            "3a8d596b84136f27059534b93cfeae70060b7b2c9f45d048739b3e5eb5facfc4"
+          ]
+        },
+        {
+          "season": 2017,
+          "rows": 3351,
+          "matched_events": 0,
+          "text_matched_events": 0,
+          "window_union_matches": true,
+          "identifiers": [],
+          "r5_without_text": 0,
+          "dr_with_text": 0,
+          "dr_without_text": 0,
+          "query_refs": [
+            "4f6ed02a9ee44ce952ecd6738b608828dba87f13ef3c806f60741bad2490bdbb"
+          ]
+        },
+        {
+          "season": 2018,
+          "rows": 3619,
+          "matched_events": 0,
+          "text_matched_events": 0,
+          "window_union_matches": true,
+          "identifiers": [],
+          "r5_without_text": 0,
+          "dr_with_text": 0,
+          "dr_without_text": 0,
+          "query_refs": [
+            "ebd2d643b802c9a955d479e8d9a4295787470e7beae4c41709977849641724fd"
+          ]
+        },
+        {
+          "season": 2019,
+          "rows": 5015,
+          "matched_events": 0,
+          "text_matched_events": 0,
+          "window_union_matches": true,
+          "identifiers": [],
+          "r5_without_text": 0,
+          "dr_with_text": 0,
+          "dr_without_text": 0,
+          "query_refs": [
+            "a6a47913e8a6f4eee127f69ecd25702f741d3bcc49d274e5fc2967712ee28a56"
+          ]
+        },
+        {
+          "season": 2020,
+          "rows": 6269,
+          "matched_events": 0,
+          "text_matched_events": 0,
+          "window_union_matches": true,
+          "identifiers": [],
+          "r5_without_text": 0,
+          "dr_with_text": 0,
+          "dr_without_text": 0,
+          "query_refs": [
+            "b7ea34eb787669685c9632e07ea56a70f889a024dd13d143361c3f6d79443ee2"
+          ]
+        },
+        {
+          "season": 2021,
+          "rows": 6097,
+          "matched_events": 0,
+          "text_matched_events": 0,
+          "window_union_matches": true,
+          "identifiers": [],
+          "r5_without_text": 0,
+          "dr_with_text": 0,
+          "dr_without_text": 0,
+          "query_refs": [
+            "4896d7aa74cb22a42d554f327ae41a31473d5164c7a203ef00dda9135f417000"
+          ]
+        },
+        {
+          "season": 2022,
+          "rows": 7365,
+          "matched_events": 0,
+          "text_matched_events": 0,
+          "window_union_matches": true,
+          "identifiers": [],
+          "r5_without_text": 0,
+          "dr_with_text": 0,
+          "dr_without_text": 10,
+          "query_refs": [
+            "de1d7be368ddf399270a6030aa606d6cc64a398312b89fe94669b31f25c54801"
+          ]
+        },
+        {
+          "season": 2023,
+          "rows": 6125,
+          "matched_events": 0,
+          "text_matched_events": 0,
+          "window_union_matches": true,
+          "identifiers": [],
+          "r5_without_text": 0,
+          "dr_with_text": 0,
+          "dr_without_text": 92,
+          "query_refs": [
+            "a9cd79485aff85d75beb6954c6186b3c60ac658f7f7e29da8c01f919523e6c8b"
+          ]
+        },
+        {
+          "season": 2024,
+          "rows": 5895,
+          "matched_events": 82,
+          "text_matched_events": 82,
+          "window_union_matches": true,
+          "identifiers": [
+            [
+              "R5",
+              "Rule 5 Selection"
+            ],
+            [
+              "R5M",
+              "Rule 5 Draft Minors"
+            ]
+          ],
+          "r5_without_text": 0,
+          "dr_with_text": 0,
+          "dr_without_text": 0,
+          "query_refs": [
+            "4a5458e47863c94d09390996f2fe98514eda32194df96d3c33ed473f92ad94d2"
+          ]
+        },
+        {
+          "season": 2025,
+          "rows": 6167,
+          "matched_events": 68,
+          "text_matched_events": 68,
+          "window_union_matches": true,
+          "identifiers": [
+            [
+              "R5",
+              "Rule 5 Selection"
+            ],
+            [
+              "R5M",
+              "Rule 5 Draft Minors"
+            ]
+          ],
+          "r5_without_text": 0,
+          "dr_with_text": 0,
+          "dr_without_text": 0,
+          "query_refs": [
+            "e86551f311a4176fc22118f954852450455d807e2b35322f7ec36f202693e836"
+          ]
+        }
+      ],
+      "examples": [
+        {
+          "record": {
+            "id": 808064,
+            "date": "2024-12-11",
+            "player_id": 691634,
+            "code": "R5M",
+            "type_desc": "Rule 5 Draft Minors",
+            "description": "Chicago White Sox purchased contract of RHP Joseph Yabbour from New York Mets in the Rule 5 Draft, AAA Phase.",
+            "from_team": 507,
+            "to_team": 494
+          },
+          "query": {
+            "endpoint": "https://statsapi.mlb.com/api/v1/transactions",
+            "params": {
+              "startDate": "2024-11-01",
+              "endDate": "2024-12-31"
+            }
+          }
+        },
+        {
+          "record": {
+            "id": 808049,
+            "date": "2024-12-11",
+            "player_id": 666768,
+            "code": "R5",
+            "type_desc": "Rule 5 Selection",
+            "description": "Atlanta Braves purchased contract of RHP Anderson Pilar from Miami Marlins in the Rule 5 Draft.",
+            "from_team": 146,
+            "to_team": 144
+          },
+          "query": {
+            "endpoint": "https://statsapi.mlb.com/api/v1/transactions",
+            "params": {
+              "startDate": "2024-11-01",
+              "endDate": "2024-12-31"
+            }
+          }
+        },
+        {
+          "record": {
+            "id": 808116,
+            "date": "2024-12-11",
+            "player_id": 691711,
+            "code": "R5M",
+            "type_desc": "Rule 5 Draft Minors",
+            "description": "St. Louis Cardinals purchased contract of RHP Jawilme Ramirez from New York Mets in the Rule 5 Draft, AAA Phase.",
+            "from_team": 453,
+            "to_team": 235
+          },
+          "query": {
+            "endpoint": "https://statsapi.mlb.com/api/v1/transactions",
+            "params": {
+              "startDate": "2024-11-01",
+              "endDate": "2024-12-31"
+            }
+          }
+        },
+        {
+          "record": {
+            "id": 808089,
+            "date": "2024-12-11",
+            "player_id": 696521,
+            "code": "R5M",
+            "type_desc": "Rule 5 Draft Minors",
+            "description": "Milwaukee Brewers purchased contract of OF Garrett Spain from Toronto Blue Jays in the Rule 5 Draft, AAA Phase.",
+            "from_team": 463,
+            "to_team": 556
+          },
+          "query": {
+            "endpoint": "https://statsapi.mlb.com/api/v1/transactions",
+            "params": {
+              "startDate": "2024-11-01",
+              "endDate": "2024-12-31"
+            }
+          }
+        },
+        {
+          "record": {
+            "id": 808070,
+            "date": "2024-12-11",
+            "player_id": 682620,
+            "code": "R5M",
+            "type_desc": "Rule 5 Draft Minors",
+            "description": "Toronto Blue Jays purchased contract of RHP Richard Gallardo from Chicago Cubs in the Rule 5 Draft, AAA Phase.",
+            "from_team": 553,
+            "to_team": 422
+          },
+          "query": {
+            "endpoint": "https://statsapi.mlb.com/api/v1/transactions",
+            "params": {
+              "startDate": "2024-11-01",
+              "endDate": "2024-12-31"
+            }
+          }
+        }
+      ],
+      "verdict": "PARTIAL",
+      "reason": "Description-derived identifiers recover candidates; coverage and draft phase require reconciliation to an independent official selection list."
+    },
+    "CALLUP": {
+      "rows": [
+        {
+          "season": 2018,
+          "sport_id": 11,
+          "dated_splits": 135,
+          "through_june": 80,
+          "first_date": "2018-04-05",
+          "last_date": "2018-09-03",
+          "query_refs": [
+            "5cf7e668ef5cdb1d2e202698eb0cf92e15b5e0f976306b476064fabdccfcdc59"
+          ],
+          "sample_size": 1,
+          "measured": 1
+        },
+        {
+          "season": 2018,
+          "sport_id": 12,
+          "dated_splits": 136,
+          "through_june": 75,
+          "first_date": "2018-04-05",
+          "last_date": "2018-09-03",
+          "query_refs": [
+            "674aeb832ed3e4596be15045a87de6c4475e07af6ff2d377cd4bf4ee0edb0ca0"
+          ],
+          "sample_size": 1,
+          "measured": 1
+        },
+        {
+          "season": 2018,
+          "sport_id": 13,
+          "dated_splits": 129,
+          "through_june": 74,
+          "first_date": "2018-04-05",
+          "last_date": "2018-09-03",
+          "query_refs": [
+            "1721fd4a54cd8733d7a70d7df4847e8283162e9ba499137a8933fb8b3c2ca1f2"
+          ],
+          "sample_size": 1,
+          "measured": 1
+        },
+        {
+          "season": 2018,
+          "sport_id": 14,
+          "dated_splits": 129,
+          "through_june": 74,
+          "first_date": "2018-04-06",
+          "last_date": "2018-09-03",
+          "query_refs": [
+            "aa62abe8664e1fc9b4e726341a9e9504eb9c90dc16dc29ce3bb0a89e350dbb32"
+          ],
+          "sample_size": 1,
+          "measured": 1
+        },
+        {
+          "season": 2019,
+          "sport_id": 11,
+          "dated_splits": 130,
+          "through_june": 76,
+          "first_date": "2019-04-04",
+          "last_date": "2019-09-01",
+          "query_refs": [
+            "fee36693a747020178884e2fbd0934298e26be1ea59cbe9840572120baca7463"
+          ],
+          "sample_size": 1,
+          "measured": 1
+        },
+        {
+          "season": 2019,
+          "sport_id": 12,
+          "dated_splits": 135,
+          "through_june": 77,
+          "first_date": "2019-04-04",
+          "last_date": "2019-09-02",
+          "query_refs": [
+            "8c4d1e3430ad5c2e80255bc4476f8237e96e4e7c0f5ebba990bc9551ffe89a89"
+          ],
+          "sample_size": 1,
+          "measured": 1
+        },
+        {
+          "season": 2019,
+          "sport_id": 13,
+          "dated_splits": 130,
+          "through_june": 75,
+          "first_date": "2019-04-04",
+          "last_date": "2019-09-01",
+          "query_refs": [
+            "86dbff24b1cf04da7fa014c061737e89dfc813afcb06a0dec6f33e3b6a123f81"
+          ],
+          "sample_size": 1,
+          "measured": 1
+        },
+        {
+          "season": 2019,
+          "sport_id": 14,
+          "dated_splits": 131,
+          "through_june": 76,
+          "first_date": "2019-04-04",
+          "last_date": "2019-09-02",
+          "query_refs": [
+            "8363e70bb0d7ea294db51ebd78e03d621f6e25c88b64f10a13e191131d451c37"
+          ],
+          "sample_size": 1,
+          "measured": 1
+        },
+        {
+          "season": 2021,
+          "sport_id": 11,
+          "dated_splits": 117,
+          "through_june": 44,
+          "first_date": "2021-05-06",
+          "last_date": "2021-10-03",
+          "query_refs": [
+            "f0a1e3b1541da62f83b9a3e6e0f42bc9361283417fae1748b1d9ad99bd356fbd"
+          ],
+          "sample_size": 1,
+          "measured": 1
+        },
+        {
+          "season": 2021,
+          "sport_id": 12,
+          "dated_splits": 119,
+          "through_june": 50,
+          "first_date": "2021-05-04",
+          "last_date": "2021-09-19",
+          "query_refs": [
+            "db9cb3735fa3d6be4eadf4a54e80c6840989799b9ad92b706458a25e7fcb2c06"
+          ],
+          "sample_size": 1,
+          "measured": 1
+        },
+        {
+          "season": 2021,
+          "sport_id": 13,
+          "dated_splits": 120,
+          "through_june": 50,
+          "first_date": "2021-05-04",
+          "last_date": "2021-09-19",
+          "query_refs": [
+            "8224d31052ecd0985c4e5820aaf20d3a8460cbef536c7ff0035ddc3c02168d27"
+          ],
+          "sample_size": 1,
+          "measured": 1
+        },
+        {
+          "season": 2021,
+          "sport_id": 14,
+          "dated_splits": 115,
+          "through_june": 48,
+          "first_date": "2021-05-04",
+          "last_date": "2021-09-19",
+          "query_refs": [
+            "fff95c0ab7866c87a893898663d765b3a83748a1c7fa79de7a10c1619cab4597"
+          ],
+          "sample_size": 1,
+          "measured": 1
+        },
+        {
+          "season": 2022,
+          "sport_id": 11,
+          "dated_splits": 145,
+          "through_june": 72,
+          "first_date": "2022-04-05",
+          "last_date": "2022-09-28",
+          "query_refs": [
+            "b3f17819148333afaf99a82ba3237c1ea771bb646b5befb8f9e2b99fc1bddd41"
+          ],
+          "sample_size": 1,
+          "measured": 1
+        },
+        {
+          "season": 2022,
+          "sport_id": 12,
+          "dated_splits": 123,
+          "through_june": 64,
+          "first_date": "2022-04-08",
+          "last_date": "2022-09-18",
+          "query_refs": [
+            "6ec6130e035ec1b2be41ade971a783325da0014da15c1994fc2f69ab699d6572"
+          ],
+          "sample_size": 1,
+          "measured": 1
+        },
+        {
+          "season": 2022,
+          "sport_id": 13,
+          "dated_splits": 128,
+          "through_june": 70,
+          "first_date": "2022-04-08",
+          "last_date": "2022-09-10",
+          "query_refs": [
+            "102cb4ae0dc0e40dc12cb1d25b294d81c0a81d10dadec1b68ab8acdd4c574318"
+          ],
+          "sample_size": 1,
+          "measured": 1
+        },
+        {
+          "season": 2022,
+          "sport_id": 14,
+          "dated_splits": 122,
+          "through_june": 66,
+          "first_date": "2022-04-08",
+          "last_date": "2022-09-11",
+          "query_refs": [
+            "f26c79c74c734f7b28027b4c3987cbcdaf540e599036a60d300ea13194c22bb0"
+          ],
+          "sample_size": 1,
+          "measured": 1
+        },
+        {
+          "season": 2023,
+          "sport_id": 11,
+          "dated_splits": 138,
+          "through_june": 73,
+          "first_date": "2023-03-31",
+          "last_date": "2023-09-24",
+          "query_refs": [
+            "b8644c03ab4ac81c1b14675481ee9b5ce9af1c104ca986e9201c5dedf74769b6"
+          ],
+          "sample_size": 1,
+          "measured": 1
+        },
+        {
+          "season": 2023,
+          "sport_id": 12,
+          "dated_splits": 135,
+          "through_june": 70,
+          "first_date": "2023-04-07",
+          "last_date": "2023-09-17",
+          "query_refs": [
+            "056223eaf775317817a5127e017d26a708a514f1ffcf3b41e009cd083d2fa7db"
+          ],
+          "sample_size": 1,
+          "measured": 1
+        },
+        {
+          "season": 2023,
+          "sport_id": 13,
+          "dated_splits": 127,
+          "through_june": 70,
+          "first_date": "2023-04-07",
+          "last_date": "2023-09-10",
+          "query_refs": [
+            "8d553a3f1d014c2fafeaab9ed920afb17dcbef121f4be509b93aaf23d05b2c63"
+          ],
+          "sample_size": 1,
+          "measured": 1
+        },
+        {
+          "season": 2023,
+          "sport_id": 14,
+          "dated_splits": 115,
+          "through_june": 64,
+          "first_date": "2023-04-06",
+          "last_date": "2023-09-10",
+          "query_refs": [
+            "45bb2279d3c2e0ac99c39d2af1f2f1232caec61a420912c37e9e532a10fac4e1"
+          ],
+          "sample_size": 1,
+          "measured": 1
+        },
+        {
+          "season": 2024,
+          "sport_id": 11,
+          "dated_splits": 144,
+          "through_june": 78,
+          "first_date": "2024-03-30",
+          "last_date": "2024-09-22",
+          "query_refs": [
+            "74d064da15e345d42e313f962b410b1b2a1517a38015eaccec8d357e369f977e"
+          ],
+          "sample_size": 1,
+          "measured": 1
+        },
+        {
+          "season": 2024,
+          "sport_id": 12,
+          "dated_splits": 126,
+          "through_june": 67,
+          "first_date": "2024-04-05",
+          "last_date": "2024-09-14",
+          "query_refs": [
+            "e1d74be8a6bc85ec5f0e9a1d5abf198598e7b80ca3b11e8b25b46233e9cda873"
+          ],
+          "sample_size": 1,
+          "measured": 1
+        },
+        {
+          "season": 2024,
+          "sport_id": 13,
+          "dated_splits": 126,
+          "through_june": 71,
+          "first_date": "2024-04-05",
+          "last_date": "2024-09-08",
+          "query_refs": [
+            "4ac6e298846da6f558268509d22552f0f17d5fef2975d6de45adb500338b944e"
+          ],
+          "sample_size": 1,
+          "measured": 1
+        },
+        {
+          "season": 2024,
+          "sport_id": 14,
+          "dated_splits": 124,
+          "through_june": 70,
+          "first_date": "2024-04-05",
+          "last_date": "2024-09-08",
+          "query_refs": [
+            "1f803475d8a005acc2618873ec090970ff80e8ab9d7b80d10e1293644a2ea6a4"
+          ],
+          "sample_size": 1,
+          "measured": 1
+        },
+        {
+          "season": 2025,
+          "sport_id": 11,
+          "dated_splits": 137,
+          "through_june": 71,
+          "first_date": "2025-03-28",
+          "last_date": "2025-09-21",
+          "query_refs": [
+            "1a13b35ab0cb4b6a0fd9cc88e1a7678706f88d9f64acc7019e687ebb5fc79ae8"
+          ],
+          "sample_size": 1,
+          "measured": 1
+        },
+        {
+          "season": 2025,
+          "sport_id": 12,
+          "dated_splits": 136,
+          "through_june": 74,
+          "first_date": "2025-04-04",
+          "last_date": "2025-09-13",
+          "query_refs": [
+            "acf44644ccb100feb5c31202c09ef1668497a2218e0c2d8e28e6618a932e3f56"
+          ],
+          "sample_size": 1,
+          "measured": 1
+        },
+        {
+          "season": 2025,
+          "sport_id": 13,
+          "dated_splits": 126,
+          "through_june": 70,
+          "first_date": "2025-04-04",
+          "last_date": "2025-09-07",
+          "query_refs": [
+            "15e73d059ff340c8d989a63ab02982c8306a7529aa3c1d8b283cecf633660d8f"
+          ],
+          "sample_size": 1,
+          "measured": 1
+        },
+        {
+          "season": 2025,
+          "sport_id": 14,
+          "dated_splits": 122,
+          "through_june": 69,
+          "first_date": "2025-04-04",
+          "last_date": "2025-09-07",
+          "query_refs": [
+            "41a5ca2a33be881309598adf678663d19e15039c0de40336cd1cdc038673c501"
+          ],
+          "sample_size": 1,
+          "measured": 1
+        }
+      ],
+      "examples": [
+        {
+          "record": {
+            "player_id": 658069
+          },
+          "query": {
+            "endpoint": "https://statsapi.mlb.com/api/v1/people/658069/stats",
+            "params": {
+              "stats": "gameLog",
+              "group": "hitting",
+              "season": 2018,
+              "sportId": 11
+            }
+          }
+        },
+        {
+          "record": {
+            "player_id": 625510
+          },
+          "query": {
+            "endpoint": "https://statsapi.mlb.com/api/v1/people/625510/stats",
+            "params": {
+              "stats": "gameLog",
+              "group": "hitting",
+              "season": 2018,
+              "sportId": 12
+            }
+          }
+        },
+        {
+          "record": {
+            "player_id": 663368
+          },
+          "query": {
+            "endpoint": "https://statsapi.mlb.com/api/v1/people/663368/stats",
+            "params": {
+              "stats": "gameLog",
+              "group": "hitting",
+              "season": 2018,
+              "sportId": 13
+            }
+          }
+        },
+        {
+          "record": {
+            "player_id": 676913
+          },
+          "query": {
+            "endpoint": "https://statsapi.mlb.com/api/v1/people/676913/stats",
+            "params": {
+              "stats": "gameLog",
+              "group": "hitting",
+              "season": 2018,
+              "sportId": 14
+            }
+          }
+        },
+        {
+          "record": {
+            "player_id": 641583
+          },
+          "query": {
+            "endpoint": "https://statsapi.mlb.com/api/v1/people/641583/stats",
+            "params": {
+              "stats": "gameLog",
+              "group": "hitting",
+              "season": 2019,
+              "sportId": 11
+            }
+          }
+        }
+      ],
+      "verdict": "PARTIAL",
+      "reason": "The non-random sample is limited to one hitting leader per season and level; population and point-in-time availability remain unverified."
+    }
+  },
+  "failure_count": 0
+}
