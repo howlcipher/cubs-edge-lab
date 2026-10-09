@@ -103,6 +103,10 @@ def as_of_features(
     p_walks = total(level_pitch, "baseOnBalls")
     batters = total(level_pitch, "battersFaced")
     mlb_y = [r for r in current if r.get("sport_id") == 1]
+    mlb_appearance_y = any(
+        number((r.get("stat") or {}).get("gamesPlayed", 0)) > 0
+        for r in mlb_y
+    )
     prior = [r for r in stats if int(r["season"]) == election.year - 1
              and r.get("sport_id") == 1]
     return {
@@ -125,6 +129,7 @@ def as_of_features(
             [r for r in mlb_y if r.get("group") == "hitting"],
             "plateAppearances",
         ),
+        "mlb_appearance_y": mlb_appearance_y,
         "mlb_ip_y": innings([r for r in mlb_y
                              if r.get("group") == "pitching"]),
         "mlb_pa_y1": total(
@@ -184,12 +189,12 @@ def rank(rows, method):
         age = number(row, "age")
         hitter = primary_segment(row) == "hitter"
         if method == "B0":
-            return (-(pa + ip), -level_score(row), age, int(row["person_id"]))
+            return (-(pa + ip), level_score(row) or 999, age if row.get("age") is not None else float("inf"), int(row["person_id"]))
         if method == "B1":
             return (
-                -level_score(row),
+                level_score(row) or 999,
                 -number(row, "ops" if hitter else "k_bb_pct"),
-                age,
+                age if row.get("age") is not None else float("inf"),
                 int(row["person_id"]),
             )
         if method == "B2":
@@ -230,9 +235,7 @@ def attach_features(cohort, people, stats_rows, transaction_rows):
         )
         if not person.get("birth_date"):
             features["age"] = None
-        features["no_mlb_appearance_y"] = (
-            features["mlb_pa_y"] == 0 and features["mlb_ip_y"] == 0
-        )
+        features["no_mlb_appearance_y"] = not features["mlb_appearance_y"]
         output.append({**features, "election_date": member["date"]})
     return output, {"missing_person": missing_person,
                     "missing_birth_date": missing_birth_date}

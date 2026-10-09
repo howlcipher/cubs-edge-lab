@@ -149,11 +149,7 @@ MLBAM's terms; no response content is published. Run `fetch` before
 command writes ignored ID-joined cohort tables and aggregate-only
 `research/data_summary.json` and `research/DATA.md`.
 
-`python3 -m cubs_edge_lab.triage_cli preregister` is offline. After a complete,
-non-early-stop `research/validation.json` exists, it hashes the evaluation
-code, configuration, and validation results and writes
-`research/preregistration.json`. It refuses missing validation or an early
-stop. The 2025 outcome builder refuses to run unless those hashes match.
+`python3 -m cubs_edge_lab.triage_cli evaluate` builds outcomes for cohorts 2018–2024 from cached league-wide MLB statistics and writes aggregate-only `research/validation.json` plus its JSON-derived `research/EXPERIMENT.md`; it is offline and never evaluates the 2025 holdout. Run `evaluate` before `preregister`. After a complete, non-early-stop validation, `python3 -m cubs_edge_lab.triage_cli preregister` hashes every `cubs_edge_lab/triage*.py` file and `research/validation.json`. Editing, adding, or deleting any triage module invalidates preregistration. Preregistration refuses missing validation or an early stop. The 2025 outcome builder refuses to run unless every hash matches; the 2025 holdout remains unevaluated.
 
 The cohort selector joins transaction person IDs to season split IDs only.
 Feature and outcome helpers enforce season and holdout boundaries; missing
