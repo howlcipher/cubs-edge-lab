@@ -107,10 +107,13 @@ class PublicationTests(unittest.TestCase):
             "cubs_case.json": 100_000,
             "sendhold_feasibility.json": 100_000,
             "SENDHOLD_FEASIBILITY.md": 100_000,
+            "sendhold_data.json": 100_000,
+            "SENDHOLD_DATA.md": 100_000,
         }
         research = ROOT / "research"
         new_artifacts = {
-            "sendhold_feasibility.json", "SENDHOLD_FEASIBILITY.md"
+            "sendhold_feasibility.json", "SENDHOLD_FEASIBILITY.md",
+            "sendhold_data.json", "SENDHOLD_DATA.md",
         }
         expected = set(limits)
         if not all((research / name).exists() for name in new_artifacts):

@@ -170,6 +170,12 @@ owner's 2026-10-10 authorization: "Two seasons, 2025-2026": "Approve ~4,900
 requests. More power, and lets 2026 be a holdout for the model fit on 2025."
 Only aggregates and at most 5 short examples may be published.
 
+To build the frozen-design opportunity table and data-only report from the
+completed local cache, run `python3 -m cubs_edge_lab.probe.sendhold_data
+--root .`. The command is offline, writes the row-level table only under
+ignored `data/`, and regenerates `research/sendhold_data.json` and
+`research/SENDHOLD_DATA.md` with aggregate counts only.
+
 ## November free-agent triage
 
 The triage implementation lives in `cubs_edge_lab/triage.py`,
