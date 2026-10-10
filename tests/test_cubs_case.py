@@ -163,8 +163,10 @@ class CubsCaseTests(unittest.TestCase):
             for number in re.findall(r"(?<![A-Za-z])\d+(?:\.\d+)?", report):
                 self.assertIn(number, json_text)
             self.assertIn(
-                "FACT: The method failed its pre-registered test", report
+                "FACT: The method was not tested "
+                "(pre-registered early stop).", report
             )
+            self.assertNotIn("failed its pre-registered test", report)
             self.assertIn(
                 "UNKNOWN: Availability, contract terms, and competing offers",
                 report,
@@ -183,7 +185,7 @@ class CubsCaseTests(unittest.TestCase):
                     ),
                 }
             ),
-            "failed its pre-registered test",
+            "was not tested (pre-registered early stop)",
         )
         self.assertEqual(
             cubs_case._method_status(

@@ -2,13 +2,14 @@
 * { box-sizing: border-box; }
 body { margin: 0; overflow-wrap: anywhere; }
 a { color: #075985; }
-a:focus-visible, summary:focus-visible { outline: 3px solid #b45309; outline-offset: 3px; }
+a:focus-visible, summary:focus-visible, .table-wrap:focus-visible { outline: 3px solid #b45309; outline-offset: 3px; }
 .skip-link { position: absolute; left: .5rem; top: 0; transform: translateY(-150%); background: white; color: #18232d; padding: .75rem; z-index: 2; }
 .skip-link:focus { transform: none; }
 .site-header { display: flex; flex-wrap: wrap; gap: 1rem 2rem; align-items: center; padding: 1rem max(1rem, calc((100% - 72rem)/2)); background: #123047; color: white; }
 .site-header a { color: white; font-weight: 650; }
 nav { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; }
 nav [aria-current] { text-decoration-thickness: .18em; text-underline-offset: .25em; }
+main:focus { outline: none; }
 main { width: min(72rem, 100%); margin: 0 auto; padding: 2rem 1rem 4rem; }
 h1 { line-height: 1.15; }
 .lede { font-size: 1.2rem; max-width: 54rem; }
@@ -16,9 +17,16 @@ h1 { line-height: 1.15; }
 .card h2 { margin-top: 0; }
 .verdict { font-size: 1.2rem; font-weight: 750; }
 .notice { background: #fff7e6; border-left: .35rem solid #9a5b00; padding: 1rem; }
-.table-wrap { overflow-x: auto; max-width: 100%; }
+.card, .panel, .table-wrap { max-width: 100%; min-width: 0; }
+.table-wrap { overflow-x: auto; width: 100%; }
+.decision-table-wrap { max-height: 32rem; overflow: auto; }
+table caption { caption-side: top; text-align: left; font-weight: 700; padding: .5rem 0; }
+.decision-table-wrap table { min-width: 62rem; }
+.ranking-table { min-width: 56rem; }
+.decision-caveat { font-weight: 700; }
+.brier-note { margin: .75rem 0 0; }
 table { border-collapse: collapse; width: 100%; }
-th, td { border-bottom: 1px solid #c8d2d9; padding: .6rem; text-align: left; }
+th, td { border-bottom: 1px solid #c8d2d9; padding: .6rem; text-align: left; overflow-wrap: anywhere; }
 th { background: #eaf0f3; }
 details { margin: .75rem 0; border: 1px solid #aebbc4; border-radius: .35rem; padding: .6rem; background: white; }
 summary { cursor: pointer; font-weight: 650; }

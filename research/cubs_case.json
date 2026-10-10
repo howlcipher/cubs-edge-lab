@@ -75,7 +75,7 @@
     "minor_contract_regex": "\\bminor[ -]league contract\\b",
     "spring_invitation_regex": "\\b(?:non[ -]roster invit\\w*|spring training invit\\w*|invit\\w*(?:\\s+\\w+){0,5}\\s+(?:to\\s+)?(?:spring training|camp))"
   },
-  "method_status": "failed its pre-registered test",
+  "method_status": "was not tested (pre-registered early stop)",
   "signing_window": "player election date through March 31 of cohort year + 1, inclusive",
   "source": "MLBAM, MLB Stats API; cached local responses",
   "team_id": 112,

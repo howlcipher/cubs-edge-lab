@@ -21,6 +21,6 @@
   },
   "triage_status": {
     "source": "cubs_case.json#/method_status",
-    "value": "failed its pre-registered test"
+    "value": "was not tested (pre-registered early stop)"
   }
 }

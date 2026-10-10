@@ -232,7 +232,7 @@ def _method_status(validation):
         and validation.get("early_stop_reason")
         == "validation primary positives below 30"
     ):
-        return "failed its pre-registered test"
+        return "was not tested (pre-registered early stop)"
     return "did not record the pre-registered early-stop failure"
 
 
