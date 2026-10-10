@@ -7,8 +7,10 @@ import unittest
 from cubs_edge_lab.probe.sendhold_data import (
     LABELS,
     assign_label,
+    assign_label_v3,
     batting_score_difference,
     build_data,
+    make_report,
     _flatten_schedule,
     parse_leaderboard_values,
     pre_play_score,
@@ -112,6 +114,83 @@ class SendholdDataTests(unittest.TestCase):
             self.assertEqual(label, expected)
             counts[label] += 1
         self.assertEqual(counts, {label: 1 for label in LABELS})
+
+    def test_v3_requires_matching_later_segment_events(self):
+        def segment(start, end, event):
+            row = runner(20, start, end)
+            row["details"] = {"event": event}
+            return row
+        same = {"segments": [segment("2B", "3B", "Single"),
+                             segment("3B", "score", "Single")]}
+        error = {"segments": [segment("2B", "3B", "Single"),
+                              segment("3B", "score", "Error")]}
+        mixed = {"segments": [segment("2B", "3B", "Single"),
+                              segment("3B", "score", "Single"),
+                              segment("score", "score", "Error")]}
+        self.assertEqual(assign_label_v3(same, "Single"), "SENT_SAFE")
+        self.assertEqual(assign_label_v3(error, "Single"), "AMBIGUOUS")
+        self.assertEqual(assign_label_v3(mixed, "Single"), "AMBIGUOUS")
+        self.assertEqual(assign_label(same), "AMBIGUOUS")
+        out = {"segments": [segment("2B", "3B", "Double"),
+                            {**segment("3B", "2B", "Runner Out"),
+                             "movement": {"end": "2B", "isOut": True,
+                                          "outBase": "2B"}}]}
+        self.assertEqual(assign_label_v3(out, "Double"), "OUT_ELSEWHERE")
+
+    def test_v3_double_runner_out_event_and_unchanged_non_scoring(self):
+        def segment(start, end, event):
+            row = runner(21, start, end)
+            row["details"] = {"event": event}
+            return row
+        double_then_out = {"segments": [
+            segment("1B", "3B", "Double"),
+            segment("3B", "score", "Runner Out")]}
+        self.assertEqual(assign_label_v3(double_then_out, "Double"),
+                         "AMBIGUOUS")
+        # Event names compare case-insensitively (result event vs type).
+        single = {"segments": [segment("2B", "3B", "Single"),
+                               segment("3B", "score", "Single")]}
+        self.assertEqual(assign_label_v3(single, "single"), "SENT_SAFE")
+        # Without a play event a later segment cannot be confirmed.
+        self.assertEqual(assign_label_v3(single, None), "AMBIGUOUS")
+        self.assertEqual(
+            assign_label_v3({"segments": [segment("2B", "score", "Single")]},
+                            None), "SENT_SAFE")
+        # Runners who never score keep their v2 labels.
+        for record in (
+                {"segments": [segment("2B", "3B", "Single")]},
+                {"segments": [segment("1B", "2B", "Double"),
+                              segment("2B", "3B", "Error")]},
+                {"segments": [segment("2B", "2B", "Single")]}):
+            self.assertEqual(assign_label_v3(record, "Single"),
+                             assign_label(record))
+
+    def test_report_gives_both_label_versions_with_v3_primary(self):
+        table = []
+        for season in (2025, 2026):
+            for label, v3 in (("AMBIGUOUS", "SENT_SAFE"),
+                              ("SENT_OUT", "SENT_OUT"), ("HOLD", "HOLD")):
+                table.append({
+                    "season": season, "label": label, "label_v3": v3,
+                    "sprint_speed": 27.0,
+                    "sprint_speed_same_season_fallback": False,
+                    "arm_strength": 80.0,
+                    "arm_strength_same_season_fallback": False,
+                    "fielder_outfielder": True})
+        schedules = {2025: [1], 2026: [1]}
+        report = make_report(table, schedules, {2025: 1, 2026: 1}, 7,
+                             run_expectancy([]))
+        facts = report["facts"]
+        self.assertEqual(facts["primary_label_version"], "v3")
+        for season in ("2025", "2026"):
+            row = facts["seasons"][season]
+            self.assertEqual(row["label_counts_v3"]["SENT_SAFE"], 1)
+            self.assertEqual(row["label_counts_v3"]["AMBIGUOUS"], 0)
+            self.assertEqual(row["label_counts_v2"]["SENT_SAFE"], 0)
+            self.assertEqual(row["label_counts_v2"]["AMBIGUOUS"], 1)
+        text = render(report)
+        self.assertLess(text.index("v3 definition (primary)"),
+                        text.index("v2 definition (pre-registered"))
 
 
 @unittest.skipUnless((ROOT / "data/sendhold_retrieve_status.json").exists(),

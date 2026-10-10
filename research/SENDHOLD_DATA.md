@@ -7,13 +7,15 @@ Only frozen-design data counts and coverage are reported.
 ### 2025
 
 FACT: Games retrieved/scheduled: 2430/2430; requests used (shared retrieval ledger): 4868.
-FACT: Label counts: SENT_OUT 67, OUT_ELSEWHERE 31, SENT_SAFE 555, AMBIGUOUS 1293, HOLD 2385, OTHER 0.
+FACT: Label counts, v3 definition (primary): SENT_OUT 67, OUT_ELSEWHERE 31, SENT_SAFE 1773, AMBIGUOUS 75, HOLD 2385, OTHER 0.
+FACT: Label counts, v2 definition (pre-registered, secondary): SENT_OUT 67, OUT_ELSEWHERE 31, SENT_SAFE 555, AMBIGUOUS 1293, HOLD 2385, OTHER 0.
 FACT: Covariate coverage: {"arm_same_season_fallback_rate_among_outfielders": 0.14375326711970726, "outfielder_share": 0.8833987531747864, "prior_season_arm_match_rate_among_outfielders": 0.8311552535284893, "prior_season_sprint_match_rate": 0.887093050103902, "sprint_same_season_fallback_rate": 0.11267605633802817}.
 
 ### 2026
 
 FACT: Games retrieved/scheduled: 2430/2430; requests used (shared retrieval ledger): 4868.
-FACT: Label counts: SENT_OUT 71, OUT_ELSEWHERE 24, SENT_SAFE 612, AMBIGUOUS 1303, HOLD 2329, OTHER 1.
+FACT: Label counts, v3 definition (primary): SENT_OUT 71, OUT_ELSEWHERE 24, SENT_SAFE 1856, AMBIGUOUS 59, HOLD 2329, OTHER 1.
+FACT: Label counts, v2 definition (pre-registered, secondary): SENT_OUT 71, OUT_ELSEWHERE 24, SENT_SAFE 612, AMBIGUOUS 1303, HOLD 2329, OTHER 1.
 FACT: Covariate coverage: {"arm_same_season_fallback_rate_among_outfielders": 0.18863518422418266, "outfielder_share": 0.8880184331797235, "prior_season_arm_match_rate_among_outfielders": 0.7799688635184224, "prior_season_sprint_match_rate": 0.8788018433179724, "sprint_same_season_fallback_rate": 0.1195852534562212}.
 
 ## 2025 run expectancy
