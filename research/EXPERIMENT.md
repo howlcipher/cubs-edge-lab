@@ -416,7 +416,7 @@ FACT: Counts and shares by cohort are:
 | FACT | 2023 | 2024 | 10 | 6 | 3 | 1 | 22 | 0.045455 |
 | FACT | 2024 | 2025 | 8 | 0 | 4 | 0 | 23 | 0.000000 |
 
-FACT: The method failed its pre-registered test.
+FACT: The method was not tested (pre-registered early stop).
 INFERENCE: This case illustrates the size of the opportunity only; not a recommendation.
 UNKNOWN: Availability, contract terms, and competing offers are unknown.
 FACT: Examples below are limited to five and identify people by person ID with source dates.

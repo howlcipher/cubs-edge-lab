@@ -117,6 +117,10 @@ python3 -m flake8 cubs_edge_lab tests
 
 `pytest` and `flake8` are development tools, not runtime dependencies. Install
 them if needed with `python3 -m pip install pytest flake8`.
+The full verification gate is `sh scripts/gate.sh`. It runs, in order, pytest
+with `CUBS_REQUIRE_E2E=1`, flake8, `node --check` on every `web/*.js` file,
+and a check that git ignores nothing except `data/` and cache directories. It
+prints one `ok:` line per completed step and stops at the first failure.
 The suite denies network connections and never rewrites research artifacts.
 With both local JSON files present, it re-derives observations from recorded
 inputs, checks the query set and manifest provenance, and byte-compares
@@ -289,6 +293,6 @@ rather than computing statistics. It records each value's source pointer, the
 SHA-256 of each source file, and the latest commit that changed `research/`.
 That commit can differ from `HEAD` when a later commit does not touch
 `research/`. `web/data/` is derived, committed output. Site footers carry the
-MLB Advanced Media attribution and its usage restriction. The Send / hold and
-Free-agent triage pages are navigation stubs marked as coming in a later
-version.
+MLB Advanced Media attribution and its usage restriction. The Free-agent
+triage page shows only cohort aggregates and quoted research lines; it carries
+no player-level row and no calibration table.
