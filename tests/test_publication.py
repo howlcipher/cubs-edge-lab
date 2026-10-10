@@ -107,14 +107,28 @@ class PublicationTests(unittest.TestCase):
             "cubs_case.json": 100_000,
             "sendhold_feasibility.json": 100_000,
             "SENDHOLD_FEASIBILITY.md": 100_000,
+            "sendhold_data.json": 100_000,
+            "SENDHOLD_DATA.md": 100_000,
+            "sendhold_fit.json": 100_000,
+            "SENDHOLD_EXPERIMENT.md": 100_000,
+            "sendhold_experiment.json": 100_000,
         }
         research = ROOT / "research"
         new_artifacts = {
-            "sendhold_feasibility.json", "SENDHOLD_FEASIBILITY.md"
+            "sendhold_feasibility.json", "SENDHOLD_FEASIBILITY.md",
+            "sendhold_data.json", "SENDHOLD_DATA.md",
+        }
+        # Produced by later stages; each is optional until its stage runs.
+        stage_artifacts = {
+            "sendhold_fit.json", "SENDHOLD_EXPERIMENT.md",
+            "sendhold_experiment.json",
         }
         expected = set(limits)
         if not all((research / name).exists() for name in new_artifacts):
             expected -= new_artifacts
+        expected -= {name for name in stage_artifacts
+                     if not (research / name).exists()}
+        new_artifacts |= stage_artifacts
         self.assertEqual(
             {p.name for p in research.iterdir()}, expected
         )
@@ -225,6 +239,28 @@ class PublicationTests(unittest.TestCase):
                     "contact_bases_by_segment",
                 },
             )
+
+    def test_sendhold_stage_outputs_are_canonical_aggregates(self):
+        research = ROOT / "research"
+        found = False
+        for name in ("sendhold_fit.json", "sendhold_experiment.json"):
+            path = research / name
+            if not path.exists():
+                continue
+            found = True
+            value = json.loads(path.read_bytes())
+            self.assertEqual(canonical(value), path.read_bytes())
+            self.assertLessEqual(len(value.get("examples", [])), 5)
+            text = path.read_text()
+            for forbidden in ('"runner_id"', '"hit_coordinates"',
+                              '"allPlays"', '"playEvents"'):
+                self.assertNotIn(forbidden, text)
+        if (research / "sendhold_experiment.json").exists():
+            report = (research / "SENDHOLD_EXPERIMENT.md").read_text()
+            for tag in ("FACT:", "INFERENCE:", "UNKNOWN:"):
+                self.assertIn(tag, report)
+        if not found:
+            self.skipTest("send/hold fit has not been run")
 
     def test_data_is_ignored(self):
         # Works in a source copy with no .git directory, too.

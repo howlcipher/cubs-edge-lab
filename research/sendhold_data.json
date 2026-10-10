@@ -1,0 +1,220 @@
+{
+  "facts": {
+    "primary_label_version": "v3",
+    "requests_used": 4868,
+    "seasons": {
+      "2025": {
+        "games_retrieved": 2430,
+        "games_scheduled": 2430,
+        "label_counts_v3": {
+          "SENT_OUT": 67,
+          "OUT_ELSEWHERE": 31,
+          "SENT_SAFE": 1773,
+          "AMBIGUOUS": 75,
+          "HOLD": 2385,
+          "OTHER": 0
+        },
+        "label_counts_v2": {
+          "SENT_OUT": 67,
+          "OUT_ELSEWHERE": 31,
+          "SENT_SAFE": 555,
+          "AMBIGUOUS": 1293,
+          "HOLD": 2385,
+          "OTHER": 0
+        },
+        "covariate_coverage": {
+          "prior_season_sprint_match_rate": 0.887093050103902,
+          "sprint_same_season_fallback_rate": 0.11267605633802817,
+          "prior_season_arm_match_rate_among_outfielders": 0.8311552535284893,
+          "arm_same_season_fallback_rate_among_outfielders": 0.14375326711970726,
+          "outfielder_share": 0.8833987531747864
+        }
+      },
+      "2026": {
+        "games_retrieved": 2430,
+        "games_scheduled": 2430,
+        "label_counts_v3": {
+          "SENT_OUT": 71,
+          "OUT_ELSEWHERE": 24,
+          "SENT_SAFE": 1856,
+          "AMBIGUOUS": 59,
+          "HOLD": 2329,
+          "OTHER": 1
+        },
+        "label_counts_v2": {
+          "SENT_OUT": 71,
+          "OUT_ELSEWHERE": 24,
+          "SENT_SAFE": 612,
+          "AMBIGUOUS": 1303,
+          "HOLD": 2329,
+          "OTHER": 1
+        },
+        "covariate_coverage": {
+          "prior_season_sprint_match_rate": 0.8788018433179724,
+          "sprint_same_season_fallback_rate": 0.1195852534562212,
+          "prior_season_arm_match_rate_among_outfielders": 0.7799688635184224,
+          "arm_same_season_fallback_rate_among_outfielders": 0.18863518422418266,
+          "outfielder_share": 0.8880184331797235
+        }
+      }
+    },
+    "run_expectancy_2025": {
+      "states": [
+        {
+          "outs": 0,
+          "bases_mask": 0,
+          "count": 44639,
+          "mean_runs": 0.4926409641793051
+        },
+        {
+          "outs": 0,
+          "bases_mask": 1,
+          "count": 10749,
+          "mean_runs": 0.8827797934691599
+        },
+        {
+          "outs": 0,
+          "bases_mask": 2,
+          "count": 2583,
+          "mean_runs": 1.1370499419279907
+        },
+        {
+          "outs": 0,
+          "bases_mask": 3,
+          "count": 2702,
+          "mean_runs": 1.587342709104367
+        },
+        {
+          "outs": 0,
+          "bases_mask": 4,
+          "count": 272,
+          "mean_runs": 1.2536764705882353
+        },
+        {
+          "outs": 0,
+          "bases_mask": 5,
+          "count": 892,
+          "mean_runs": 1.8273542600896862
+        },
+        {
+          "outs": 0,
+          "bases_mask": 6,
+          "count": 527,
+          "mean_runs": 1.9981024667931688
+        },
+        {
+          "outs": 0,
+          "bases_mask": 7,
+          "count": 726,
+          "mean_runs": 2.46831955922865
+        },
+        {
+          "outs": 1,
+          "bases_mask": 0,
+          "count": 32356,
+          "mean_runs": 0.26254790456175053
+        },
+        {
+          "outs": 1,
+          "bases_mask": 1,
+          "count": 13242,
+          "mean_runs": 0.5117806977797916
+        },
+        {
+          "outs": 1,
+          "bases_mask": 2,
+          "count": 4160,
+          "mean_runs": 0.653125
+        },
+        {
+          "outs": 1,
+          "bases_mask": 3,
+          "count": 4775,
+          "mean_runs": 0.9551832460732984
+        },
+        {
+          "outs": 1,
+          "bases_mask": 4,
+          "count": 1270,
+          "mean_runs": 0.8803149606299212
+        },
+        {
+          "outs": 1,
+          "bases_mask": 5,
+          "count": 2024,
+          "mean_runs": 1.201086956521739
+        },
+        {
+          "outs": 1,
+          "bases_mask": 6,
+          "count": 1231,
+          "mean_runs": 1.3956133225020309
+        },
+        {
+          "outs": 1,
+          "bases_mask": 7,
+          "count": 1608,
+          "mean_runs": 1.572139303482587
+        },
+        {
+          "outs": 2,
+          "bases_mask": 0,
+          "count": 25678,
+          "mean_runs": 0.10218864397538749
+        },
+        {
+          "outs": 2,
+          "bases_mask": 1,
+          "count": 13641,
+          "mean_runs": 0.22227109449453852
+        },
+        {
+          "outs": 2,
+          "bases_mask": 2,
+          "count": 5311,
+          "mean_runs": 0.3080399171530785
+        },
+        {
+          "outs": 2,
+          "bases_mask": 3,
+          "count": 5738,
+          "mean_runs": 0.47019867549668876
+        },
+        {
+          "outs": 2,
+          "bases_mask": 4,
+          "count": 2222,
+          "mean_runs": 0.3361836183618362
+        },
+        {
+          "outs": 2,
+          "bases_mask": 5,
+          "count": 2917,
+          "mean_runs": 0.46760370243400756
+        },
+        {
+          "outs": 2,
+          "bases_mask": 6,
+          "count": 1332,
+          "mean_runs": 0.6021021021021021
+        },
+        {
+          "outs": 2,
+          "bases_mask": 7,
+          "count": 1989,
+          "mean_runs": 0.7642031171442936
+        }
+      ],
+      "complete_half_innings": 42995,
+      "excluded_half_innings": 225,
+      "plays_used": 182584
+    },
+    "early_stop": {
+      "sent_out_2025": 67,
+      "threshold": 30,
+      "met": false
+    }
+  },
+  "inference": [],
+  "unknown": []
+}

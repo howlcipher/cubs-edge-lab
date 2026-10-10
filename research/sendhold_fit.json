@@ -1,0 +1,1192 @@
+{
+  "design_sha256": "a852b921c1c218f6f8bd525b4c1397923b8d12651dfc829b084b60e35b7b0a1a",
+  "fit_season": 2025,
+  "seed": 20261010,
+  "primary_label_version": "v3",
+  "re_states": {
+    "single|0": {
+      "hit_type": "single",
+      "outs": 0,
+      "re_hold": 1.8273542600896862,
+      "re_out_at_home": 0.5117806977797916,
+      "re_scored": 0.8827797934691599,
+      "p_star": 0.9595728884477458
+    },
+    "single|1": {
+      "hit_type": "single",
+      "outs": 1,
+      "re_hold": 1.201086956521739,
+      "re_out_at_home": 0.22227109449453852,
+      "re_scored": 0.5117806977797916,
+      "p_star": 0.7590605448253309
+    },
+    "double|0": {
+      "hit_type": "double",
+      "outs": 0,
+      "re_hold": 1.9981024667931688,
+      "re_out_at_home": 0.653125,
+      "re_scored": 1.1370499419279907,
+      "p_star": 0.9063648900231474
+    },
+    "double|1": {
+      "hit_type": "double",
+      "outs": 1,
+      "re_hold": 1.3956133225020309,
+      "re_out_at_home": 0.3080399171530785,
+      "re_scored": 0.653125,
+      "p_star": 0.8085536143535721
+    }
+  },
+  "state_mapping": [
+    "Hold state: the runner stops on third and the batter-runner stands on the base the hit gave him (first after a single, second after a double), with the pre-play outs. Trailing runners are ignored, as the design states.",
+    "Out-at-home state: the batter-runner on the same base and one more out than before the play. If that makes three outs the inning is over and the run expectancy is 0.",
+    "Run-scored state: the batter-runner's resulting base-out state with the pre-play outs; the extra run is the +1 in the break-even formula.",
+    "The batter-runner is assumed not to advance on the throw home, so the same batter base is used in all three states.",
+    "p* is computed per hold state, keyed by hit type and pre-play outs (single|0, single|1, double|0, double|1). Run expectancy is the 2025 table in research/sendhold_data.json; no outside values are used.",
+    "Hit location is the feed's fielder-position zone: 5, 6, 7 left; 1, 2, 8 and unknown center; 3, 4, 9 right. Fixed before any fit.",
+    "Missing numeric covariates are replaced by the training mean (standardized 0). The full set also carries missing and same-season fallback flags; the reduced set has none of them.",
+    "Coefficients are per training standard deviation of each column, from a logistic regression with a ridge penalty of 1e-4 (intercept not penalized). Standard errors come from the penalized Hessian.",
+    "Events-per-parameter counts the intercept: the full set (13 columns, 14 parameters) needs 140 SENT_OUT runners in 2025; otherwise the reduced set (speed, zone left/right dummies, outs; 5 parameters) is used. The same chosen set is used for the propensity model.",
+    "The propensity model is fit on 2025 SEND and HOLD runners; the support threshold is the 2.5th percentile (linear interpolation) of the propensities of 2025 sends.",
+    "The decision chart averages 2025-model P(safe) over 2025 SEND and HOLD runners per cell; speed terciles use the 2025 tercile cut points; cells with fewer than 10 runners are marked low_n, not hidden."
+  ],
+  "versions": {
+    "v3": {
+      "label_counts": {
+        "SENT_OUT": 67,
+        "OUT_ELSEWHERE": 31,
+        "SENT_SAFE": 1773,
+        "AMBIGUOUS": 75,
+        "HOLD": 2385,
+        "OTHER": 0
+      },
+      "sent_out": 67,
+      "out_at_home": {
+        "sends": 1840,
+        "sent_out": 67,
+        "rate": 0.03641304347826087,
+        "interval_95": {
+          "lower": 0.028328861514551107,
+          "upper": 0.04601471296974674
+        }
+      },
+      "mode": "MODEL",
+      "covariate_choice": {
+        "name": "reduced",
+        "columns": [
+          "sprint_speed",
+          "zone_left",
+          "zone_right",
+          "outs"
+        ],
+        "sent_out": 67,
+        "events_per_parameter": 10,
+        "full_parameters": 14,
+        "required_sent_out": 140,
+        "reduced_parameters": 5
+      },
+      "send_success_model": {
+        "columns": [
+          "sprint_speed",
+          "zone_left",
+          "zone_right",
+          "outs"
+        ],
+        "center": {
+          "sprint_speed": 27.764328439369223,
+          "zone_left": 0.3391304347826087,
+          "zone_right": 0.30869565217391304,
+          "outs": 0.6771739130434783
+        },
+        "scale": {
+          "sprint_speed": 1.2145394214763376,
+          "zone_left": 0.47341417700230254,
+          "zone_right": 0.461955242964982,
+          "outs": 0.4675568463158913
+        },
+        "coefficients": [
+          3.3238566107906755,
+          0.3024548802719023,
+          -0.08214279913076629,
+          -0.13591164648415188,
+          0.05012307242218268
+        ],
+        "standard_errors": [
+          0.13004577092037348,
+          0.12145061122014522,
+          0.1459425934221649,
+          0.1429554428312662,
+          0.12290094197739082
+        ],
+        "converged": true,
+        "n": 1840,
+        "events": 1773
+      },
+      "propensity_model": {
+        "columns": [
+          "sprint_speed",
+          "zone_left",
+          "zone_right",
+          "outs"
+        ],
+        "center": {
+          "sprint_speed": 27.5014678030303,
+          "zone_left": 0.3744378698224852,
+          "zone_right": 0.32970414201183434,
+          "outs": 0.6073372781065088
+        },
+        "scale": {
+          "sprint_speed": 1.2552985145796116,
+          "zone_left": 0.4839774286733678,
+          "zone_right": 0.4701056485004988,
+          "outs": 0.48834281885647296
+        },
+        "coefficients": [
+          -0.2770716950339154,
+          0.3873103865507006,
+          -0.25341103538919196,
+          -0.21435950771052953,
+          0.2573951682537387
+        ],
+        "standard_errors": [
+          0.03208342965249437,
+          0.03317870751917237,
+          0.03801173215130456,
+          0.03789409823498662,
+          0.032320014435461925
+        ],
+        "converged": true,
+        "n": 4225,
+        "events": 1840
+      },
+      "support_threshold": 0.2528615288118741,
+      "constant_rate": 0.9635869565217391,
+      "outs_rates": {
+        "0": 0.9612794612794613,
+        "1": 0.9646869983948636
+      },
+      "holds_below_support_share_2025": 0.08637316561844864,
+      "label_version": "v3",
+      "primary": true,
+      "decision_chart": {
+        "speed_tercile_cuts": [
+          27.0,
+          28.1
+        ],
+        "min_cell_n": 10,
+        "cells": [
+          {
+            "zone_group": "center",
+            "hit_type": "double",
+            "outs": 0,
+            "speed_tercile": "high",
+            "n": 48,
+            "n_sent": 23,
+            "mean_p_safe": 0.975021249429804,
+            "observed_send_success": 0.9565217391304348,
+            "p_star": 0.9063648900231474,
+            "low_n": false
+          },
+          {
+            "zone_group": "center",
+            "hit_type": "double",
+            "outs": 0,
+            "speed_tercile": "low",
+            "n": 59,
+            "n_sent": 12,
+            "mean_p_safe": 0.9525552776931493,
+            "observed_send_success": 0.9166666666666666,
+            "p_star": 0.9063648900231474,
+            "low_n": false
+          },
+          {
+            "zone_group": "center",
+            "hit_type": "double",
+            "outs": 0,
+            "speed_tercile": "mid",
+            "n": 50,
+            "n_sent": 14,
+            "mean_p_safe": 0.9661147182013983,
+            "observed_send_success": 0.7857142857142857,
+            "p_star": 0.9063648900231474,
+            "low_n": false
+          },
+          {
+            "zone_group": "center",
+            "hit_type": "double",
+            "outs": 1,
+            "speed_tercile": "high",
+            "n": 78,
+            "n_sent": 32,
+            "mean_p_safe": 0.9778279119204043,
+            "observed_send_success": 1.0,
+            "p_star": 0.8085536143535721,
+            "low_n": false
+          },
+          {
+            "zone_group": "center",
+            "hit_type": "double",
+            "outs": 1,
+            "speed_tercile": "low",
+            "n": 92,
+            "n_sent": 33,
+            "mean_p_safe": 0.956894340367802,
+            "observed_send_success": 0.9090909090909091,
+            "p_star": 0.8085536143535721,
+            "low_n": false
+          },
+          {
+            "zone_group": "center",
+            "hit_type": "double",
+            "outs": 1,
+            "speed_tercile": "mid",
+            "n": 89,
+            "n_sent": 29,
+            "mean_p_safe": 0.9697549978759019,
+            "observed_send_success": 0.9310344827586207,
+            "p_star": 0.8085536143535721,
+            "low_n": false
+          },
+          {
+            "zone_group": "center",
+            "hit_type": "single",
+            "outs": 0,
+            "speed_tercile": "high",
+            "n": 102,
+            "n_sent": 55,
+            "mean_p_safe": 0.9754769906858523,
+            "observed_send_success": 1.0,
+            "p_star": 0.9595728884477458,
+            "low_n": false
+          },
+          {
+            "zone_group": "center",
+            "hit_type": "single",
+            "outs": 0,
+            "speed_tercile": "low",
+            "n": 114,
+            "n_sent": 58,
+            "mean_p_safe": 0.9523958113746708,
+            "observed_send_success": 0.9827586206896551,
+            "p_star": 0.9595728884477458,
+            "low_n": false
+          },
+          {
+            "zone_group": "center",
+            "hit_type": "single",
+            "outs": 0,
+            "speed_tercile": "mid",
+            "n": 112,
+            "n_sent": 47,
+            "mean_p_safe": 0.966365377179975,
+            "observed_send_success": 0.9787234042553191,
+            "p_star": 0.9595728884477458,
+            "low_n": false
+          },
+          {
+            "zone_group": "center",
+            "hit_type": "single",
+            "outs": 1,
+            "speed_tercile": "high",
+            "n": 180,
+            "n_sent": 137,
+            "mean_p_safe": 0.9777777734219364,
+            "observed_send_success": 0.9927007299270073,
+            "p_star": 0.7590605448253309,
+            "low_n": false
+          },
+          {
+            "zone_group": "center",
+            "hit_type": "single",
+            "outs": 1,
+            "speed_tercile": "low",
+            "n": 185,
+            "n_sent": 114,
+            "mean_p_safe": 0.9567060850698406,
+            "observed_send_success": 0.956140350877193,
+            "p_star": 0.7590605448253309,
+            "low_n": false
+          },
+          {
+            "zone_group": "center",
+            "hit_type": "single",
+            "outs": 1,
+            "speed_tercile": "mid",
+            "n": 141,
+            "n_sent": 94,
+            "mean_p_safe": 0.9696329616212307,
+            "observed_send_success": 0.9680851063829787,
+            "p_star": 0.7590605448253309,
+            "low_n": false
+          },
+          {
+            "zone_group": "left",
+            "hit_type": "double",
+            "outs": 0,
+            "speed_tercile": "high",
+            "n": 71,
+            "n_sent": 33,
+            "mean_p_safe": 0.9708131011217697,
+            "observed_send_success": 0.9393939393939394,
+            "p_star": 0.9063648900231474,
+            "low_n": false
+          },
+          {
+            "zone_group": "left",
+            "hit_type": "double",
+            "outs": 0,
+            "speed_tercile": "low",
+            "n": 113,
+            "n_sent": 23,
+            "mean_p_safe": 0.9443111979519124,
+            "observed_send_success": 0.8695652173913043,
+            "p_star": 0.9063648900231474,
+            "low_n": false
+          },
+          {
+            "zone_group": "left",
+            "hit_type": "double",
+            "outs": 0,
+            "speed_tercile": "mid",
+            "n": 78,
+            "n_sent": 22,
+            "mean_p_safe": 0.9591400585008685,
+            "observed_send_success": 1.0,
+            "p_star": 0.9063648900231474,
+            "low_n": false
+          },
+          {
+            "zone_group": "left",
+            "hit_type": "double",
+            "outs": 1,
+            "speed_tercile": "high",
+            "n": 123,
+            "n_sent": 72,
+            "mean_p_safe": 0.973489546178214,
+            "observed_send_success": 0.9861111111111112,
+            "p_star": 0.8085536143535721,
+            "low_n": false
+          },
+          {
+            "zone_group": "left",
+            "hit_type": "double",
+            "outs": 1,
+            "speed_tercile": "low",
+            "n": 133,
+            "n_sent": 27,
+            "mean_p_safe": 0.9475194905546106,
+            "observed_send_success": 0.9629629629629629,
+            "p_star": 0.8085536143535721,
+            "low_n": false
+          },
+          {
+            "zone_group": "left",
+            "hit_type": "double",
+            "outs": 1,
+            "speed_tercile": "mid",
+            "n": 120,
+            "n_sent": 44,
+            "mean_p_safe": 0.9644995994097031,
+            "observed_send_success": 0.9318181818181818,
+            "p_star": 0.8085536143535721,
+            "low_n": false
+          },
+          {
+            "zone_group": "left",
+            "hit_type": "single",
+            "outs": 0,
+            "speed_tercile": "high",
+            "n": 106,
+            "n_sent": 43,
+            "mean_p_safe": 0.9705061340937753,
+            "observed_send_success": 0.9767441860465116,
+            "p_star": 0.9595728884477458,
+            "low_n": false
+          },
+          {
+            "zone_group": "left",
+            "hit_type": "single",
+            "outs": 0,
+            "speed_tercile": "low",
+            "n": 119,
+            "n_sent": 33,
+            "mean_p_safe": 0.9412553602770137,
+            "observed_send_success": 0.9393939393939394,
+            "p_star": 0.9595728884477458,
+            "low_n": false
+          },
+          {
+            "zone_group": "left",
+            "hit_type": "single",
+            "outs": 0,
+            "speed_tercile": "mid",
+            "n": 135,
+            "n_sent": 43,
+            "mean_p_safe": 0.9603877564514423,
+            "observed_send_success": 0.9767441860465116,
+            "p_star": 0.9595728884477458,
+            "low_n": false
+          },
+          {
+            "zone_group": "left",
+            "hit_type": "single",
+            "outs": 1,
+            "speed_tercile": "high",
+            "n": 207,
+            "n_sent": 111,
+            "mean_p_safe": 0.973553007864918,
+            "observed_send_success": 0.972972972972973,
+            "p_star": 0.7590605448253309,
+            "low_n": false
+          },
+          {
+            "zone_group": "left",
+            "hit_type": "single",
+            "outs": 1,
+            "speed_tercile": "low",
+            "n": 188,
+            "n_sent": 81,
+            "mean_p_safe": 0.9497145179657489,
+            "observed_send_success": 0.9506172839506173,
+            "p_star": 0.7590605448253309,
+            "low_n": false
+          },
+          {
+            "zone_group": "left",
+            "hit_type": "single",
+            "outs": 1,
+            "speed_tercile": "mid",
+            "n": 189,
+            "n_sent": 92,
+            "mean_p_safe": 0.9643449777224218,
+            "observed_send_success": 0.9782608695652174,
+            "p_star": 0.7590605448253309,
+            "low_n": false
+          },
+          {
+            "zone_group": "right",
+            "hit_type": "double",
+            "outs": 0,
+            "speed_tercile": "high",
+            "n": 64,
+            "n_sent": 28,
+            "mean_p_safe": 0.9673558762964972,
+            "observed_send_success": 0.9642857142857143,
+            "p_star": 0.9063648900231474,
+            "low_n": false
+          },
+          {
+            "zone_group": "right",
+            "hit_type": "double",
+            "outs": 0,
+            "speed_tercile": "low",
+            "n": 77,
+            "n_sent": 8,
+            "mean_p_safe": 0.9375505056787521,
+            "observed_send_success": 0.875,
+            "p_star": 0.9063648900231474,
+            "low_n": false
+          },
+          {
+            "zone_group": "right",
+            "hit_type": "double",
+            "outs": 0,
+            "speed_tercile": "mid",
+            "n": 74,
+            "n_sent": 19,
+            "mean_p_safe": 0.9551433373141933,
+            "observed_send_success": 0.8947368421052632,
+            "p_star": 0.9063648900231474,
+            "low_n": false
+          },
+          {
+            "zone_group": "right",
+            "hit_type": "double",
+            "outs": 1,
+            "speed_tercile": "high",
+            "n": 68,
+            "n_sent": 26,
+            "mean_p_safe": 0.9698591377797906,
+            "observed_send_success": 0.9615384615384616,
+            "p_star": 0.8085536143535721,
+            "low_n": false
+          },
+          {
+            "zone_group": "right",
+            "hit_type": "double",
+            "outs": 1,
+            "speed_tercile": "low",
+            "n": 99,
+            "n_sent": 13,
+            "mean_p_safe": 0.9438267841004857,
+            "observed_send_success": 0.8461538461538461,
+            "p_star": 0.8085536143535721,
+            "low_n": false
+          },
+          {
+            "zone_group": "right",
+            "hit_type": "double",
+            "outs": 1,
+            "speed_tercile": "mid",
+            "n": 92,
+            "n_sent": 35,
+            "mean_p_safe": 0.9595472376141794,
+            "observed_send_success": 0.9142857142857143,
+            "p_star": 0.8085536143535721,
+            "low_n": false
+          },
+          {
+            "zone_group": "right",
+            "hit_type": "single",
+            "outs": 0,
+            "speed_tercile": "high",
+            "n": 111,
+            "n_sent": 55,
+            "mean_p_safe": 0.9667522175516603,
+            "observed_send_success": 0.9818181818181818,
+            "p_star": 0.9595728884477458,
+            "low_n": false
+          },
+          {
+            "zone_group": "right",
+            "hit_type": "single",
+            "outs": 0,
+            "speed_tercile": "low",
+            "n": 114,
+            "n_sent": 27,
+            "mean_p_safe": 0.9345451195411596,
+            "observed_send_success": 0.9629629629629629,
+            "p_star": 0.9595728884477458,
+            "low_n": false
+          },
+          {
+            "zone_group": "right",
+            "hit_type": "single",
+            "outs": 0,
+            "speed_tercile": "mid",
+            "n": 112,
+            "n_sent": 51,
+            "mean_p_safe": 0.9551972394226649,
+            "observed_send_success": 0.9803921568627451,
+            "p_star": 0.9595728884477458,
+            "low_n": false
+          },
+          {
+            "zone_group": "right",
+            "hit_type": "single",
+            "outs": 1,
+            "speed_tercile": "high",
+            "n": 199,
+            "n_sent": 130,
+            "mean_p_safe": 0.9700424112643524,
+            "observed_send_success": 0.9769230769230769,
+            "p_star": 0.7590605448253309,
+            "low_n": false
+          },
+          {
+            "zone_group": "right",
+            "hit_type": "single",
+            "outs": 1,
+            "speed_tercile": "low",
+            "n": 198,
+            "n_sent": 79,
+            "mean_p_safe": 0.9417772814062162,
+            "observed_send_success": 0.9620253164556962,
+            "p_star": 0.7590605448253309,
+            "low_n": false
+          },
+          {
+            "zone_group": "right",
+            "hit_type": "single",
+            "outs": 1,
+            "speed_tercile": "mid",
+            "n": 184,
+            "n_sent": 96,
+            "mean_p_safe": 0.9597723167494073,
+            "observed_send_success": 0.9583333333333334,
+            "p_star": 0.7590605448253309,
+            "low_n": false
+          },
+          {
+            "zone_group": "right",
+            "hit_type": "single",
+            "outs": 1,
+            "speed_tercile": "unknown",
+            "n": 1,
+            "n_sent": 1,
+            "mean_p_safe": 0.9613547242692076,
+            "observed_send_success": 1.0,
+            "p_star": 0.7590605448253309,
+            "low_n": true
+          }
+        ]
+      }
+    },
+    "v2": {
+      "label_counts": {
+        "SENT_OUT": 67,
+        "OUT_ELSEWHERE": 31,
+        "SENT_SAFE": 555,
+        "AMBIGUOUS": 1293,
+        "HOLD": 2385,
+        "OTHER": 0
+      },
+      "sent_out": 67,
+      "out_at_home": {
+        "sends": 622,
+        "sent_out": 67,
+        "rate": 0.10771704180064309,
+        "interval_95": {
+          "lower": 0.08445913941074473,
+          "upper": 0.13477343486039833
+        }
+      },
+      "mode": "MODEL",
+      "covariate_choice": {
+        "name": "reduced",
+        "columns": [
+          "sprint_speed",
+          "zone_left",
+          "zone_right",
+          "outs"
+        ],
+        "sent_out": 67,
+        "events_per_parameter": 10,
+        "full_parameters": 14,
+        "required_sent_out": 140,
+        "reduced_parameters": 5
+      },
+      "send_success_model": {
+        "columns": [
+          "sprint_speed",
+          "zone_left",
+          "zone_right",
+          "outs"
+        ],
+        "center": {
+          "sprint_speed": 27.69662379421222,
+          "zone_left": 0.27491961414790994,
+          "zone_right": 0.34726688102893893,
+          "outs": 0.6495176848874598
+        },
+        "scale": {
+          "sprint_speed": 1.1578912185103094,
+          "zone_left": 0.4464737617202989,
+          "zone_right": 0.4761014538618546,
+          "outs": 0.4771210139009749
+        },
+        "coefficients": [
+          2.1589388277766046,
+          0.28272341409707213,
+          -0.21549282305212666,
+          -0.11996461468147647,
+          -0.021658013265138883
+        ],
+        "standard_errors": [
+          0.13449904717096342,
+          0.13048564627414358,
+          0.14372552361991928,
+          0.1525655158580445,
+          0.1306504053411624
+        ],
+        "converged": true,
+        "n": 622,
+        "events": 555
+      },
+      "propensity_model": {
+        "columns": [
+          "sprint_speed",
+          "zone_left",
+          "zone_right",
+          "outs"
+        ],
+        "center": {
+          "sprint_speed": 27.38107748586631,
+          "zone_left": 0.3754572663784503,
+          "zone_right": 0.3461922181576322,
+          "outs": 0.5733288992351181
+        },
+        "scale": {
+          "sprint_speed": 1.2409048305378658,
+          "zone_left": 0.4842407536567649,
+          "zone_right": 0.4757553638633311,
+          "outs": 0.4945936438501468
+        },
+        "coefficients": [
+          -1.4159404359079186,
+          0.3276440721359802,
+          -0.3813194148858922,
+          -0.1847972135354287,
+          0.19662968955433346
+        ],
+        "standard_errors": [
+          0.04783097641895441,
+          0.04754100010290885,
+          0.055476722448741404,
+          0.052265114421643444,
+          0.047054434457789285
+        ],
+        "converged": true,
+        "n": 3007,
+        "events": 622
+      },
+      "support_threshold": 0.09915529761681768,
+      "constant_rate": 0.8922829581993569,
+      "outs_rates": {
+        "0": 0.8944954128440367,
+        "1": 0.8910891089108911
+      },
+      "holds_below_support_share_2025": 0.06624737945492662,
+      "label_version": "v2",
+      "primary": false,
+      "decision_chart": {
+        "speed_tercile_cuts": [
+          26.8,
+          28.0
+        ],
+        "min_cell_n": 10,
+        "cells": [
+          {
+            "zone_group": "center",
+            "hit_type": "double",
+            "outs": 0,
+            "speed_tercile": "high",
+            "n": 30,
+            "n_sent": 2,
+            "mean_p_safe": 0.9344286591843252,
+            "observed_send_success": 0.0,
+            "p_star": 0.9063648900231474,
+            "low_n": false
+          },
+          {
+            "zone_group": "center",
+            "hit_type": "double",
+            "outs": 0,
+            "speed_tercile": "low",
+            "n": 42,
+            "n_sent": 1,
+            "mean_p_safe": 0.8804055578865569,
+            "observed_send_success": 0.0,
+            "p_star": 0.9063648900231474,
+            "low_n": false
+          },
+          {
+            "zone_group": "center",
+            "hit_type": "double",
+            "outs": 0,
+            "speed_tercile": "mid",
+            "n": 41,
+            "n_sent": 2,
+            "mean_p_safe": 0.9114381875720068,
+            "observed_send_success": 0.0,
+            "p_star": 0.9063648900231474,
+            "low_n": false
+          },
+          {
+            "zone_group": "center",
+            "hit_type": "double",
+            "outs": 1,
+            "speed_tercile": "high",
+            "n": 54,
+            "n_sent": 1,
+            "mean_p_safe": 0.9315155075978536,
+            "observed_send_success": 0.0,
+            "p_star": 0.8085536143535721,
+            "low_n": false
+          },
+          {
+            "zone_group": "center",
+            "hit_type": "double",
+            "outs": 1,
+            "speed_tercile": "low",
+            "n": 54,
+            "n_sent": 2,
+            "mean_p_safe": 0.8746081318630826,
+            "observed_send_success": 0.0,
+            "p_star": 0.8085536143535721,
+            "low_n": false
+          },
+          {
+            "zone_group": "center",
+            "hit_type": "double",
+            "outs": 1,
+            "speed_tercile": "mid",
+            "n": 62,
+            "n_sent": 2,
+            "mean_p_safe": 0.9097995552151035,
+            "observed_send_success": 0.0,
+            "p_star": 0.8085536143535721,
+            "low_n": false
+          },
+          {
+            "zone_group": "center",
+            "hit_type": "single",
+            "outs": 0,
+            "speed_tercile": "high",
+            "n": 77,
+            "n_sent": 23,
+            "mean_p_safe": 0.9350778265660377,
+            "observed_send_success": 1.0,
+            "p_star": 0.9595728884477458,
+            "low_n": false
+          },
+          {
+            "zone_group": "center",
+            "hit_type": "single",
+            "outs": 0,
+            "speed_tercile": "low",
+            "n": 79,
+            "n_sent": 27,
+            "mean_p_safe": 0.8827751757450076,
+            "observed_send_success": 1.0,
+            "p_star": 0.9595728884477458,
+            "low_n": false
+          },
+          {
+            "zone_group": "center",
+            "hit_type": "single",
+            "outs": 0,
+            "speed_tercile": "mid",
+            "n": 91,
+            "n_sent": 29,
+            "mean_p_safe": 0.9134830590441432,
+            "observed_send_success": 0.9310344827586207,
+            "p_star": 0.9595728884477458,
+            "low_n": false
+          },
+          {
+            "zone_group": "center",
+            "hit_type": "single",
+            "outs": 1,
+            "speed_tercile": "high",
+            "n": 113,
+            "n_sent": 67,
+            "mean_p_safe": 0.9327590666357816,
+            "observed_send_success": 0.9850746268656716,
+            "p_star": 0.7590605448253309,
+            "low_n": false
+          },
+          {
+            "zone_group": "center",
+            "hit_type": "single",
+            "outs": 1,
+            "speed_tercile": "low",
+            "n": 108,
+            "n_sent": 43,
+            "mean_p_safe": 0.8780962188301035,
+            "observed_send_success": 0.8837209302325582,
+            "p_star": 0.7590605448253309,
+            "low_n": false
+          },
+          {
+            "zone_group": "center",
+            "hit_type": "single",
+            "outs": 1,
+            "speed_tercile": "mid",
+            "n": 86,
+            "n_sent": 36,
+            "mean_p_safe": 0.9086894454359787,
+            "observed_send_success": 0.9166666666666666,
+            "p_star": 0.7590605448253309,
+            "low_n": false
+          },
+          {
+            "zone_group": "left",
+            "hit_type": "double",
+            "outs": 0,
+            "speed_tercile": "high",
+            "n": 44,
+            "n_sent": 2,
+            "mean_p_safe": 0.8990505201581537,
+            "observed_send_success": 0.0,
+            "p_star": 0.9063648900231474,
+            "low_n": false
+          },
+          {
+            "zone_group": "left",
+            "hit_type": "double",
+            "outs": 0,
+            "speed_tercile": "low",
+            "n": 79,
+            "n_sent": 2,
+            "mean_p_safe": 0.8203886535554004,
+            "observed_send_success": 0.0,
+            "p_star": 0.9063648900231474,
+            "low_n": false
+          },
+          {
+            "zone_group": "left",
+            "hit_type": "double",
+            "outs": 0,
+            "speed_tercile": "mid",
+            "n": 66,
+            "n_sent": 1,
+            "mean_p_safe": 0.8618044363315693,
+            "observed_send_success": 0.0,
+            "p_star": 0.9063648900231474,
+            "low_n": false
+          },
+          {
+            "zone_group": "left",
+            "hit_type": "double",
+            "outs": 1,
+            "speed_tercile": "high",
+            "n": 59,
+            "n_sent": 2,
+            "mean_p_safe": 0.8949808471377896,
+            "observed_send_success": 0.0,
+            "p_star": 0.8085536143535721,
+            "low_n": false
+          },
+          {
+            "zone_group": "left",
+            "hit_type": "double",
+            "outs": 1,
+            "speed_tercile": "low",
+            "n": 94,
+            "n_sent": 1,
+            "mean_p_safe": 0.8076893191104784,
+            "observed_send_success": 0.0,
+            "p_star": 0.8085536143535721,
+            "low_n": false
+          },
+          {
+            "zone_group": "left",
+            "hit_type": "double",
+            "outs": 1,
+            "speed_tercile": "mid",
+            "n": 85,
+            "n_sent": 2,
+            "mean_p_safe": 0.8608051446067957,
+            "observed_send_success": 0.0,
+            "p_star": 0.8085536143535721,
+            "low_n": false
+          },
+          {
+            "zone_group": "left",
+            "hit_type": "single",
+            "outs": 0,
+            "speed_tercile": "high",
+            "n": 92,
+            "n_sent": 19,
+            "mean_p_safe": 0.8976381257826912,
+            "observed_send_success": 0.9473684210526315,
+            "p_star": 0.9595728884477458,
+            "low_n": false
+          },
+          {
+            "zone_group": "left",
+            "hit_type": "single",
+            "outs": 0,
+            "speed_tercile": "low",
+            "n": 90,
+            "n_sent": 15,
+            "mean_p_safe": 0.8130659120104181,
+            "observed_send_success": 0.8666666666666667,
+            "p_star": 0.9595728884477458,
+            "low_n": false
+          },
+          {
+            "zone_group": "left",
+            "hit_type": "single",
+            "outs": 0,
+            "speed_tercile": "mid",
+            "n": 113,
+            "n_sent": 20,
+            "mean_p_safe": 0.8666280725118467,
+            "observed_send_success": 0.95,
+            "p_star": 0.9595728884477458,
+            "low_n": false
+          },
+          {
+            "zone_group": "left",
+            "hit_type": "single",
+            "outs": 1,
+            "speed_tercile": "high",
+            "n": 156,
+            "n_sent": 45,
+            "mean_p_safe": 0.895095196593524,
+            "observed_send_success": 0.9333333333333333,
+            "p_star": 0.7590605448253309,
+            "low_n": false
+          },
+          {
+            "zone_group": "left",
+            "hit_type": "single",
+            "outs": 1,
+            "speed_tercile": "low",
+            "n": 122,
+            "n_sent": 28,
+            "mean_p_safe": 0.816464964728436,
+            "observed_send_success": 0.8571428571428571,
+            "p_star": 0.7590605448253309,
+            "low_n": false
+          },
+          {
+            "zone_group": "left",
+            "hit_type": "single",
+            "outs": 1,
+            "speed_tercile": "mid",
+            "n": 129,
+            "n_sent": 34,
+            "mean_p_safe": 0.8613809160007032,
+            "observed_send_success": 0.9411764705882353,
+            "p_star": 0.7590605448253309,
+            "low_n": false
+          },
+          {
+            "zone_group": "right",
+            "hit_type": "double",
+            "outs": 0,
+            "speed_tercile": "high",
+            "n": 41,
+            "n_sent": 1,
+            "mean_p_safe": 0.9183081738797877,
+            "observed_send_success": 0.0,
+            "p_star": 0.9063648900231474,
+            "low_n": false
+          },
+          {
+            "zone_group": "right",
+            "hit_type": "double",
+            "outs": 0,
+            "speed_tercile": "low",
+            "n": 65,
+            "n_sent": 1,
+            "mean_p_safe": 0.8540344289374493,
+            "observed_send_success": 0.0,
+            "p_star": 0.9063648900231474,
+            "low_n": false
+          },
+          {
+            "zone_group": "right",
+            "hit_type": "double",
+            "outs": 0,
+            "speed_tercile": "mid",
+            "n": 58,
+            "n_sent": 2,
+            "mean_p_safe": 0.8908453199967399,
+            "observed_send_success": 0.0,
+            "p_star": 0.9063648900231474,
+            "low_n": false
+          },
+          {
+            "zone_group": "right",
+            "hit_type": "double",
+            "outs": 1,
+            "speed_tercile": "high",
+            "n": 50,
+            "n_sent": 1,
+            "mean_p_safe": 0.9119209089800087,
+            "observed_send_success": 0.0,
+            "p_star": 0.8085536143535721,
+            "low_n": false
+          },
+          {
+            "zone_group": "right",
+            "hit_type": "double",
+            "outs": 1,
+            "speed_tercile": "low",
+            "n": 79,
+            "n_sent": 2,
+            "mean_p_safe": 0.8473517395517695,
+            "observed_send_success": 0.0,
+            "p_star": 0.8085536143535721,
+            "low_n": false
+          },
+          {
+            "zone_group": "right",
+            "hit_type": "double",
+            "outs": 1,
+            "speed_tercile": "mid",
+            "n": 62,
+            "n_sent": 3,
+            "mean_p_safe": 0.8856595755268988,
+            "observed_send_success": 0.0,
+            "p_star": 0.8085536143535721,
+            "low_n": false
+          },
+          {
+            "zone_group": "right",
+            "hit_type": "single",
+            "outs": 0,
+            "speed_tercile": "high",
+            "n": 94,
+            "n_sent": 30,
+            "mean_p_safe": 0.9179405869628005,
+            "observed_send_success": 0.9666666666666667,
+            "p_star": 0.9595728884477458,
+            "low_n": false
+          },
+          {
+            "zone_group": "right",
+            "hit_type": "single",
+            "outs": 0,
+            "speed_tercile": "low",
+            "n": 88,
+            "n_sent": 10,
+            "mean_p_safe": 0.8449112534318858,
+            "observed_send_success": 0.9,
+            "p_star": 0.9595728884477458,
+            "low_n": false
+          },
+          {
+            "zone_group": "right",
+            "hit_type": "single",
+            "outs": 0,
+            "speed_tercile": "mid",
+            "n": 93,
+            "n_sent": 31,
+            "mean_p_safe": 0.8899061933862986,
+            "observed_send_success": 0.967741935483871,
+            "p_star": 0.9595728884477458,
+            "low_n": false
+          },
+          {
+            "zone_group": "right",
+            "hit_type": "single",
+            "outs": 1,
+            "speed_tercile": "high",
+            "n": 139,
+            "n_sent": 64,
+            "mean_p_safe": 0.9136337183374114,
+            "observed_send_success": 0.953125,
+            "p_star": 0.7590605448253309,
+            "low_n": false
+          },
+          {
+            "zone_group": "right",
+            "hit_type": "single",
+            "outs": 1,
+            "speed_tercile": "low",
+            "n": 133,
+            "n_sent": 28,
+            "mean_p_safe": 0.8429026781259134,
+            "observed_send_success": 0.8928571428571429,
+            "p_star": 0.7590605448253309,
+            "low_n": false
+          },
+          {
+            "zone_group": "right",
+            "hit_type": "single",
+            "outs": 1,
+            "speed_tercile": "mid",
+            "n": 139,
+            "n_sent": 43,
+            "mean_p_safe": 0.8855685251520791,
+            "observed_send_success": 0.9069767441860465,
+            "p_star": 0.7590605448253309,
+            "low_n": false
+          }
+        ]
+      }
+    }
+  },
+  "facts": [
+    "FACT: Fit used 4331 2025 opportunity rows (design sha256 a852b921c1c218f6f8bd525b4c1397923b8d12651dfc829b084b60e35b7b0a1a); rows of other seasons are discarded at load and no 2026 value is used.",
+    "FACT: 2025 SENT_OUT count 67; mode MODEL."
+  ],
+  "unknown": [
+    "UNKNOWN: Whether held runners would have been safe if sent; the feed does not record the coach's sign, jump, or counterfactual."
+  ]
+}

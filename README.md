@@ -170,6 +170,38 @@ owner's 2026-10-10 authorization: "Two seasons, 2025-2026": "Approve ~4,900
 requests. More power, and lets 2026 be a holdout for the model fit on 2025."
 Only aggregates and at most 5 short examples may be published.
 
+To build the frozen-design opportunity table and data-only report from the
+completed local cache, run `python3 -m cubs_edge_lab.probe.sendhold_data
+--root .`. The command is offline, writes the row-level table only under
+ignored `data/`, and regenerates `research/sendhold_data.json` and
+`research/SENDHOLD_DATA.md` with aggregate counts only. Labels are reported
+under both definitions per season: v3 (primary; a runner who scores is
+SENT_SAFE only if every later segment carries the play's own event) and the
+pre-registered v2.
+
+The analysis of the frozen design v3 (sha256
+`a852b921c1c218f6f8bd525b4c1397923b8d12651dfc829b084b60e35b7b0a1a`) has two
+offline stages, run in this order from the repository root:
+
+```bash
+python3 -m cubs_edge_lab.probe.sendhold_fit --root .
+python3 -m cubs_edge_lab.probe.sendhold_evaluate --root .
+```
+
+* FIT uses 2025 rows only (rows of other seasons are discarded at load). It
+  writes `data/sendhold_fit.json` (frozen models, thresholds, covariate
+  choice, encoders, seed) and the aggregate-only `research/sendhold_fit.json`,
+  for both label versions, and prints the sha256 of the data file. Every
+  state-mapping choice is listed in the published file's `state_mapping`.
+* EVALUATE opens the 2026 holdout. Run it only after recording the hash FIT
+  printed. It refuses to run without `data/sendhold_fit.json`, checks that a
+  refit on 2025 reproduces the frozen coefficients, never fits on 2026, and
+  writes `research/SENDHOLD_EXPERIMENT.md` and
+  `research/sendhold_experiment.json` (aggregates and at most five short
+  examples). `--resamples` (default 1000) and `--seed` exist for testing; the
+  design values are the defaults. With four analyses of 1,000 refitting
+  resamples each, expect a runtime of tens of minutes.
+
 ## November free-agent triage
 
 The triage implementation lives in `cubs_edge_lab/triage.py`,
