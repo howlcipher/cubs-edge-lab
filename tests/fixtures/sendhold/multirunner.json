@@ -1,0 +1,12 @@
+{
+  "fixture_kind": "synthetic, shaped like a Stats API play",
+  "about": {"gamePk": 999},
+  "count": {"outs": 1},
+  "result": {"eventType": "single", "awayScore": 1},
+  "runners": [
+    {"details": {"runner": {"id": 42}}, "movement": {"originBase": "2B", "end": "score", "isOut": false}, "credits": [{"player": {"id": 300}, "position": {"code": "8"}, "credit": "f_fielded_ball"}]},
+    {"details": {"runner": {"id": 43}}, "movement": {"originBase": "1B", "end": "3B", "isOut": false}}
+  ],
+  "playEvents": [{"isPitch": false, "details": {"event": "Runner advances"}}],
+  "hitData": {"coordinates": {"x": 1, "y": 2}}
+}
