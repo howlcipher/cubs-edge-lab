@@ -16,6 +16,8 @@ from urllib.parse import urlparse
 
 import pytest
 
+from cubs_edge_lab import web_export
+
 REPO = Path(__file__).resolve().parents[1]
 WEB = REPO / "web"
 REQUIRE_E2E = os.environ.get("CUBS_REQUIRE_E2E") == "1"
@@ -25,7 +27,7 @@ SUPERSEDE = "later studies may supersede these results"
 ATTRIBUTION = "MLB Advanced Media, L.P. (MLBAM)"
 USAGE_QUOTE = "Only individual, non-commercial, non-bulk use"
 PROVENANCE_KINDS = {
-    "commit", "as-of", "source-hash", "prose-year", "prose-label",
+    "research-digest", "as-of", "source-hash", "prose-year", "prose-label",
 }
 HIDDEN_TERMS = ("p_safe", "predicted", "flagged")
 
@@ -39,7 +41,7 @@ class Page:
 
 
 PAGES = [
-    Page("/", verdict=True),
+    Page("/", verdict=True, details=True),
     Page("/about.html", details=True),
     Page("/sendhold.html", verdict=True, details=True),
     Page("/milbfa.html", details=True),
@@ -88,9 +90,14 @@ def display(value, kind="float", full=False):
     return json.dumps(value)
 
 
+def allowed_pointers(manifest):
+    """Every pointer a page may render, visibly or inside a disclosure."""
+    return set(manifest["default_visible"]) | set(manifest["disclosed_only"])
+
+
 def assert_numeric_nodes(nodes, manifest):
     """Fail on any text containing a digit that is not traced to a source."""
-    allowlist = set(manifest["default_visible"])
+    allowlist = allowed_pointers(manifest)
     hashes = {
         f"{name}: SHA-256 {digest}"
         for name, digest in manifest["sources"].items()
@@ -102,8 +109,9 @@ def assert_numeric_nodes(nodes, manifest):
             continue
         kind = node["provenance"]
         assert kind in PROVENANCE_KINDS, f"Untagged number: {text}"
-        if kind == "commit":
-            assert text == f"cubs-edge-lab commit: {manifest['commit']}"
+        if kind == "research-digest":
+            digest = manifest["research_digest"]
+            assert text in {f"Research digest: {digest[:12]}", digest}, text
         elif kind == "source-hash":
             assert text in hashes, f"Unknown source hash: {text}"
         elif kind == "prose-year":
@@ -120,7 +128,7 @@ def assert_numeric_nodes(nodes, manifest):
 
 def scan_numbers(tab):
     manifest = load_manifest()
-    allowlist = set(manifest["default_visible"])
+    allowlist = allowed_pointers(manifest)
     tagged = tab.evaluate(
         "() => [...document.querySelectorAll('[data-src]')].map("
         "e => ({src: e.dataset.src, text: e.textContent, "
@@ -231,7 +239,7 @@ def test_sendhold_export_pointers_and_verbatim_lines():
             source_line = source_lines[int(line_number) - 1]
             assert source_line == item["value"]
         else:
-            assert item["source"] in manifest["default_visible"]
+            assert item["source"] in allowed_pointers(manifest)
             assert item["value"] == resolve_source(item["source"])
     assert "mean_p_safe" not in json.dumps(exported)
     model_only = ("/point_2026/", "flagged_holds", "mean_predicted")
@@ -567,17 +575,89 @@ def test_sendhold_hides_model_values_by_default(open_page):
 
 @pytest.mark.e2e
 def test_sendhold_runs_left_is_hidden_until_keyboard_disclosure(open_page):
+    manifest = load_manifest()
+    disclosed = set(manifest["disclosed_only"])
     tab = open_page("/sendhold.html")
-    details = tab.locator('summary').filter(
+    nodes = tab.locator(
+        "#sendhold [data-src*='runs_left'], "
+        "#sendhold [data-status-source*='runs_left']"
+    )
+    pointer = """el => el.dataset.src || el.dataset.statusSource"""
+    hidden = [n for n in nodes.all() if n.evaluate(pointer) in disclosed]
+    shown = [n for n in nodes.all() if n.evaluate(pointer) not in disclosed]
+    assert hidden and shown
+    # Every runs-left node under a NEGATIVE verdict is hidden on load, and
+    # no hidden node is named by a pointer the manifest calls visible.
+    for node in hidden:
+        assert not node_is_visible(node), node.evaluate(pointer)
+    # A non-negative analysis shows its displayed values (the full-value
+    # copies stay inside their own closed disclosure).
+    for node in shown:
+        if node.get_attribute("data-format") in {"display", None}:
+            assert node_is_visible(node), node.evaluate(pointer)
+    summaries = tab.locator("summary").filter(
         has_text="Failed-model value (not for decisions)"
-    ).first
-    runs_left = tab.locator("#sendhold [data-src*='runs_left']").first
-    assert not runs_left.is_visible()
-    details.focus()
-    tab.keyboard.press("Enter")
-    assert tab.locator(
-        "#sendhold [data-src*='runs_left']"
-    ).first.is_visible()
+    )
+    assert summaries.count() == len(
+        [p for p in disclosed if p.endswith("/passed")]
+    )
+    for summary in summaries.all():
+        summary.focus()
+        tab.keyboard.press("Enter")
+    for node in hidden:
+        displayed = node.get_attribute("data-format") in {"display", None}
+        # Opening the Failed-model disclosure reveals the display values;
+        # the full-value copies sit in their own nested closed details.
+        assert node_is_visible(node) == displayed, node.evaluate(pointer)
+
+
+# Rendered, and not inside a closed <details> other than its own summary.
+# The explicit ancestor walk does not depend on how the engine lays out a
+# closed <details>; getClientRects guards the other direction.
+VISIBLE_NODE = """el => {
+  if (!el.getClientRects().length) return false;
+  const style = getComputedStyle(el);
+  if (style.visibility === 'hidden' || style.display === 'none') return false;
+  let details = el.closest('details');
+  while (details) {
+    const summary = details.querySelector(':scope > summary');
+    if (!details.open && !(summary && summary.contains(el))) return false;
+    details = details.parentElement && details.parentElement.closest(
+      'details');
+  }
+  return true;
+}"""
+POINTER_NODES = """() => [...document.querySelectorAll(
+  '[data-src], [data-status-source]')].map(el => ({
+  src: el.dataset.src || el.dataset.statusSource,
+  text: el.textContent,
+  visible: (""" + VISIBLE_NODE + """)(el)}))"""
+
+
+def node_is_visible(node):
+    """Visible with no closed <details> hiding it (summary stays visible)."""
+    return node.evaluate(VISIBLE_NODE)
+
+
+@pytest.mark.e2e
+@pytest.mark.parametrize("page", PAGES, ids=PAGE_IDS)
+def test_visible_nodes_are_default_visible_and_disclosed_are_hidden(
+    page, open_page
+):
+    manifest = load_manifest()
+    visible_pointers = set(manifest["default_visible"])
+    disclosed = set(manifest["disclosed_only"])
+    assert not visible_pointers & disclosed
+    nodes = open_page(page.path).evaluate(POINTER_NODES)
+    assert nodes
+    for node in nodes:
+        if node["visible"]:
+            assert node["src"] in visible_pointers, node
+        if node["src"] in disclosed:
+            assert not node["visible"], node
+    if page.path == "/sendhold.html":
+        assert any(node["src"] in disclosed for node in nodes)
+        assert any(node["visible"] for node in nodes)
 
 
 @pytest.mark.e2e
@@ -1000,9 +1080,16 @@ def test_page_provenance_and_stub_guards(page, open_page):
     tab = open_page(page.path)
     manifest = load_manifest()
     assert tab.locator(".skip-link").count() == 1
-    assert tab.locator("h1").count() == 1
     footer = tab.locator("footer").inner_text()
-    assert f"cubs-edge-lab commit: {manifest['commit']}" in footer
+    digest = web_export.research_digest(REPO)
+    assert manifest["research_digest"] == digest
+    assert f"Research digest: {digest[:12]}" in footer
+    disclosure = tab.locator("footer details")
+    assert disclosure.count() == 1
+    assert disclosure.evaluate("el => el.open") is False
+    assert disclosure.locator(
+        "[data-provenance='research-digest']"
+    ).text_content() == digest
     assert manifest["as_of_date"] in footer
     assert SUPERSEDE in footer
     assert ATTRIBUTION in footer
@@ -1225,3 +1312,301 @@ def test_every_details_opens_by_keyboard(page, open_page):
         if len(reached) == total:
             break
     assert len(reached) == total
+
+
+# ---- accessibility ---------------------------------------------------------
+
+MIN_CONTRAST = 4.5
+FOCUSABLE = "a[href], summary, .table-wrap"
+OPEN_ALL_DETAILS = (
+    "() => document.querySelectorAll('details').forEach(d => d.open = true)"
+)
+
+
+def channel(value):
+    value /= 255
+    if value <= 0.03928:
+        return value / 12.92
+    return ((value + 0.055) / 1.055) ** 2.4
+
+
+def luminance(rgb):
+    red, green, blue = (channel(c) for c in rgb[:3])
+    return 0.2126 * red + 0.7152 * green + 0.0722 * blue
+
+
+def contrast_ratio(first, second):
+    high, low = sorted((luminance(first), luminance(second)), reverse=True)
+    return (high + 0.05) / (low + 0.05)
+
+
+def parse_color(text):
+    """Parse a computed rgb()/rgba() string into (r, g, b, alpha)."""
+    match = re.fullmatch(r"rgba?\((.+)\)", text.strip())
+    assert match, f"Unsupported computed color: {text}"
+    parts = [float(p) for p in re.split(r"[\s,/]+", match.group(1)) if p]
+    alpha = parts[3] if len(parts) > 3 else 1.0
+    return (parts[0], parts[1], parts[2], alpha)
+
+
+def composite(top, bottom):
+    """Source-over of ``top`` on an opaque ``bottom``; both are RGBA."""
+    alpha = top[3]
+    return tuple(
+        top[i] * alpha + bottom[i] * (1 - alpha) for i in range(3)
+    ) + (1.0,)
+
+
+def effective_background(chain):
+    """Flatten computed backgrounds, innermost first, onto white canvas."""
+    result = (255.0, 255.0, 255.0, 1.0)
+    for layer in reversed(chain):
+        result = composite(parse_color(layer), result)
+    return result
+
+
+def text_contrast(color, chain):
+    background = effective_background(chain)
+    text = composite(parse_color(color), background)
+    return contrast_ratio(text, background)
+
+
+def test_contrast_helpers():
+    black, white = (0, 0, 0), (255, 255, 255)
+    assert contrast_ratio(black, white) == pytest.approx(21)
+    assert contrast_ratio(white, black) == pytest.approx(21)
+    assert contrast_ratio(white, white) == pytest.approx(1)
+    assert contrast_ratio((0x77, 0x77, 0x77), white) < MIN_CONTRAST
+    assert contrast_ratio((0x76, 0x76, 0x76), white) >= MIN_CONTRAST
+
+
+def test_background_compositing_walks_the_ancestor_chain():
+    clear = "rgba(0, 0, 0, 0)"
+    assert effective_background([clear, clear]) == (255, 255, 255, 1)
+    assert effective_background(
+        [clear, "rgb(10, 20, 30)", "rgb(1, 2, 3)"]
+    ) == (10, 20, 30, 1)
+    half = effective_background(["rgba(0, 0, 0, 0.5)", "rgb(255, 255, 255)"])
+    assert half[:3] == pytest.approx((127.5, 127.5, 127.5))
+    assert text_contrast("rgb(0, 0, 0)", ["rgb(255, 255, 255)"]) == (
+        pytest.approx(21)
+    )
+    assert text_contrast("rgb(24, 35, 45)", [clear, "rgb(18, 48, 71)"]) < 2
+
+
+CONTRAST_TEXT = """() => {
+  document.querySelectorAll('details').forEach(d => d.open = true);
+  const found = [];
+  const walker = document.createTreeWalker(document.body,
+    NodeFilter.SHOW_TEXT);
+  while (walker.nextNode()) {
+    const text = walker.currentNode.nodeValue.trim();
+    const el = walker.currentNode.parentElement;
+    if (!text || !el.getClientRects().length) continue;
+    const chain = [];
+    for (let e = el; e; e = e.parentElement) {
+      chain.push(getComputedStyle(e).backgroundColor);
+    }
+    let category = 'body';
+    if (el.closest('.verdict, [data-verdict]')) category = 'verdict';
+    else if (el.closest('a')) category = 'link';
+    else if (el.closest('td, th, caption')) category = 'table';
+    found.push({text: text.slice(0, 40), category, chain,
+      color: getComputedStyle(el).color});
+  }
+  return found;
+}"""
+SKIP_LINK_COLORS = """() => {
+  const el = document.querySelector('.skip-link');
+  const chain = [];
+  for (let e = el; e; e = e.parentElement) {
+    chain.push(getComputedStyle(e).backgroundColor);
+  }
+  return {text: 'skip link (focused)', category: 'link', chain,
+    color: getComputedStyle(el).color};
+}"""
+
+
+def contrast_samples(tab):
+    samples = tab.evaluate(CONTRAST_TEXT)
+    tab.focus(".skip-link")
+    samples.append(tab.evaluate(SKIP_LINK_COLORS))
+    return samples
+
+
+def contrast_failures(samples):
+    failures = []
+    for sample in samples:
+        ratio = text_contrast(sample["color"], sample["chain"])
+        if ratio < MIN_CONTRAST:
+            failures.append(
+                f"{sample['category']} {sample['text']!r}: {ratio:.2f}"
+            )
+    return failures
+
+
+@pytest.mark.e2e
+@pytest.mark.parametrize("page", PAGES, ids=PAGE_IDS)
+def test_text_contrast_meets_wcag_aa(page, open_page):
+    samples = contrast_samples(open_page(page.path))
+    categories = {sample["category"] for sample in samples}
+    assert {"body", "link"} <= categories
+    if page.verdict:
+        assert "verdict" in categories
+    if page.path in {"/sendhold.html", "/milbfa.html"}:
+        assert "table" in categories
+    assert contrast_failures(samples) == []
+
+
+@pytest.mark.e2e
+def test_contrast_check_flags_low_contrast_text(open_page):
+    tab = open_page("/")
+    tab.add_style_tag(content="p { color: #999; }")
+    assert any("body" in f for f in contrast_failures(contrast_samples(tab)))
+
+
+FOCUS_STATE = """selector => {
+  const el = document.activeElement;
+  const index = [...document.querySelectorAll(selector)].indexOf(el);
+  if (index < 0) return null;
+  const style = getComputedStyle(el);
+  return {index, tag: el.tagName, visible: el.matches(':focus-visible'),
+    outlineStyle: style.outlineStyle, outlineWidth: style.outlineWidth,
+    boxShadow: style.boxShadow};
+}"""
+
+
+def focus_failures(tab):
+    """Tab through every link, summary and scroll region; report problems."""
+    tab.evaluate(OPEN_ALL_DETAILS)
+    total = tab.locator(FOCUSABLE).count()
+    assert total
+    tab.evaluate("() => document.activeElement.blur()")
+    visited, failures = set(), []
+    for _ in range(total + 10):
+        tab.keyboard.press("Tab")
+        state = tab.evaluate(FOCUS_STATE, FOCUSABLE)
+        if state is None or state["index"] in visited:
+            continue
+        visited.add(state["index"])
+        outlined = (
+            state["outlineStyle"] != "none"
+            and float(state["outlineWidth"].removesuffix("px")) > 0
+        )
+        shadowed = state["boxShadow"] != "none"
+        if not (state["visible"] and (outlined or shadowed)):
+            failures.append(f"{state['tag']} #{state['index']} no focus ring")
+    failures += [
+        f"element #{i} never received keyboard focus"
+        for i in sorted(set(range(total)) - visited)
+    ]
+    return failures
+
+
+@pytest.mark.e2e
+@pytest.mark.parametrize("page", PAGES, ids=PAGE_IDS)
+def test_focus_is_visible_on_every_focusable_element(page, open_page):
+    assert focus_failures(open_page(page.path)) == []
+
+
+@pytest.mark.e2e
+def test_focus_check_flags_removed_outlines(open_page):
+    tab = open_page("/sendhold.html")
+    tab.add_style_tag(
+        content="a:focus-visible, summary:focus-visible { outline: none; }"
+    )
+    failures = focus_failures(tab)
+    assert any(f.startswith("A ") for f in failures)
+    assert any(f.startswith("SUMMARY ") for f in failures)
+
+
+@pytest.mark.e2e
+@pytest.mark.parametrize("page", PAGES, ids=PAGE_IDS)
+def test_page_language_and_single_h1(page, open_page):
+    tab = open_page(page.path)
+    assert tab.evaluate("() => document.documentElement.lang").strip()
+    assert tab.locator("h1").count() == 1
+
+
+@pytest.mark.e2e
+@pytest.mark.parametrize("page", PAGES, ids=PAGE_IDS)
+def test_skip_link_target_exists_and_receives_focus(page, open_page):
+    tab = open_page(page.path)
+    tab.evaluate("() => document.activeElement.blur()")
+    tab.keyboard.press("Tab")
+    assert tab.evaluate(
+        "() => document.activeElement.classList.contains('skip-link')"
+    )
+    href = tab.locator(".skip-link").get_attribute("href")
+    assert href.startswith("#") and len(href) > 1
+    target = href[1:]
+    assert tab.locator(f"[id='{target}']").count() == 1
+    tab.keyboard.press("Enter")
+    assert tab.evaluate("() => document.activeElement.id") == target
+
+
+@pytest.mark.e2e
+@pytest.mark.parametrize("page", PAGES, ids=PAGE_IDS)
+def test_tables_have_captions_and_scoped_headers(page, open_page):
+    tab = open_page(page.path)
+    tables = tab.evaluate("""() => [...document.querySelectorAll('table')]
+      .map(t => ({caption: t.caption ? t.caption.textContent.trim() : '',
+        scopes: [...t.querySelectorAll('th')].map(
+          th => th.getAttribute('scope'))}))""")
+    if page.path in {"/sendhold.html", "/milbfa.html"}:
+        assert tables
+    for table in tables:
+        assert table["caption"]
+        assert table["scopes"]
+        assert set(table["scopes"]) <= {"col", "row"}
+
+
+@pytest.mark.e2e
+@pytest.mark.parametrize("page", PAGES, ids=PAGE_IDS)
+def test_every_details_has_one_leading_summary(page, open_page):
+    tab = open_page(page.path)
+    shapes = tab.evaluate("""() => [...document.querySelectorAll('details')]
+      .map(d => ({
+        first: d.firstElementChild && d.firstElementChild.tagName,
+        summaries: d.querySelectorAll(':scope > summary').length,
+        label: d.querySelector(':scope > summary').textContent.trim()}))""")
+    assert shapes
+    for shape in shapes:
+        assert shape["first"] == "SUMMARY" and shape["summaries"] == 1
+        assert shape["label"]
+
+
+@pytest.mark.e2e
+@pytest.mark.parametrize("page", PAGES, ids=PAGE_IDS)
+def test_alerts_have_text_on_default_pages(page, open_page):
+    texts = open_page(page.path).locator('[role="alert"]').all_inner_texts()
+    assert all(text.strip() for text in texts)
+
+
+def alert_scenarios():
+    overview = json.loads((WEB / "data/overview.json").read_text())
+    overview["sendhold_verdict"]["value"] = "UNMAPPED"
+    overview["sendhold_v2_verdict"]["value"] = "UNMAPPED2"
+    sendhold = sendhold_data()
+    sendhold["verdict"]["value"] = "UNMAPPED"
+    sendhold["verdict_v2"]["value"] = "UNMAPPED2"
+    sendhold["feasibility_verdict"]["value"] = "UNMAPPED3"
+    meanings = dict(MEANINGS)
+    del meanings["Test not run (early stop)"]
+    return [
+        ("/", {"data/overview.json": overview}, 2),
+        ("/sendhold.html", {"data/sendhold.json": sendhold}, 3),
+        ("/milbfa.html", {"data/meanings.json": meanings}, 1),
+    ]
+
+
+@pytest.mark.e2e
+@pytest.mark.parametrize(
+    ("path", "overrides", "expected"), alert_scenarios(),
+    ids=["/", "/sendhold.html", "/milbfa.html"],
+)
+def test_rendered_alerts_have_text(path, overrides, expected, open_page):
+    tab = open_page(path, overrides=overrides)
+    texts = tab.locator('[role="alert"]').all_inner_texts()
+    assert len(texts) == expected
+    assert all(text.strip() for text in texts)

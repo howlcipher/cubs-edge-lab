@@ -9,6 +9,7 @@ a:focus-visible, summary:focus-visible, .table-wrap:focus-visible { outline: 3px
 .site-header a { color: white; font-weight: 650; }
 nav { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; }
 nav [aria-current] { text-decoration-thickness: .18em; text-underline-offset: .25em; }
+main:focus { outline: none; }
 main { width: min(72rem, 100%); margin: 0 auto; padding: 2rem 1rem 4rem; }
 h1 { line-height: 1.15; }
 .lede { font-size: 1.2rem; max-width: 54rem; }
