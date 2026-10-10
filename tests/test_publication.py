@@ -95,7 +95,9 @@ class PublicationTests(unittest.TestCase):
     def test_publication_allowlist_and_bounds(self):
         limits = {
             "summary.json": 100_000,
-            "raw_manifest.json": 600_000,
+            # Space for the existing 629-entry history plus bounded study
+            # provenance entries; bodies remain in ignored data/raw/.
+            "raw_manifest.json": 800_000,
             "FEASIBILITY.md": 100_000,
             "DATA.md": 200_000,
             "data_summary.json": 200_000,
@@ -103,10 +105,22 @@ class PublicationTests(unittest.TestCase):
             "EXPERIMENT.md": 100_000,
             "exploratory_whole_pool.json": 200_000,
             "cubs_case.json": 100_000,
+            "sendhold_feasibility.json": 100_000,
+            "SENDHOLD_FEASIBILITY.md": 100_000,
         }
         research = ROOT / "research"
-        self.assertEqual({p.name for p in research.iterdir()}, set(limits))
+        new_artifacts = {
+            "sendhold_feasibility.json", "SENDHOLD_FEASIBILITY.md"
+        }
+        expected = set(limits)
+        if not all((research / name).exists() for name in new_artifacts):
+            expected -= new_artifacts
+        self.assertEqual(
+            {p.name for p in research.iterdir()}, expected
+        )
         for name, limit in limits.items():
+            if name in new_artifacts and not (research / name).exists():
+                continue
             self.assertLess((research / name).stat().st_size, limit)
         summary = json.loads((research / "summary.json").read_bytes())
 
@@ -182,6 +196,35 @@ class PublicationTests(unittest.TestCase):
                 self.assertTrue(set(row["query_refs"]) <= refs)
             for example in study["examples"]:
                 self.assertIn(query_ref(example["query"]), refs)
+
+    def test_sendhold_report_matches_canonical_json(self):
+        json_path = ROOT / "research/sendhold_feasibility.json"
+        report_path = ROOT / "research/SENDHOLD_FEASIBILITY.md"
+        if not json_path.exists() and not report_path.exists():
+            self.skipTest("send/hold sample has not been acquired")
+        value = json.loads(json_path.read_bytes())
+        self.assertEqual(canonical(value), json_path.read_bytes())
+        from cubs_edge_lab.probe.sendhold import render as sendhold_render
+
+        self.assertEqual(
+            sendhold_render(value).encode(), report_path.read_bytes()
+        )
+        self.assertLessEqual(len(value["examples"]), 5)
+        self.assertNotIn("movement_examples", value)
+        self.assertEqual(
+            value["season_samples"], {"2025": 50, "2026": 50}
+        )
+        self.assertIn(
+            value["verdict"], {"FEASIBLE", "PARTIAL", "NOT FEASIBLE"}
+        )
+        for example in value["examples"]:
+            self.assertEqual(
+                set(example),
+                {
+                    "season", "game_id", "runner_id", "hit",
+                    "contact_bases_by_segment",
+                },
+            )
 
     def test_data_is_ignored(self):
         # Works in a source copy with no .git directory, too.

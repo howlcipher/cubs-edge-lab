@@ -133,6 +133,19 @@ never populate the research report.
 
 This probe is research only. It does not implement a candidate product.
 
+### Third-base send/hold feasibility study
+
+After `python3 -m pip install -r requirements.txt`, run
+`python3 -m cubs_edge_lab.probe.sendhold` to fetch the deterministic sample,
+then `python3 -m cubs_edge_lab.probe.sendhold --analyze` to regenerate the
+aggregate report from local data. New network requests have a hard ceiling of
+150 across runs; cache hits are free. Raw data and per-opportunity records stay
+under ignored `data/` and are not committed. The owner authorized this sample
+on 2026-10-09: "Approve up to ~150 rate-limited requests now (a sample of game
+feeds plus public sprint-speed and arm-strength leaderboards) to measure
+whether the data supports the study; ask again before any full-season
+retrieval." No full-season retrieval is authorized.
+
 ## November free-agent triage
 
 The triage implementation lives in `cubs_edge_lab/triage.py`,

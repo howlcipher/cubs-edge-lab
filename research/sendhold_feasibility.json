@@ -1,0 +1,242 @@
+{
+  "seed": 20261009,
+  "ceiling": 150,
+  "new_requests_used": 107,
+  "schedule_hash": "0679a9296b7c4773b471a7c5c497173e8ca7191d604f0a1700bd43ae6b85a4c4",
+  "season_samples": {
+    "2025": 50,
+    "2026": 50
+  },
+  "full_retrieval_request_estimate": 4866,
+  "seasons": {
+    "2025": {
+      "season": 2025,
+      "games": 50,
+      "opportunities": 85,
+      "scored_any": 40,
+      "ended_at_3b_no_score": 44,
+      "sent_safe": 14,
+      "advanced_later": 26,
+      "sent_out": 0,
+      "held": 44,
+      "out_elsewhere": 1,
+      "other": 0,
+      "outcome_rates": {
+        "sent_safe": 0.16470588235294117,
+        "advanced_later": 0.3058823529411765,
+        "sent_out": 0.0,
+        "held": 0.5176470588235295,
+        "out_elsewhere": 0.011764705882352941,
+        "other": 0.0
+      },
+      "identification_rates": {
+        "runner_id": 1.0,
+        "fielder_id": 0.9176470588235294,
+        "hit": 1.0,
+        "location": 1.0,
+        "outs": 1.0,
+        "score": 1.0
+      },
+      "speed_join": {
+        "matched": 73,
+        "total": 73,
+        "rate": 1.0
+      },
+      "arm_join": {
+        "matched": 50,
+        "total": 54,
+        "rate": 0.9259259259259259
+      },
+      "extrapolation": {
+        "estimate": 4131,
+        "interval_95": [
+          3257,
+          5005
+        ],
+        "league_schedule_games": 2430,
+        "sample_games": 50,
+        "sample_mean": 1.7,
+        "full_retrieval_requests_estimate": 2433
+      }
+    },
+    "2026": {
+      "season": 2026,
+      "games": 50,
+      "opportunities": 90,
+      "scored_any": 33,
+      "ended_at_3b_no_score": 56,
+      "sent_safe": 12,
+      "advanced_later": 21,
+      "sent_out": 0,
+      "held": 56,
+      "out_elsewhere": 1,
+      "other": 0,
+      "outcome_rates": {
+        "sent_safe": 0.13333333333333333,
+        "advanced_later": 0.23333333333333334,
+        "sent_out": 0.0,
+        "held": 0.6222222222222222,
+        "out_elsewhere": 0.011111111111111112,
+        "other": 0.0
+      },
+      "identification_rates": {
+        "runner_id": 1.0,
+        "fielder_id": 0.8666666666666667,
+        "hit": 1.0,
+        "location": 1.0,
+        "outs": 1.0,
+        "score": 1.0
+      },
+      "speed_join": {
+        "matched": 71,
+        "total": 72,
+        "rate": 0.9861111111111112
+      },
+      "arm_join": {
+        "matched": 47,
+        "total": 52,
+        "rate": 0.9038461538461539
+      },
+      "extrapolation": {
+        "estimate": 4374,
+        "interval_95": [
+          3157,
+          5591
+        ],
+        "league_schedule_games": 2430,
+        "sample_games": 50,
+        "sample_mean": 1.8,
+        "full_retrieval_requests_estimate": 2433
+      }
+    }
+  },
+  "verdict": "PARTIAL",
+  "verdict_reason": "The feed supports counts of candidate situations, recorded safe, out, and held outcomes, and person-ID joins to public sprint-speed and arm-strength leaderboards. It does not record the coach's sign, the runner's jump, or what a held runner would have done if sent. Base at contact is inferred from originBase.",
+  "location_statement": "FACT: Hit location was present on 100.0%, 100.0% of 2025 and 2026 opportunities.",
+  "examples": [
+    {
+      "season": 2025,
+      "game_id": 778182,
+      "runner_id": 691718,
+      "hit": "single",
+      "contact_bases_by_segment": [
+        "1B",
+        "2B"
+      ]
+    },
+    {
+      "season": 2025,
+      "game_id": 778553,
+      "runner_id": 596115,
+      "hit": "single",
+      "contact_bases_by_segment": [
+        "1B",
+        "2B"
+      ]
+    },
+    {
+      "season": 2025,
+      "game_id": 776474,
+      "runner_id": 608070,
+      "hit": "single",
+      "contact_bases_by_segment": [
+        "1B",
+        "2B"
+      ]
+    },
+    {
+      "season": 2026,
+      "game_id": 824168,
+      "runner_id": 702616,
+      "hit": "single",
+      "contact_bases_by_segment": [
+        "1B",
+        "2B"
+      ]
+    },
+    {
+      "season": 2026,
+      "game_id": 823894,
+      "runner_id": 669392,
+      "hit": "single",
+      "contact_bases_by_segment": [
+        "1B",
+        "2B",
+        "3B"
+      ]
+    }
+  ],
+  "count_reconciliation": {
+    "controller_recount": {
+      "2025": {
+        "opportunities": 88,
+        "scored_any": 35,
+        "ended_at_3b_no_score": 47
+      },
+      "2026": {
+        "opportunities": 95,
+        "scored_any": 35,
+        "ended_at_3b_no_score": 58
+      }
+    },
+    "first_segment_rule": {
+      "2025": {
+        "opportunities": 85,
+        "scored_any": 40,
+        "ended_at_3b_no_score": 44,
+        "segment_end_sequences": {
+          "2B>3B>score": 6,
+          "3B": 44,
+          "3B>score": 20,
+          "none": 1,
+          "score": 14
+        }
+      },
+      "2026": {
+        "opportunities": 90,
+        "scored_any": 33,
+        "ended_at_3b_no_score": 56,
+        "segment_end_sequences": {
+          "2B>3B>score": 1,
+          "3B": 56,
+          "3B>score": 20,
+          "none": 1,
+          "score": 12
+        }
+      }
+    },
+    "any_segment_rule": {
+      "2025": {
+        "opportunities": 88,
+        "scored_any": 41,
+        "ended_at_3b_no_score": 46,
+        "segment_end_sequences": {
+          "2B>3B": 2,
+          "2B>3B>score": 6,
+          "2B>score": 1,
+          "3B": 44,
+          "3B>score": 20,
+          "none": 1,
+          "score": 14
+        }
+      },
+      "2026": {
+        "opportunities": 95,
+        "scored_any": 38,
+        "ended_at_3b_no_score": 56,
+        "segment_end_sequences": {
+          "2B>3B>score": 2,
+          "2B>score": 4,
+          "3B": 56,
+          "3B>score": 20,
+          "none": 1,
+          "score": 12
+        }
+      }
+    },
+    "unknown_cases": {
+      "segments_without_runner_id": 0,
+      "scored_and_out_same_play": 0
+    }
+  }
+}
