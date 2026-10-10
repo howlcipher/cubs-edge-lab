@@ -47,6 +47,41 @@ def assign_label(record):
     return "OTHER"
 
 
+def _event_name(value):
+    return str(value).strip().lower() if value else None
+
+
+def assign_label_v3(record, play_event=None):
+    """Assign v3 labels (design v3, primary).
+
+    Identical to ``assign_label`` except for runners who score: the runner is
+    SENT_SAFE only when every movement segment after the first carries the
+    play's own event (for example Single or Double); a later segment with a
+    different event (Error, Runner Out, Other Advance) makes it AMBIGUOUS.
+    Events compare case-insensitively because the feed spells the play
+    result "Single" and the event type "single".
+    """
+    segments = record.get("segments", [])
+    moves = [(segment.get("movement") or {}) for segment in segments]
+    if any(m.get("isOut") is True and (
+        m.get("end") in SCORE_ENDS | {"home"}
+        or m.get("outBase") in {"home", "HOME", "4B"}
+    ) for m in moves):
+        return "SENT_OUT"
+    if any(m.get("isOut") is True for m in moves):
+        return "OUT_ELSEWHERE"
+    if any(m.get("end") in SCORE_ENDS for m in moves):
+        event = _event_name(play_event or record.get("play_event"))
+        if all(event and _event_name(
+                (segment.get("details") or {}).get("event")) == event
+               for segment in segments[1:]):
+            return "SENT_SAFE"
+        return "AMBIGUOUS"
+    if moves and moves[-1].get("end") == "3B":
+        return "HOLD"
+    return "OTHER"
+
+
 def batting_score_difference(play, half, previous):
     """Pre-play batting-team lead, based on post-play scores and run delta."""
     result = play.get("result") or {}
@@ -258,7 +293,10 @@ def build_data(root):
                 if season == 2025:
                     season_plays[season].append(play)
                 for row in identify_opportunities([play]):
+                    event = ((play.get("result") or {}).get("event")
+                             or (play.get("result") or {}).get("eventType"))
                     label = assign_label(row)
+                    label_v3 = assign_label_v3(row, event)
                     runner = row["runner_id"]
                     prior = season - 1
                     speed, speed_fallback = prior_or_fallback(
@@ -277,6 +315,7 @@ def build_data(root):
                             "game_id": game_id,
                             "runner_id": runner,
                             "label": label,
+                            "label_v3": label_v3,
                             "base_at_contact": base_at_contact(
                                 play,
                                 row["segments"][0],
@@ -306,7 +345,8 @@ def make_report(table, schedules, retrieved, requests_used, expectancy):
     seasons = {}
     for season in (2025, 2026):
         rows = [row for row in table if row["season"] == season]
-        counts = Counter(row["label"] for row in rows)
+        counts_v2 = Counter(row["label"] for row in rows)
+        counts_v3 = Counter(row["label_v3"] for row in rows)
 
         def rate(predicate):
             return sum(predicate(row)
@@ -319,7 +359,8 @@ def make_report(table, schedules, retrieved, requests_used, expectancy):
         seasons[str(season)] = {
             "games_retrieved": retrieved[season],
             "games_scheduled": len(schedules[season]),
-            "label_counts": {label: counts[label] for label in LABELS},
+            "label_counts_v3": {label: counts_v3[label] for label in LABELS},
+            "label_counts_v2": {label: counts_v2[label] for label in LABELS},
             "covariate_coverage": {
                 "prior_season_sprint_match_rate": rate(
                     lambda row: row["sprint_speed"] is not None and
@@ -335,9 +376,10 @@ def make_report(table, schedules, retrieved, requests_used, expectancy):
                     lambda row: row["fielder_outfielder"]),
             },
         }
-    out_count = seasons["2025"]["label_counts"]["SENT_OUT"]
+    out_count = seasons["2025"]["label_counts_v3"]["SENT_OUT"]
     return {
         "facts": {
+            "primary_label_version": "v3",
             "requests_used": requests_used,
             "seasons": seasons,
             "run_expectancy_2025": expectancy,
@@ -368,13 +410,15 @@ def render(report):
                     row["games_retrieved"],
                     row["games_scheduled"],
                     facts["requests_used"]),
-                "FACT: Label counts: " +
+                "FACT: Label counts, v3 definition (primary): " +
                 ", ".join(
-                    "{} {}".format(
-                        k,
-                        v) for k,
-                    v in row["label_counts"].items()) +
-                ".",
+                    "{} {}".format(k, v)
+                    for k, v in row["label_counts_v3"].items()) + ".",
+                "FACT: Label counts, v2 definition (pre-registered, "
+                "secondary): " +
+                ", ".join(
+                    "{} {}".format(k, v)
+                    for k, v in row["label_counts_v2"].items()) + ".",
                 "FACT: Covariate coverage: " +
                 json.dumps(
                     row["covariate_coverage"],

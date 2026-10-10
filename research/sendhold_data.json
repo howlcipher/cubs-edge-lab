@@ -1,11 +1,20 @@
 {
   "facts": {
+    "primary_label_version": "v3",
     "requests_used": 4868,
     "seasons": {
       "2025": {
         "games_retrieved": 2430,
         "games_scheduled": 2430,
-        "label_counts": {
+        "label_counts_v3": {
+          "SENT_OUT": 67,
+          "OUT_ELSEWHERE": 31,
+          "SENT_SAFE": 1773,
+          "AMBIGUOUS": 75,
+          "HOLD": 2385,
+          "OTHER": 0
+        },
+        "label_counts_v2": {
           "SENT_OUT": 67,
           "OUT_ELSEWHERE": 31,
           "SENT_SAFE": 555,
@@ -24,7 +33,15 @@
       "2026": {
         "games_retrieved": 2430,
         "games_scheduled": 2430,
-        "label_counts": {
+        "label_counts_v3": {
+          "SENT_OUT": 71,
+          "OUT_ELSEWHERE": 24,
+          "SENT_SAFE": 1856,
+          "AMBIGUOUS": 59,
+          "HOLD": 2329,
+          "OTHER": 1
+        },
+        "label_counts_v2": {
           "SENT_OUT": 71,
           "OUT_ELSEWHERE": 24,
           "SENT_SAFE": 612,
