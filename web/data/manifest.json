@@ -1,0 +1,26 @@
+{
+  "as_of_date": "2026-10-09",
+  "as_of_source": "cubs_case.json#/as_of_date",
+  "commit": "eb6b01de8149ac38ed78ceb082e3c0384260e801",
+  "default_visible": [
+    "cubs_case.json#/as_of_date",
+    "cubs_case.json#/interpretation",
+    "cubs_case.json#/method_status",
+    "cubs_case.json#/source",
+    "exploratory_whole_pool.json#/config/source",
+    "sendhold_experiment.json#/verdict",
+    "sendhold_experiment.json#/verdict_v2_preregistered_definition",
+    "sendhold_feasibility.json#/ceiling",
+    "sendhold_feasibility.json#/full_retrieval_request_estimate",
+    "sendhold_feasibility.json#/new_requests_used",
+    "validation.json#/early_stop",
+    "validation.json#/early_stop_reason"
+  ],
+  "sources": {
+    "cubs_case.json": "b34ca6eacff62a484219c9d96b4984fb794e37e62e551b7c2439408c61cf20ed",
+    "exploratory_whole_pool.json": "26c32bb9c34b745c6f78f4951ed6bbebde7b3f49e6ac4fd1bdfc16022e936d35",
+    "sendhold_experiment.json": "f18a83e5f9673d2a073f3d6fb07d5b669617f5978906260e2929910a7eeddd12",
+    "sendhold_feasibility.json": "9cf3dfe428e1a945c0f767efea381715222a15f91753f9b905840fa9b4f3bea5",
+    "validation.json": "cb4ca78fd4d695aec40f2c6edd5166255888ec1b4c5d7af0b6c0e36fdf270247"
+  }
+}

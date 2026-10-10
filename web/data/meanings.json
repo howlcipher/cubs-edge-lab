@@ -1,0 +1,6 @@
+{
+  "EXPLORATORY": "This result is exploratory and does not establish a confirmed effect.",
+  "NEGATIVE": "No measurable improvement over a simple baseline was shown. This does not show the opposite.",
+  "PARTIAL": "Some evidence supports the approach, but the result is incomplete.",
+  "Test not run (early stop)": "Test not run (early stop)"
+}

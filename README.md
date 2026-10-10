@@ -29,13 +29,14 @@ All of `data/` is ignored because those files contain bulk response content or
 per-record data. Rate limiting is an operational precaution, not permission
 for bulk use or redistribution.
 
-The committed research files are exactly:
+The committed research files and derived publication output include:
 
 * `research/raw_manifest.json`: endpoint, parameters, retrieval time, SHA-256,
   byte size, cache filename, and HTTP status metadata, with no response bodies.
 * `research/summary.json`: aggregate measured counts, unchanged verdicts and
   reasons, query references, and at most five short examples per candidate.
 * `research/FEASIBILITY.md`: readable Markdown generated from that summary.
+* `web/data/`: derived, committed static-explorer JSON and source manifest.
 
 Requests are sequential, spaced at least half a second apart, with an
 identifying User Agent. Existing checksum-verified cache entries are reused.
@@ -237,3 +238,57 @@ The primary evaluation has been run and is documented in
 `research/validation.json` and `research/EXPERIMENT.md`; the 2025 holdout has
 not been evaluated and no holdout result is produced. Existing response
 contents remain local and are not included in the repository.
+
+## Results explorer (static)
+
+Export the selected research values and refresh the provenance manifest:
+
+```bash
+python3 -m cubs_edge_lab.web_export
+```
+
+Check that the committed export is current without rewriting it:
+
+```bash
+python3 -m cubs_edge_lab.web_export --check
+```
+
+Serve the explorer locally. It uses relative JSON requests, so opening a page
+with `file://` will not work.
+
+```bash
+python3 -m http.server --directory web 8000
+# Open http://127.0.0.1:8000/
+```
+
+The browser tests need the development tools `pytest` and `playwright`, then
+the Playwright Chromium build. Neither is a runtime dependency, and neither
+belongs in `requirements.txt`.
+
+```bash
+python3 -m pip install pytest playwright
+python3 -m playwright install chromium
+```
+
+Run the browser and unit test suite with Chromium required:
+
+```bash
+CUBS_REQUIRE_E2E=1 python3 -m pytest -q
+```
+
+Without `CUBS_REQUIRE_E2E=1`, browser tests skip with a reason when Playwright
+or Chromium is missing. With the variable set, that skip fails the run. The
+session prints the skip count either way. `python3 -m cubs_edge_lab.web_export
+--check` exits with status 1 and does not rewrite `web/data/` when the export
+is stale. A missing source file, a pointer that cannot be resolved, or a
+source name that is not a single `research/*.json` file raises before any
+file is written.
+
+The exporter reads only `research/*.json`, never `data/`, and copies values
+rather than computing statistics. It records each value's source pointer, the
+SHA-256 of each source file, and the latest commit that changed `research/`.
+That commit can differ from `HEAD` when a later commit does not touch
+`research/`. `web/data/` is derived, committed output. Site footers carry the
+MLB Advanced Media attribution and its usage restriction. The Send / hold and
+Free-agent triage pages are navigation stubs marked as coming in a later
+version.
