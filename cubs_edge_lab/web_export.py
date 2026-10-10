@@ -16,6 +16,7 @@ OUTPUT = ROOT / "web" / "data"
 # Values are copied by pointer only. Display copy is deliberately outside this
 # map so the export cannot silently derive or reinterpret a research value.
 SELECTIONS = {
+    "sendhold.json": {},
     "overview.json": {
         "sendhold_verdict": ("sendhold_experiment.json", "/verdict"),
         "sendhold_v2_verdict": (
@@ -37,6 +38,123 @@ SELECTIONS = {
     },
 }
 
+ANALYSES = (
+    "v3_primary", "v2_preregistered", "v3_ambiguous_as_safe",
+    "v3_fallback_dropped",
+)
+CRITERIA = {
+    "brier_beats_constant": ("Brier vs constant", "difference"),
+    "calibration_slope": ("Calibration slope", "slope"),
+    "runs_left_excludes_zero": ("Runs left", "estimate"),
+    "negative_control": ("Negative control", "realized_success"),
+}
+
+
+def add_sendhold_selections() -> None:
+    """Declare the exact numeric and verdict pointers shown on Send / hold."""
+    selected = SELECTIONS["sendhold.json"]
+
+    def add(name: str, filename: str, pointer: str) -> None:
+        selected[name] = (filename, pointer)
+
+    add("verdict", "sendhold_experiment.json", "/verdict")
+    add(
+        "verdict_v2", "sendhold_experiment.json",
+        "/verdict_v2_preregistered_definition",
+    )
+    add("feasibility_verdict", "sendhold_feasibility.json", "/verdict")
+    for field in ("verdict_reason", "new_requests_used", "ceiling"):
+        add(field, "sendhold_feasibility.json", f"/{field}")
+    for analysis in ANALYSES:
+        base = f"/analyses/{analysis}"
+        add(
+            f"{analysis}_verdict", "sendhold_experiment.json",
+            f"{base}/verdict",
+        )
+        for criterion, (_, estimate) in CRITERIA.items():
+            path = f"{base}/criteria/{criterion}"
+            for field, pointer in (
+                ("estimate", f"{path}/{estimate}"),
+                ("passed", f"{path}/passed"), ("rule", f"{path}/rule"),
+                ("lower", f"{path}/interval_95/lower"),
+                ("upper", f"{path}/interval_95/upper"),
+            ):
+                add(
+                    f"{analysis}_{criterion}_{field}",
+                    "sendhold_experiment.json", pointer,
+                )
+        add(
+            f"{analysis}_label_version", "sendhold_experiment.json",
+            f"{base}/label_version",
+        )
+        experiment = json.loads(
+            (RESEARCH / "sendhold_experiment.json").read_text()
+        )
+        for label in experiment["analyses"][analysis]["label_counts_2025"]:
+            add(
+                f"{analysis}_labels_2025_{label}", "sendhold_experiment.json",
+                f"{base}/label_counts_2025/{label}",
+            )
+    for field in ("sent_out", "required_sent_out"):
+        add(
+            f"covariate_{field}", "sendhold_experiment.json",
+            f"/analyses/v3_primary/covariate_choice/{field}",
+        )
+    fit = json.loads((RESEARCH / "sendhold_fit.json").read_text())
+    add("fit_season", "sendhold_fit.json", "/fit_season")
+    # Label counts are published maps; each count is selected independently.
+    for version, value in fit["versions"].items():
+        for label in value["label_counts"]:
+            add(
+                f"fit_{version}_label_{label}", "sendhold_fit.json",
+                f"/versions/{version}/label_counts/{label}",
+            )
+    for index, _ in enumerate(fit["unknown"]):
+        add(f"fit_unknown_{index}", "sendhold_fit.json", f"/unknown/{index}")
+    chart = fit["versions"]["v3"]["decision_chart"]
+    add(
+        "min_cell_n", "sendhold_fit.json",
+        "/versions/v3/decision_chart/min_cell_n",
+    )
+    for index, _ in enumerate(chart["speed_tercile_cuts"]):
+        add(
+            f"speed_cut_{index}", "sendhold_fit.json",
+            f"/versions/v3/decision_chart/speed_tercile_cuts/{index}",
+        )
+    columns = (
+        "zone_group", "hit_type", "outs", "speed_tercile", "n", "n_sent",
+        "observed_send_success", "p_star", "low_n",
+    )
+    for index, _ in enumerate(chart["cells"]):
+        for column in columns:
+            add(
+                f"cell_{index}_{column}", "sendhold_fit.json",
+                f"/versions/v3/decision_chart/cells/{index}/{column}",
+            )
+
+
+add_sendhold_selections()
+
+# Quoted by exact line match: the export fails if the line moved or changed.
+VERBATIM_LINES = {
+    "unknown_line_0": (
+        "SENDHOLD_EXPERIMENT.md", 90,
+        "UNKNOWN: Whether held runners would have been safe if sent; the "
+        "feed does not record the coach's sign, the runner's jump, or the "
+        "counterfactual.",
+    ),
+    "unknown_line_1": (
+        "SENDHOLD_EXPERIMENT.md", 91,
+        "UNKNOWN: Trailing runners and later events are ignored in the "
+        "run-value accounting.",
+    ),
+    "inference_line": (
+        "SENDHOLD_EXPERIMENT.md", 6,
+        "INFERENCE: Any positive estimate is upper-bound-style: sends are "
+        "selected and the counterfactual for holds is extrapolated.",
+    ),
+}
+
 FOOTER_SOURCE = ("cubs_case.json", "/as_of_date")
 MEANINGS = {
     "NEGATIVE": (
@@ -50,6 +168,14 @@ MEANINGS = {
         "This result is exploratory and does not establish a confirmed effect."
     ),
     "Test not run (early stop)": "Test not run (early stop)",
+}
+ROLES = {
+    "brier_beats_constant": "gating",
+    "calibration_slope": "gating",
+    "negative_control": "control",
+    "runs_left_excludes_zero": (
+        "effect (only read when the gating criteria are met)"
+    ),
 }
 
 
@@ -109,6 +235,23 @@ def export_data(root: Path = ROOT, *, check: bool = False) -> bool:
             entries[name] = {"value": value, "source": f"{filename}#{pointer}"}
         outputs[output_name] = entries
 
+    line_entries = {}
+    for name, (filename, line_number, expected) in (
+        VERBATIM_LINES.items() if "sendhold.json" in SELECTIONS else ()
+    ):
+        if Path(filename).name != filename or not filename.endswith(".md"):
+            raise ValueError(f"Not a research Markdown name: {filename}")
+        lines = (root / "research" / filename).read_text().splitlines()
+        if line_number > len(lines) or lines[line_number - 1] != expected:
+            message = f"Research line changed: {filename}:{line_number}"
+            raise ValueError(message)
+        line_entries[name] = {
+            "value": lines[line_number - 1],
+            "source": f"{filename}#L{line_number}",
+        }
+    if "sendhold.json" in outputs:
+        outputs["sendhold.json"].update(line_entries)
+
     footer_file, footer_pointer = FOOTER_SOURCE
     if footer_file not in sources:
         source_path = research_path(root, footer_file)
@@ -116,7 +259,7 @@ def export_data(root: Path = ROOT, *, check: bool = False) -> bool:
 
     hashes = {}
     for filename in sorted(sources):
-        source_bytes = research_path(root, filename).read_bytes()
+        source_bytes = (root / "research" / filename).read_bytes()
         hashes[filename] = hashlib.sha256(source_bytes).hexdigest()
     # The last commit touching research/, not HEAD: committing the derived
     # web/data must not make the committed export look stale.
@@ -137,6 +280,8 @@ def export_data(root: Path = ROOT, *, check: bool = False) -> bool:
         "default_visible": default_visible(SELECTIONS),
     }
     outputs["meanings.json"] = MEANINGS
+    if "sendhold.json" in SELECTIONS:
+        outputs["roles.json"] = ROLES
 
     changed = False
     for filename, data in outputs.items():

@@ -24,8 +24,10 @@ MEANINGS = json.loads((WEB / "data" / "meanings.json").read_text())
 SUPERSEDE = "later studies may supersede these results"
 ATTRIBUTION = "MLB Advanced Media, L.P. (MLBAM)"
 USAGE_QUOTE = "Only individual, non-commercial, non-bulk use"
-PROVENANCE_KINDS = {"commit", "as-of", "source-hash", "prose-year"}
-HIDDEN_TERMS = ("sendhold_fit", "p_safe", "predicted", "flagged", "runs_left")
+PROVENANCE_KINDS = {
+    "commit", "as-of", "source-hash", "prose-year", "prose-label",
+}
+HIDDEN_TERMS = ("p_safe", "predicted", "flagged")
 
 
 @dataclass(frozen=True)
@@ -39,7 +41,7 @@ class Page:
 PAGES = [
     Page("/", verdict=True),
     Page("/about.html", details=True),
-    Page("/sendhold.html", stub=True),
+    Page("/sendhold.html", verdict=True, details=True),
     Page("/milbfa.html", stub=True),
 ]
 PAGE_IDS = [page.path for page in PAGES]
@@ -54,7 +56,8 @@ def resolve_source(pointer):
     value = json.loads((REPO / "research" / filename).read_text())
     for part in json_pointer.lstrip("/").split("/"):
         if part:
-            value = value[part.replace("~1", "/").replace("~0", "~")]
+            key = part.replace("~1", "/").replace("~0", "~")
+            value = value[int(key)] if isinstance(value, list) else value[key]
     return value
 
 
@@ -72,7 +75,9 @@ def display(value, kind="float", full=False):
         return str(value)
     if isinstance(value, float):
         if full:
-            return str(int(value)) if value.is_integer() else repr(value)
+            if value.is_integer():
+                return str(int(value))
+            return format(Decimal(repr(value)), "f")
         if value.is_integer():
             return str(int(value))
         decimals = 3 if kind in {"probability", "rate"} else 2
@@ -103,6 +108,12 @@ def assert_numeric_nodes(nodes, manifest):
             assert text in hashes, f"Unknown source hash: {text}"
         elif kind == "prose-year":
             assert re.fullmatch(r"(?:19|20)\d\d", text), f"Not a year: {text}"
+        elif kind == "prose-label":
+            assert text in {
+                "v1", "v2", "v2-definition", "v3", "v2 pre-registered",
+                "v3 primary", "v3 ambiguous as safe", "v3 fallback dropped",
+                "95% interval", "2025",
+            }, text
         else:
             raise AssertionError(f"Untagged number: {text}")
 
@@ -209,12 +220,388 @@ def test_number_scan_rejects_hidden_pointer_and_bad_provenance():
         assert_numeric_nodes(bad_hash, manifest)
 
 
+def test_sendhold_export_pointers_and_verbatim_lines():
+    exported = json.loads((WEB / "data/sendhold.json").read_text())
+    manifest = load_manifest()
+    for name, item in exported.items():
+        if name.startswith(("unknown_line_", "inference_line")):
+            filename, line_number = item["source"].rsplit("#L", 1)
+            source_path = REPO / "research" / filename
+            source_lines = source_path.read_text().splitlines()
+            source_line = source_lines[int(line_number) - 1]
+            assert source_line == item["value"]
+        else:
+            assert item["source"] in manifest["default_visible"]
+            assert item["value"] == resolve_source(item["source"])
+    assert "mean_p_safe" not in json.dumps(exported)
+    model_only = ("/point_2026/", "flagged_holds", "mean_predicted")
+    assert not any(
+        token in pointer
+        for pointer in manifest["default_visible"]
+        for token in model_only
+    )
+    assert not any(
+        pointer.startswith("sendhold_fit.json#") and "/cubs_" in pointer
+        for pointer in manifest["default_visible"]
+    )
+    assert not any(
+        "flagged" in pointer for pointer in manifest["default_visible"]
+    )
+
+
+SENDHOLD_ANALYSES = (
+    "v3_primary", "v2_preregistered", "v3_ambiguous_as_safe",
+    "v3_fallback_dropped",
+)
+ROLE_BY_ROW = {
+    "Brier vs constant": "gating",
+    "Calibration slope": "gating",
+    "Negative control": "control",
+    "Runs left": "effect (only read when the gating criteria are met)",
+}
+HISTORY_URL = (
+    "https://github.com/howlcipher/howl-cubs-dogfood/blob/main/"
+    "experiments/R003-SENDHOLD-DESIGN.md"
+)
+
+
+def sendhold_data():
+    return json.loads((WEB / "data/sendhold.json").read_text())
+
+
+@pytest.mark.e2e
+def test_sendhold_verdict_panel_content_and_order(open_page):
+    data = sendhold_data()
+    tab = open_page("/sendhold.html", 375)
+    card = tab.locator(".card").first
+    assert tab.locator(".card").count() == 1
+    verdict = card.locator("[data-verdict]")
+    assert verdict.locator("[data-src]").get_attribute("data-src") == (
+        data["verdict"]["source"]
+    )
+    assert verdict.inner_text() == (
+        f"Primary verdict: {data['verdict']['value']}"
+    )
+    meaning = card.locator("[data-meaning]")
+    assert meaning.inner_text() == MEANINGS[data["verdict"]["value"]]
+    secondary = card.locator("[data-secondary-verdict]")
+    assert secondary.locator("[data-src]").get_attribute("data-src") == (
+        data["verdict_v2"]["source"]
+    )
+    assert data["verdict_v2"]["value"] in secondary.inner_text()
+    assert tab.evaluate(
+        "([a, b]) => a.nextElementSibling === b",
+        [verdict.element_handle(), meaning.element_handle()],
+    )
+    assert tab.evaluate(
+        "([a, b]) => a.nextElementSibling === b",
+        [meaning.element_handle(), secondary.element_handle()],
+    )
+    first_table = tab.locator("#sendhold table").first.bounding_box()
+    assert secondary.bounding_box()["y"] < first_table["y"]
+    assert tab.locator('[role="alert"]').count() == 0
+
+
+@pytest.mark.e2e
+def test_sendhold_sections_follow_the_specified_order(open_page):
+    tab = open_page("/sendhold.html")
+    order = tab.evaluate("""() => [...document.querySelectorAll(
+      '#sendhold > section')].map(s => s.querySelector('h2, caption')
+        .textContent.trim())""")
+    assert order[0] == "Published verdicts"
+    assert [t.endswith(("NEGATIVE", "PARTIAL")) for t in order[1:5]] == [
+        True
+    ] * 4
+    assert order[5:] == [
+        "Decision chart", "Label counts", "Feasibility",
+        "Limits of this result",
+    ]
+
+
+@pytest.mark.e2e
+def test_sendhold_unmapped_verdicts_show_alerts(open_page):
+    data = sendhold_data()
+    data["verdict"]["value"] = "UNMAPPED"
+    data["verdict_v2"]["value"] = "UNMAPPED2"
+    data["feasibility_verdict"]["value"] = "UNMAPPED3"
+    tab = open_page("/sendhold.html", overrides={"data/sendhold.json": data})
+    alerts = tab.locator('[role="alert"][data-error="missing-meaning"]')
+    assert alerts.all_inner_texts() == [
+        "No plain-language meaning is defined for verdict UNMAPPED.",
+        "No plain-language meaning is defined for verdict UNMAPPED2.",
+        "No plain-language meaning is defined for verdict UNMAPPED3.",
+    ]
+    assert MEANINGS["NEGATIVE"] not in tab.locator(".card").inner_text()
+    assert tab.guard.errors == []
+
+
+@pytest.mark.e2e
+def test_sendhold_criteria_tables_match_published_values(open_page):
+    data = sendhold_data()
+    tab = open_page("/sendhold.html", 375)
+    tables = tab.locator("#sendhold table")
+    assert tables.count() == 6
+    for index, analysis in enumerate(SENDHOLD_ANALYSES):
+        table = tables.nth(index)
+        verdict = data[f"{analysis}_verdict"]
+        caption = table.locator("caption")
+        assert caption.locator("[data-src]").get_attribute("data-src") == (
+            verdict["source"]
+        )
+        assert caption.inner_text().endswith(f"verdict: {verdict['value']}")
+        assert table.locator("th[scope='col']").count() == 5
+        rows = table.locator("tbody tr").all()
+        assert [r.locator("th[scope='row']").inner_text() for r in rows] == [
+            "Brier vs constant", "Calibration slope", "Runs left",
+            "Negative control",
+        ]
+        for row in rows:
+            label = row.locator("th").inner_text()
+            cells = row.locator("td")
+            assert cells.nth(3).inner_text() == ROLE_BY_ROW[label]
+            status = row.locator("[data-status-source]")
+            passed = resolve_source(status.get_attribute("data-status-source"))
+            assert status.text_content() == ("Met" if passed else "Not met")
+            rule = cells.nth(2).locator("[data-src]")
+            rule_source = rule.get_attribute("data-src")
+            assert rule_source.endswith("/rule")
+            assert rule.text_content() == resolve_source(rule_source)
+            sources = [
+                e.get_attribute("data-src")
+                for e in cells.nth(0).locator("[data-src]").all()
+                if e.get_attribute("data-format") == "display"
+            ]
+            assert len(sources) == 3, label
+            assert sources[1].endswith("/interval_95/lower")
+            assert sources[2].endswith("/interval_95/upper")
+            runs = label == "Runs left"
+            negative = verdict["value"] == "NEGATIVE"
+            disclosure = cells.nth(0).locator(":scope > details")
+            if runs and negative:
+                assert cells.nth(0).inner_text().startswith(
+                    "Not interpretable under the NEGATIVE verdict"
+                )
+                assert disclosure.locator(":scope > summary").inner_text() == (
+                    "Failed-model value (not for decisions)"
+                )
+                assert disclosure.locator("[data-status-source]").count() == 1
+                assert cells.nth(1).inner_text().strip() == ""
+            else:
+                assert "Not interpretable" not in cells.nth(0).inner_text()
+                assert disclosure.filter(
+                    has_text="Failed-model"
+                ).count() == 0
+                assert cells.nth(1).locator(
+                    "[data-status-source]"
+                ).count() == 1
+        brier = rows[0].locator(".brier-note")
+        assert brier.inner_text() == (
+            "The model did not beat a constant guess; the interval includes "
+            "zero, so this is no evidence of benefit, not evidence of harm. "
+            "Passing diagnostic rows do not change the verdict."
+        )
+        assert table.locator(".brier-note").count() == 1
+        footnote = table.locator("xpath=../following-sibling::p[1]")
+        assert footnote.inner_text() == (
+            "The verdict follows the pre-registered gating rule, not a "
+            "count of passes."
+        )
+
+
+@pytest.mark.e2e
+def test_sendhold_runs_left_row_for_a_non_negative_analysis(open_page):
+    data = sendhold_data()
+    data["v3_primary_verdict"]["value"] = "PARTIAL"
+    tab = open_page("/sendhold.html", overrides={"data/sendhold.json": data})
+    row = tab.locator("#sendhold table").first.locator("tbody tr").nth(2)
+    assert "Not interpretable" not in row.inner_text()
+    assert row.locator("td > details summary").filter(
+        has_text="Failed-model"
+    ).count() == 0
+    status = row.locator("[data-status-source]")
+    assert status.text_content() == "Met"
+
+
+@pytest.mark.e2e
+def test_sendhold_decision_table(open_page):
+    data = sendhold_data()
+    tab = open_page("/sendhold.html", 375)
+    decision = tab.locator("#sendhold table").nth(4)
+    caption = decision.locator("caption").inner_text()
+    assert data["inference_line"]["value"] in caption
+    assert (
+        "Sends were selected by the coaches; observed success is not the "
+        "success rate of held runners or of a different policy. Break-even "
+        "p* is not a recommendation."
+    ) in caption
+    assert "derived from the 2025 run expectancy" in caption
+    assert decision.locator("caption [data-quote-source]").get_attribute(
+        "data-quote-source"
+    ) == data["inference_line"]["source"]
+    headers = decision.locator("th[scope='col']").all_inner_texts()
+    assert headers == [
+        "Zone group", "Hit type", "Outs", "Speed tercile", "n", "n sent",
+        "Observed send success", "p* (2025 run expectancy)",
+    ]
+    cells = {
+        int(k.split("_")[1]) for k in data
+        if k.startswith("cell_") and k.endswith("_zone_group")
+    }
+    rows = decision.locator("tbody tr").all()
+    assert len(rows) == len(cells) > 0
+    low_rows = 0
+    for index, row in enumerate(rows):
+        sources = [
+            e.get_attribute("data-src")
+            for e in row.locator("[data-src][data-format='display']").all()
+        ]
+        assert sources == [
+            data[f"cell_{index}_{field}"]["source"] for field in (
+                "zone_group", "hit_type", "outs", "speed_tercile", "n",
+                "n_sent", "observed_send_success", "p_star",
+            )
+        ]
+        low = data[f"cell_{index}_low_n"]["value"]
+        low_rows += bool(low)
+        assert ("low n" in row.inner_text()) is bool(low)
+    assert low_rows > 0
+    metadata = decision.locator("xpath=ancestor::section[1]/p[1]")
+    # Each number appears once as display text and once in its disclosure.
+    assert metadata.locator(
+        f'[data-src="{data["min_cell_n"]["source"]}"]'
+    ).count() == 2
+    for index in (0, 1):
+        assert metadata.locator(
+            f'[data-src="{data[f"speed_cut_{index}"]["source"]}"]'
+        ).count() == 2
+    assert "mean_p_safe" not in decision.evaluate("e => e.outerHTML")
+    wrap = tab.locator(".decision-table-wrap")
+    assert wrap.evaluate("el => getComputedStyle(el).overflowX == 'auto'")
+    assert wrap.evaluate("el => el.scrollWidth > el.clientWidth")
+    assert wrap.get_attribute("tabindex") == "0"
+    assert wrap.get_attribute("aria-label")
+
+
+@pytest.mark.e2e
+def test_sendhold_label_counts_name_version_and_season(open_page):
+    data = sendhold_data()
+    tab = open_page("/sendhold.html")
+    table = tab.locator("#sendhold table").nth(5)
+    assert table.locator("caption").inner_text() == (
+        "Per-season label counts by label version"
+    )
+    rows = table.locator("tbody tr").all()
+    assert len(rows) == 6
+    expected_versions = [
+        data[f"{analysis}_label_version"]["value"]
+        for analysis in SENDHOLD_ANALYSES
+    ] + ["v3", "v2"]
+    for row, version in zip(rows, expected_versions):
+        cells = row.locator("td")
+        assert cells.nth(0).inner_text() == version
+        assert cells.nth(1).inner_text() == "2025"
+        for cell in cells.all()[2:]:
+            source = cell.locator("[data-src]").first.get_attribute("data-src")
+            assert resolve_source(source) == int(
+                cell.locator("[data-src]").first.text_content()
+            )
+    fit_season = rows[4].locator("td").nth(1).locator("[data-src]").first
+    assert fit_season.get_attribute("data-src") == data["fit_season"]["source"]
+    assert "Total" not in table.inner_text()
+
+
+@pytest.mark.e2e
+def test_sendhold_feasibility_and_limits(open_page):
+    data = sendhold_data()
+    tab = open_page("/sendhold.html")
+    feasibility = tab.locator("#sendhold section").filter(
+        has=tab.locator("h2", has_text="Feasibility")
+    )
+    text = feasibility.inner_text()
+    assert data["feasibility_verdict"]["value"] == "PARTIAL"
+    assert MEANINGS["PARTIAL"] in text
+    assert data["verdict_reason"]["value"] in text
+    for key in ("new_requests_used", "ceiling"):
+        assert feasibility.locator(
+            f'[data-src="{data[key]["source"]}"]'
+        ).count() >= 1
+    limits = tab.locator("#limits")
+    assert limits.count() == 1
+    for key in ("unknown_line_0", "unknown_line_1"):
+        quote = limits.locator(
+            f'[data-quote-source="{data[key]["source"]}"]'
+        )
+        assert quote.inner_text() == data[key]["value"]
+    assert data["fit_unknown_0"]["value"] in limits.inner_text()
+    sent = data["covariate_sent_out"]["value"]
+    required = data["covariate_required_sent_out"]["value"]
+    assert (
+        f"Reduced covariate set: {sent} of {required} required"
+        in limits.inner_text()
+    )
+    for key in ("covariate_sent_out", "covariate_required_sent_out"):
+        assert limits.locator(
+            f'[data-src="{data[key]["source"]}"]'
+        ).count() == 2
+    link = limits.locator(f'a[href="{HISTORY_URL}"]')
+    assert link.count() == 1
+    assert limits.inner_text().count("Label history v1 to v3") == 1
+
+
+@pytest.mark.e2e
+def test_sendhold_hides_model_values_by_default(open_page):
+    tab = open_page("/sendhold.html")
+    sources = tab.evaluate(
+        "() => [...document.querySelectorAll('[data-src]')]"
+        ".map(e => e.dataset.src)"
+    )
+    assert sources
+    for source in sources:
+        assert "mean_p_safe" not in source
+        assert "flagged" not in source
+        assert "mean_predicted" not in source
+        assert "/point_2026" not in source
+    body = tab.locator("body").inner_text().lower()
+    assert "mean_p_safe" not in body
+
+
+@pytest.mark.e2e
+def test_sendhold_runs_left_is_hidden_until_keyboard_disclosure(open_page):
+    tab = open_page("/sendhold.html")
+    details = tab.locator('summary').filter(
+        has_text="Failed-model value (not for decisions)"
+    ).first
+    runs_left = tab.locator("#sendhold [data-src*='runs_left']").first
+    assert not runs_left.is_visible()
+    details.focus()
+    tab.keyboard.press("Enter")
+    assert tab.locator(
+        "#sendhold [data-src*='runs_left']"
+    ).first.is_visible()
+
+
+@pytest.mark.e2e
+@pytest.mark.parametrize("width", WIDTHS)
+def test_sendhold_wide_tables_scroll_inside_their_containers(width, open_page):
+    tab = open_page("/sendhold.html", width)
+    wraps = tab.locator("#sendhold .table-wrap")
+    assert wraps.count() == 6
+    for wrap in wraps.all():
+        assert wrap.evaluate(
+            "el => getComputedStyle(el).overflowX !== 'visible'"
+        )
+        assert wrap.evaluate(
+            "el => el.getBoundingClientRect().right <= innerWidth + 1"
+        )
+
+
 def test_static_assets_have_no_remote_references():
     assets = [p for p in WEB.rglob("*") if p.suffix in {
         ".html", ".css", ".js"}]
     assert assets
     for path in assets:
-        text = path.read_text()
+        # The one allowed reference is a plain link; nothing fetches it.
+        text = path.read_text().replace(HISTORY_URL, "")
         assert not re.search(r"https?://|//cdn|@import", text, re.I), path
 
 
@@ -350,7 +737,7 @@ def test_page_provenance_and_stub_guards(page, open_page):
     assert USAGE_QUOTE in footer
     body = tab.locator("body").inner_text()
     assert ("coming in a later version" in body) == page.stub
-    assert "Failed-model value" not in body
+    assert ("Failed-model value" in body) == (page.path == "/sendhold.html")
 
 
 @pytest.mark.e2e
@@ -556,8 +943,13 @@ def test_every_details_opens_by_keyboard(page, open_page):
         assert not tab.evaluate(is_open), "Space should close"
         tab.keyboard.press("Space")
         assert tab.evaluate(is_open), "Space should open"
-        tab.keyboard.press("Enter")
-        assert not tab.evaluate(is_open), "Enter should close"
+        has_nested = tab.evaluate(
+            "() => document.activeElement.parentElement."
+            "querySelector('details') !== null"
+        )
+        if not has_nested:
+            tab.keyboard.press("Enter")
+            assert not tab.evaluate(is_open), "Enter should close"
         if len(reached) == total:
             break
     assert len(reached) == total

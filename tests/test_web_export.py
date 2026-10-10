@@ -10,7 +10,7 @@ import pytest
 from cubs_edge_lab import web_export
 
 REPO = Path(__file__).resolve().parents[1]
-HIDDEN_TERMS = ("sendhold_fit", "p_safe", "predicted", "flagged", "runs_left")
+HIDDEN_TERMS = ("p_safe", "predicted", "flagged")
 APPROVED_NEGATIVE_MEANING = (
     "No measurable improvement over a simple baseline was shown. "
     "This does not show the opposite."
@@ -187,4 +187,103 @@ def test_manifest_hashes_and_allowlist():
     assert visible == web_export.default_visible(web_export.SELECTIONS)
     assert not any(p.startswith("data/") for p in visible)
     assert not any(t in p.lower() for p in visible for t in HIDDEN_TERMS)
+    assert not any("mean_p_safe" in p for p in visible)
     assert {p.split("#")[0] for p in visible} <= set(manifest["sources"])
+
+
+def test_sendhold_default_visible_allowlist_is_narrow():
+    """Model values stay hidden except in the elements the spec names."""
+    visible = web_export.DEFAULT_VISIBLE
+    fit = [p for p in visible if p.startswith("sendhold_fit.json#")]
+    assert fit
+    allowed_fit = (
+        "#/fit_season", "#/unknown/",
+        "#/versions/v2/label_counts/", "#/versions/v3/label_counts/",
+        "#/versions/v3/decision_chart/",
+    )
+    assert all(any(token in p for token in allowed_fit) for p in fit)
+    cell_fields = {
+        "zone_group", "hit_type", "outs", "speed_tercile", "n", "n_sent",
+        "observed_send_success", "p_star", "low_n",
+    }
+    for pointer in fit:
+        if "/decision_chart/cells/" in pointer:
+            assert pointer.rsplit("/", 1)[1] in cell_fields, pointer
+    # Runs left is shown only as the four gating-dependent criteria rows.
+    runs = [p for p in visible if "runs_left" in p]
+    assert runs and all(
+        p.startswith("sendhold_experiment.json#/analyses/")
+        and "/criteria/runs_left_excludes_zero/" in p
+        for p in runs
+    )
+    forbidden = ("/point_2026", "/cubs", "flagged", "mean_predicted")
+    assert not any(t in p for p in visible for t in forbidden)
+    negative_control = [p for p in visible if "/negative_control/" in p]
+    assert {p.rsplit("/", 1)[1] for p in negative_control} <= {
+        "realized_success", "passed", "rule", "lower", "upper",
+    }
+
+
+def test_sendhold_roles_are_fixed_display_copy():
+    assert web_export.ROLES == {
+        "brier_beats_constant": "gating",
+        "calibration_slope": "gating",
+        "negative_control": "control",
+        "runs_left_excludes_zero": (
+            "effect (only read when the gating criteria are met)"
+        ),
+    }
+    assert set(web_export.ROLES) == set(web_export.CRITERIA)
+
+
+def test_verbatim_quotes_are_exact_lines():
+    for filename, number, expected in web_export.VERBATIM_LINES.values():
+        lines = (REPO / "research" / filename).read_text().splitlines()
+        assert lines[number - 1] == expected
+
+
+def test_export_fails_when_a_quoted_line_drifts(tmp_path, monkeypatch):
+    (tmp_path / "research").mkdir()
+    (tmp_path / "research" / "cubs_case.json").write_text(
+        '{"as_of_date": "2026-10-09"}'
+    )
+    (tmp_path / "research" / "source.json").write_text('{"key": 1}')
+    (tmp_path / "research" / "QUOTE.md").write_text(
+        "INFERENCE: moved\nUNKNOWN: a line\n"
+    )
+    monkeypatch.setattr(web_export, "SELECTIONS", {
+        "sendhold.json": {"v": ("source.json", "/key")},
+    })
+    monkeypatch.setattr(web_export, "VERBATIM_LINES", {
+        "quote": ("QUOTE.md", 2, "UNKNOWN: a line"),
+    })
+    assert not web_export.export_data(tmp_path)
+    copied = json.loads((tmp_path / "web/data/sendhold.json").read_text())
+    assert copied["quote"] == {
+        "value": "UNKNOWN: a line", "source": "QUOTE.md#L2",
+    }
+    monkeypatch.setattr(web_export, "VERBATIM_LINES", {
+        "quote": ("QUOTE.md", 2, "UNKNOWN: a changed line"),
+    })
+    with pytest.raises(ValueError, match="Research line changed"):
+        web_export.export_data(tmp_path)
+    monkeypatch.setattr(web_export, "VERBATIM_LINES", {
+        "quote": ("QUOTE.md", 3, "UNKNOWN: a line"),
+    })
+    with pytest.raises(ValueError, match="Research line changed"):
+        web_export.export_data(tmp_path)
+
+
+def test_sendhold_selections_cover_each_analysis_and_label_version():
+    selected = web_export.SELECTIONS["sendhold.json"]
+    for analysis in web_export.ANALYSES:
+        assert selected[f"{analysis}_verdict"][1].endswith(
+            f"/{analysis}/verdict"
+        )
+        assert selected[f"{analysis}_label_version"][1].endswith(
+            f"/{analysis}/label_version"
+        )
+        for criterion in web_export.CRITERIA:
+            for field in ("estimate", "passed", "rule", "lower", "upper"):
+                assert f"{analysis}_{criterion}_{field}" in selected
+    assert selected["fit_season"] == ("sendhold_fit.json", "/fit_season")

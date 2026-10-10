@@ -1,0 +1,6 @@
+{
+  "brier_beats_constant": "gating",
+  "calibration_slope": "gating",
+  "negative_control": "control",
+  "runs_left_excludes_zero": "effect (only read when the gating criteria are met)"
+}
