@@ -1,0 +1,26 @@
+{
+  "early_stop": {
+    "source": "validation.json#/early_stop",
+    "value": true
+  },
+  "early_stop_reason": {
+    "source": "validation.json#/early_stop_reason",
+    "value": "validation primary positives below 30"
+  },
+  "sendhold_v2_verdict": {
+    "source": "sendhold_experiment.json#/verdict_v2_preregistered_definition",
+    "value": "NEGATIVE"
+  },
+  "sendhold_verdict": {
+    "source": "sendhold_experiment.json#/verdict",
+    "value": "NEGATIVE"
+  },
+  "triage_meaning": {
+    "source": "cubs_case.json#/interpretation",
+    "value": "illustrates the size of the opportunity only; not a recommendation"
+  },
+  "triage_status": {
+    "source": "cubs_case.json#/method_status",
+    "value": "failed its pre-registered test"
+  }
+}

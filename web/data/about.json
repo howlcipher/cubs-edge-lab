@@ -1,0 +1,22 @@
+{
+  "full_request_estimate": {
+    "source": "sendhold_feasibility.json#/full_retrieval_request_estimate",
+    "value": 4866
+  },
+  "request_ceiling": {
+    "source": "sendhold_feasibility.json#/ceiling",
+    "value": 150
+  },
+  "request_count": {
+    "source": "sendhold_feasibility.json#/new_requests_used",
+    "value": 107
+  },
+  "source_names": {
+    "source": "exploratory_whole_pool.json#/config/source",
+    "value": "MLBAM, MLB Stats API"
+  },
+  "triage_source": {
+    "source": "cubs_case.json#/source",
+    "value": "MLBAM, MLB Stats API; cached local responses"
+  }
+}
