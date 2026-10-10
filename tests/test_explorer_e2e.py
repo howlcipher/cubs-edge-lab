@@ -42,7 +42,7 @@ PAGES = [
     Page("/", verdict=True),
     Page("/about.html", details=True),
     Page("/sendhold.html", verdict=True, details=True),
-    Page("/milbfa.html", stub=True),
+    Page("/milbfa.html", details=True),
 ]
 PAGE_IDS = [page.path for page in PAGES]
 
@@ -112,7 +112,7 @@ def assert_numeric_nodes(nodes, manifest):
             assert text in {
                 "v1", "v2", "v2-definition", "v3", "v2 pre-registered",
                 "v3 primary", "v3 ambiguous as safe", "v3 fallback dropped",
-                "95% interval", "2025",
+                "95% interval", "2025", "R001", "B0", "B1", "B2",
             }, text
         else:
             raise AssertionError(f"Untagged number: {text}")
@@ -593,6 +593,278 @@ def test_sendhold_wide_tables_scroll_inside_their_containers(width, open_page):
         assert wrap.evaluate(
             "el => el.getBoundingClientRect().right <= innerWidth + 1"
         )
+
+
+RANKINGS = ("B0", "B1", "B2", "P", "M")
+BASELINES = ("B0", "B1", "B2", "P")
+CUTOFFS = ("25", "50", "100")
+FOLLOWS = """([a, b]) => !!(
+  a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING)"""
+
+
+def milbfa_data():
+    return json.loads((WEB / "data/milbfa.json").read_text())
+
+
+def display_sources(scope):
+    return [
+        e.get_attribute("data-src")
+        for e in scope.locator("[data-src][data-format='display']").all()
+    ]
+
+
+@pytest.mark.e2e
+def test_milbfa_sections_follow_the_specified_order(open_page):
+    tab = open_page("/milbfa.html")
+    order = tab.evaluate("""() => [...document.querySelectorAll(
+      '#milbfa > section')].map(s => s.querySelector('h2').textContent)""")
+    assert order == [
+        "Status", "Exploratory whole-pool results", "Cubs case",
+        "Limits of this result",
+    ]
+    assert tab.locator('[role="alert"]').count() == 0
+
+
+@pytest.mark.e2e
+def test_milbfa_status_panel_precedes_the_first_table(open_page):
+    tab = open_page("/milbfa.html", 375)
+    status = tab.locator("#status")
+    table = tab.locator("table").first
+    assert tab.evaluate(
+        FOLLOWS, [status.element_handle(), table.element_handle()]
+    )
+    assert tab.evaluate(
+        "(el) => el === el.parentElement.firstElementChild",
+        status.element_handle(),
+    )
+    s_box, t_box = status.bounding_box(), table.bounding_box()
+    assert s_box["y"] + s_box["height"] <= t_box["y"] + 1
+
+
+@pytest.mark.e2e
+def test_milbfa_status_labels_are_distinct_and_sourced(open_page):
+    data = milbfa_data()
+    tab = open_page("/milbfa.html")
+    method = tab.locator("#status [data-status='method']")
+    assert method.inner_text() == (
+        f"R001 method status: {data['method_status']['value']}"
+    )
+    assert method.locator("[data-src]").get_attribute("data-src") == (
+        data["method_status"]["source"]
+    )
+    stop = tab.locator("#status [data-status='early-stop']")
+    assert stop.inner_text() == (
+        "Test not run (early stop): "
+        f"{data['early_stop_reason']['value']}"
+    )
+    assert stop.locator("[data-src]").get_attribute("data-src") == (
+        data["early_stop_reason"]["source"]
+    )
+    holdout = tab.locator("#status [data-status='holdout']")
+    assert holdout.inner_text().startswith(
+        f"Holdout untouched: {data['holdout_excluded']['value']}"
+    )
+    assert set(display_sources(holdout)) == {
+        data["holdout_excluded"]["source"]
+    }
+    assert tab.locator("#status > p").count() == 3
+
+
+@pytest.mark.e2e
+def test_milbfa_missing_early_stop_meaning_shows_alert(open_page):
+    meanings = dict(MEANINGS)
+    del meanings["Test not run (early stop)"]
+    tab = open_page(
+        "/milbfa.html", overrides={"data/meanings.json": meanings}
+    )
+    alerts = tab.locator('[role="alert"][data-error="missing-meaning"]')
+    assert alerts.all_inner_texts() == [
+        "No plain-language meaning is defined for verdict "
+        "Test not run (early stop)."
+    ]
+    # The other two status lines still render.
+    assert tab.locator("#status [data-status='method']").count() == 1
+    assert tab.locator("#status [data-status='holdout']").count() == 1
+    assert tab.locator("table").count() == 2
+    assert tab.guard.errors == []
+
+
+@pytest.mark.e2e
+def test_milbfa_exploratory_banner_quotes_and_precedes_table(open_page):
+    data = milbfa_data()
+    tab = open_page("/milbfa.html", 375)
+    banner = tab.locator("#exploratory [role='note']")
+    assert banner.count() == 1
+    lines = (REPO / "research/EXPERIMENT.md").read_text().splitlines()
+    assert lines[45].endswith("Only cohort aggregates are reported.")
+    assert lines[46].endswith("no usefulness claim or recommendation.")
+    quotes = banner.locator("[data-quote-source]")
+    assert quotes.all_inner_texts() == [lines[45], lines[46]]
+    assert [q.get_attribute("data-quote-source") for q in quotes.all()] == [
+        data["banner_line_0"]["source"], data["banner_line_1"]["source"],
+    ]
+    assert data["banner_line_0"]["source"] == "EXPERIMENT.md#L46"
+    table = tab.locator("#exploratory table").first
+    assert tab.evaluate(
+        FOLLOWS, [banner.element_handle(), table.element_handle()]
+    )
+    b_box, t_box = banner.bounding_box(), table.bounding_box()
+    assert b_box["y"] + b_box["height"] <= t_box["y"] + 1
+
+
+@pytest.mark.e2e
+def test_milbfa_ranking_table_matches_published_values(open_page):
+    data = milbfa_data()
+    tab = open_page("/milbfa.html", 375)
+    table = tab.locator("#exploratory table").first
+    caption = table.locator("caption")
+    cited = caption.locator("[data-src]").all()
+    assert [e.get_attribute("data-src") for e in cited] == [
+        data["validation_year"]["source"], data["comparator"]["source"],
+    ]
+    assert caption.inner_text() == (
+        "Whole-pool ranking metrics for validation year "
+        f"{data['validation_year']['value']}; comparator "
+        f"{data['comparator']['value']}"
+    )
+    assert table.locator("th[scope='col']").all_inner_texts() == [
+        "Ranking", "N", "Positives", "Base rate",
+        "Top 25 hits", "Top 25 precision", "Top 50 hits",
+        "Top 50 precision", "Top 100 hits", "Top 100 precision", "AUROC",
+    ]
+    rows = table.locator("tbody tr").all()
+    assert [r.locator("th").inner_text() for r in rows] == list(RANKINGS)
+    for row, ranking in zip(rows, RANKINGS):
+        expected = [
+            data[key]["source"] for key in ("n", "positives", "base_rate")
+        ]
+        for cutoff in CUTOFFS:
+            expected += [
+                data[f"{ranking}_top_{cutoff}_{field}"]["source"]
+                for field in ("hits", "precision")
+            ]
+        expected.append(data[f"{ranking}_auroc"]["source"])
+        assert display_sources(row) == expected
+        # Every rate is shown beside its n and positives, with full values.
+        assert row.locator("details").count() == len(expected)
+    assert data["comparator"]["value"] in RANKINGS
+    assert tab.locator("[data-src*='calibration']").count() == 0
+
+
+@pytest.mark.e2e
+def test_milbfa_bootstrap_table_matches_published_values(open_page):
+    data = milbfa_data()
+    tab = open_page("/milbfa.html", 375)
+    table = tab.locator("#exploratory table").nth(1)
+    assert table.locator("th[scope='col']").all_inner_texts() == [
+        "Baseline", "N", "Positives", "Mean difference", "95% interval",
+        "Resamples",
+    ]
+    rows = table.locator("tbody tr").all()
+    assert [r.locator("th").inner_text() for r in rows] == list(BASELINES)
+    for row, baseline in zip(rows, BASELINES):
+        assert display_sources(row) == [
+            data["n"]["source"], data["positives"]["source"],
+            data[f"boot_{baseline}_mean"]["source"],
+            data[f"boot_{baseline}_lower"]["source"],
+            data[f"boot_{baseline}_upper"]["source"],
+            data[f"boot_{baseline}_resamples"]["source"],
+        ]
+        resamples = data[f"boot_{baseline}_resamples"]["value"]
+        assert row.locator("td").last.locator(
+            "[data-format='display']"
+        ).text_content() == str(resamples)
+        interval = row.locator("td").nth(3)
+        assert interval.locator("[data-format='display']").count() == 2
+        assert "\nto " in interval.inner_text()
+
+
+@pytest.mark.e2e
+def test_milbfa_cubs_case_section_content(open_page):
+    data = milbfa_data()
+    tab = open_page("/milbfa.html")
+    cubs = tab.locator("#cubs-case")
+    first = cubs.locator("h2 + p")
+    assert first.inner_text() == data["interpretation"]["value"]
+    assert first.locator("[data-src]").get_attribute("data-src") == (
+        data["interpretation"]["source"]
+    )
+    years = [data[f"cohort_year_{i}"]["value"] for i in range(4)]
+    assert "Cohort years: " + ", ".join(map(str, years)) in cubs.inner_text()
+    assert data["signing_window"]["value"] in cubs.inner_text()
+    for key in ("threshold_pa", "threshold_ip"):
+        assert cubs.locator(
+            f'[data-src="{data[key]["source"]}"]'
+        ).count() == 2
+    items = cubs.locator("li")
+    assert items.all_inner_texts() == [
+        data[f"unknown_{i}"]["value"] for i in range(3)
+    ]
+    assert cubs.locator("table").count() == 0
+
+
+@pytest.mark.e2e
+def test_milbfa_shows_no_player_level_values(open_page):
+    case = json.loads((REPO / "research/cubs_case.json").read_text())
+    assert case["examples"]
+    tab = open_page("/milbfa.html")
+    sources = tab.evaluate(
+        "() => [...document.querySelectorAll('[data-src]')]"
+        ".map(e => e.dataset.src)"
+    )
+    assert sources
+    assert not any(
+        token in source for source in sources
+        for token in ("/examples", "/cohorts", "person")
+    )
+    exported = (WEB / "data/milbfa.json").read_text()
+    for token in ("/examples", "/cohorts", "person_id", "election_date"):
+        assert token not in exported
+    body = tab.locator("body").inner_text()
+    for example in case["examples"]:
+        assert str(example["person_id"]) not in body
+        assert example["election_date"] not in body
+        assert example["signing_date"] not in body
+    assert "person" not in body.lower()
+
+
+@pytest.mark.e2e
+def test_milbfa_limits_block_is_present(open_page):
+    data = milbfa_data()
+    tab = open_page("/milbfa.html")
+    limits = tab.locator("#limits")
+    assert limits.count() == 1
+    assert limits.locator("h2").inner_text() == "Limits of this result"
+    lines = (REPO / "research/EXPERIMENT.md").read_text().splitlines()
+    quotes = limits.locator("[data-quote-source]")
+    assert quotes.all_inner_texts() == [lines[38], lines[39]]
+    assert [q.get_attribute("data-quote-source") for q in quotes.all()] == [
+        "EXPERIMENT.md#L39", "EXPERIMENT.md#L40",
+    ]
+    assert lines[38].startswith("UNKNOWN:")
+    assert lines[39].startswith("INFERENCE:")
+    assert limits.locator("li").all_inner_texts() == [
+        data[f"unknown_{i}"]["value"] for i in range(3)
+    ]
+
+
+@pytest.mark.e2e
+@pytest.mark.parametrize("width", WIDTHS)
+def test_milbfa_wide_tables_scroll_inside_their_containers(width, open_page):
+    tab = open_page("/milbfa.html", width)
+    wraps = tab.locator("#milbfa .table-wrap")
+    assert wraps.count() == 2
+    for wrap in wraps.all():
+        assert wrap.get_attribute("tabindex") == "0"
+        assert wrap.get_attribute("aria-label")
+        assert wrap.evaluate(
+            "el => getComputedStyle(el).overflowX !== 'visible'"
+        )
+        assert wrap.evaluate(
+            "el => el.getBoundingClientRect().right <= innerWidth + 1"
+        )
+    if width < 900:
+        assert wraps.first.evaluate("el => el.scrollWidth > el.clientWidth")
 
 
 def test_static_assets_have_no_remote_references():

@@ -1,0 +1,314 @@
+{
+  "B0_auroc": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/rankings/B0/auroc",
+    "value": 0.83948
+  },
+  "B0_top_100_hits": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/rankings/B0/top_k/100/hits",
+    "value": 50
+  },
+  "B0_top_100_precision": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/rankings/B0/top_k/100/precision",
+    "value": 0.5
+  },
+  "B0_top_25_hits": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/rankings/B0/top_k/25/hits",
+    "value": 19
+  },
+  "B0_top_25_precision": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/rankings/B0/top_k/25/precision",
+    "value": 0.76
+  },
+  "B0_top_50_hits": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/rankings/B0/top_k/50/hits",
+    "value": 32
+  },
+  "B0_top_50_precision": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/rankings/B0/top_k/50/precision",
+    "value": 0.64
+  },
+  "B1_auroc": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/rankings/B1/auroc",
+    "value": 0.818893
+  },
+  "B1_top_100_hits": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/rankings/B1/top_k/100/hits",
+    "value": 46
+  },
+  "B1_top_100_precision": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/rankings/B1/top_k/100/precision",
+    "value": 0.46
+  },
+  "B1_top_25_hits": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/rankings/B1/top_k/25/hits",
+    "value": 20
+  },
+  "B1_top_25_precision": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/rankings/B1/top_k/25/precision",
+    "value": 0.8
+  },
+  "B1_top_50_hits": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/rankings/B1/top_k/50/hits",
+    "value": 24
+  },
+  "B1_top_50_precision": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/rankings/B1/top_k/50/precision",
+    "value": 0.48
+  },
+  "B2_auroc": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/rankings/B2/auroc",
+    "value": 0.726888
+  },
+  "B2_top_100_hits": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/rankings/B2/top_k/100/hits",
+    "value": 35
+  },
+  "B2_top_100_precision": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/rankings/B2/top_k/100/precision",
+    "value": 0.35
+  },
+  "B2_top_25_hits": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/rankings/B2/top_k/25/hits",
+    "value": 11
+  },
+  "B2_top_25_precision": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/rankings/B2/top_k/25/precision",
+    "value": 0.44
+  },
+  "B2_top_50_hits": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/rankings/B2/top_k/50/hits",
+    "value": 20
+  },
+  "B2_top_50_precision": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/rankings/B2/top_k/50/precision",
+    "value": 0.4
+  },
+  "M_auroc": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/rankings/M/auroc",
+    "value": 0.823047
+  },
+  "M_top_100_hits": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/rankings/M/top_k/100/hits",
+    "value": 53
+  },
+  "M_top_100_precision": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/rankings/M/top_k/100/precision",
+    "value": 0.53
+  },
+  "M_top_25_hits": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/rankings/M/top_k/25/hits",
+    "value": 20
+  },
+  "M_top_25_precision": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/rankings/M/top_k/25/precision",
+    "value": 0.8
+  },
+  "M_top_50_hits": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/rankings/M/top_k/50/hits",
+    "value": 38
+  },
+  "M_top_50_precision": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/rankings/M/top_k/50/precision",
+    "value": 0.76
+  },
+  "P_auroc": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/rankings/P/auroc",
+    "value": 0.737998
+  },
+  "P_top_100_hits": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/rankings/P/top_k/100/hits",
+    "value": 51
+  },
+  "P_top_100_precision": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/rankings/P/top_k/100/precision",
+    "value": 0.51
+  },
+  "P_top_25_hits": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/rankings/P/top_k/25/hits",
+    "value": 16
+  },
+  "P_top_25_precision": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/rankings/P/top_k/25/precision",
+    "value": 0.64
+  },
+  "P_top_50_hits": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/rankings/P/top_k/50/hits",
+    "value": 25
+  },
+  "P_top_50_precision": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/rankings/P/top_k/50/precision",
+    "value": 0.5
+  },
+  "banner_line_0": {
+    "source": "EXPERIMENT.md#L46",
+    "value": "EXPLORATORY FACT: Source attribution: MLBAM, MLB Stats API. Only cohort aggregates are reported."
+  },
+  "banner_line_1": {
+    "source": "EXPERIMENT.md#L47",
+    "value": "EXPLORATORY FACT: This section supports no usefulness claim or recommendation."
+  },
+  "base_rate": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/base_rate",
+    "value": 0.143082
+  },
+  "boot_B0_lower": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/bootstrap_m_minus_baseline/B0/percentile_95/0",
+    "value": -0.048764
+  },
+  "boot_B0_mean": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/bootstrap_m_minus_baseline/B0/mean_difference",
+    "value": -0.016329
+  },
+  "boot_B0_resamples": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/bootstrap_m_minus_baseline/B0/resamples",
+    "value": 2000
+  },
+  "boot_B0_upper": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/bootstrap_m_minus_baseline/B0/percentile_95/1",
+    "value": 0.014118
+  },
+  "boot_B1_lower": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/bootstrap_m_minus_baseline/B1/percentile_95/0",
+    "value": -0.025169
+  },
+  "boot_B1_mean": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/bootstrap_m_minus_baseline/B1/mean_difference",
+    "value": 0.004523
+  },
+  "boot_B1_resamples": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/bootstrap_m_minus_baseline/B1/resamples",
+    "value": 2000
+  },
+  "boot_B1_upper": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/bootstrap_m_minus_baseline/B1/percentile_95/1",
+    "value": 0.034079
+  },
+  "boot_B2_lower": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/bootstrap_m_minus_baseline/B2/percentile_95/0",
+    "value": 0.061617
+  },
+  "boot_B2_mean": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/bootstrap_m_minus_baseline/B2/mean_difference",
+    "value": 0.096418
+  },
+  "boot_B2_resamples": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/bootstrap_m_minus_baseline/B2/resamples",
+    "value": 2000
+  },
+  "boot_B2_upper": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/bootstrap_m_minus_baseline/B2/percentile_95/1",
+    "value": 0.133022
+  },
+  "boot_P_lower": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/bootstrap_m_minus_baseline/P/percentile_95/0",
+    "value": 0.047619
+  },
+  "boot_P_mean": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/bootstrap_m_minus_baseline/P/mean_difference",
+    "value": 0.085272
+  },
+  "boot_P_resamples": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/bootstrap_m_minus_baseline/P/resamples",
+    "value": 2000
+  },
+  "boot_P_upper": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/bootstrap_m_minus_baseline/P/percentile_95/1",
+    "value": 0.123688
+  },
+  "cohort_year_0": {
+    "source": "cubs_case.json#/cohort_years/0",
+    "value": 2021
+  },
+  "cohort_year_1": {
+    "source": "cubs_case.json#/cohort_years/1",
+    "value": 2022
+  },
+  "cohort_year_2": {
+    "source": "cubs_case.json#/cohort_years/2",
+    "value": 2023
+  },
+  "cohort_year_3": {
+    "source": "cubs_case.json#/cohort_years/3",
+    "value": 2024
+  },
+  "comparator": {
+    "source": "exploratory_whole_pool.json#/comparator",
+    "value": "B0"
+  },
+  "early_stop": {
+    "source": "validation.json#/early_stop",
+    "value": true
+  },
+  "early_stop_reason": {
+    "source": "validation.json#/early_stop_reason",
+    "value": "validation primary positives below 30"
+  },
+  "holdout_excluded": {
+    "source": "exploratory_whole_pool.json#/config/holdout_excluded",
+    "value": 2025
+  },
+  "interpretation": {
+    "source": "cubs_case.json#/interpretation",
+    "value": "illustrates the size of the opportunity only; not a recommendation"
+  },
+  "limit_inference_line": {
+    "source": "EXPERIMENT.md#L40",
+    "value": "INFERENCE: The persistence ranking can be nearly degenerate in the primary segment because players in that segment had no MLB appearance in season Y."
+  },
+  "limit_unknown_line": {
+    "source": "EXPERIMENT.md#L39",
+    "value": "UNKNOWN: Validation metrics, bootstrap intervals, and comparator selection are null after early stop."
+  },
+  "method_status": {
+    "source": "cubs_case.json#/method_status",
+    "value": "was not tested (pre-registered early stop)"
+  },
+  "n": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/n",
+    "value": 636
+  },
+  "positives": {
+    "source": "exploratory_whole_pool.json#/validation/whole_pool/positives",
+    "value": 91
+  },
+  "signing_window": {
+    "source": "cubs_case.json#/signing_window",
+    "value": "player election date through March 31 of cohort year + 1, inclusive"
+  },
+  "threshold_ip": {
+    "source": "cubs_case.json#/thresholds/ip",
+    "value": 20
+  },
+  "threshold_pa": {
+    "source": "cubs_case.json#/thresholds/pa",
+    "value": 50
+  },
+  "top_k_0": {
+    "source": "exploratory_whole_pool.json#/config/top_k/0",
+    "value": 25
+  },
+  "top_k_1": {
+    "source": "exploratory_whole_pool.json#/config/top_k/1",
+    "value": 50
+  },
+  "top_k_2": {
+    "source": "exploratory_whole_pool.json#/config/top_k/2",
+    "value": 100
+  },
+  "unknown_0": {
+    "source": "cubs_case.json#/unknowns/0",
+    "value": "availability"
+  },
+  "unknown_1": {
+    "source": "cubs_case.json#/unknowns/1",
+    "value": "contract terms"
+  },
+  "unknown_2": {
+    "source": "cubs_case.json#/unknowns/2",
+    "value": "competing offers"
+  },
+  "validation_year": {
+    "source": "exploratory_whole_pool.json#/config/validation_year",
+    "value": 2024
+  }
+}

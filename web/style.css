@@ -21,6 +21,7 @@ h1 { line-height: 1.15; }
 .decision-table-wrap { max-height: 32rem; overflow: auto; }
 table caption { caption-side: top; text-align: left; font-weight: 700; padding: .5rem 0; }
 .decision-table-wrap table { min-width: 62rem; }
+.ranking-table { min-width: 56rem; }
 .decision-caveat { font-weight: 700; }
 .brier-note { margin: .75rem 0 0; }
 table { border-collapse: collapse; width: 100%; }

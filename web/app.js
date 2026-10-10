@@ -487,6 +487,147 @@ function renderLabelCounts(root, data) {
   table.append(body); section.append(scrollWrap(table, "Label counts")); root.append(section);
 }
 
+const POOL_RANKINGS = ["B0", "B1", "B2", "P", "M"];
+const POOL_BASELINES = ["B0", "B1", "B2", "P"];
+const POOL_CUTOFFS = ["25", "50", "100"];
+
+/** @param {HTMLElement} root @param {string} id @param {string} title */
+function panelSection(root, id, title) {
+  const section = document.createElement("section");
+  section.className = "panel"; section.id = id;
+  const heading = document.createElement("h2"); heading.textContent = title; section.append(heading);
+  root.append(section);
+  return section;
+}
+
+/** Append a verbatim research line as its own quoted paragraph. */
+function quoteParagraph(root, entry) {
+  const p = document.createElement("p");
+  p.textContent = entry.value; p.dataset.quoteSource = entry.source;
+  root.append(p);
+}
+
+function columnHeader(...parts) {
+  const th = document.createElement("th"); th.scope = "col";
+  for (const part of parts) {
+    if (part && part.label) proseLabel(th, part.label); else th.append(part);
+  }
+  return th;
+}
+
+function numberCell(entry, kind) {
+  const td = document.createElement("td");
+  appendNumber(td, entry, kind);
+  return td;
+}
+
+function renderMilbfaStatus(root, data, meanings) {
+  const section = panelSection(root, "status", "Status");
+  const method = document.createElement("p"); method.dataset.status = "method";
+  proseLabel(method, "R001"); method.append(" method status: ", sourced(String(data.method_status.value), data.method_status.source));
+  section.append(method);
+  // The line is tied to the recorded stop flag, so it cannot outlive a test that ran.
+  if (data.early_stop.value === true) {
+    const stop = document.createElement("p"); stop.dataset.status = "early-stop";
+    const label = "Test not run (early stop)";
+    if (typeof meanings[label] !== "string") {
+      stop.setAttribute("role", "alert"); stop.dataset.error = "missing-meaning";
+      stop.textContent = `No plain-language meaning is defined for verdict ${label}.`;
+    } else {
+      stop.append(`${label}: `);
+      if (meanings[label] !== label) stop.append(`${meanings[label]} `);
+      stop.append(sourced(String(data.early_stop_reason.value), data.early_stop_reason.source));
+    }
+    section.append(stop);
+  }
+  const holdout = document.createElement("p"); holdout.dataset.status = "holdout";
+  holdout.append("Holdout untouched: ");
+  appendNumber(holdout, data.holdout_excluded);
+  section.append(holdout);
+}
+
+function renderMilbfaRankings(section, data) {
+  const table = document.createElement("table"), caption = document.createElement("caption");
+  caption.append("Whole-pool ranking metrics for validation year ", sourced(formatValue(data.validation_year.value), data.validation_year.source), "; comparator ", sourced(String(data.comparator.value), data.comparator.source));
+  table.classList.add("ranking-table"); table.append(caption);
+  const head = document.createElement("tr");
+  head.append(columnHeader("Ranking"), columnHeader("N"), columnHeader("Positives"), columnHeader("Base rate"));
+  POOL_CUTOFFS.forEach((cutoff, index) => {
+    const k = data[`top_k_${index}`];
+    head.append(columnHeader("Top ", sourced(formatValue(k.value), k.source), " hits"), columnHeader("Top ", sourced(formatValue(k.value), k.source), " precision"));
+  });
+  head.append(columnHeader("AUROC"));
+  const thead = document.createElement("thead"); thead.append(head); table.append(thead);
+  const body = document.createElement("tbody");
+  for (const ranking of POOL_RANKINGS) {
+    const row = document.createElement("tr");
+    const rowHead = document.createElement("th"); rowHead.scope = "row"; proseLabel(rowHead, ranking); row.append(rowHead);
+    row.append(numberCell(data.n), numberCell(data.positives), numberCell(data.base_rate, "probability"));
+    for (const cutoff of POOL_CUTOFFS) {
+      row.append(numberCell(data[`${ranking}_top_${cutoff}_hits`]), numberCell(data[`${ranking}_top_${cutoff}_precision`], "probability"));
+    }
+    row.append(numberCell(data[`${ranking}_auroc`], "probability"));
+    body.append(row);
+  }
+  table.append(body); section.append(scrollWrap(table, "Whole-pool ranking metrics"));
+}
+
+function renderMilbfaBootstrap(section, data) {
+  const table = document.createElement("table"), caption = document.createElement("caption");
+  caption.append("Paired bootstrap, M minus each baseline, validation year ", sourced(formatValue(data.validation_year.value), data.validation_year.source));
+  table.classList.add("ranking-table"); table.append(caption);
+  const head = document.createElement("tr");
+  head.append(columnHeader("Baseline"), columnHeader("N"), columnHeader("Positives"), columnHeader("Mean difference"), columnHeader({ label: "95% interval" }), columnHeader("Resamples"));
+  const thead = document.createElement("thead"); thead.append(head); table.append(thead);
+  const body = document.createElement("tbody");
+  for (const baseline of POOL_BASELINES) {
+    const row = document.createElement("tr");
+    const rowHead = document.createElement("th"); rowHead.scope = "row"; proseLabel(rowHead, baseline); row.append(rowHead);
+    const interval = document.createElement("td");
+    appendNumber(interval, data[`boot_${baseline}_lower`], "probability"); interval.append(" to "); appendNumber(interval, data[`boot_${baseline}_upper`], "probability");
+    row.append(numberCell(data.n), numberCell(data.positives), numberCell(data[`boot_${baseline}_mean`], "probability"), interval, numberCell(data[`boot_${baseline}_resamples`]));
+    body.append(row);
+  }
+  table.append(body); section.append(scrollWrap(table, "Paired bootstrap, M minus baseline"));
+}
+
+function unknownList(root, data) {
+  const list = document.createElement("ul");
+  for (const key of Object.keys(data).filter(k => /^unknown_\d+$/.test(k))) {
+    const item = document.createElement("li");
+    item.append(sourced(String(data[key].value), data[key].source));
+    list.append(item);
+  }
+  root.append(list);
+}
+
+function renderMilbfa(data, meanings) {
+  const root = document.querySelector("#milbfa"); if (!root) return;
+  renderMilbfaStatus(root, data, meanings);
+  const exploratory = panelSection(root, "exploratory", "Exploratory whole-pool results");
+  const banner = document.createElement("p"); banner.setAttribute("role", "note"); banner.className = "notice";
+  const first = document.createElement("span"); first.textContent = data.banner_line_0.value; first.dataset.quoteSource = data.banner_line_0.source;
+  const second = document.createElement("span"); second.textContent = data.banner_line_1.value; second.dataset.quoteSource = data.banner_line_1.source;
+  banner.append(first, " ", second); exploratory.append(banner);
+  renderMilbfaRankings(exploratory, data);
+  renderMilbfaBootstrap(exploratory, data);
+  const cubs = panelSection(root, "cubs-case", "Cubs case");
+  const meaning = document.createElement("p"); meaning.append(sourced(String(data.interpretation.value), data.interpretation.source)); cubs.append(meaning);
+  const years = document.createElement("p"); years.append("Cohort years: ");
+  Object.keys(data).filter(k => /^cohort_year_\d+$/.test(k)).forEach((key, index) => {
+    if (index) years.append(", ");
+    years.append(sourced(formatValue(data[key].value), data[key].source));
+  });
+  const thresholds = document.createElement("p"); thresholds.append("Outcome thresholds: PA ");
+  appendNumber(thresholds, data.threshold_pa); thresholds.append(" and IP "); appendNumber(thresholds, data.threshold_ip);
+  const signing = document.createElement("p"); signing.append("Signing window: ", sourced(String(data.signing_window.value), data.signing_window.source));
+  const unknownLabel = document.createElement("p"); unknownLabel.textContent = "Unknowns recorded by the source:";
+  cubs.append(years, thresholds, signing, unknownLabel); unknownList(cubs, data);
+  const limits = panelSection(root, "limits", "Limits of this result");
+  quoteParagraph(limits, data.limit_unknown_line); quoteParagraph(limits, data.limit_inference_line);
+  unknownList(limits, data);
+}
+
 try {
   const manifest = await load("manifest.json");
   renderFooter(manifest);
@@ -497,6 +638,9 @@ try {
     const meanings = await load("meanings.json");
     const roles = await load("roles.json");
     renderSendhold(data, meanings, roles);
+  }
+  if (document.body.dataset.page === "milbfa") {
+    renderMilbfa(await load("milbfa.json"), await load("meanings.json"));
   }
 } catch (error) {
   const main = document.querySelector("main");

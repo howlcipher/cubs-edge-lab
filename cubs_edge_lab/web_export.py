@@ -27,6 +27,7 @@ SELECTIONS = {
         "early_stop": ("validation.json", "/early_stop"),
         "early_stop_reason": ("validation.json", "/early_stop_reason"),
     },
+    "milbfa.json": {},
     "about.json": {
         "request_count": ("sendhold_feasibility.json", "/new_requests_used"),
         "request_ceiling": ("sendhold_feasibility.json", "/ceiling"),
@@ -135,6 +136,59 @@ def add_sendhold_selections() -> None:
 
 add_sendhold_selections()
 
+WHOLE_POOL = "exploratory_whole_pool.json"
+POOL_BASE = "/validation/whole_pool"
+RANKINGS = ("B0", "B1", "B2", "P", "M")
+BASELINES = ("B0", "B1", "B2", "P")
+TOP_K = ("25", "50", "100")
+
+
+def add_milbfa_selections() -> None:
+    """Declare the pointers shown on Free-agent triage. No player rows."""
+    selected = SELECTIONS["milbfa.json"]
+
+    def add(name: str, filename: str, pointer: str) -> None:
+        selected[name] = (filename, pointer)
+
+    add("method_status", "cubs_case.json", "/method_status")
+    add("early_stop", "validation.json", "/early_stop")
+    add("early_stop_reason", "validation.json", "/early_stop_reason")
+    add("holdout_excluded", WHOLE_POOL, "/config/holdout_excluded")
+    add("validation_year", WHOLE_POOL, "/config/validation_year")
+    add("comparator", WHOLE_POOL, "/comparator")
+    for index in range(len(TOP_K)):
+        add(f"top_k_{index}", WHOLE_POOL, f"/config/top_k/{index}")
+    for field in ("n", "positives", "base_rate"):
+        add(field, WHOLE_POOL, f"{POOL_BASE}/{field}")
+    for ranking in RANKINGS:
+        path = f"{POOL_BASE}/rankings/{ranking}"
+        add(f"{ranking}_auroc", WHOLE_POOL, f"{path}/auroc")
+        for cutoff in TOP_K:
+            for field in ("hits", "precision"):
+                add(
+                    f"{ranking}_top_{cutoff}_{field}", WHOLE_POOL,
+                    f"{path}/top_k/{cutoff}/{field}",
+                )
+    for baseline in BASELINES:
+        path = f"{POOL_BASE}/bootstrap_m_minus_baseline/{baseline}"
+        add(f"boot_{baseline}_mean", WHOLE_POOL, f"{path}/mean_difference")
+        add(f"boot_{baseline}_lower", WHOLE_POOL, f"{path}/percentile_95/0")
+        add(f"boot_{baseline}_upper", WHOLE_POOL, f"{path}/percentile_95/1")
+        add(f"boot_{baseline}_resamples", WHOLE_POOL, f"{path}/resamples")
+    add("interpretation", "cubs_case.json", "/interpretation")
+    add("signing_window", "cubs_case.json", "/signing_window")
+    add("threshold_pa", "cubs_case.json", "/thresholds/pa")
+    add("threshold_ip", "cubs_case.json", "/thresholds/ip")
+    case = json.loads((RESEARCH / "cubs_case.json").read_text())
+    # Lists are selected element by element so each item keeps its own source.
+    for index, _ in enumerate(case["cohort_years"]):
+        add(f"cohort_year_{index}", "cubs_case.json", f"/cohort_years/{index}")
+    for index, _ in enumerate(case["unknowns"]):
+        add(f"unknown_{index}", "cubs_case.json", f"/unknowns/{index}")
+
+
+add_milbfa_selections()
+
 # Quoted by exact line match: the export fails if the line moved or changed.
 VERBATIM_LINES = {
     "unknown_line_0": (
@@ -152,6 +206,30 @@ VERBATIM_LINES = {
         "SENDHOLD_EXPERIMENT.md", 6,
         "INFERENCE: Any positive estimate is upper-bound-style: sends are "
         "selected and the counterfactual for holds is extrapolated.",
+    ),
+}
+
+MILBFA_LINES = {
+    "banner_line_0": (
+        "EXPERIMENT.md", 46,
+        "EXPLORATORY FACT: Source attribution: MLBAM, MLB Stats API. Only "
+        "cohort aggregates are reported.",
+    ),
+    "banner_line_1": (
+        "EXPERIMENT.md", 47,
+        "EXPLORATORY FACT: This section supports no usefulness claim or "
+        "recommendation.",
+    ),
+    "limit_unknown_line": (
+        "EXPERIMENT.md", 39,
+        "UNKNOWN: Validation metrics, bootstrap intervals, and comparator "
+        "selection are null after early stop.",
+    ),
+    "limit_inference_line": (
+        "EXPERIMENT.md", 40,
+        "INFERENCE: The persistence ranking can be nearly degenerate in the "
+        "primary segment because players in that segment had no MLB "
+        "appearance in season Y.",
     ),
 }
 
@@ -221,6 +299,25 @@ def research_path(root: Path, filename: str) -> Path:
     return root / "research" / filename
 
 
+def read_verbatim_lines(
+    root: Path, quoted: dict[str, tuple[str, int, str]]
+) -> dict[str, dict[str, str]]:
+    """Copy research Markdown lines, failing if one moved or changed."""
+    entries = {}
+    for name, (filename, line_number, expected) in quoted.items():
+        if Path(filename).name != filename or not filename.endswith(".md"):
+            raise ValueError(f"Not a research Markdown name: {filename}")
+        lines = (root / "research" / filename).read_text().splitlines()
+        if line_number > len(lines) or lines[line_number - 1] != expected:
+            message = f"Research line changed: {filename}:{line_number}"
+            raise ValueError(message)
+        entries[name] = {
+            "value": lines[line_number - 1],
+            "source": f"{filename}#L{line_number}",
+        }
+    return entries
+
+
 def export_data(root: Path = ROOT, *, check: bool = False) -> bool:
     """Write selected source values and a reproducible provenance manifest."""
     sources: dict[str, dict[str, Any]] = {}
@@ -235,22 +332,11 @@ def export_data(root: Path = ROOT, *, check: bool = False) -> bool:
             entries[name] = {"value": value, "source": f"{filename}#{pointer}"}
         outputs[output_name] = entries
 
-    line_entries = {}
-    for name, (filename, line_number, expected) in (
-        VERBATIM_LINES.items() if "sendhold.json" in SELECTIONS else ()
+    for output_name, quoted in (
+        ("sendhold.json", VERBATIM_LINES), ("milbfa.json", MILBFA_LINES),
     ):
-        if Path(filename).name != filename or not filename.endswith(".md"):
-            raise ValueError(f"Not a research Markdown name: {filename}")
-        lines = (root / "research" / filename).read_text().splitlines()
-        if line_number > len(lines) or lines[line_number - 1] != expected:
-            message = f"Research line changed: {filename}:{line_number}"
-            raise ValueError(message)
-        line_entries[name] = {
-            "value": lines[line_number - 1],
-            "source": f"{filename}#L{line_number}",
-        }
-    if "sendhold.json" in outputs:
-        outputs["sendhold.json"].update(line_entries)
+        if output_name in outputs:
+            outputs[output_name].update(read_verbatim_lines(root, quoted))
 
     footer_file, footer_pointer = FOOTER_SOURCE
     if footer_file not in sources:

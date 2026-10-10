@@ -274,6 +274,105 @@ def test_export_fails_when_a_quoted_line_drifts(tmp_path, monkeypatch):
         web_export.export_data(tmp_path)
 
 
+def test_milbfa_lines_are_exact_research_lines():
+    assert {n for _, n, _ in web_export.MILBFA_LINES.values()} == {
+        39, 40, 46, 47
+    }
+    for filename, number, expected in web_export.MILBFA_LINES.values():
+        lines = (REPO / "research" / filename).read_text().splitlines()
+        assert lines[number - 1] == expected
+    exported = json.loads((REPO / "web/data/milbfa.json").read_text())
+    for name, (filename, number, expected) in (
+        web_export.MILBFA_LINES.items()
+    ):
+        assert exported[name] == {
+            "value": expected, "source": f"{filename}#L{number}",
+        }
+
+
+def test_export_fails_when_a_milbfa_line_drifts(tmp_path, monkeypatch):
+    (tmp_path / "research").mkdir()
+    (tmp_path / "research" / "cubs_case.json").write_text(
+        '{"as_of_date": "2026-10-09"}'
+    )
+    (tmp_path / "research" / "source.json").write_text('{"key": 1}')
+    (tmp_path / "research" / "QUOTE.md").write_text("first\nsecond\n")
+    monkeypatch.setattr(web_export, "SELECTIONS", {
+        "milbfa.json": {"v": ("source.json", "/key")},
+    })
+    monkeypatch.setattr(web_export, "MILBFA_LINES", {
+        "quote": ("QUOTE.md", 2, "second"),
+    })
+    assert not web_export.export_data(tmp_path)
+    copied = json.loads((tmp_path / "web/data/milbfa.json").read_text())
+    assert copied["quote"] == {"value": "second", "source": "QUOTE.md#L2"}
+    for line in ((2, "second changed"), (3, "second")):
+        monkeypatch.setattr(web_export, "MILBFA_LINES", {
+            "quote": ("QUOTE.md", *line),
+        })
+        with pytest.raises(ValueError, match="Research line changed"):
+            web_export.export_data(tmp_path)
+
+
+def test_milbfa_json_is_not_written_when_unselected(mini_root):
+    web_export.export_data(mini_root)
+    assert not (mini_root / "web/data/milbfa.json").exists()
+
+
+def test_milbfa_selections_expose_no_player_level_pointers():
+    selected = web_export.SELECTIONS["milbfa.json"]
+    pointers = [pointer for _, pointer in selected.values()]
+    assert pointers
+    for pointer in pointers:
+        assert "/examples" not in pointer
+        assert "/cohorts" not in pointer
+        assert "person" not in pointer
+        assert "/calibration" not in pointer
+    exported = json.loads((REPO / "web/data/milbfa.json").read_text())
+    for entry in exported.values():
+        assert "/examples" not in entry["source"]
+        assert "person" not in entry["source"]
+
+
+def test_milbfa_pointers_are_default_visible_and_resolve():
+    visible = set(web_export.DEFAULT_VISIBLE)
+    exported = json.loads((REPO / "web/data/milbfa.json").read_text())
+    for name, (filename, pointer) in (
+        web_export.SELECTIONS["milbfa.json"].items()
+    ):
+        assert f"{filename}#{pointer}" in visible
+        document = json.loads((REPO / "research" / filename).read_text())
+        assert exported[name]["value"] == web_export.resolve_pointer(
+            document, pointer
+        )
+    selected = web_export.SELECTIONS["milbfa.json"]
+    assert selected["method_status"] == (
+        "cubs_case.json", "/method_status"
+    )
+    assert selected["early_stop_reason"] == (
+        "validation.json", "/early_stop_reason"
+    )
+    assert selected["holdout_excluded"] == (
+        "exploratory_whole_pool.json", "/config/holdout_excluded"
+    )
+    assert selected["comparator"] == (
+        "exploratory_whole_pool.json", "/comparator"
+    )
+    assert selected["validation_year"] == (
+        "exploratory_whole_pool.json", "/config/validation_year"
+    )
+
+
+def test_method_status_wording_is_the_early_stop_label():
+    case = json.loads((REPO / "research/cubs_case.json").read_text())
+    validation = json.loads((REPO / "research/validation.json").read_text())
+    assert validation["early_stop"] is True
+    assert validation["validation"] is None
+    assert case["method_status"] == (
+        "was not tested (pre-registered early stop)"
+    )
+
+
 def test_sendhold_selections_cover_each_analysis_and_label_version():
     selected = web_export.SELECTIONS["sendhold.json"]
     for analysis in web_export.ANALYSES:
