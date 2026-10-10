@@ -5,7 +5,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-import subprocess
+from collections.abc import Iterable
 from pathlib import Path
 from typing import Any
 
@@ -38,6 +38,12 @@ SELECTIONS = {
         "triage_source": ("cubs_case.json", "/source"),
     },
 }
+# The dynamic groups below are expanded from research files at import time for
+# the checked-in root. Keep their unexpanded templates for exports from other
+# roots.
+SELECTION_TEMPLATES = {
+    name: dict(group) for name, group in SELECTIONS.items()
+}
 
 ANALYSES = (
     "v3_primary", "v2_preregistered", "v3_ambiguous_as_safe",
@@ -51,9 +57,16 @@ CRITERIA = {
 }
 
 
-def add_sendhold_selections() -> None:
-    """Declare the exact numeric and verdict pointers shown on Send / hold."""
-    selected = SELECTIONS["sendhold.json"]
+def add_sendhold_selections(
+    root: Path = ROOT, selected: dict[str, Any] | None = None
+) -> dict[str, Any]:
+    """Declare the exact numeric and verdict pointers shown on Send / hold.
+
+    Label and cell lists are enumerated from the research files under
+    ``root``, never from the module-level checkout.
+    """
+    if selected is None:
+        selected = SELECTIONS["sendhold.json"]
 
     def add(name: str, filename: str, pointer: str) -> None:
         selected[name] = (filename, pointer)
@@ -66,6 +79,9 @@ def add_sendhold_selections() -> None:
     add("feasibility_verdict", "sendhold_feasibility.json", "/verdict")
     for field in ("verdict_reason", "new_requests_used", "ceiling"):
         add(field, "sendhold_feasibility.json", f"/{field}")
+    experiment = json.loads(
+        research_path(root, "sendhold_experiment.json").read_text()
+    )
     for analysis in ANALYSES:
         base = f"/analyses/{analysis}"
         add(
@@ -88,9 +104,6 @@ def add_sendhold_selections() -> None:
             f"{analysis}_label_version", "sendhold_experiment.json",
             f"{base}/label_version",
         )
-        experiment = json.loads(
-            (RESEARCH / "sendhold_experiment.json").read_text()
-        )
         for label in experiment["analyses"][analysis]["label_counts_2025"]:
             add(
                 f"{analysis}_labels_2025_{label}", "sendhold_experiment.json",
@@ -101,7 +114,7 @@ def add_sendhold_selections() -> None:
             f"covariate_{field}", "sendhold_experiment.json",
             f"/analyses/v3_primary/covariate_choice/{field}",
         )
-    fit = json.loads((RESEARCH / "sendhold_fit.json").read_text())
+    fit = json.loads(research_path(root, "sendhold_fit.json").read_text())
     add("fit_season", "sendhold_fit.json", "/fit_season")
     # Label counts are published maps; each count is selected independently.
     for version, value in fit["versions"].items():
@@ -132,6 +145,14 @@ def add_sendhold_selections() -> None:
                 f"cell_{index}_{column}", "sendhold_fit.json",
                 f"/versions/v3/decision_chart/cells/{index}/{column}",
             )
+    return selected
+
+
+def research_path(root: Path, filename: str) -> Path:
+    """Return one research JSON file, never a path outside research/."""
+    if Path(filename).name != filename or not filename.endswith(".json"):
+        raise ValueError(f"Not a research JSON name: {filename}")
+    return root / "research" / filename
 
 
 add_sendhold_selections()
@@ -143,9 +164,12 @@ BASELINES = ("B0", "B1", "B2", "P")
 TOP_K = ("25", "50", "100")
 
 
-def add_milbfa_selections() -> None:
+def add_milbfa_selections(
+    root: Path = ROOT, selected: dict[str, Any] | None = None
+) -> dict[str, Any]:
     """Declare the pointers shown on Free-agent triage. No player rows."""
-    selected = SELECTIONS["milbfa.json"]
+    if selected is None:
+        selected = SELECTIONS["milbfa.json"]
 
     def add(name: str, filename: str, pointer: str) -> None:
         selected[name] = (filename, pointer)
@@ -179,12 +203,23 @@ def add_milbfa_selections() -> None:
     add("signing_window", "cubs_case.json", "/signing_window")
     add("threshold_pa", "cubs_case.json", "/thresholds/pa")
     add("threshold_ip", "cubs_case.json", "/thresholds/ip")
-    case = json.loads((RESEARCH / "cubs_case.json").read_text())
+    case = json.loads(research_path(root, "cubs_case.json").read_text())
     # Lists are selected element by element so each item keeps its own source.
     for index, _ in enumerate(case["cohort_years"]):
         add(f"cohort_year_{index}", "cubs_case.json", f"/cohort_years/{index}")
     for index, _ in enumerate(case["unknowns"]):
         add(f"unknown_{index}", "cubs_case.json", f"/unknowns/{index}")
+    return selected
+
+
+def build_selections(root: Path) -> dict[str, dict[str, Any]]:
+    """Return every selection group, enumerated from ``root``'s research."""
+    built = {
+        name: dict(group) for name, group in SELECTION_TEMPLATES.items()
+    }
+    built["sendhold.json"] = add_sendhold_selections(root, {})
+    built["milbfa.json"] = add_milbfa_selections(root, {})
+    return built
 
 
 add_milbfa_selections()
@@ -257,18 +292,44 @@ ROLES = {
 }
 
 
-def default_visible(selections: dict[str, dict[str, Any]]) -> list[str]:
-    """Return the sorted, de-duplicated pointers a page may display."""
+def default_visible(
+    selections: dict[str, dict[str, Any]], disclosed: Iterable[str] = ()
+) -> list[str]:
+    """Return the sorted pointers rendered visibly by default.
+
+    Pointers shown only inside a closed disclosure are excluded.
+    """
     pointers = {
         f"{filename}#{pointer}"
         for group in selections.values()
         for filename, pointer in group.values()
     }
     pointers.add(f"{FOOTER_SOURCE[0]}#{FOOTER_SOURCE[1]}")
-    return sorted(pointers)
+    return sorted(pointers - set(disclosed))
 
 
-DEFAULT_VISIBLE = default_visible(SELECTIONS)
+def disclosed_only(
+    selections: dict[str, dict[str, Any]], root: Path = ROOT
+) -> list[str]:
+    """Return the sorted pointers rendered only inside a closed <details>.
+
+    Under a NEGATIVE analysis verdict the Runs left estimate, interval and
+    Met / Not met are shown only after the reader opens the disclosure.
+    """
+    group = selections.get("sendhold.json", {})
+    hidden = set()
+    for analysis in ANALYSES:
+        if f"{analysis}_verdict" not in group:
+            continue
+        filename, pointer = group[f"{analysis}_verdict"]
+        document = json.loads(research_path(root, filename).read_text())
+        if resolve_pointer(document, pointer) != "NEGATIVE":
+            continue
+        for field in ("estimate", "lower", "upper", "passed"):
+            entry = group.get(f"{analysis}_runs_left_excludes_zero_{field}")
+            if entry:
+                hidden.add(f"{entry[0]}#{entry[1]}")
+    return sorted(hidden)
 
 
 def resolve_pointer(document: Any, pointer: str) -> Any:
@@ -292,11 +353,8 @@ def resolve_pointer(document: Any, pointer: str) -> Any:
     return value
 
 
-def research_path(root: Path, filename: str) -> Path:
-    """Return one research JSON file, never a path outside research/."""
-    if Path(filename).name != filename or not filename.endswith(".json"):
-        raise ValueError(f"Not a research JSON name: {filename}")
-    return root / "research" / filename
+DISCLOSED_ONLY = disclosed_only(SELECTIONS)
+DEFAULT_VISIBLE = default_visible(SELECTIONS, DISCLOSED_ONLY)
 
 
 def read_verbatim_lines(
@@ -318,13 +376,38 @@ def read_verbatim_lines(
     return entries
 
 
-def export_data(root: Path = ROOT, *, check: bool = False) -> bool:
-    """Write selected source values and a reproducible provenance manifest."""
+def research_digest(root: Path = ROOT) -> str:
+    """SHA-256 over every file under research/, read from the working tree.
+
+    The digest covers the sorted lines "<path relative to research/> <sha256
+    of the file's bytes>\\n". It needs no git and excludes nothing, so any
+    change to any research file changes it.
+    """
+    base = root / "research"
+    lines = sorted(
+        f"{path.relative_to(base).as_posix()} "
+        f"{hashlib.sha256(path.read_bytes()).hexdigest()}\n"
+        for path in base.rglob("*") if path.is_file()
+    )
+    return hashlib.sha256("".join(lines).encode()).hexdigest()
+
+
+def export_data(
+    root: Path = ROOT, *, check: bool = False,
+    selections: dict[str, dict[str, Any]] | None = None,
+) -> bool:
+    """Write selected source values and a reproducible provenance manifest.
+
+    By default, selection lists are enumerated from ``root``. Pass
+    ``selections`` only when a caller needs an explicit selection map.
+    """
+    if selections is None:
+        selections = build_selections(root)
     sources: dict[str, dict[str, Any]] = {}
     outputs: dict[str, dict[str, Any]] = {}
-    for output_name, selections in SELECTIONS.items():
+    for output_name, group in selections.items():
         entries = {}
-        for name, (filename, pointer) in selections.items():
+        for name, (filename, pointer) in group.items():
             source_path = research_path(root, filename)
             if filename not in sources:
                 sources[filename] = json.loads(source_path.read_text())
@@ -332,11 +415,13 @@ def export_data(root: Path = ROOT, *, check: bool = False) -> bool:
             entries[name] = {"value": value, "source": f"{filename}#{pointer}"}
         outputs[output_name] = entries
 
+    markdown = set()
     for output_name, quoted in (
         ("sendhold.json", VERBATIM_LINES), ("milbfa.json", MILBFA_LINES),
     ):
         if output_name in outputs:
             outputs[output_name].update(read_verbatim_lines(root, quoted))
+            markdown.update(filename for filename, _, _ in quoted.values())
 
     footer_file, footer_pointer = FOOTER_SOURCE
     if footer_file not in sources:
@@ -344,29 +429,21 @@ def export_data(root: Path = ROOT, *, check: bool = False) -> bool:
         sources[footer_file] = json.loads(source_path.read_text())
 
     hashes = {}
-    for filename in sorted(sources):
+    # Quoted Markdown is hashed too, so an edit to an unquoted line shows.
+    for filename in sorted(set(sources) | markdown):
         source_bytes = (root / "research" / filename).read_bytes()
         hashes[filename] = hashlib.sha256(source_bytes).hexdigest()
-    # The last commit touching research/, not HEAD: committing the derived
-    # web/data must not make the committed export look stale.
-    try:
-        commit = subprocess.check_output(
-            ["git", "-C", str(root), "log", "-1", "--format=%H",
-             "--", "research"],
-            text=True,
-            stderr=subprocess.DEVNULL,
-        ).strip() or "unavailable"
-    except (OSError, subprocess.CalledProcessError):
-        commit = "unavailable"
+    disclosed = disclosed_only(selections, root)
     outputs["manifest.json"] = {
-        "commit": commit,
+        "research_digest": research_digest(root),
         "as_of_date": resolve_pointer(sources[footer_file], footer_pointer),
         "as_of_source": f"{footer_file}#{footer_pointer}",
         "sources": hashes,
-        "default_visible": default_visible(SELECTIONS),
+        "default_visible": default_visible(selections, disclosed),
+        "disclosed_only": disclosed,
     }
     outputs["meanings.json"] = MEANINGS
-    if "sendhold.json" in SELECTIONS:
+    if "sendhold.json" in selections:
         outputs["roles.json"] = ROLES
 
     changed = False

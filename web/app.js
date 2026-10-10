@@ -1,5 +1,5 @@
 /** @typedef {{value: unknown, source: string}} SourcedValue */
-/** @typedef {{commit: string, as_of_date: string, as_of_source: string, sources: Record<string, string>, default_visible: string[]}} Manifest */
+/** @typedef {{research_digest: string, as_of_date: string, as_of_source: string, sources: Record<string, string>, default_visible: string[], disclosed_only: string[]}} Manifest */
 import { formatFull, formatValue } from "./format.js";
 
 const ATTRIBUTION = 'Attribution: MLB Advanced Media, L.P. (MLBAM), via the public MLB Stats API. “Only individual, non-commercial, non-bulk use of the Materials is permitted.”';
@@ -89,9 +89,16 @@ function appendNumber(root, item, kind = "float") {
 function renderFooter(manifest) {
   const footer = document.querySelector("#footer");
   if (!footer) return;
-  const commit = document.createElement("p");
-  commit.textContent = `cubs-edge-lab commit: ${manifest.commit}`;
-  commit.dataset.provenance = "commit";
+  const digest = document.createElement("p");
+  digest.textContent = `Research digest: ${manifest.research_digest.slice(0, 12)}`;
+  digest.dataset.provenance = "research-digest";
+  const fullDigest = document.createElement("details");
+  const digestSummary = document.createElement("summary");
+  digestSummary.textContent = "Full research digest";
+  const digestValue = document.createElement("p");
+  digestValue.textContent = manifest.research_digest;
+  digestValue.dataset.provenance = "research-digest";
+  fullDigest.append(digestSummary, digestValue);
   const date = document.createElement("p");
   date.dataset.provenance = "as-of";
   date.append("As of ", sourced(manifest.as_of_date, manifest.as_of_source));
@@ -99,7 +106,7 @@ function renderFooter(manifest) {
   later.textContent = "later studies may supersede these results";
   const attribution = document.createElement("p");
   attribution.textContent = ATTRIBUTION;
-  footer.append(commit, date, later, attribution);
+  footer.append(digest, fullDigest, date, later, attribution);
 }
 
 async function renderOverview() {
