@@ -1,0 +1,783 @@
+{
+  "design_sha256": "a852b921c1c218f6f8bd525b4c1397923b8d12651dfc829b084b60e35b7b0a1a",
+  "holdout_season": 2026,
+  "primary_label_version": "v3",
+  "seed": 20261010,
+  "resamples": 1000,
+  "verdict": "NEGATIVE",
+  "verdict_v2_preregistered_definition": "NEGATIVE",
+  "analyses": {
+    "v3_primary": {
+      "label_version": "v3",
+      "drop_fallback_rows": false,
+      "mode": "MODEL",
+      "sent_out_2025": 67,
+      "rows_2025": 4331,
+      "rows_2026": 4340,
+      "label_counts_2025": {
+        "SENT_OUT": 67,
+        "OUT_ELSEWHERE": 31,
+        "SENT_SAFE": 1773,
+        "AMBIGUOUS": 75,
+        "HOLD": 2385,
+        "OTHER": 0
+      },
+      "covariate_choice": {
+        "name": "reduced",
+        "columns": [
+          "sprint_speed",
+          "zone_left",
+          "zone_right",
+          "outs"
+        ],
+        "sent_out": 67,
+        "events_per_parameter": 10,
+        "full_parameters": 14,
+        "required_sent_out": 140,
+        "reduced_parameters": 5
+      },
+      "support_threshold": 0.2528615288118741,
+      "point_2026": {
+        "n_sends": 1927,
+        "n_holds": 2329,
+        "brier_model": 0.03543472431607511,
+        "brier_constant": 0.03548748099953599,
+        "brier_outs": 0.035522213598159276,
+        "brier_diff_constant": -5.2756683460879195e-05,
+        "brier_diff_outs": -8.748928208416468e-05,
+        "calibration_slope": 0.842022574654625,
+        "flagged_sends": 1454,
+        "flagged_send_mean_predicted": 0.9652921160563027,
+        "flagged_send_realized": 0.9566712517193948,
+        "holds_supported": 2130,
+        "holds_dropped_share": 0.08544439673679691,
+        "flagged_holds": 1533,
+        "runs_left": 326.6254172362656,
+        "cubs_flagged_holds": 62,
+        "cubs_runs_left": 13.405872070390265
+      },
+      "bootstrap": {
+        "resamples": 1000,
+        "usable_resamples": 1000,
+        "seed": 20261010,
+        "intervals_95": {
+          "brier_diff_constant": {
+            "lower": -0.0003064985586168029,
+            "upper": 0.00047596886271527325,
+            "n": 1000
+          },
+          "brier_diff_outs": {
+            "lower": -0.00029139058913038455,
+            "upper": 0.0003051915308880957,
+            "n": 1000
+          },
+          "calibration_slope": {
+            "lower": -0.20647840158711622,
+            "upper": 1.7621420303936022,
+            "n": 1000
+          },
+          "flagged_send_mean_predicted": {
+            "lower": 0.9558521599251374,
+            "upper": 0.9747842506786225,
+            "n": 1000
+          },
+          "holds_dropped_share": {
+            "lower": 0.053729261418230735,
+            "upper": 0.10981654257324759,
+            "n": 1000
+          },
+          "flagged_holds": {
+            "lower": 1356.975,
+            "upper": 1677.025,
+            "n": 1000
+          },
+          "runs_left": {
+            "lower": 292.0958810082418,
+            "upper": 359.6091580783146,
+            "n": 1000
+          },
+          "cubs_flagged_holds": {
+            "lower": 44.97500000000002,
+            "upper": 81.0,
+            "n": 1000
+          },
+          "cubs_runs_left": {
+            "lower": 9.315475106529727,
+            "upper": 17.74099096939215,
+            "n": 1000
+          }
+        }
+      },
+      "criteria": {
+        "brier_beats_constant": {
+          "passed": false,
+          "difference": -5.2756683460879195e-05,
+          "interval_95": {
+            "lower": -0.0003064985586168029,
+            "upper": 0.00047596886271527325,
+            "n": 1000
+          },
+          "rule": "interval of (model - constant) excludes zero below"
+        },
+        "calibration_slope": {
+          "passed": true,
+          "slope": 0.842022574654625,
+          "interval_95": {
+            "lower": -0.20647840158711622,
+            "upper": 1.7621420303936022,
+            "n": 1000
+          },
+          "rule": "slope within [0.7, 1.3]"
+        },
+        "runs_left_excludes_zero": {
+          "passed": true,
+          "estimate": 326.6254172362656,
+          "interval_95": {
+            "lower": 292.0958810082418,
+            "upper": 359.6091580783146,
+            "n": 1000
+          },
+          "rule": "95% bootstrap interval of runs left above zero"
+        },
+        "negative_control": {
+          "passed": true,
+          "realized_success": 0.9566712517193948,
+          "mean_predicted": 0.9652921160563027,
+          "interval_95": {
+            "lower": 0.9558521599251374,
+            "upper": 0.9747842506786225,
+            "n": 1000
+          },
+          "flagged_sends": 1454,
+          "rule": "realized success inside the interval of mean predicted P(safe) for flagged sends"
+        }
+      },
+      "verdict": "NEGATIVE",
+      "cubs": {
+        "2025": {
+          "opportunities": 157,
+          "label_counts": {
+            "AMBIGUOUS": 1,
+            "HOLD": 91,
+            "OUT_ELSEWHERE": 1,
+            "SENT_OUT": 4,
+            "SENT_SAFE": 60
+          },
+          "in_sample": true,
+          "flagged_holds": 54,
+          "runs_left": 11.659144071975394
+        },
+        "2026": {
+          "opportunities": 159,
+          "label_counts": {
+            "AMBIGUOUS": 4,
+            "HOLD": 96,
+            "OUT_ELSEWHERE": 3,
+            "SENT_OUT": 3,
+            "SENT_SAFE": 53
+          },
+          "flagged_holds": 62,
+          "runs_left": 13.405872070390265,
+          "flagged_holds_interval_95": {
+            "lower": 44.97500000000002,
+            "upper": 81.0,
+            "n": 1000
+          },
+          "runs_left_interval_95": {
+            "lower": 9.315475106529727,
+            "upper": 17.74099096939215,
+            "n": 1000
+          }
+        }
+      }
+    },
+    "v2_preregistered": {
+      "label_version": "v2",
+      "drop_fallback_rows": false,
+      "mode": "MODEL",
+      "sent_out_2025": 67,
+      "rows_2025": 4331,
+      "rows_2026": 4340,
+      "label_counts_2025": {
+        "SENT_OUT": 67,
+        "OUT_ELSEWHERE": 31,
+        "SENT_SAFE": 555,
+        "AMBIGUOUS": 1293,
+        "HOLD": 2385,
+        "OTHER": 0
+      },
+      "covariate_choice": {
+        "name": "reduced",
+        "columns": [
+          "sprint_speed",
+          "zone_left",
+          "zone_right",
+          "outs"
+        ],
+        "sent_out": 67,
+        "events_per_parameter": 10,
+        "full_parameters": 14,
+        "required_sent_out": 140,
+        "reduced_parameters": 5
+      },
+      "support_threshold": 0.09915529761681768,
+      "point_2026": {
+        "n_sends": 683,
+        "n_holds": 2329,
+        "brier_model": 0.09164873655887727,
+        "brier_constant": 0.09316105782094135,
+        "brier_outs": 0.09308726962129904,
+        "brier_diff_constant": -0.0015123212620640758,
+        "brier_diff_outs": -0.001438533062421768,
+        "calibration_slope": 1.2500645888637958,
+        "flagged_sends": 469,
+        "flagged_send_mean_predicted": 0.8957866714120547,
+        "flagged_send_realized": 0.8891257995735607,
+        "holds_supported": 2174,
+        "holds_dropped_share": 0.06655216831258051,
+        "flagged_holds": 1087,
+        "runs_left": 155.81997364683693,
+        "cubs_flagged_holds": 48,
+        "cubs_runs_left": 6.448329248118281
+      },
+      "bootstrap": {
+        "resamples": 1000,
+        "usable_resamples": 1000,
+        "seed": 20261010,
+        "intervals_95": {
+          "brier_diff_constant": {
+            "lower": -0.0035100541044156583,
+            "upper": 0.0017601019712714856,
+            "n": 1000
+          },
+          "brier_diff_outs": {
+            "lower": -0.0032596919397562115,
+            "upper": 0.0013467256180268207,
+            "n": 1000
+          },
+          "calibration_slope": {
+            "lower": 0.0310478522184975,
+            "upper": 2.025603657115215,
+            "n": 1000
+          },
+          "flagged_send_mean_predicted": {
+            "lower": 0.8732260984541436,
+            "upper": 0.9243261442093299,
+            "n": 1000
+          },
+          "holds_dropped_share": {
+            "lower": 0.04568068572951758,
+            "upper": 0.09498351378349924,
+            "n": 1000
+          },
+          "flagged_holds": {
+            "lower": 767.0,
+            "upper": 1308.0,
+            "n": 1000
+          },
+          "runs_left": {
+            "lower": 101.54009489069281,
+            "upper": 217.43031642424435,
+            "n": 1000
+          },
+          "cubs_flagged_holds": {
+            "lower": 24.0,
+            "upper": 64.0,
+            "n": 1000
+          },
+          "cubs_runs_left": {
+            "lower": 3.311299896201656,
+            "upper": 10.258559073464664,
+            "n": 1000
+          }
+        }
+      },
+      "criteria": {
+        "brier_beats_constant": {
+          "passed": false,
+          "difference": -0.0015123212620640758,
+          "interval_95": {
+            "lower": -0.0035100541044156583,
+            "upper": 0.0017601019712714856,
+            "n": 1000
+          },
+          "rule": "interval of (model - constant) excludes zero below"
+        },
+        "calibration_slope": {
+          "passed": true,
+          "slope": 1.2500645888637958,
+          "interval_95": {
+            "lower": 0.0310478522184975,
+            "upper": 2.025603657115215,
+            "n": 1000
+          },
+          "rule": "slope within [0.7, 1.3]"
+        },
+        "runs_left_excludes_zero": {
+          "passed": true,
+          "estimate": 155.81997364683693,
+          "interval_95": {
+            "lower": 101.54009489069281,
+            "upper": 217.43031642424435,
+            "n": 1000
+          },
+          "rule": "95% bootstrap interval of runs left above zero"
+        },
+        "negative_control": {
+          "passed": true,
+          "realized_success": 0.8891257995735607,
+          "mean_predicted": 0.8957866714120547,
+          "interval_95": {
+            "lower": 0.8732260984541436,
+            "upper": 0.9243261442093299,
+            "n": 1000
+          },
+          "flagged_sends": 469,
+          "rule": "realized success inside the interval of mean predicted P(safe) for flagged sends"
+        }
+      },
+      "verdict": "NEGATIVE",
+      "cubs": {
+        "2025": {
+          "opportunities": 157,
+          "label_counts": {
+            "AMBIGUOUS": 45,
+            "HOLD": 91,
+            "OUT_ELSEWHERE": 1,
+            "SENT_OUT": 4,
+            "SENT_SAFE": 16
+          },
+          "in_sample": true,
+          "flagged_holds": 39,
+          "runs_left": 5.87230827950355
+        },
+        "2026": {
+          "opportunities": 159,
+          "label_counts": {
+            "AMBIGUOUS": 39,
+            "HOLD": 96,
+            "OUT_ELSEWHERE": 3,
+            "SENT_OUT": 3,
+            "SENT_SAFE": 18
+          },
+          "flagged_holds": 48,
+          "runs_left": 6.448329248118281,
+          "flagged_holds_interval_95": {
+            "lower": 24.0,
+            "upper": 64.0,
+            "n": 1000
+          },
+          "runs_left_interval_95": {
+            "lower": 3.311299896201656,
+            "upper": 10.258559073464664,
+            "n": 1000
+          }
+        }
+      }
+    },
+    "v3_ambiguous_as_safe": {
+      "label_version": "v3_ambiguous_as_safe",
+      "drop_fallback_rows": false,
+      "mode": "MODEL",
+      "sent_out_2025": 67,
+      "rows_2025": 4331,
+      "rows_2026": 4340,
+      "label_counts_2025": {
+        "SENT_OUT": 67,
+        "OUT_ELSEWHERE": 31,
+        "SENT_SAFE": 1848,
+        "AMBIGUOUS": 0,
+        "HOLD": 2385,
+        "OTHER": 0
+      },
+      "covariate_choice": {
+        "name": "reduced",
+        "columns": [
+          "sprint_speed",
+          "zone_left",
+          "zone_right",
+          "outs"
+        ],
+        "sent_out": 67,
+        "events_per_parameter": 10,
+        "full_parameters": 14,
+        "required_sent_out": 140,
+        "reduced_parameters": 5
+      },
+      "support_threshold": 0.2582821582721771,
+      "point_2026": {
+        "n_sends": 1986,
+        "n_holds": 2329,
+        "brier_model": 0.034409556870754296,
+        "brier_constant": 0.034472753898220264,
+        "brier_outs": 0.0344977179885132,
+        "brier_diff_constant": -6.319702746596795e-05,
+        "brier_diff_outs": -8.816111775890312e-05,
+        "calibration_slope": 0.8931700850428215,
+        "flagged_sends": 1505,
+        "flagged_send_mean_predicted": 0.966444051624532,
+        "flagged_send_realized": 0.958139534883721,
+        "holds_supported": 2149,
+        "holds_dropped_share": 0.07728638900815801,
+        "flagged_holds": 1566,
+        "runs_left": 332.1029594052524,
+        "cubs_flagged_holds": 63,
+        "cubs_runs_left": 13.599274327235301
+      },
+      "bootstrap": {
+        "resamples": 1000,
+        "usable_resamples": 1000,
+        "seed": 20261010,
+        "intervals_95": {
+          "brier_diff_constant": {
+            "lower": -0.0002953501295636106,
+            "upper": 0.00040378962452929844,
+            "n": 1000
+          },
+          "brier_diff_outs": {
+            "lower": -0.0002832938954635002,
+            "upper": 0.00025854367650861835,
+            "n": 1000
+          },
+          "calibration_slope": {
+            "lower": -0.2084952466802036,
+            "upper": 1.809562874450349,
+            "n": 1000
+          },
+          "flagged_send_mean_predicted": {
+            "lower": 0.9574350063621735,
+            "upper": 0.9754682476774198,
+            "n": 1000
+          },
+          "holds_dropped_share": {
+            "lower": 0.04813256764490235,
+            "upper": 0.10484180054743754,
+            "n": 1000
+          },
+          "flagged_holds": {
+            "lower": 1378.0,
+            "upper": 1689.0,
+            "n": 1000
+          },
+          "runs_left": {
+            "lower": 297.0812848799046,
+            "upper": 363.012129195587,
+            "n": 1000
+          },
+          "cubs_flagged_holds": {
+            "lower": 45.0,
+            "upper": 82.0,
+            "n": 1000
+          },
+          "cubs_runs_left": {
+            "lower": 9.411608345482565,
+            "upper": 17.941669749574064,
+            "n": 1000
+          }
+        }
+      },
+      "criteria": {
+        "brier_beats_constant": {
+          "passed": false,
+          "difference": -6.319702746596795e-05,
+          "interval_95": {
+            "lower": -0.0002953501295636106,
+            "upper": 0.00040378962452929844,
+            "n": 1000
+          },
+          "rule": "interval of (model - constant) excludes zero below"
+        },
+        "calibration_slope": {
+          "passed": true,
+          "slope": 0.8931700850428215,
+          "interval_95": {
+            "lower": -0.2084952466802036,
+            "upper": 1.809562874450349,
+            "n": 1000
+          },
+          "rule": "slope within [0.7, 1.3]"
+        },
+        "runs_left_excludes_zero": {
+          "passed": true,
+          "estimate": 332.1029594052524,
+          "interval_95": {
+            "lower": 297.0812848799046,
+            "upper": 363.012129195587,
+            "n": 1000
+          },
+          "rule": "95% bootstrap interval of runs left above zero"
+        },
+        "negative_control": {
+          "passed": true,
+          "realized_success": 0.958139534883721,
+          "mean_predicted": 0.966444051624532,
+          "interval_95": {
+            "lower": 0.9574350063621735,
+            "upper": 0.9754682476774198,
+            "n": 1000
+          },
+          "flagged_sends": 1505,
+          "rule": "realized success inside the interval of mean predicted P(safe) for flagged sends"
+        }
+      },
+      "verdict": "NEGATIVE",
+      "cubs": {
+        "2025": {
+          "opportunities": 157,
+          "label_counts": {
+            "HOLD": 91,
+            "OUT_ELSEWHERE": 1,
+            "SENT_OUT": 4,
+            "SENT_SAFE": 61
+          },
+          "in_sample": true,
+          "flagged_holds": 54,
+          "runs_left": 11.75640445781901
+        },
+        "2026": {
+          "opportunities": 159,
+          "label_counts": {
+            "HOLD": 96,
+            "OUT_ELSEWHERE": 3,
+            "SENT_OUT": 3,
+            "SENT_SAFE": 57
+          },
+          "flagged_holds": 63,
+          "runs_left": 13.599274327235301,
+          "flagged_holds_interval_95": {
+            "lower": 45.0,
+            "upper": 82.0,
+            "n": 1000
+          },
+          "runs_left_interval_95": {
+            "lower": 9.411608345482565,
+            "upper": 17.941669749574064,
+            "n": 1000
+          }
+        }
+      }
+    },
+    "v3_fallback_dropped": {
+      "label_version": "v3",
+      "drop_fallback_rows": true,
+      "mode": "MODEL",
+      "sent_out_2025": 53,
+      "rows_2025": 3359,
+      "rows_2026": 3187,
+      "label_counts_2025": {
+        "SENT_OUT": 53,
+        "OUT_ELSEWHERE": 26,
+        "SENT_SAFE": 1344,
+        "AMBIGUOUS": 58,
+        "HOLD": 1878,
+        "OTHER": 0
+      },
+      "covariate_choice": {
+        "name": "reduced",
+        "columns": [
+          "sprint_speed",
+          "zone_left",
+          "zone_right",
+          "outs"
+        ],
+        "sent_out": 53,
+        "events_per_parameter": 10,
+        "full_parameters": 14,
+        "required_sent_out": 140,
+        "reduced_parameters": 5
+      },
+      "support_threshold": 0.23759983480396463,
+      "point_2026": {
+        "n_sends": 1375,
+        "n_holds": 1751,
+        "brier_model": 0.040376358818723916,
+        "brier_constant": 0.04042051865921913,
+        "brier_outs": 0.04056693491969501,
+        "brier_diff_constant": -4.415984049521704e-05,
+        "brier_diff_outs": -0.00019057610097109046,
+        "calibration_slope": 0.7545471612086759,
+        "flagged_sends": 1004,
+        "flagged_send_mean_predicted": 0.9656138769329161,
+        "flagged_send_realized": 0.9482071713147411,
+        "holds_supported": 1601,
+        "holds_dropped_share": 0.08566533409480297,
+        "flagged_holds": 1064,
+        "runs_left": 236.8910382228173,
+        "cubs_flagged_holds": 50,
+        "cubs_runs_left": 11.264689044020056
+      },
+      "bootstrap": {
+        "resamples": 1000,
+        "usable_resamples": 1000,
+        "seed": 20261010,
+        "intervals_95": {
+          "brier_diff_constant": {
+            "lower": -0.0004412915367923286,
+            "upper": 0.0007814927148853851,
+            "n": 1000
+          },
+          "brier_diff_outs": {
+            "lower": -0.00047991186224001693,
+            "upper": 0.00038280193214181073,
+            "n": 1000
+          },
+          "calibration_slope": {
+            "lower": -0.7622976773760753,
+            "upper": 2.072252729673851,
+            "n": 1000
+          },
+          "flagged_send_mean_predicted": {
+            "lower": 0.9542300895133123,
+            "upper": 0.9765273838940359,
+            "n": 1000
+          },
+          "holds_dropped_share": {
+            "lower": 0.05816651079218627,
+            "upper": 0.12037921702330887,
+            "n": 1000
+          },
+          "flagged_holds": {
+            "lower": 970.975,
+            "upper": 1229.05,
+            "n": 1000
+          },
+          "runs_left": {
+            "lower": 211.7755884632418,
+            "upper": 265.0870278670122,
+            "n": 1000
+          },
+          "cubs_flagged_holds": {
+            "lower": 34.0,
+            "upper": 67.0,
+            "n": 1000
+          },
+          "cubs_runs_left": {
+            "lower": 7.8404443986980015,
+            "upper": 15.076021465836401,
+            "n": 1000
+          }
+        }
+      },
+      "criteria": {
+        "brier_beats_constant": {
+          "passed": false,
+          "difference": -4.415984049521704e-05,
+          "interval_95": {
+            "lower": -0.0004412915367923286,
+            "upper": 0.0007814927148853851,
+            "n": 1000
+          },
+          "rule": "interval of (model - constant) excludes zero below"
+        },
+        "calibration_slope": {
+          "passed": true,
+          "slope": 0.7545471612086759,
+          "interval_95": {
+            "lower": -0.7622976773760753,
+            "upper": 2.072252729673851,
+            "n": 1000
+          },
+          "rule": "slope within [0.7, 1.3]"
+        },
+        "runs_left_excludes_zero": {
+          "passed": true,
+          "estimate": 236.8910382228173,
+          "interval_95": {
+            "lower": 211.7755884632418,
+            "upper": 265.0870278670122,
+            "n": 1000
+          },
+          "rule": "95% bootstrap interval of runs left above zero"
+        },
+        "negative_control": {
+          "passed": false,
+          "realized_success": 0.9482071713147411,
+          "mean_predicted": 0.9656138769329161,
+          "interval_95": {
+            "lower": 0.9542300895133123,
+            "upper": 0.9765273838940359,
+            "n": 1000
+          },
+          "flagged_sends": 1004,
+          "rule": "realized success inside the interval of mean predicted P(safe) for flagged sends"
+        }
+      },
+      "verdict": "NEGATIVE",
+      "cubs": {
+        "2025": {
+          "opportunities": 157,
+          "label_counts": {
+            "AMBIGUOUS": 1,
+            "HOLD": 91,
+            "OUT_ELSEWHERE": 1,
+            "SENT_OUT": 4,
+            "SENT_SAFE": 60
+          },
+          "in_sample": true,
+          "flagged_holds": 37,
+          "runs_left": 7.949151753502662
+        },
+        "2026": {
+          "opportunities": 159,
+          "label_counts": {
+            "AMBIGUOUS": 4,
+            "HOLD": 96,
+            "OUT_ELSEWHERE": 3,
+            "SENT_OUT": 3,
+            "SENT_SAFE": 53
+          },
+          "flagged_holds": 50,
+          "runs_left": 11.264689044020056,
+          "flagged_holds_interval_95": {
+            "lower": 34.0,
+            "upper": 67.0,
+            "n": 1000
+          },
+          "runs_left_interval_95": {
+            "lower": 7.8404443986980015,
+            "upper": 15.076021465836401,
+            "n": 1000
+          }
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "game_id": 822679,
+      "hit_type": "double",
+      "outs": 1,
+      "p_safe": 0.9683858229996621,
+      "p_star": 0.8085536143535721
+    },
+    {
+      "game_id": 822680,
+      "hit_type": "single",
+      "outs": 1,
+      "p_safe": 0.9650340598602192,
+      "p_star": 0.7590605448253309
+    },
+    {
+      "game_id": 822681,
+      "hit_type": "double",
+      "outs": 1,
+      "p_safe": 0.9488336713784371,
+      "p_star": 0.8085536143535721
+    },
+    {
+      "game_id": 822682,
+      "hit_type": "single",
+      "outs": 1,
+      "p_safe": 0.9658913463231363,
+      "p_star": 0.7590605448253309
+    },
+    {
+      "game_id": 822686,
+      "hit_type": "double",
+      "outs": 1,
+      "p_safe": 0.9306304886503459,
+      "p_star": 0.8085536143535721
+    }
+  ],
+  "fit_sha256": "b463af2239b70c0b516d4e4eaea405cdad7d0df58feb726e1928c6609b30f5ea"
+}
