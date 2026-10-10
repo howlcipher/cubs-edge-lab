@@ -7,12 +7,14 @@ import io
 import json
 import random
 import statistics
+import sys
 from pathlib import Path
 
-from .client import Client, atomic_json
+from .client import Client, RequestCeilingError, atomic_json
 
 SEED = 20261009
 CEILING = 150
+RETRIEVE_CEILING = 4900
 SAVANT = "https://baseballsavant.mlb.com/leaderboard/"
 # Acceptance targets from the campaign controller's independent audit.
 CONTROLLER_RECOUNT = {
@@ -925,8 +927,246 @@ def fetch(root):
     return analyze(root)
 
 
+def regular_season_games(payload, season):
+    """Select unique regular-season games matching the requested season."""
+    found = {}
+    for date in payload.get("dates", []):
+        for game in date.get("games", []):
+            if game.get("gameType") != "R":
+                continue
+            if int(game.get("season", season)) != int(season):
+                continue
+            game_pk = game.get("gamePk")
+            if game_pk is not None:
+                found[int(game_pk)] = {
+                    "season": int(season), "gamePk": int(game_pk)
+                }
+    return [found[key] for key in sorted(found)]
+
+
+def _failure_status(client, endpoint, params, error):
+    if getattr(error, "status", None) is not None:
+        return error.status
+    url = endpoint if endpoint.startswith("https://") else (
+        "https://statsapi.mlb.com/api/v1/" + endpoint
+    )
+    entry = next((item for item in reversed(client.cache_entries)
+                  if item.get("endpoint") == url
+                  and item.get("params") == params), None)
+    return entry.get("http_status") if entry else "exception"
+
+
+def _absolute_endpoint(endpoint):
+    if endpoint.startswith("https://"):
+        return endpoint
+    return "https://statsapi.mlb.com/api/v1/" + endpoint
+
+
+def _request_key(endpoint, game_pk, params):
+    """Identify a request by URL, game, and query parameters."""
+    return (
+        _absolute_endpoint(endpoint), game_pk,
+        json.dumps(params, sort_keys=True, separators=(",", ":")),
+    )
+
+
+def _failure_key(item):
+    """Read current failure identities and safely recognize old game rows."""
+    params = item.get("params")
+    if params is None:
+        # Old game failure rows have a URL unique to their game. Old schedule
+        # and leaderboard rows lack query parameters and cannot safely match.
+        if item.get("gamePk") is None:
+            return None
+        params = {}
+    return _request_key(
+        item["endpoint"], item.get("gamePk"), params
+    )
+
+
+def retrieve(root, max_requests, session=None):
+    """Retrieve schedules, leaderboard CSVs, and game feeds resumably."""
+    from requests import RequestException
+
+    from .client import ApiError
+
+    root = Path(root)
+    client = Client(
+        root,
+        session=session,
+        request_cap=max_requests,
+        ceiling=RETRIEVE_CEILING,
+        max_ceiling=RETRIEVE_CEILING,
+        allowed_hosts={"statsapi.mlb.com", "baseballsavant.mlb.com"},
+        manifest_path="data/sendhold_manifest.json",
+        cache_manifest_paths=["research/raw_manifest.json"],
+    )
+    ledger_count = int(client.ledger.get("count", 0))
+    if max_requests > RETRIEVE_CEILING - ledger_count:
+        raise RequestCeilingError(
+            "--max-requests exceeds the remaining study request ceiling"
+        )
+    failures_path = root / "data/sendhold_failures.json"
+    failures = (
+        json.loads(failures_path.read_text()) if failures_path.exists() else []
+    )
+    known_failures = {_failure_key(item) for item in failures}
+    known_failures.discard(None)
+    before = client.new_request_count
+    fetched = cached = failed = 0
+    schedule_games = []
+    schedule_values = {}
+    schedule_requests = []
+    for season in (2025, 2026):
+        endpoint = "schedule"
+        params = {"sportId": 1, "season": season, "gameType": "R"}
+        absolute = _absolute_endpoint(endpoint)
+        request_key = _request_key(endpoint, None, params)
+        schedule_requests.append((endpoint, None, params))
+        if request_key in known_failures:
+            continue
+        cached_before = client._cache_path(endpoint, params).exists()
+        if not cached_before and client.new_request_count >= max_requests:
+            continue
+        try:
+            result = client.get(endpoint, **params)
+            schedule_games.extend(regular_season_games(result, season))
+            schedule_values[str(season)] = result
+            if cached_before:
+                cached += 1
+            else:
+                fetched += 1
+            print(f"{'Cached' if cached_before else 'Fetched'} schedule "
+                  f"{season}; new requests "
+                  f"{client.new_request_count}/{max_requests}")
+        except RequestCeilingError:
+            raise
+        except (ApiError, RequestException, ValueError, TypeError) as error:
+            failed += 1
+            failure = {
+                "gamePk": None,
+                "endpoint": absolute,
+                "params": params,
+                "http_status": _failure_status(
+                    client, endpoint, params, error
+                ),
+                "reason": str(error),
+            }
+            failures.append(failure)
+            known_failures.add(request_key)
+            atomic_json(failures_path, failures)
+            print(f"Failed schedule {season}: HTTP {failure['http_status']}")
+    schedule_games = sorted(
+        {item["gamePk"]: item for item in schedule_games}.values(),
+        key=lambda item: (item["season"], item["gamePk"]),
+    )
+    if schedule_values:
+        atomic_json(
+            root / "data/sendhold_retrieve_schedule.json", schedule_values
+        )
+
+    tasks = []
+    for season in (2024, 2025, 2026):
+        tasks.extend([
+            ("leaderboard_sprint", None, SAVANT + "sprint_speed", {
+                "csv": "true", "min_season": season, "max_season": season,
+                "min": 0, "position": "", "team": "",
+            }),
+            ("leaderboard_arm", None, SAVANT + "arm-strength", {
+                "csv": "true", "year": season, "type": "player",
+                "position": "OF", "min_throws": 0,
+            }),
+        ])
+    for game in schedule_games:
+        tasks.append(("game", game["gamePk"],
+                      f"game/{game['gamePk']}/playByPlay", {}))
+
+    for kind, game_pk, endpoint, params in tasks:
+        absolute = _absolute_endpoint(endpoint)
+        request_key = _request_key(endpoint, game_pk, params)
+        if request_key in known_failures:
+            continue
+        had_cache = client._cache_path(endpoint, params).exists()
+        if client.new_request_count >= max_requests and not had_cache:
+            break
+        try:
+            if endpoint.startswith("https://"):
+                client.get_url(endpoint, text=True, **params)
+            else:
+                client.get(endpoint, **params)
+            cached += int(had_cache)
+            fetched += int(not had_cache)
+            label = (
+                f"game {game_pk}" if game_pk
+                else endpoint.rsplit("/", 1)[-1]
+            )
+            print(f"{'Cached' if had_cache else 'Fetched'} {label}; "
+                  f"new requests {client.new_request_count}/{max_requests}")
+        except RequestCeilingError:
+            raise
+        except (ApiError, RequestException, ValueError, TypeError) as error:
+            failed += 1
+            failure = {
+                "gamePk": game_pk,
+                "endpoint": absolute,
+                "params": params,
+                "http_status": _failure_status(
+                    client, endpoint, params, error
+                ),
+                "reason": str(error),
+            }
+            failures.append(failure)
+            known_failures.add(request_key)
+            atomic_json(failures_path, failures)
+            print(f"Failed {endpoint}: HTTP {failure['http_status']}")
+
+    planned_requests = schedule_requests + [
+        (endpoint, game_pk, params)
+        for _, game_pk, endpoint, params in tasks
+    ]
+    outstanding = {
+        _request_key(endpoint, game_pk, params)
+        for endpoint, game_pk, params in planned_requests
+        if (
+            not client._cache_path(endpoint, params).exists()
+            or _request_key(endpoint, game_pk, params) in known_failures
+        )
+    }
+    failed_keys = known_failures & outstanding
+    remaining = len(outstanding)
+    failed = len(failed_keys)
+    complete = remaining == 0
+    used = client.new_request_count - before
+    status = {
+        "fetched": fetched,
+        "cached": cached,
+        "failed": failed,
+        "remaining": remaining,
+        "new_requests_this_invocation": used,
+        "ledger_count": client.ledger["count"],
+        "complete": complete,
+    }
+    atomic_json(root / "data/sendhold_retrieve_status.json", status)
+    print(json.dumps(status, sort_keys=True))
+    return status
+
+
 def main(argv=None):
+    argv = sys.argv[1:] if argv is None else argv
     parser = argparse.ArgumentParser()
+    if argv and argv[0] == "retrieve":
+        retrieve_parser = argparse.ArgumentParser()
+        retrieve_parser.add_argument("retrieve", nargs="?")
+        retrieve_parser.add_argument("--root", type=Path, default=Path.cwd())
+        retrieve_parser.add_argument("--max-requests", type=int, required=True)
+        args = retrieve_parser.parse_args(argv)
+        if args.max_requests < 0:
+            retrieve_parser.error("--max-requests must be nonnegative")
+        try:
+            retrieve(args.root, args.max_requests)
+        except RequestCeilingError as error:
+            retrieve_parser.exit(2, f"{error}\n")
+        return 0
     parser.add_argument("--root", type=Path, default=Path.cwd())
     parser.add_argument("--analyze", action="store_true")
     parser.add_argument("--ceiling", type=int, default=CEILING)

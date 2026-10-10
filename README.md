@@ -135,16 +135,40 @@ This probe is research only. It does not implement a candidate product.
 
 ### Third-base send/hold feasibility study
 
-After `python3 -m pip install -r requirements.txt`, run
-`python3 -m cubs_edge_lab.probe.sendhold` to fetch the deterministic sample,
-then `python3 -m cubs_edge_lab.probe.sendhold --analyze` to regenerate the
-aggregate report from local data. New network requests have a hard ceiling of
-150 across runs; cache hits are free. Raw data and per-opportunity records stay
-under ignored `data/` and are not committed. The owner authorized this sample
-on 2026-10-09: "Approve up to ~150 rate-limited requests now (a sample of game
-feeds plus public sprint-speed and arm-strength leaderboards) to measure
-whether the data supports the study; ask again before any full-season
-retrieval." No full-season retrieval is authorized.
+After `python3 -m pip install -r requirements.txt`, the feasibility sample can
+be fetched with `python3 -m cubs_edge_lab.probe.sendhold`, and its aggregate
+report regenerated with `python3 -m cubs_edge_lab.probe.sendhold --analyze`.
+For the authorized full retrieval, run
+`python3 -m cubs_edge_lab.probe.sendhold retrieve --max-requests 200` in
+chunks. After each run, inspect `data/sendhold_retrieve_status.json`; stop
+when it reports `"complete": true`. If the command exits with the ceiling
+error before the status is complete, read the `count` in
+`data/sendhold_request_ledger.json` and set `N` to the smaller of 200 and
+`4900 - count`, then run
+`python3 -m cubs_edge_lab.probe.sendhold retrieve --max-requests N`. This
+smaller final chunk is necessary because a requested chunk larger than the
+remaining budget is rejected before making requests. If status still reports
+work remaining after the budget reaches 4,900, stop; the ceiling prevents
+further retrieval. Each invocation sends no more than its requested number
+of new requests. Requests are sequential and limited to 2 per second; the
+full run is estimated to take about 41 minutes. A persisted ceiling of
+4,900 new requests applies across invocations, including the 107 feasibility
+requests already recorded. Cache hits do not count. The command retrieves
+2025 and 2026 regular-season schedules and game play-by-play, plus the public
+sprint-speed and outfielder arm-strength leaderboards for 2024, 2025 and 2026.
+
+Raw response cache files stay under ignored `data/raw/`. Retrieval metadata is
+written to `data/sendhold_manifest.json`, the shared request count to
+`data/sendhold_request_ledger.json`, progress to
+`data/sendhold_retrieve_status.json`, and failed or skipped requests with
+their HTTP status (or `exception`) to `data/sendhold_failures.json`. These
+files contain no published raw response content. Failed requests are not
+retried automatically; inspect the failure log and seek renewed authorization
+before removing that request's failure record and cached response to retry it.
+Raw responses are never committed. Data use is local-only, non-commercial research under the
+owner's 2026-10-10 authorization: "Two seasons, 2025-2026": "Approve ~4,900
+requests. More power, and lets 2026 be a holdout for the model fit on 2025."
+Only aggregates and at most 5 short examples may be published.
 
 ## November free-agent triage
 
