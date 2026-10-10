@@ -1,0 +1,1894 @@
+{
+  "ceiling": {
+    "source": "sendhold_feasibility.json#/ceiling",
+    "value": 150
+  },
+  "cell_0_hit_type": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/0/hit_type",
+    "value": "double"
+  },
+  "cell_0_low_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/0/low_n",
+    "value": false
+  },
+  "cell_0_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/0/n",
+    "value": 48
+  },
+  "cell_0_n_sent": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/0/n_sent",
+    "value": 23
+  },
+  "cell_0_observed_send_success": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/0/observed_send_success",
+    "value": 0.9565217391304348
+  },
+  "cell_0_outs": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/0/outs",
+    "value": 0
+  },
+  "cell_0_p_star": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/0/p_star",
+    "value": 0.9063648900231474
+  },
+  "cell_0_speed_tercile": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/0/speed_tercile",
+    "value": "high"
+  },
+  "cell_0_zone_group": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/0/zone_group",
+    "value": "center"
+  },
+  "cell_10_hit_type": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/10/hit_type",
+    "value": "single"
+  },
+  "cell_10_low_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/10/low_n",
+    "value": false
+  },
+  "cell_10_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/10/n",
+    "value": 185
+  },
+  "cell_10_n_sent": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/10/n_sent",
+    "value": 114
+  },
+  "cell_10_observed_send_success": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/10/observed_send_success",
+    "value": 0.956140350877193
+  },
+  "cell_10_outs": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/10/outs",
+    "value": 1
+  },
+  "cell_10_p_star": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/10/p_star",
+    "value": 0.7590605448253309
+  },
+  "cell_10_speed_tercile": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/10/speed_tercile",
+    "value": "low"
+  },
+  "cell_10_zone_group": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/10/zone_group",
+    "value": "center"
+  },
+  "cell_11_hit_type": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/11/hit_type",
+    "value": "single"
+  },
+  "cell_11_low_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/11/low_n",
+    "value": false
+  },
+  "cell_11_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/11/n",
+    "value": 141
+  },
+  "cell_11_n_sent": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/11/n_sent",
+    "value": 94
+  },
+  "cell_11_observed_send_success": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/11/observed_send_success",
+    "value": 0.9680851063829787
+  },
+  "cell_11_outs": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/11/outs",
+    "value": 1
+  },
+  "cell_11_p_star": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/11/p_star",
+    "value": 0.7590605448253309
+  },
+  "cell_11_speed_tercile": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/11/speed_tercile",
+    "value": "mid"
+  },
+  "cell_11_zone_group": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/11/zone_group",
+    "value": "center"
+  },
+  "cell_12_hit_type": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/12/hit_type",
+    "value": "double"
+  },
+  "cell_12_low_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/12/low_n",
+    "value": false
+  },
+  "cell_12_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/12/n",
+    "value": 71
+  },
+  "cell_12_n_sent": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/12/n_sent",
+    "value": 33
+  },
+  "cell_12_observed_send_success": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/12/observed_send_success",
+    "value": 0.9393939393939394
+  },
+  "cell_12_outs": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/12/outs",
+    "value": 0
+  },
+  "cell_12_p_star": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/12/p_star",
+    "value": 0.9063648900231474
+  },
+  "cell_12_speed_tercile": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/12/speed_tercile",
+    "value": "high"
+  },
+  "cell_12_zone_group": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/12/zone_group",
+    "value": "left"
+  },
+  "cell_13_hit_type": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/13/hit_type",
+    "value": "double"
+  },
+  "cell_13_low_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/13/low_n",
+    "value": false
+  },
+  "cell_13_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/13/n",
+    "value": 113
+  },
+  "cell_13_n_sent": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/13/n_sent",
+    "value": 23
+  },
+  "cell_13_observed_send_success": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/13/observed_send_success",
+    "value": 0.8695652173913043
+  },
+  "cell_13_outs": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/13/outs",
+    "value": 0
+  },
+  "cell_13_p_star": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/13/p_star",
+    "value": 0.9063648900231474
+  },
+  "cell_13_speed_tercile": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/13/speed_tercile",
+    "value": "low"
+  },
+  "cell_13_zone_group": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/13/zone_group",
+    "value": "left"
+  },
+  "cell_14_hit_type": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/14/hit_type",
+    "value": "double"
+  },
+  "cell_14_low_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/14/low_n",
+    "value": false
+  },
+  "cell_14_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/14/n",
+    "value": 78
+  },
+  "cell_14_n_sent": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/14/n_sent",
+    "value": 22
+  },
+  "cell_14_observed_send_success": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/14/observed_send_success",
+    "value": 1.0
+  },
+  "cell_14_outs": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/14/outs",
+    "value": 0
+  },
+  "cell_14_p_star": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/14/p_star",
+    "value": 0.9063648900231474
+  },
+  "cell_14_speed_tercile": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/14/speed_tercile",
+    "value": "mid"
+  },
+  "cell_14_zone_group": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/14/zone_group",
+    "value": "left"
+  },
+  "cell_15_hit_type": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/15/hit_type",
+    "value": "double"
+  },
+  "cell_15_low_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/15/low_n",
+    "value": false
+  },
+  "cell_15_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/15/n",
+    "value": 123
+  },
+  "cell_15_n_sent": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/15/n_sent",
+    "value": 72
+  },
+  "cell_15_observed_send_success": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/15/observed_send_success",
+    "value": 0.9861111111111112
+  },
+  "cell_15_outs": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/15/outs",
+    "value": 1
+  },
+  "cell_15_p_star": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/15/p_star",
+    "value": 0.8085536143535721
+  },
+  "cell_15_speed_tercile": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/15/speed_tercile",
+    "value": "high"
+  },
+  "cell_15_zone_group": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/15/zone_group",
+    "value": "left"
+  },
+  "cell_16_hit_type": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/16/hit_type",
+    "value": "double"
+  },
+  "cell_16_low_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/16/low_n",
+    "value": false
+  },
+  "cell_16_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/16/n",
+    "value": 133
+  },
+  "cell_16_n_sent": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/16/n_sent",
+    "value": 27
+  },
+  "cell_16_observed_send_success": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/16/observed_send_success",
+    "value": 0.9629629629629629
+  },
+  "cell_16_outs": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/16/outs",
+    "value": 1
+  },
+  "cell_16_p_star": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/16/p_star",
+    "value": 0.8085536143535721
+  },
+  "cell_16_speed_tercile": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/16/speed_tercile",
+    "value": "low"
+  },
+  "cell_16_zone_group": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/16/zone_group",
+    "value": "left"
+  },
+  "cell_17_hit_type": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/17/hit_type",
+    "value": "double"
+  },
+  "cell_17_low_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/17/low_n",
+    "value": false
+  },
+  "cell_17_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/17/n",
+    "value": 120
+  },
+  "cell_17_n_sent": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/17/n_sent",
+    "value": 44
+  },
+  "cell_17_observed_send_success": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/17/observed_send_success",
+    "value": 0.9318181818181818
+  },
+  "cell_17_outs": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/17/outs",
+    "value": 1
+  },
+  "cell_17_p_star": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/17/p_star",
+    "value": 0.8085536143535721
+  },
+  "cell_17_speed_tercile": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/17/speed_tercile",
+    "value": "mid"
+  },
+  "cell_17_zone_group": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/17/zone_group",
+    "value": "left"
+  },
+  "cell_18_hit_type": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/18/hit_type",
+    "value": "single"
+  },
+  "cell_18_low_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/18/low_n",
+    "value": false
+  },
+  "cell_18_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/18/n",
+    "value": 106
+  },
+  "cell_18_n_sent": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/18/n_sent",
+    "value": 43
+  },
+  "cell_18_observed_send_success": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/18/observed_send_success",
+    "value": 0.9767441860465116
+  },
+  "cell_18_outs": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/18/outs",
+    "value": 0
+  },
+  "cell_18_p_star": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/18/p_star",
+    "value": 0.9595728884477458
+  },
+  "cell_18_speed_tercile": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/18/speed_tercile",
+    "value": "high"
+  },
+  "cell_18_zone_group": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/18/zone_group",
+    "value": "left"
+  },
+  "cell_19_hit_type": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/19/hit_type",
+    "value": "single"
+  },
+  "cell_19_low_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/19/low_n",
+    "value": false
+  },
+  "cell_19_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/19/n",
+    "value": 119
+  },
+  "cell_19_n_sent": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/19/n_sent",
+    "value": 33
+  },
+  "cell_19_observed_send_success": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/19/observed_send_success",
+    "value": 0.9393939393939394
+  },
+  "cell_19_outs": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/19/outs",
+    "value": 0
+  },
+  "cell_19_p_star": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/19/p_star",
+    "value": 0.9595728884477458
+  },
+  "cell_19_speed_tercile": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/19/speed_tercile",
+    "value": "low"
+  },
+  "cell_19_zone_group": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/19/zone_group",
+    "value": "left"
+  },
+  "cell_1_hit_type": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/1/hit_type",
+    "value": "double"
+  },
+  "cell_1_low_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/1/low_n",
+    "value": false
+  },
+  "cell_1_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/1/n",
+    "value": 59
+  },
+  "cell_1_n_sent": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/1/n_sent",
+    "value": 12
+  },
+  "cell_1_observed_send_success": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/1/observed_send_success",
+    "value": 0.9166666666666666
+  },
+  "cell_1_outs": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/1/outs",
+    "value": 0
+  },
+  "cell_1_p_star": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/1/p_star",
+    "value": 0.9063648900231474
+  },
+  "cell_1_speed_tercile": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/1/speed_tercile",
+    "value": "low"
+  },
+  "cell_1_zone_group": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/1/zone_group",
+    "value": "center"
+  },
+  "cell_20_hit_type": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/20/hit_type",
+    "value": "single"
+  },
+  "cell_20_low_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/20/low_n",
+    "value": false
+  },
+  "cell_20_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/20/n",
+    "value": 135
+  },
+  "cell_20_n_sent": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/20/n_sent",
+    "value": 43
+  },
+  "cell_20_observed_send_success": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/20/observed_send_success",
+    "value": 0.9767441860465116
+  },
+  "cell_20_outs": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/20/outs",
+    "value": 0
+  },
+  "cell_20_p_star": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/20/p_star",
+    "value": 0.9595728884477458
+  },
+  "cell_20_speed_tercile": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/20/speed_tercile",
+    "value": "mid"
+  },
+  "cell_20_zone_group": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/20/zone_group",
+    "value": "left"
+  },
+  "cell_21_hit_type": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/21/hit_type",
+    "value": "single"
+  },
+  "cell_21_low_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/21/low_n",
+    "value": false
+  },
+  "cell_21_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/21/n",
+    "value": 207
+  },
+  "cell_21_n_sent": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/21/n_sent",
+    "value": 111
+  },
+  "cell_21_observed_send_success": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/21/observed_send_success",
+    "value": 0.972972972972973
+  },
+  "cell_21_outs": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/21/outs",
+    "value": 1
+  },
+  "cell_21_p_star": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/21/p_star",
+    "value": 0.7590605448253309
+  },
+  "cell_21_speed_tercile": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/21/speed_tercile",
+    "value": "high"
+  },
+  "cell_21_zone_group": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/21/zone_group",
+    "value": "left"
+  },
+  "cell_22_hit_type": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/22/hit_type",
+    "value": "single"
+  },
+  "cell_22_low_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/22/low_n",
+    "value": false
+  },
+  "cell_22_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/22/n",
+    "value": 188
+  },
+  "cell_22_n_sent": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/22/n_sent",
+    "value": 81
+  },
+  "cell_22_observed_send_success": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/22/observed_send_success",
+    "value": 0.9506172839506173
+  },
+  "cell_22_outs": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/22/outs",
+    "value": 1
+  },
+  "cell_22_p_star": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/22/p_star",
+    "value": 0.7590605448253309
+  },
+  "cell_22_speed_tercile": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/22/speed_tercile",
+    "value": "low"
+  },
+  "cell_22_zone_group": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/22/zone_group",
+    "value": "left"
+  },
+  "cell_23_hit_type": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/23/hit_type",
+    "value": "single"
+  },
+  "cell_23_low_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/23/low_n",
+    "value": false
+  },
+  "cell_23_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/23/n",
+    "value": 189
+  },
+  "cell_23_n_sent": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/23/n_sent",
+    "value": 92
+  },
+  "cell_23_observed_send_success": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/23/observed_send_success",
+    "value": 0.9782608695652174
+  },
+  "cell_23_outs": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/23/outs",
+    "value": 1
+  },
+  "cell_23_p_star": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/23/p_star",
+    "value": 0.7590605448253309
+  },
+  "cell_23_speed_tercile": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/23/speed_tercile",
+    "value": "mid"
+  },
+  "cell_23_zone_group": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/23/zone_group",
+    "value": "left"
+  },
+  "cell_24_hit_type": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/24/hit_type",
+    "value": "double"
+  },
+  "cell_24_low_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/24/low_n",
+    "value": false
+  },
+  "cell_24_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/24/n",
+    "value": 64
+  },
+  "cell_24_n_sent": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/24/n_sent",
+    "value": 28
+  },
+  "cell_24_observed_send_success": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/24/observed_send_success",
+    "value": 0.9642857142857143
+  },
+  "cell_24_outs": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/24/outs",
+    "value": 0
+  },
+  "cell_24_p_star": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/24/p_star",
+    "value": 0.9063648900231474
+  },
+  "cell_24_speed_tercile": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/24/speed_tercile",
+    "value": "high"
+  },
+  "cell_24_zone_group": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/24/zone_group",
+    "value": "right"
+  },
+  "cell_25_hit_type": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/25/hit_type",
+    "value": "double"
+  },
+  "cell_25_low_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/25/low_n",
+    "value": false
+  },
+  "cell_25_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/25/n",
+    "value": 77
+  },
+  "cell_25_n_sent": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/25/n_sent",
+    "value": 8
+  },
+  "cell_25_observed_send_success": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/25/observed_send_success",
+    "value": 0.875
+  },
+  "cell_25_outs": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/25/outs",
+    "value": 0
+  },
+  "cell_25_p_star": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/25/p_star",
+    "value": 0.9063648900231474
+  },
+  "cell_25_speed_tercile": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/25/speed_tercile",
+    "value": "low"
+  },
+  "cell_25_zone_group": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/25/zone_group",
+    "value": "right"
+  },
+  "cell_26_hit_type": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/26/hit_type",
+    "value": "double"
+  },
+  "cell_26_low_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/26/low_n",
+    "value": false
+  },
+  "cell_26_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/26/n",
+    "value": 74
+  },
+  "cell_26_n_sent": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/26/n_sent",
+    "value": 19
+  },
+  "cell_26_observed_send_success": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/26/observed_send_success",
+    "value": 0.8947368421052632
+  },
+  "cell_26_outs": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/26/outs",
+    "value": 0
+  },
+  "cell_26_p_star": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/26/p_star",
+    "value": 0.9063648900231474
+  },
+  "cell_26_speed_tercile": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/26/speed_tercile",
+    "value": "mid"
+  },
+  "cell_26_zone_group": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/26/zone_group",
+    "value": "right"
+  },
+  "cell_27_hit_type": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/27/hit_type",
+    "value": "double"
+  },
+  "cell_27_low_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/27/low_n",
+    "value": false
+  },
+  "cell_27_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/27/n",
+    "value": 68
+  },
+  "cell_27_n_sent": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/27/n_sent",
+    "value": 26
+  },
+  "cell_27_observed_send_success": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/27/observed_send_success",
+    "value": 0.9615384615384616
+  },
+  "cell_27_outs": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/27/outs",
+    "value": 1
+  },
+  "cell_27_p_star": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/27/p_star",
+    "value": 0.8085536143535721
+  },
+  "cell_27_speed_tercile": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/27/speed_tercile",
+    "value": "high"
+  },
+  "cell_27_zone_group": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/27/zone_group",
+    "value": "right"
+  },
+  "cell_28_hit_type": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/28/hit_type",
+    "value": "double"
+  },
+  "cell_28_low_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/28/low_n",
+    "value": false
+  },
+  "cell_28_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/28/n",
+    "value": 99
+  },
+  "cell_28_n_sent": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/28/n_sent",
+    "value": 13
+  },
+  "cell_28_observed_send_success": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/28/observed_send_success",
+    "value": 0.8461538461538461
+  },
+  "cell_28_outs": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/28/outs",
+    "value": 1
+  },
+  "cell_28_p_star": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/28/p_star",
+    "value": 0.8085536143535721
+  },
+  "cell_28_speed_tercile": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/28/speed_tercile",
+    "value": "low"
+  },
+  "cell_28_zone_group": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/28/zone_group",
+    "value": "right"
+  },
+  "cell_29_hit_type": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/29/hit_type",
+    "value": "double"
+  },
+  "cell_29_low_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/29/low_n",
+    "value": false
+  },
+  "cell_29_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/29/n",
+    "value": 92
+  },
+  "cell_29_n_sent": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/29/n_sent",
+    "value": 35
+  },
+  "cell_29_observed_send_success": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/29/observed_send_success",
+    "value": 0.9142857142857143
+  },
+  "cell_29_outs": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/29/outs",
+    "value": 1
+  },
+  "cell_29_p_star": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/29/p_star",
+    "value": 0.8085536143535721
+  },
+  "cell_29_speed_tercile": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/29/speed_tercile",
+    "value": "mid"
+  },
+  "cell_29_zone_group": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/29/zone_group",
+    "value": "right"
+  },
+  "cell_2_hit_type": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/2/hit_type",
+    "value": "double"
+  },
+  "cell_2_low_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/2/low_n",
+    "value": false
+  },
+  "cell_2_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/2/n",
+    "value": 50
+  },
+  "cell_2_n_sent": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/2/n_sent",
+    "value": 14
+  },
+  "cell_2_observed_send_success": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/2/observed_send_success",
+    "value": 0.7857142857142857
+  },
+  "cell_2_outs": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/2/outs",
+    "value": 0
+  },
+  "cell_2_p_star": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/2/p_star",
+    "value": 0.9063648900231474
+  },
+  "cell_2_speed_tercile": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/2/speed_tercile",
+    "value": "mid"
+  },
+  "cell_2_zone_group": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/2/zone_group",
+    "value": "center"
+  },
+  "cell_30_hit_type": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/30/hit_type",
+    "value": "single"
+  },
+  "cell_30_low_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/30/low_n",
+    "value": false
+  },
+  "cell_30_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/30/n",
+    "value": 111
+  },
+  "cell_30_n_sent": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/30/n_sent",
+    "value": 55
+  },
+  "cell_30_observed_send_success": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/30/observed_send_success",
+    "value": 0.9818181818181818
+  },
+  "cell_30_outs": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/30/outs",
+    "value": 0
+  },
+  "cell_30_p_star": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/30/p_star",
+    "value": 0.9595728884477458
+  },
+  "cell_30_speed_tercile": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/30/speed_tercile",
+    "value": "high"
+  },
+  "cell_30_zone_group": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/30/zone_group",
+    "value": "right"
+  },
+  "cell_31_hit_type": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/31/hit_type",
+    "value": "single"
+  },
+  "cell_31_low_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/31/low_n",
+    "value": false
+  },
+  "cell_31_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/31/n",
+    "value": 114
+  },
+  "cell_31_n_sent": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/31/n_sent",
+    "value": 27
+  },
+  "cell_31_observed_send_success": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/31/observed_send_success",
+    "value": 0.9629629629629629
+  },
+  "cell_31_outs": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/31/outs",
+    "value": 0
+  },
+  "cell_31_p_star": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/31/p_star",
+    "value": 0.9595728884477458
+  },
+  "cell_31_speed_tercile": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/31/speed_tercile",
+    "value": "low"
+  },
+  "cell_31_zone_group": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/31/zone_group",
+    "value": "right"
+  },
+  "cell_32_hit_type": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/32/hit_type",
+    "value": "single"
+  },
+  "cell_32_low_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/32/low_n",
+    "value": false
+  },
+  "cell_32_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/32/n",
+    "value": 112
+  },
+  "cell_32_n_sent": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/32/n_sent",
+    "value": 51
+  },
+  "cell_32_observed_send_success": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/32/observed_send_success",
+    "value": 0.9803921568627451
+  },
+  "cell_32_outs": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/32/outs",
+    "value": 0
+  },
+  "cell_32_p_star": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/32/p_star",
+    "value": 0.9595728884477458
+  },
+  "cell_32_speed_tercile": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/32/speed_tercile",
+    "value": "mid"
+  },
+  "cell_32_zone_group": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/32/zone_group",
+    "value": "right"
+  },
+  "cell_33_hit_type": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/33/hit_type",
+    "value": "single"
+  },
+  "cell_33_low_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/33/low_n",
+    "value": false
+  },
+  "cell_33_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/33/n",
+    "value": 199
+  },
+  "cell_33_n_sent": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/33/n_sent",
+    "value": 130
+  },
+  "cell_33_observed_send_success": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/33/observed_send_success",
+    "value": 0.9769230769230769
+  },
+  "cell_33_outs": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/33/outs",
+    "value": 1
+  },
+  "cell_33_p_star": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/33/p_star",
+    "value": 0.7590605448253309
+  },
+  "cell_33_speed_tercile": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/33/speed_tercile",
+    "value": "high"
+  },
+  "cell_33_zone_group": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/33/zone_group",
+    "value": "right"
+  },
+  "cell_34_hit_type": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/34/hit_type",
+    "value": "single"
+  },
+  "cell_34_low_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/34/low_n",
+    "value": false
+  },
+  "cell_34_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/34/n",
+    "value": 198
+  },
+  "cell_34_n_sent": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/34/n_sent",
+    "value": 79
+  },
+  "cell_34_observed_send_success": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/34/observed_send_success",
+    "value": 0.9620253164556962
+  },
+  "cell_34_outs": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/34/outs",
+    "value": 1
+  },
+  "cell_34_p_star": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/34/p_star",
+    "value": 0.7590605448253309
+  },
+  "cell_34_speed_tercile": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/34/speed_tercile",
+    "value": "low"
+  },
+  "cell_34_zone_group": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/34/zone_group",
+    "value": "right"
+  },
+  "cell_35_hit_type": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/35/hit_type",
+    "value": "single"
+  },
+  "cell_35_low_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/35/low_n",
+    "value": false
+  },
+  "cell_35_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/35/n",
+    "value": 184
+  },
+  "cell_35_n_sent": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/35/n_sent",
+    "value": 96
+  },
+  "cell_35_observed_send_success": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/35/observed_send_success",
+    "value": 0.9583333333333334
+  },
+  "cell_35_outs": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/35/outs",
+    "value": 1
+  },
+  "cell_35_p_star": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/35/p_star",
+    "value": 0.7590605448253309
+  },
+  "cell_35_speed_tercile": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/35/speed_tercile",
+    "value": "mid"
+  },
+  "cell_35_zone_group": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/35/zone_group",
+    "value": "right"
+  },
+  "cell_36_hit_type": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/36/hit_type",
+    "value": "single"
+  },
+  "cell_36_low_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/36/low_n",
+    "value": true
+  },
+  "cell_36_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/36/n",
+    "value": 1
+  },
+  "cell_36_n_sent": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/36/n_sent",
+    "value": 1
+  },
+  "cell_36_observed_send_success": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/36/observed_send_success",
+    "value": 1.0
+  },
+  "cell_36_outs": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/36/outs",
+    "value": 1
+  },
+  "cell_36_p_star": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/36/p_star",
+    "value": 0.7590605448253309
+  },
+  "cell_36_speed_tercile": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/36/speed_tercile",
+    "value": "unknown"
+  },
+  "cell_36_zone_group": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/36/zone_group",
+    "value": "right"
+  },
+  "cell_3_hit_type": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/3/hit_type",
+    "value": "double"
+  },
+  "cell_3_low_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/3/low_n",
+    "value": false
+  },
+  "cell_3_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/3/n",
+    "value": 78
+  },
+  "cell_3_n_sent": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/3/n_sent",
+    "value": 32
+  },
+  "cell_3_observed_send_success": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/3/observed_send_success",
+    "value": 1.0
+  },
+  "cell_3_outs": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/3/outs",
+    "value": 1
+  },
+  "cell_3_p_star": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/3/p_star",
+    "value": 0.8085536143535721
+  },
+  "cell_3_speed_tercile": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/3/speed_tercile",
+    "value": "high"
+  },
+  "cell_3_zone_group": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/3/zone_group",
+    "value": "center"
+  },
+  "cell_4_hit_type": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/4/hit_type",
+    "value": "double"
+  },
+  "cell_4_low_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/4/low_n",
+    "value": false
+  },
+  "cell_4_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/4/n",
+    "value": 92
+  },
+  "cell_4_n_sent": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/4/n_sent",
+    "value": 33
+  },
+  "cell_4_observed_send_success": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/4/observed_send_success",
+    "value": 0.9090909090909091
+  },
+  "cell_4_outs": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/4/outs",
+    "value": 1
+  },
+  "cell_4_p_star": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/4/p_star",
+    "value": 0.8085536143535721
+  },
+  "cell_4_speed_tercile": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/4/speed_tercile",
+    "value": "low"
+  },
+  "cell_4_zone_group": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/4/zone_group",
+    "value": "center"
+  },
+  "cell_5_hit_type": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/5/hit_type",
+    "value": "double"
+  },
+  "cell_5_low_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/5/low_n",
+    "value": false
+  },
+  "cell_5_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/5/n",
+    "value": 89
+  },
+  "cell_5_n_sent": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/5/n_sent",
+    "value": 29
+  },
+  "cell_5_observed_send_success": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/5/observed_send_success",
+    "value": 0.9310344827586207
+  },
+  "cell_5_outs": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/5/outs",
+    "value": 1
+  },
+  "cell_5_p_star": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/5/p_star",
+    "value": 0.8085536143535721
+  },
+  "cell_5_speed_tercile": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/5/speed_tercile",
+    "value": "mid"
+  },
+  "cell_5_zone_group": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/5/zone_group",
+    "value": "center"
+  },
+  "cell_6_hit_type": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/6/hit_type",
+    "value": "single"
+  },
+  "cell_6_low_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/6/low_n",
+    "value": false
+  },
+  "cell_6_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/6/n",
+    "value": 102
+  },
+  "cell_6_n_sent": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/6/n_sent",
+    "value": 55
+  },
+  "cell_6_observed_send_success": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/6/observed_send_success",
+    "value": 1.0
+  },
+  "cell_6_outs": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/6/outs",
+    "value": 0
+  },
+  "cell_6_p_star": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/6/p_star",
+    "value": 0.9595728884477458
+  },
+  "cell_6_speed_tercile": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/6/speed_tercile",
+    "value": "high"
+  },
+  "cell_6_zone_group": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/6/zone_group",
+    "value": "center"
+  },
+  "cell_7_hit_type": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/7/hit_type",
+    "value": "single"
+  },
+  "cell_7_low_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/7/low_n",
+    "value": false
+  },
+  "cell_7_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/7/n",
+    "value": 114
+  },
+  "cell_7_n_sent": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/7/n_sent",
+    "value": 58
+  },
+  "cell_7_observed_send_success": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/7/observed_send_success",
+    "value": 0.9827586206896551
+  },
+  "cell_7_outs": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/7/outs",
+    "value": 0
+  },
+  "cell_7_p_star": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/7/p_star",
+    "value": 0.9595728884477458
+  },
+  "cell_7_speed_tercile": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/7/speed_tercile",
+    "value": "low"
+  },
+  "cell_7_zone_group": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/7/zone_group",
+    "value": "center"
+  },
+  "cell_8_hit_type": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/8/hit_type",
+    "value": "single"
+  },
+  "cell_8_low_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/8/low_n",
+    "value": false
+  },
+  "cell_8_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/8/n",
+    "value": 112
+  },
+  "cell_8_n_sent": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/8/n_sent",
+    "value": 47
+  },
+  "cell_8_observed_send_success": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/8/observed_send_success",
+    "value": 0.9787234042553191
+  },
+  "cell_8_outs": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/8/outs",
+    "value": 0
+  },
+  "cell_8_p_star": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/8/p_star",
+    "value": 0.9595728884477458
+  },
+  "cell_8_speed_tercile": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/8/speed_tercile",
+    "value": "mid"
+  },
+  "cell_8_zone_group": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/8/zone_group",
+    "value": "center"
+  },
+  "cell_9_hit_type": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/9/hit_type",
+    "value": "single"
+  },
+  "cell_9_low_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/9/low_n",
+    "value": false
+  },
+  "cell_9_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/9/n",
+    "value": 180
+  },
+  "cell_9_n_sent": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/9/n_sent",
+    "value": 137
+  },
+  "cell_9_observed_send_success": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/9/observed_send_success",
+    "value": 0.9927007299270073
+  },
+  "cell_9_outs": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/9/outs",
+    "value": 1
+  },
+  "cell_9_p_star": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/9/p_star",
+    "value": 0.7590605448253309
+  },
+  "cell_9_speed_tercile": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/9/speed_tercile",
+    "value": "high"
+  },
+  "cell_9_zone_group": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/cells/9/zone_group",
+    "value": "center"
+  },
+  "covariate_required_sent_out": {
+    "source": "sendhold_experiment.json#/analyses/v3_primary/covariate_choice/required_sent_out",
+    "value": 140
+  },
+  "covariate_sent_out": {
+    "source": "sendhold_experiment.json#/analyses/v3_primary/covariate_choice/sent_out",
+    "value": 67
+  },
+  "feasibility_verdict": {
+    "source": "sendhold_feasibility.json#/verdict",
+    "value": "PARTIAL"
+  },
+  "fit_season": {
+    "source": "sendhold_fit.json#/fit_season",
+    "value": 2025
+  },
+  "fit_unknown_0": {
+    "source": "sendhold_fit.json#/unknown/0",
+    "value": "UNKNOWN: Whether held runners would have been safe if sent; the feed does not record the coach's sign, jump, or counterfactual."
+  },
+  "fit_v2_label_AMBIGUOUS": {
+    "source": "sendhold_fit.json#/versions/v2/label_counts/AMBIGUOUS",
+    "value": 1293
+  },
+  "fit_v2_label_HOLD": {
+    "source": "sendhold_fit.json#/versions/v2/label_counts/HOLD",
+    "value": 2385
+  },
+  "fit_v2_label_OTHER": {
+    "source": "sendhold_fit.json#/versions/v2/label_counts/OTHER",
+    "value": 0
+  },
+  "fit_v2_label_OUT_ELSEWHERE": {
+    "source": "sendhold_fit.json#/versions/v2/label_counts/OUT_ELSEWHERE",
+    "value": 31
+  },
+  "fit_v2_label_SENT_OUT": {
+    "source": "sendhold_fit.json#/versions/v2/label_counts/SENT_OUT",
+    "value": 67
+  },
+  "fit_v2_label_SENT_SAFE": {
+    "source": "sendhold_fit.json#/versions/v2/label_counts/SENT_SAFE",
+    "value": 555
+  },
+  "fit_v3_label_AMBIGUOUS": {
+    "source": "sendhold_fit.json#/versions/v3/label_counts/AMBIGUOUS",
+    "value": 75
+  },
+  "fit_v3_label_HOLD": {
+    "source": "sendhold_fit.json#/versions/v3/label_counts/HOLD",
+    "value": 2385
+  },
+  "fit_v3_label_OTHER": {
+    "source": "sendhold_fit.json#/versions/v3/label_counts/OTHER",
+    "value": 0
+  },
+  "fit_v3_label_OUT_ELSEWHERE": {
+    "source": "sendhold_fit.json#/versions/v3/label_counts/OUT_ELSEWHERE",
+    "value": 31
+  },
+  "fit_v3_label_SENT_OUT": {
+    "source": "sendhold_fit.json#/versions/v3/label_counts/SENT_OUT",
+    "value": 67
+  },
+  "fit_v3_label_SENT_SAFE": {
+    "source": "sendhold_fit.json#/versions/v3/label_counts/SENT_SAFE",
+    "value": 1773
+  },
+  "inference_line": {
+    "source": "SENDHOLD_EXPERIMENT.md#L6",
+    "value": "INFERENCE: Any positive estimate is upper-bound-style: sends are selected and the counterfactual for holds is extrapolated."
+  },
+  "min_cell_n": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/min_cell_n",
+    "value": 10
+  },
+  "new_requests_used": {
+    "source": "sendhold_feasibility.json#/new_requests_used",
+    "value": 107
+  },
+  "speed_cut_0": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/speed_tercile_cuts/0",
+    "value": 27.0
+  },
+  "speed_cut_1": {
+    "source": "sendhold_fit.json#/versions/v3/decision_chart/speed_tercile_cuts/1",
+    "value": 28.1
+  },
+  "unknown_line_0": {
+    "source": "SENDHOLD_EXPERIMENT.md#L90",
+    "value": "UNKNOWN: Whether held runners would have been safe if sent; the feed does not record the coach's sign, the runner's jump, or the counterfactual."
+  },
+  "unknown_line_1": {
+    "source": "SENDHOLD_EXPERIMENT.md#L91",
+    "value": "UNKNOWN: Trailing runners and later events are ignored in the run-value accounting."
+  },
+  "v2_preregistered_brier_beats_constant_estimate": {
+    "source": "sendhold_experiment.json#/analyses/v2_preregistered/criteria/brier_beats_constant/difference",
+    "value": -0.0015123212620640758
+  },
+  "v2_preregistered_brier_beats_constant_lower": {
+    "source": "sendhold_experiment.json#/analyses/v2_preregistered/criteria/brier_beats_constant/interval_95/lower",
+    "value": -0.0035100541044156583
+  },
+  "v2_preregistered_brier_beats_constant_passed": {
+    "source": "sendhold_experiment.json#/analyses/v2_preregistered/criteria/brier_beats_constant/passed",
+    "value": false
+  },
+  "v2_preregistered_brier_beats_constant_rule": {
+    "source": "sendhold_experiment.json#/analyses/v2_preregistered/criteria/brier_beats_constant/rule",
+    "value": "interval of (model - constant) excludes zero below"
+  },
+  "v2_preregistered_brier_beats_constant_upper": {
+    "source": "sendhold_experiment.json#/analyses/v2_preregistered/criteria/brier_beats_constant/interval_95/upper",
+    "value": 0.0017601019712714856
+  },
+  "v2_preregistered_calibration_slope_estimate": {
+    "source": "sendhold_experiment.json#/analyses/v2_preregistered/criteria/calibration_slope/slope",
+    "value": 1.2500645888637958
+  },
+  "v2_preregistered_calibration_slope_lower": {
+    "source": "sendhold_experiment.json#/analyses/v2_preregistered/criteria/calibration_slope/interval_95/lower",
+    "value": 0.0310478522184975
+  },
+  "v2_preregistered_calibration_slope_passed": {
+    "source": "sendhold_experiment.json#/analyses/v2_preregistered/criteria/calibration_slope/passed",
+    "value": true
+  },
+  "v2_preregistered_calibration_slope_rule": {
+    "source": "sendhold_experiment.json#/analyses/v2_preregistered/criteria/calibration_slope/rule",
+    "value": "slope within [0.7, 1.3]"
+  },
+  "v2_preregistered_calibration_slope_upper": {
+    "source": "sendhold_experiment.json#/analyses/v2_preregistered/criteria/calibration_slope/interval_95/upper",
+    "value": 2.025603657115215
+  },
+  "v2_preregistered_label_version": {
+    "source": "sendhold_experiment.json#/analyses/v2_preregistered/label_version",
+    "value": "v2"
+  },
+  "v2_preregistered_labels_2025_AMBIGUOUS": {
+    "source": "sendhold_experiment.json#/analyses/v2_preregistered/label_counts_2025/AMBIGUOUS",
+    "value": 1293
+  },
+  "v2_preregistered_labels_2025_HOLD": {
+    "source": "sendhold_experiment.json#/analyses/v2_preregistered/label_counts_2025/HOLD",
+    "value": 2385
+  },
+  "v2_preregistered_labels_2025_OTHER": {
+    "source": "sendhold_experiment.json#/analyses/v2_preregistered/label_counts_2025/OTHER",
+    "value": 0
+  },
+  "v2_preregistered_labels_2025_OUT_ELSEWHERE": {
+    "source": "sendhold_experiment.json#/analyses/v2_preregistered/label_counts_2025/OUT_ELSEWHERE",
+    "value": 31
+  },
+  "v2_preregistered_labels_2025_SENT_OUT": {
+    "source": "sendhold_experiment.json#/analyses/v2_preregistered/label_counts_2025/SENT_OUT",
+    "value": 67
+  },
+  "v2_preregistered_labels_2025_SENT_SAFE": {
+    "source": "sendhold_experiment.json#/analyses/v2_preregistered/label_counts_2025/SENT_SAFE",
+    "value": 555
+  },
+  "v2_preregistered_negative_control_estimate": {
+    "source": "sendhold_experiment.json#/analyses/v2_preregistered/criteria/negative_control/realized_success",
+    "value": 0.8891257995735607
+  },
+  "v2_preregistered_negative_control_lower": {
+    "source": "sendhold_experiment.json#/analyses/v2_preregistered/criteria/negative_control/interval_95/lower",
+    "value": 0.8732260984541436
+  },
+  "v2_preregistered_negative_control_passed": {
+    "source": "sendhold_experiment.json#/analyses/v2_preregistered/criteria/negative_control/passed",
+    "value": true
+  },
+  "v2_preregistered_negative_control_rule": {
+    "source": "sendhold_experiment.json#/analyses/v2_preregistered/criteria/negative_control/rule",
+    "value": "realized success inside the interval of mean predicted P(safe) for flagged sends"
+  },
+  "v2_preregistered_negative_control_upper": {
+    "source": "sendhold_experiment.json#/analyses/v2_preregistered/criteria/negative_control/interval_95/upper",
+    "value": 0.9243261442093299
+  },
+  "v2_preregistered_runs_left_excludes_zero_estimate": {
+    "source": "sendhold_experiment.json#/analyses/v2_preregistered/criteria/runs_left_excludes_zero/estimate",
+    "value": 155.81997364683693
+  },
+  "v2_preregistered_runs_left_excludes_zero_lower": {
+    "source": "sendhold_experiment.json#/analyses/v2_preregistered/criteria/runs_left_excludes_zero/interval_95/lower",
+    "value": 101.54009489069281
+  },
+  "v2_preregistered_runs_left_excludes_zero_passed": {
+    "source": "sendhold_experiment.json#/analyses/v2_preregistered/criteria/runs_left_excludes_zero/passed",
+    "value": true
+  },
+  "v2_preregistered_runs_left_excludes_zero_rule": {
+    "source": "sendhold_experiment.json#/analyses/v2_preregistered/criteria/runs_left_excludes_zero/rule",
+    "value": "95% bootstrap interval of runs left above zero"
+  },
+  "v2_preregistered_runs_left_excludes_zero_upper": {
+    "source": "sendhold_experiment.json#/analyses/v2_preregistered/criteria/runs_left_excludes_zero/interval_95/upper",
+    "value": 217.43031642424435
+  },
+  "v2_preregistered_verdict": {
+    "source": "sendhold_experiment.json#/analyses/v2_preregistered/verdict",
+    "value": "NEGATIVE"
+  },
+  "v3_ambiguous_as_safe_brier_beats_constant_estimate": {
+    "source": "sendhold_experiment.json#/analyses/v3_ambiguous_as_safe/criteria/brier_beats_constant/difference",
+    "value": -6.319702746596795e-05
+  },
+  "v3_ambiguous_as_safe_brier_beats_constant_lower": {
+    "source": "sendhold_experiment.json#/analyses/v3_ambiguous_as_safe/criteria/brier_beats_constant/interval_95/lower",
+    "value": -0.0002953501295636106
+  },
+  "v3_ambiguous_as_safe_brier_beats_constant_passed": {
+    "source": "sendhold_experiment.json#/analyses/v3_ambiguous_as_safe/criteria/brier_beats_constant/passed",
+    "value": false
+  },
+  "v3_ambiguous_as_safe_brier_beats_constant_rule": {
+    "source": "sendhold_experiment.json#/analyses/v3_ambiguous_as_safe/criteria/brier_beats_constant/rule",
+    "value": "interval of (model - constant) excludes zero below"
+  },
+  "v3_ambiguous_as_safe_brier_beats_constant_upper": {
+    "source": "sendhold_experiment.json#/analyses/v3_ambiguous_as_safe/criteria/brier_beats_constant/interval_95/upper",
+    "value": 0.00040378962452929844
+  },
+  "v3_ambiguous_as_safe_calibration_slope_estimate": {
+    "source": "sendhold_experiment.json#/analyses/v3_ambiguous_as_safe/criteria/calibration_slope/slope",
+    "value": 0.8931700850428215
+  },
+  "v3_ambiguous_as_safe_calibration_slope_lower": {
+    "source": "sendhold_experiment.json#/analyses/v3_ambiguous_as_safe/criteria/calibration_slope/interval_95/lower",
+    "value": -0.2084952466802036
+  },
+  "v3_ambiguous_as_safe_calibration_slope_passed": {
+    "source": "sendhold_experiment.json#/analyses/v3_ambiguous_as_safe/criteria/calibration_slope/passed",
+    "value": true
+  },
+  "v3_ambiguous_as_safe_calibration_slope_rule": {
+    "source": "sendhold_experiment.json#/analyses/v3_ambiguous_as_safe/criteria/calibration_slope/rule",
+    "value": "slope within [0.7, 1.3]"
+  },
+  "v3_ambiguous_as_safe_calibration_slope_upper": {
+    "source": "sendhold_experiment.json#/analyses/v3_ambiguous_as_safe/criteria/calibration_slope/interval_95/upper",
+    "value": 1.809562874450349
+  },
+  "v3_ambiguous_as_safe_label_version": {
+    "source": "sendhold_experiment.json#/analyses/v3_ambiguous_as_safe/label_version",
+    "value": "v3_ambiguous_as_safe"
+  },
+  "v3_ambiguous_as_safe_labels_2025_AMBIGUOUS": {
+    "source": "sendhold_experiment.json#/analyses/v3_ambiguous_as_safe/label_counts_2025/AMBIGUOUS",
+    "value": 0
+  },
+  "v3_ambiguous_as_safe_labels_2025_HOLD": {
+    "source": "sendhold_experiment.json#/analyses/v3_ambiguous_as_safe/label_counts_2025/HOLD",
+    "value": 2385
+  },
+  "v3_ambiguous_as_safe_labels_2025_OTHER": {
+    "source": "sendhold_experiment.json#/analyses/v3_ambiguous_as_safe/label_counts_2025/OTHER",
+    "value": 0
+  },
+  "v3_ambiguous_as_safe_labels_2025_OUT_ELSEWHERE": {
+    "source": "sendhold_experiment.json#/analyses/v3_ambiguous_as_safe/label_counts_2025/OUT_ELSEWHERE",
+    "value": 31
+  },
+  "v3_ambiguous_as_safe_labels_2025_SENT_OUT": {
+    "source": "sendhold_experiment.json#/analyses/v3_ambiguous_as_safe/label_counts_2025/SENT_OUT",
+    "value": 67
+  },
+  "v3_ambiguous_as_safe_labels_2025_SENT_SAFE": {
+    "source": "sendhold_experiment.json#/analyses/v3_ambiguous_as_safe/label_counts_2025/SENT_SAFE",
+    "value": 1848
+  },
+  "v3_ambiguous_as_safe_negative_control_estimate": {
+    "source": "sendhold_experiment.json#/analyses/v3_ambiguous_as_safe/criteria/negative_control/realized_success",
+    "value": 0.958139534883721
+  },
+  "v3_ambiguous_as_safe_negative_control_lower": {
+    "source": "sendhold_experiment.json#/analyses/v3_ambiguous_as_safe/criteria/negative_control/interval_95/lower",
+    "value": 0.9574350063621735
+  },
+  "v3_ambiguous_as_safe_negative_control_passed": {
+    "source": "sendhold_experiment.json#/analyses/v3_ambiguous_as_safe/criteria/negative_control/passed",
+    "value": true
+  },
+  "v3_ambiguous_as_safe_negative_control_rule": {
+    "source": "sendhold_experiment.json#/analyses/v3_ambiguous_as_safe/criteria/negative_control/rule",
+    "value": "realized success inside the interval of mean predicted P(safe) for flagged sends"
+  },
+  "v3_ambiguous_as_safe_negative_control_upper": {
+    "source": "sendhold_experiment.json#/analyses/v3_ambiguous_as_safe/criteria/negative_control/interval_95/upper",
+    "value": 0.9754682476774198
+  },
+  "v3_ambiguous_as_safe_runs_left_excludes_zero_estimate": {
+    "source": "sendhold_experiment.json#/analyses/v3_ambiguous_as_safe/criteria/runs_left_excludes_zero/estimate",
+    "value": 332.1029594052524
+  },
+  "v3_ambiguous_as_safe_runs_left_excludes_zero_lower": {
+    "source": "sendhold_experiment.json#/analyses/v3_ambiguous_as_safe/criteria/runs_left_excludes_zero/interval_95/lower",
+    "value": 297.0812848799046
+  },
+  "v3_ambiguous_as_safe_runs_left_excludes_zero_passed": {
+    "source": "sendhold_experiment.json#/analyses/v3_ambiguous_as_safe/criteria/runs_left_excludes_zero/passed",
+    "value": true
+  },
+  "v3_ambiguous_as_safe_runs_left_excludes_zero_rule": {
+    "source": "sendhold_experiment.json#/analyses/v3_ambiguous_as_safe/criteria/runs_left_excludes_zero/rule",
+    "value": "95% bootstrap interval of runs left above zero"
+  },
+  "v3_ambiguous_as_safe_runs_left_excludes_zero_upper": {
+    "source": "sendhold_experiment.json#/analyses/v3_ambiguous_as_safe/criteria/runs_left_excludes_zero/interval_95/upper",
+    "value": 363.012129195587
+  },
+  "v3_ambiguous_as_safe_verdict": {
+    "source": "sendhold_experiment.json#/analyses/v3_ambiguous_as_safe/verdict",
+    "value": "NEGATIVE"
+  },
+  "v3_fallback_dropped_brier_beats_constant_estimate": {
+    "source": "sendhold_experiment.json#/analyses/v3_fallback_dropped/criteria/brier_beats_constant/difference",
+    "value": -4.415984049521704e-05
+  },
+  "v3_fallback_dropped_brier_beats_constant_lower": {
+    "source": "sendhold_experiment.json#/analyses/v3_fallback_dropped/criteria/brier_beats_constant/interval_95/lower",
+    "value": -0.0004412915367923286
+  },
+  "v3_fallback_dropped_brier_beats_constant_passed": {
+    "source": "sendhold_experiment.json#/analyses/v3_fallback_dropped/criteria/brier_beats_constant/passed",
+    "value": false
+  },
+  "v3_fallback_dropped_brier_beats_constant_rule": {
+    "source": "sendhold_experiment.json#/analyses/v3_fallback_dropped/criteria/brier_beats_constant/rule",
+    "value": "interval of (model - constant) excludes zero below"
+  },
+  "v3_fallback_dropped_brier_beats_constant_upper": {
+    "source": "sendhold_experiment.json#/analyses/v3_fallback_dropped/criteria/brier_beats_constant/interval_95/upper",
+    "value": 0.0007814927148853851
+  },
+  "v3_fallback_dropped_calibration_slope_estimate": {
+    "source": "sendhold_experiment.json#/analyses/v3_fallback_dropped/criteria/calibration_slope/slope",
+    "value": 0.7545471612086759
+  },
+  "v3_fallback_dropped_calibration_slope_lower": {
+    "source": "sendhold_experiment.json#/analyses/v3_fallback_dropped/criteria/calibration_slope/interval_95/lower",
+    "value": -0.7622976773760753
+  },
+  "v3_fallback_dropped_calibration_slope_passed": {
+    "source": "sendhold_experiment.json#/analyses/v3_fallback_dropped/criteria/calibration_slope/passed",
+    "value": true
+  },
+  "v3_fallback_dropped_calibration_slope_rule": {
+    "source": "sendhold_experiment.json#/analyses/v3_fallback_dropped/criteria/calibration_slope/rule",
+    "value": "slope within [0.7, 1.3]"
+  },
+  "v3_fallback_dropped_calibration_slope_upper": {
+    "source": "sendhold_experiment.json#/analyses/v3_fallback_dropped/criteria/calibration_slope/interval_95/upper",
+    "value": 2.072252729673851
+  },
+  "v3_fallback_dropped_label_version": {
+    "source": "sendhold_experiment.json#/analyses/v3_fallback_dropped/label_version",
+    "value": "v3"
+  },
+  "v3_fallback_dropped_labels_2025_AMBIGUOUS": {
+    "source": "sendhold_experiment.json#/analyses/v3_fallback_dropped/label_counts_2025/AMBIGUOUS",
+    "value": 58
+  },
+  "v3_fallback_dropped_labels_2025_HOLD": {
+    "source": "sendhold_experiment.json#/analyses/v3_fallback_dropped/label_counts_2025/HOLD",
+    "value": 1878
+  },
+  "v3_fallback_dropped_labels_2025_OTHER": {
+    "source": "sendhold_experiment.json#/analyses/v3_fallback_dropped/label_counts_2025/OTHER",
+    "value": 0
+  },
+  "v3_fallback_dropped_labels_2025_OUT_ELSEWHERE": {
+    "source": "sendhold_experiment.json#/analyses/v3_fallback_dropped/label_counts_2025/OUT_ELSEWHERE",
+    "value": 26
+  },
+  "v3_fallback_dropped_labels_2025_SENT_OUT": {
+    "source": "sendhold_experiment.json#/analyses/v3_fallback_dropped/label_counts_2025/SENT_OUT",
+    "value": 53
+  },
+  "v3_fallback_dropped_labels_2025_SENT_SAFE": {
+    "source": "sendhold_experiment.json#/analyses/v3_fallback_dropped/label_counts_2025/SENT_SAFE",
+    "value": 1344
+  },
+  "v3_fallback_dropped_negative_control_estimate": {
+    "source": "sendhold_experiment.json#/analyses/v3_fallback_dropped/criteria/negative_control/realized_success",
+    "value": 0.9482071713147411
+  },
+  "v3_fallback_dropped_negative_control_lower": {
+    "source": "sendhold_experiment.json#/analyses/v3_fallback_dropped/criteria/negative_control/interval_95/lower",
+    "value": 0.9542300895133123
+  },
+  "v3_fallback_dropped_negative_control_passed": {
+    "source": "sendhold_experiment.json#/analyses/v3_fallback_dropped/criteria/negative_control/passed",
+    "value": false
+  },
+  "v3_fallback_dropped_negative_control_rule": {
+    "source": "sendhold_experiment.json#/analyses/v3_fallback_dropped/criteria/negative_control/rule",
+    "value": "realized success inside the interval of mean predicted P(safe) for flagged sends"
+  },
+  "v3_fallback_dropped_negative_control_upper": {
+    "source": "sendhold_experiment.json#/analyses/v3_fallback_dropped/criteria/negative_control/interval_95/upper",
+    "value": 0.9765273838940359
+  },
+  "v3_fallback_dropped_runs_left_excludes_zero_estimate": {
+    "source": "sendhold_experiment.json#/analyses/v3_fallback_dropped/criteria/runs_left_excludes_zero/estimate",
+    "value": 236.8910382228173
+  },
+  "v3_fallback_dropped_runs_left_excludes_zero_lower": {
+    "source": "sendhold_experiment.json#/analyses/v3_fallback_dropped/criteria/runs_left_excludes_zero/interval_95/lower",
+    "value": 211.7755884632418
+  },
+  "v3_fallback_dropped_runs_left_excludes_zero_passed": {
+    "source": "sendhold_experiment.json#/analyses/v3_fallback_dropped/criteria/runs_left_excludes_zero/passed",
+    "value": true
+  },
+  "v3_fallback_dropped_runs_left_excludes_zero_rule": {
+    "source": "sendhold_experiment.json#/analyses/v3_fallback_dropped/criteria/runs_left_excludes_zero/rule",
+    "value": "95% bootstrap interval of runs left above zero"
+  },
+  "v3_fallback_dropped_runs_left_excludes_zero_upper": {
+    "source": "sendhold_experiment.json#/analyses/v3_fallback_dropped/criteria/runs_left_excludes_zero/interval_95/upper",
+    "value": 265.0870278670122
+  },
+  "v3_fallback_dropped_verdict": {
+    "source": "sendhold_experiment.json#/analyses/v3_fallback_dropped/verdict",
+    "value": "NEGATIVE"
+  },
+  "v3_primary_brier_beats_constant_estimate": {
+    "source": "sendhold_experiment.json#/analyses/v3_primary/criteria/brier_beats_constant/difference",
+    "value": -5.2756683460879195e-05
+  },
+  "v3_primary_brier_beats_constant_lower": {
+    "source": "sendhold_experiment.json#/analyses/v3_primary/criteria/brier_beats_constant/interval_95/lower",
+    "value": -0.0003064985586168029
+  },
+  "v3_primary_brier_beats_constant_passed": {
+    "source": "sendhold_experiment.json#/analyses/v3_primary/criteria/brier_beats_constant/passed",
+    "value": false
+  },
+  "v3_primary_brier_beats_constant_rule": {
+    "source": "sendhold_experiment.json#/analyses/v3_primary/criteria/brier_beats_constant/rule",
+    "value": "interval of (model - constant) excludes zero below"
+  },
+  "v3_primary_brier_beats_constant_upper": {
+    "source": "sendhold_experiment.json#/analyses/v3_primary/criteria/brier_beats_constant/interval_95/upper",
+    "value": 0.00047596886271527325
+  },
+  "v3_primary_calibration_slope_estimate": {
+    "source": "sendhold_experiment.json#/analyses/v3_primary/criteria/calibration_slope/slope",
+    "value": 0.842022574654625
+  },
+  "v3_primary_calibration_slope_lower": {
+    "source": "sendhold_experiment.json#/analyses/v3_primary/criteria/calibration_slope/interval_95/lower",
+    "value": -0.20647840158711622
+  },
+  "v3_primary_calibration_slope_passed": {
+    "source": "sendhold_experiment.json#/analyses/v3_primary/criteria/calibration_slope/passed",
+    "value": true
+  },
+  "v3_primary_calibration_slope_rule": {
+    "source": "sendhold_experiment.json#/analyses/v3_primary/criteria/calibration_slope/rule",
+    "value": "slope within [0.7, 1.3]"
+  },
+  "v3_primary_calibration_slope_upper": {
+    "source": "sendhold_experiment.json#/analyses/v3_primary/criteria/calibration_slope/interval_95/upper",
+    "value": 1.7621420303936022
+  },
+  "v3_primary_label_version": {
+    "source": "sendhold_experiment.json#/analyses/v3_primary/label_version",
+    "value": "v3"
+  },
+  "v3_primary_labels_2025_AMBIGUOUS": {
+    "source": "sendhold_experiment.json#/analyses/v3_primary/label_counts_2025/AMBIGUOUS",
+    "value": 75
+  },
+  "v3_primary_labels_2025_HOLD": {
+    "source": "sendhold_experiment.json#/analyses/v3_primary/label_counts_2025/HOLD",
+    "value": 2385
+  },
+  "v3_primary_labels_2025_OTHER": {
+    "source": "sendhold_experiment.json#/analyses/v3_primary/label_counts_2025/OTHER",
+    "value": 0
+  },
+  "v3_primary_labels_2025_OUT_ELSEWHERE": {
+    "source": "sendhold_experiment.json#/analyses/v3_primary/label_counts_2025/OUT_ELSEWHERE",
+    "value": 31
+  },
+  "v3_primary_labels_2025_SENT_OUT": {
+    "source": "sendhold_experiment.json#/analyses/v3_primary/label_counts_2025/SENT_OUT",
+    "value": 67
+  },
+  "v3_primary_labels_2025_SENT_SAFE": {
+    "source": "sendhold_experiment.json#/analyses/v3_primary/label_counts_2025/SENT_SAFE",
+    "value": 1773
+  },
+  "v3_primary_negative_control_estimate": {
+    "source": "sendhold_experiment.json#/analyses/v3_primary/criteria/negative_control/realized_success",
+    "value": 0.9566712517193948
+  },
+  "v3_primary_negative_control_lower": {
+    "source": "sendhold_experiment.json#/analyses/v3_primary/criteria/negative_control/interval_95/lower",
+    "value": 0.9558521599251374
+  },
+  "v3_primary_negative_control_passed": {
+    "source": "sendhold_experiment.json#/analyses/v3_primary/criteria/negative_control/passed",
+    "value": true
+  },
+  "v3_primary_negative_control_rule": {
+    "source": "sendhold_experiment.json#/analyses/v3_primary/criteria/negative_control/rule",
+    "value": "realized success inside the interval of mean predicted P(safe) for flagged sends"
+  },
+  "v3_primary_negative_control_upper": {
+    "source": "sendhold_experiment.json#/analyses/v3_primary/criteria/negative_control/interval_95/upper",
+    "value": 0.9747842506786225
+  },
+  "v3_primary_runs_left_excludes_zero_estimate": {
+    "source": "sendhold_experiment.json#/analyses/v3_primary/criteria/runs_left_excludes_zero/estimate",
+    "value": 326.6254172362656
+  },
+  "v3_primary_runs_left_excludes_zero_lower": {
+    "source": "sendhold_experiment.json#/analyses/v3_primary/criteria/runs_left_excludes_zero/interval_95/lower",
+    "value": 292.0958810082418
+  },
+  "v3_primary_runs_left_excludes_zero_passed": {
+    "source": "sendhold_experiment.json#/analyses/v3_primary/criteria/runs_left_excludes_zero/passed",
+    "value": true
+  },
+  "v3_primary_runs_left_excludes_zero_rule": {
+    "source": "sendhold_experiment.json#/analyses/v3_primary/criteria/runs_left_excludes_zero/rule",
+    "value": "95% bootstrap interval of runs left above zero"
+  },
+  "v3_primary_runs_left_excludes_zero_upper": {
+    "source": "sendhold_experiment.json#/analyses/v3_primary/criteria/runs_left_excludes_zero/interval_95/upper",
+    "value": 359.6091580783146
+  },
+  "v3_primary_verdict": {
+    "source": "sendhold_experiment.json#/analyses/v3_primary/verdict",
+    "value": "NEGATIVE"
+  },
+  "verdict": {
+    "source": "sendhold_experiment.json#/verdict",
+    "value": "NEGATIVE"
+  },
+  "verdict_reason": {
+    "source": "sendhold_feasibility.json#/verdict_reason",
+    "value": "The feed supports counts of candidate situations, recorded safe, out, and held outcomes, and person-ID joins to public sprint-speed and arm-strength leaderboards. It does not record the coach's sign, the runner's jump, or what a held runner would have done if sent. Base at contact is inferred from originBase."
+  },
+  "verdict_v2": {
+    "source": "sendhold_experiment.json#/verdict_v2_preregistered_definition",
+    "value": "NEGATIVE"
+  }
+}
