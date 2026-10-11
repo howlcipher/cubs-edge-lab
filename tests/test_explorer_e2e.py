@@ -1858,11 +1858,7 @@ def test_table_headers_never_break_inside_a_word(page, width, open_page):
         assert wrap.evaluate(
             "el => el.getBoundingClientRect().right <= innerWidth + 1"
         )
-    if width < 900:
-        for wrap in wraps.all():
-            assert wrap.locator("table").evaluate(
-                "table => table.scrollWidth > table.parentElement.clientWidth"
-            )
+    assert_cues_follow_overflow(tab)
     assert tab.evaluate(
         "() => document.documentElement.scrollWidth"
         " <= document.documentElement.clientWidth"
@@ -1877,3 +1873,145 @@ def test_header_word_break_check_detects_a_broken_word(open_page):
         "th { overflow-wrap: anywhere; }"
     ))
     assert tab.evaluate(WORDS_BREAK)
+
+
+TOKENS_BREAK = """() => [...document.querySelectorAll('th, td')].flatMap(c => {
+  const walker = document.createTreeWalker(c, NodeFilter.SHOW_TEXT);
+  const broken = [];
+  while (walker.nextNode()) {
+    const node = walker.currentNode;
+    for (const match of node.nodeValue.matchAll(/\\S+/g)) {
+      const range = document.createRange();
+      range.setStart(node, match.index);
+      range.setEnd(node, match.index + match[0].length);
+      const tops = [...range.getClientRects()].map(r => r.top);
+      if (tops.length && Math.max(...tops) - Math.min(...tops) > 2) {
+        broken.push(match[0]);
+      }
+    }
+  }
+  return broken;
+})"""
+
+CUE_STATE = """() => [...document.querySelectorAll('.table-wrap')].map(w => {
+  const wrap = w;
+  const cue = document.getElementById(wrap.getAttribute('aria-describedby'));
+  const box = cue && cue.getBoundingClientRect();
+  return {
+    overflow: wrap.scrollWidth > wrap.clientWidth + 1,
+    shown: !!cue && !cue.hidden && box.width > 0 && box.height > 0,
+    text: cue ? cue.textContent.trim() : "",
+  };
+})"""
+
+
+def assert_cues_follow_overflow(tab):
+    states = tab.evaluate(CUE_STATE)
+    assert len(states) == tab.locator("table").count()
+    for state in states:
+        assert state["shown"] == state["overflow"], state
+        assert state["text"] == "Scroll sideways for more columns", state
+
+
+@pytest.mark.e2e
+@pytest.mark.parametrize("page", PAGES, ids=PAGE_IDS)
+@pytest.mark.parametrize("width", WIDTHS)
+def test_table_cells_never_break_inside_a_token(page, width, open_page):
+    tab = open_page(page.path, width)
+    assert tab.evaluate(TOKENS_BREAK) == []
+
+
+@pytest.mark.e2e
+def test_token_break_check_detects_a_broken_data_cell(open_page):
+    tab = open_page("/milbfa.html", 375)
+    tab.add_style_tag(content=(
+        "table { min-width: 0 !important; table-layout: fixed; } "
+        "td, td * { overflow-wrap: anywhere !important; "
+        "white-space: normal !important; }"
+    ))
+    assert tab.evaluate(TOKENS_BREAK)
+
+
+@pytest.mark.e2e
+@pytest.mark.parametrize("width", WIDTHS)
+def test_milbfa_ranking_n_cells_render_on_one_line(width, open_page):
+    tab = open_page("/milbfa.html", width)
+    heights = tab.evaluate("""() => {
+      const table = document.querySelector('.ranking-table');
+      const col = [...table.tHead.rows[0].cells].findIndex(
+        th => th.textContent.trim() === 'N');
+      return [...table.tBodies[0].rows].map(row => {
+        const walker = document.createTreeWalker(
+          row.cells[col], NodeFilter.SHOW_TEXT);
+        let lines = 0;
+        while (walker.nextNode()) {
+          const range = document.createRange();
+          range.selectNodeContents(walker.currentNode);
+          lines += range.getClientRects().length;
+        }
+        return [col, lines, row.cells[col].textContent.trim()];
+      });
+    }""")
+    assert heights
+    for col, rects, text in heights:
+        assert col >= 0 and text and rects == 1, (text, rects)
+
+
+@pytest.mark.e2e
+@pytest.mark.parametrize("page", PAGES, ids=PAGE_IDS)
+def test_table_captions_stay_fully_visible_while_scrolling(page, open_page):
+    tab = open_page(page.path, 375)
+    for wrap in tab.locator(".table-wrap").all():
+        for edge in (False, True):
+            wrap.evaluate(
+                "(el, end) => { el.scrollLeft = end ? el.scrollWidth : 0; }",
+                edge,
+            )
+            got = wrap.evaluate("""el => {
+              const caption = el.querySelector('table').caption;
+              const box = el.getBoundingClientRect();
+              const rect = caption.getBoundingClientRect();
+              return {
+                text: caption.textContent.trim(),
+                inside: rect.left >= box.left - 1
+                  && rect.right <= box.right + 1,
+                clipped: caption.scrollWidth > caption.clientWidth + 1,
+              };
+            }""")
+            assert got["text"], got
+            assert got["inside"] and not got["clipped"], got
+
+
+@pytest.mark.e2e
+@pytest.mark.parametrize("page", PAGES, ids=PAGE_IDS)
+@pytest.mark.parametrize("width", WIDTHS)
+def test_scroll_cue_shows_exactly_when_a_table_overflows(
+    page, width, open_page
+):
+    tab = open_page(page.path, width)
+    assert_cues_follow_overflow(tab)
+    for wrap in tab.locator(".table-wrap").all():
+        assert wrap.get_attribute("tabindex") == "0"
+        assert wrap.get_attribute("aria-label")
+        assert wrap.get_attribute("aria-describedby")
+
+
+@pytest.mark.e2e
+@pytest.mark.parametrize("width", (320, 375))
+def test_milbfa_ranking_cue_is_visible_on_phones(width, open_page):
+    tab = open_page("/milbfa.html", width)
+    state = tab.evaluate(CUE_STATE)[0]
+    assert state["overflow"] and state["shown"], state
+
+
+@pytest.mark.e2e
+def test_scroll_cue_follows_a_viewport_resize(open_page):
+    tab = open_page("/milbfa.html", 375)
+    assert tab.evaluate(CUE_STATE)[0]["shown"]
+    tab.set_viewport_size({"width": 1280, "height": 900})
+    tab.wait_for_function(
+        "() => document.querySelector('.table-wrap').scrollWidth"
+        " <= document.querySelector('.table-wrap').clientWidth + 1"
+        " ? document.querySelector('.scroll-cue').hidden : true"
+    )
+    assert_cues_follow_overflow(tab)

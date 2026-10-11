@@ -292,19 +292,65 @@ const CRITERIA_ORDER = [
 ];
 const item = (data, key) => data[key];
 
+let cueCount = 0;
+
+/**
+ * A hyphen is a legal line break, so keep each hyphenated word whole by
+ * wrapping it in a no-wrap span. The text content is unchanged.
+ * @param {HTMLTableElement} table
+ */
+function keepHyphenatedWordsWhole(table) {
+  const walker = document.createTreeWalker(table, NodeFilter.SHOW_TEXT);
+  const nodes = [];
+  while (walker.nextNode()) nodes.push(walker.currentNode);
+  for (const node of nodes) {
+    if (node.parentElement.closest("caption, [data-format]")) continue;
+    const parts = node.nodeValue.split(/(\S*-\S*)/);
+    if (parts.length === 1) continue;
+    const fragment = document.createDocumentFragment();
+    parts.forEach((part, index) => {
+      if (index % 2 === 0) {
+        if (part) fragment.append(part);
+        return;
+      }
+      const span = document.createElement("span");
+      span.className = "no-wrap";
+      span.textContent = part;
+      fragment.append(span);
+    });
+    node.replaceWith(fragment);
+  }
+}
+
 /**
  * Wrap a wide table in its own keyboard-reachable scroll container so the
- * page itself never scrolls horizontally.
+ * page itself never scrolls horizontally. A visible cue before the container
+ * is shown only while the container actually overflows sideways.
  * @param {HTMLTableElement} table @param {string} label @param {string} extra
  */
 function scrollWrap(table, label, extra = "") {
+  keepHyphenatedWordsWhole(table);
   const wrap = document.createElement("div");
   wrap.className = `table-wrap ${extra}`.trim();
   wrap.tabIndex = 0;
   wrap.setAttribute("role", "region");
   wrap.setAttribute("aria-label", label);
+  const cue = document.createElement("p");
+  cue.className = "scroll-cue";
+  cue.id = `scroll-cue-${cueCount++}`;
+  cue.textContent = "Scroll sideways for more columns";
+  cue.hidden = true;
+  wrap.setAttribute("aria-describedby", cue.id);
   wrap.append(table);
-  return wrap;
+  const update = () => { cue.hidden = wrap.scrollWidth <= wrap.clientWidth + 1; };
+  new ResizeObserver(update).observe(wrap);
+  new ResizeObserver(update).observe(table);
+  window.addEventListener("resize", update);
+  document.fonts?.ready.then(update);
+  requestAnimationFrame(update);
+  const fragment = document.createDocumentFragment();
+  fragment.append(cue, wrap);
+  return fragment;
 }
 
 /** @param {HTMLElement} root @param {string} text */
