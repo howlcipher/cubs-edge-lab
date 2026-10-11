@@ -1,6 +1,9 @@
 /** @typedef {{value: unknown, source: string}} SourcedValue */
 /** @typedef {{research_digest: string, as_of_date: string, as_of_source: string, sources: Record<string, string>, default_visible: string[], disclosed_only: string[]}} Manifest */
-import { formatFull, formatValue } from "./format.js";
+import { formatFull, formatValue, isSmall } from "./format.js";
+
+const NOTE_SMALL = "small values shown to 2 significant figures";
+const PAGE_NOTE = `Values shown to two decimals (three for probabilities and rates); ${NOTE_SMALL}.`;
 
 const ATTRIBUTION = 'Attribution: MLB Advanced Media, L.P. (MLBAM), via the public MLB Stats API. “Only individual, non-commercial, non-bulk use of the Materials is permitted.”';
 
@@ -19,6 +22,36 @@ function sourced(text, source, format = "display", kind = "float") {
   span.dataset.format = format;
   span.dataset.kind = kind;
   return span;
+}
+
+/**
+ * A displayed number: its text is tagged with its source, and marked when it
+ * is shown to 2 significant figures so the page can say so.
+ * @param {SourcedValue} item @param {string} kind
+ */
+function numberSpan(item, kind = "float") {
+  const span = sourced(formatValue(item.value, kind), item.source, "display", kind);
+  if (isSmall(item.value, kind)) span.dataset.small = "true";
+  return span;
+}
+
+/**
+ * One disclosure listing the full published value of every number in a table
+ * row or value group, each with its own source pointer.
+ * Labels must not contain digits.
+ * @param {HTMLElement} root @param {[string, SourcedValue, string?][]} entries
+ */
+function fullValues(root, entries) {
+  const details = document.createElement("details");
+  const summary = document.createElement("summary");
+  summary.textContent = "Full published value";
+  details.append(summary);
+  for (const [label, entry, kind = "float"] of entries) {
+    const p = document.createElement("p");
+    p.append(`${label}: `, sourced(formatFull(entry.value), entry.source, "full", kind));
+    details.append(p);
+  }
+  root.append(details);
 }
 
 /**
@@ -57,32 +90,37 @@ function line(root, label, item) {
     ? value.some(hasFloat)
     : typeof value === "number" && !Number.isInteger(value);
   const numericFloat = hasFloat(item.value);
-  p.append(`${label}: `, sourced(formatValue(item.value, kind), item.source, "display", kind));
+  p.append(`${label}: `, numberSpan(item, kind));
   if (numericFloat) {
     const note = document.createElement("span");
-    note.textContent = ` (shown to ${kind === "probability" || kind === "rate" ? "three" : "two"} decimals)`;
+    const small = isSmall(item.value, kind) ? `; ${NOTE_SMALL}` : "";
+    note.textContent = ` (shown to ${kind === "probability" || kind === "rate" ? "three" : "two"} decimals${small})`;
+    note.dataset.provenance = "format-note";
     p.append(note);
   }
   root.append(p);
   if (typeof item.value === "number" || Array.isArray(item.value)) {
-    const details = document.createElement("details");
-    const summary = document.createElement("summary");
-    summary.textContent = "Full published value";
-    const full = document.createElement("p");
-    full.append(sourced(formatFull(item.value), item.source, "full", kind));
-    details.append(summary, full);
-    root.append(details);
+    fullValues(root, [["Value", item, kind]]);
   }
 }
 
-/** @param {HTMLElement} root @param {SourcedValue} item @param {string} kind */
-function appendNumber(root, item, kind = "float") {
-  root.append(sourced(formatValue(item.value, kind), item.source, "display", kind));
-  const details = document.createElement("details");
-  const summary = document.createElement("summary"); summary.textContent = "Full published value";
-  const full = document.createElement("p");
-  full.append(sourced(formatFull(item.value), item.source, "full", kind));
-  details.append(summary, full); root.append(details);
+/**
+ * Say, once per panel or card, that small values are shown to 2 significant
+ * figures, unless a line() note in that panel already says so.
+ */
+function addSmallValueNotes() {
+  const scopes = [...document.querySelectorAll(".panel, .card")];
+  const targets = scopes.length ? scopes : [document.querySelector("main")];
+  for (const scope of targets) {
+    if (!scope || !scope.querySelector('[data-src][data-small]')) continue;
+    const noted = [...scope.querySelectorAll('[data-provenance="format-note"]')]
+      .some((note) => note.textContent.includes(NOTE_SMALL));
+    if (noted) continue;
+    const note = document.createElement("p");
+    note.textContent = PAGE_NOTE;
+    note.dataset.provenance = "format-note";
+    scope.append(note);
+  }
 }
 
 /** @param {Manifest} manifest */
@@ -254,19 +292,65 @@ const CRITERIA_ORDER = [
 ];
 const item = (data, key) => data[key];
 
+let cueCount = 0;
+
+/**
+ * A hyphen is a legal line break, so keep each hyphenated word whole by
+ * wrapping it in a no-wrap span. The text content is unchanged.
+ * @param {HTMLTableElement} table
+ */
+function keepHyphenatedWordsWhole(table) {
+  const walker = document.createTreeWalker(table, NodeFilter.SHOW_TEXT);
+  const nodes = [];
+  while (walker.nextNode()) nodes.push(walker.currentNode);
+  for (const node of nodes) {
+    if (node.parentElement.closest("caption, [data-format]")) continue;
+    const parts = node.nodeValue.split(/(\S*-\S*)/);
+    if (parts.length === 1) continue;
+    const fragment = document.createDocumentFragment();
+    parts.forEach((part, index) => {
+      if (index % 2 === 0) {
+        if (part) fragment.append(part);
+        return;
+      }
+      const span = document.createElement("span");
+      span.className = "no-wrap";
+      span.textContent = part;
+      fragment.append(span);
+    });
+    node.replaceWith(fragment);
+  }
+}
+
 /**
  * Wrap a wide table in its own keyboard-reachable scroll container so the
- * page itself never scrolls horizontally.
+ * page itself never scrolls horizontally. A visible cue before the container
+ * is shown only while the container actually overflows sideways.
  * @param {HTMLTableElement} table @param {string} label @param {string} extra
  */
 function scrollWrap(table, label, extra = "") {
+  keepHyphenatedWordsWhole(table);
   const wrap = document.createElement("div");
   wrap.className = `table-wrap ${extra}`.trim();
   wrap.tabIndex = 0;
   wrap.setAttribute("role", "region");
   wrap.setAttribute("aria-label", label);
+  const cue = document.createElement("p");
+  cue.className = "scroll-cue";
+  cue.id = `scroll-cue-${cueCount++}`;
+  cue.textContent = "Scroll sideways for more columns";
+  cue.hidden = true;
+  wrap.setAttribute("aria-describedby", cue.id);
   wrap.append(table);
-  return wrap;
+  const update = () => { cue.hidden = wrap.scrollWidth <= wrap.clientWidth + 1; };
+  new ResizeObserver(update).observe(wrap);
+  new ResizeObserver(update).observe(table);
+  window.addEventListener("resize", update);
+  document.fonts?.ready.then(update);
+  requestAnimationFrame(update);
+  const fragment = document.createDocumentFragment();
+  fragment.append(cue, wrap);
+  return fragment;
 }
 
 /** @param {HTMLElement} root @param {string} text */
@@ -307,6 +391,10 @@ function verdictMeaning(root, data, meanings, field) {
   root.append(section);
 }
 
+const criteriaFull = (estimate, interval, kind) => [
+  ["Estimate", estimate, kind], ["Interval lower", interval[0], kind], ["Interval upper", interval[1], kind],
+];
+
 function renderCriteria(root, data, roles) {
   for (const [analysis, title] of ANALYSIS_ORDER) {
     const section = document.createElement("section");
@@ -339,17 +427,19 @@ function renderCriteria(root, data, roles) {
         const details = document.createElement("details");
         const summary = document.createElement("summary"); summary.textContent = "Failed-model value (not for decisions)";
         const disclosure = document.createElement("p");
-        disclosure.append("Estimate: "); appendNumber(disclosure, estimate, kind);
-        disclosure.append("; "); proseLabel(disclosure, "95% interval"); disclosure.append(": "); appendNumber(disclosure, interval[0], kind); disclosure.append(" to "); appendNumber(disclosure, interval[1], kind);
+        disclosure.append("Estimate: ", numberSpan(estimate, kind));
+        disclosure.append("; "); proseLabel(disclosure, "95% interval"); disclosure.append(": ", numberSpan(interval[0], kind), " to ", numberSpan(interval[1], kind));
         const passed = item(data, `${prefix}passed`);
         const statusText = document.createElement("span");
         statusText.textContent = passed.value ? "Met" : "Not met";
         statusText.dataset.statusSource = passed.source;
         disclosure.append("; Status: ", statusText);
         details.append(summary, disclosure); valueCell.append(details);
+        fullValues(details, criteriaFull(estimate, interval, kind));
       } else {
-        appendNumber(valueCell, estimate, kind);
-        valueCell.append(" ("); proseLabel(valueCell, "95% interval"); valueCell.append(": "); appendNumber(valueCell, interval[0], kind); valueCell.append(" to "); appendNumber(valueCell, interval[1], kind); valueCell.append(")");
+        valueCell.append(numberSpan(estimate, kind));
+        valueCell.append(" ("); proseLabel(valueCell, "95% interval"); valueCell.append(": ", numberSpan(interval[0], kind), " to ", numberSpan(interval[1], kind), ")");
+        fullValues(valueCell, criteriaFull(estimate, interval, kind));
       }
       row.append(valueCell);
       const statusCell = document.createElement("td");
@@ -377,11 +467,18 @@ function renderCriteria(root, data, roles) {
   }
 }
 
+const DECISION_LABELS = {
+  outs: "Outs", speed_tercile: "Speed tercile", n: "Cell size", n_sent: "Sent",
+  observed_send_success: "Observed send success", p_star: "Break-even",
+  zone_group: "Zone group", hit_type: "Hit type",
+};
+
 function renderDecisionChart(root, data) {
   const section = document.createElement("section"); section.className = "panel";
   const heading = document.createElement("h2"); heading.textContent = "Decision chart"; section.append(heading);
   const cuts = [0, 1].map(i => data[`speed_cut_${i}`]);
-  const metadata = document.createElement("p"); metadata.append("Minimum cell n: "); appendNumber(metadata, data.min_cell_n); metadata.append(". Speed tercile cuts: "); appendNumber(metadata, cuts[0]); metadata.append(" and "); appendNumber(metadata, cuts[1]); metadata.append("."); section.append(metadata);
+  const metadata = document.createElement("p"); metadata.append("Minimum cell n: ", numberSpan(data.min_cell_n), ". Speed tercile cuts: ", numberSpan(cuts[0]), " and ", numberSpan(cuts[1]), "."); section.append(metadata);
+  fullValues(section, [["Minimum cell size", data.min_cell_n], ["First cut", cuts[0]], ["Second cut", cuts[1]]]);
   const table = document.createElement("table"); const caption = document.createElement("caption");
   proseLabel(caption, "v3"); caption.append(" decision chart cells; p* is derived from the "); proseLabel(caption, "2025"); caption.append(" run expectancy. ");
   const caveat = document.createElement("span"); caveat.className = "decision-caveat";
@@ -397,16 +494,23 @@ function renderDecisionChart(root, data) {
   const count = Object.keys(data).filter(k => /^cell_\d+_zone_group$/.test(k)).length;
   for (let i = 0; i < count; i++) {
     const row = document.createElement("tr");
+    const full = [];
+    let last = null;
     for (const field of ["zone_group", "hit_type", "outs", "speed_tercile", "n", "n_sent", "observed_send_success", "p_star"]) {
       const td = document.createElement("td"), entry = data[`cell_${i}_${field}`];
-      if (typeof entry.value === "number") appendNumber(td, entry, field === "observed_send_success" || field === "p_star" ? "probability" : "float");
-      else td.append(sourced(formatValue(entry.value), entry.source));
+      if (typeof entry.value === "number") {
+        const kind = field === "observed_send_success" || field === "p_star" ? "probability" : "float";
+        td.append(numberSpan(entry, kind));
+        full.push([DECISION_LABELS[field], entry, kind]);
+      } else td.append(sourced(formatValue(entry.value), entry.source));
       if (field === "n") {
         const low = data[`cell_${i}_low_n`];
         if (low.value) td.append(" (low n)");
       }
       row.append(td);
+      last = td;
     }
+    if (full.length) fullValues(last, full);
     body.append(row);
   }
   table.append(body); section.append(scrollWrap(table, "v3 decision chart cells", "decision-table-wrap")); root.append(section);
@@ -438,13 +542,9 @@ function renderSendhold(data, meanings, roles) {
     fitUnknown.append(sourced(String(data[key].value), data[key].source)); limits.append(fitUnknown);
   }
   const reduced = document.createElement("p"); reduced.append("Reduced covariate set: ");
-  reduced.append(sourced(formatValue(data.covariate_sent_out.value), data.covariate_sent_out.source, "display", "float"), " of ");
-  reduced.append(sourced(formatValue(data.covariate_required_sent_out.value), data.covariate_required_sent_out.source, "display", "float"), " required"); limits.append(reduced);
-  for (const [label, entry] of [["sent out", data.covariate_sent_out], ["required sent out", data.covariate_required_sent_out]]) {
-    const full = document.createElement("details"), summary = document.createElement("summary"), value = document.createElement("p");
-    summary.textContent = `Full published value (${label})`;
-    value.append(sourced(formatFull(entry.value), entry.source, "full", "float")); full.append(summary, value); limits.append(full);
-  }
+  reduced.append(numberSpan(data.covariate_sent_out), " of ");
+  reduced.append(numberSpan(data.covariate_required_sent_out), " required"); limits.append(reduced);
+  fullValues(limits, [["Sent out", data.covariate_sent_out], ["Required sent out", data.covariate_required_sent_out]]);
   const history = document.createElement("p"); history.append("Label history "); proseLabel(history, "v1"); history.append(" to "); proseLabel(history, "v3"); history.append(": ");
   const link = document.createElement("a"); link.href = "https://github.com/howlcipher/howl-cubs-dogfood/blob/main/experiments/R003-SENDHOLD-DESIGN.md"; link.rel = "noopener noreferrer"; link.textContent = "design record (external link)"; history.append(link); limits.append(history); root.append(limits);
 }
@@ -472,23 +572,20 @@ function renderLabelCounts(root, data) {
     const versionCell = document.createElement("td");
     if (typeof row.version === "string") proseLabel(versionCell, row.version); else versionCell.append(sourced(String(row.version.value), row.version.source));
     const seasonCell = document.createElement("td");
+    const full = [];
     if (row.season) {
-      const details = document.createElement("details");
-      const summary = document.createElement("summary");
-      summary.append(sourced(
-        formatValue(row.season.value), row.season.source, "display", "float"
-      ));
-      const full = document.createElement("p");
-      full.append(sourced(
-        formatFull(row.season.value), row.season.source, "full", "float"
-      ));
-      details.append(summary, full);
-      seasonCell.append(details);
+      seasonCell.append(numberSpan(row.season));
+      full.push(["Season", row.season]);
     } else {
       proseLabel(seasonCell, "2025");
     }
     tr.append(versionCell, seasonCell);
-    for (const label of labels) { const td = document.createElement("td"); const entry = row.pointer(label); if (entry) appendNumber(td, entry); tr.append(td); }
+    for (const label of labels) {
+      const td = document.createElement("td"); const entry = row.pointer(label);
+      if (entry) { td.append(numberSpan(entry)); full.push([label, entry]); }
+      tr.append(td);
+    }
+    if (full.length) fullValues(tr.lastElementChild, full);
     body.append(tr);
   }
   table.append(body); section.append(scrollWrap(table, "Label counts")); root.append(section);
@@ -497,6 +594,7 @@ function renderLabelCounts(root, data) {
 const POOL_RANKINGS = ["B0", "B1", "B2", "P", "M"];
 const POOL_BASELINES = ["B0", "B1", "B2", "P"];
 const POOL_CUTOFFS = ["25", "50", "100"];
+const CUTOFF_WORDS = ["First", "Second", "Third"];
 
 /** @param {HTMLElement} root @param {string} id @param {string} title */
 function panelSection(root, id, title) {
@@ -524,8 +622,13 @@ function columnHeader(...parts) {
 
 function numberCell(entry, kind) {
   const td = document.createElement("td");
-  appendNumber(td, entry, kind);
+  td.append(numberSpan(entry, kind));
   return td;
+}
+
+/** Give a table row its one full-value disclosure, in its last cell. */
+function rowFullValues(row, entries) {
+  fullValues(row.lastElementChild, entries);
 }
 
 function renderMilbfaStatus(root, data, meanings) {
@@ -549,8 +652,9 @@ function renderMilbfaStatus(root, data, meanings) {
   }
   const holdout = document.createElement("p"); holdout.dataset.status = "holdout";
   holdout.append("Holdout untouched: ");
-  appendNumber(holdout, data.holdout_excluded);
+  holdout.append(numberSpan(data.holdout_excluded));
   section.append(holdout);
+  fullValues(section, [["Holdout excluded", data.holdout_excluded]]);
 }
 
 function renderMilbfaRankings(section, data) {
@@ -570,10 +674,16 @@ function renderMilbfaRankings(section, data) {
     const row = document.createElement("tr");
     const rowHead = document.createElement("th"); rowHead.scope = "row"; proseLabel(rowHead, ranking); row.append(rowHead);
     row.append(numberCell(data.n), numberCell(data.positives), numberCell(data.base_rate, "probability"));
-    for (const cutoff of POOL_CUTOFFS) {
-      row.append(numberCell(data[`${ranking}_top_${cutoff}_hits`]), numberCell(data[`${ranking}_top_${cutoff}_precision`], "probability"));
+    const full = [["N", data.n], ["Positives", data.positives], ["Base rate", data.base_rate, "probability"]];
+    for (const [index, cutoff] of POOL_CUTOFFS.entries()) {
+      const name = CUTOFF_WORDS[index];
+      const hits = data[`${ranking}_top_${cutoff}_hits`], precision = data[`${ranking}_top_${cutoff}_precision`];
+      row.append(numberCell(hits), numberCell(precision, "probability"));
+      full.push([`${name} cutoff hits`, hits], [`${name} cutoff precision`, precision, "probability"]);
     }
     row.append(numberCell(data[`${ranking}_auroc`], "probability"));
+    full.push(["AUROC", data[`${ranking}_auroc`], "probability"]);
+    rowFullValues(row, full);
     body.append(row);
   }
   table.append(body); section.append(scrollWrap(table, "Whole-pool ranking metrics"));
@@ -591,8 +701,11 @@ function renderMilbfaBootstrap(section, data) {
     const row = document.createElement("tr");
     const rowHead = document.createElement("th"); rowHead.scope = "row"; proseLabel(rowHead, baseline); row.append(rowHead);
     const interval = document.createElement("td");
-    appendNumber(interval, data[`boot_${baseline}_lower`], "probability"); interval.append(" to "); appendNumber(interval, data[`boot_${baseline}_upper`], "probability");
-    row.append(numberCell(data.n), numberCell(data.positives), numberCell(data[`boot_${baseline}_mean`], "probability"), interval, numberCell(data[`boot_${baseline}_resamples`]));
+    const lower = data[`boot_${baseline}_lower`], upper = data[`boot_${baseline}_upper`];
+    const mean = data[`boot_${baseline}_mean`], resamples = data[`boot_${baseline}_resamples`];
+    interval.append(numberSpan(lower, "probability"), " to ", numberSpan(upper, "probability"));
+    row.append(numberCell(data.n), numberCell(data.positives), numberCell(mean, "probability"), interval, numberCell(resamples));
+    rowFullValues(row, [["N", data.n], ["Positives", data.positives], ["Mean difference", mean, "probability"], ["Interval lower", lower, "probability"], ["Interval upper", upper, "probability"], ["Resamples", resamples]]);
     body.append(row);
   }
   table.append(body); section.append(scrollWrap(table, "Paired bootstrap, M minus baseline"));
@@ -626,10 +739,12 @@ function renderMilbfa(data, meanings) {
     years.append(sourced(formatValue(data[key].value), data[key].source));
   });
   const thresholds = document.createElement("p"); thresholds.append("Outcome thresholds: PA ");
-  appendNumber(thresholds, data.threshold_pa); thresholds.append(" and IP "); appendNumber(thresholds, data.threshold_ip);
+  thresholds.append(numberSpan(data.threshold_pa), " and IP ", numberSpan(data.threshold_ip));
   const signing = document.createElement("p"); signing.append("Signing window: ", sourced(String(data.signing_window.value), data.signing_window.source));
   const unknownLabel = document.createElement("p"); unknownLabel.textContent = "Unknowns recorded by the source:";
-  cubs.append(years, thresholds, signing, unknownLabel); unknownList(cubs, data);
+  cubs.append(years, thresholds);
+  fullValues(cubs, [["Plate appearance threshold", data.threshold_pa], ["Innings pitched threshold", data.threshold_ip]]);
+  cubs.append(signing, unknownLabel); unknownList(cubs, data);
   const limits = panelSection(root, "limits", "Limits of this result");
   quoteParagraph(limits, data.limit_unknown_line); quoteParagraph(limits, data.limit_inference_line);
   unknownList(limits, data);
@@ -649,6 +764,7 @@ try {
   if (document.body.dataset.page === "milbfa") {
     renderMilbfa(await load("milbfa.json"), await load("meanings.json"));
   }
+  addSmallValueNotes();
 } catch (error) {
   const main = document.querySelector("main");
   if (main) main.append("Explorer data could not be loaded.");
