@@ -25,9 +25,10 @@ table caption { caption-side: top; text-align: left; font-weight: 700; padding: 
 .ranking-table { min-width: 56rem; }
 .decision-caveat { font-weight: 700; }
 .brier-note { margin: .75rem 0 0; }
-table { border-collapse: collapse; width: 100%; }
-th, td { border-bottom: 1px solid #c8d2d9; padding: .6rem; text-align: left; overflow-wrap: anywhere; }
-th { background: #eaf0f3; }
+table { border-collapse: collapse; width: 100%; min-width: 40rem; }
+th, td { border-bottom: 1px solid #c8d2d9; padding: .6rem; text-align: left; }
+td { overflow-wrap: anywhere; }
+th { background: #eaf0f3; overflow-wrap: normal; word-break: normal; hyphens: manual; }
 details { margin: .75rem 0; border: 1px solid #aebbc4; border-radius: .35rem; padding: .6rem; background: white; }
 summary { cursor: pointer; font-weight: 650; }
 li { overflow-wrap: anywhere; }

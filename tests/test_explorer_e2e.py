@@ -28,7 +28,16 @@ ATTRIBUTION = "MLB Advanced Media, L.P. (MLBAM)"
 USAGE_QUOTE = "Only individual, non-commercial, non-bulk use"
 PROVENANCE_KINDS = {
     "research-digest", "as-of", "source-hash", "prose-year", "prose-label",
+    "format-note",
 }
+SMALL_NOTE = "small values shown to 2 significant figures"
+FORMAT_NOTES = {
+    "Values shown to two decimals (three for probabilities and rates); "
+    f"{SMALL_NOTE}.",
+    f"(shown to two decimals; {SMALL_NOTE})",
+    f"(shown to three decimals; {SMALL_NOTE})",
+}
+ZERO_FORMS = {"0.00", "-0.00", "0.000", "-0.000", "-0"}
 HIDDEN_TERMS = ("p_safe", "predicted", "flagged")
 
 
@@ -63,6 +72,26 @@ def resolve_source(pointer):
     return value
 
 
+def is_small(value, kind="float"):
+    """True when fixed decimals would print a non-zero float as zero."""
+    if isinstance(value, list):
+        return any(is_small(part, kind) for part in value)
+    if not isinstance(value, float) or value.is_integer():
+        return False
+    return abs(value) < (0.0005 if kind in {"probability", "rate"} else 0.005)
+
+
+def two_significant(value):
+    """Two significant figures, half up, in plain decimal form."""
+    exact = Decimal(abs(value))
+    rounded = exact.quantize(
+        Decimal(1).scaleb(exact.adjusted() - 1), rounding=ROUND_HALF_UP
+    )
+    if rounded.adjusted() > exact.adjusted():  # carry, e.g. 9.96e-5
+        rounded = rounded.quantize(Decimal(1).scaleb(rounded.adjusted() - 1))
+    return ("-" if value < 0 else "") + format(rounded, "f")
+
+
 def display(value, kind="float", full=False):
     """Mirror web/format.js, including JavaScript's exact-value rounding."""
     if isinstance(value, list) and len(value) == 2:
@@ -83,6 +112,8 @@ def display(value, kind="float", full=False):
         if value.is_integer():
             return str(int(value))
         decimals = 3 if kind in {"probability", "rate"} else 2
+        if is_small(value, kind):
+            return two_significant(value)
         rounded = Decimal(abs(value)).quantize(
             Decimal(1).scaleb(-decimals), rounding=ROUND_HALF_UP
         )
@@ -116,6 +147,8 @@ def assert_numeric_nodes(nodes, manifest):
             assert text in hashes, f"Unknown source hash: {text}"
         elif kind == "prose-year":
             assert re.fullmatch(r"(?:19|20)\d\d", text), f"Not a year: {text}"
+        elif kind == "format-note":
+            assert text in FORMAT_NOTES, f"Unknown format note: {text}"
         elif kind == "prose-label":
             assert text in {
                 "v1", "v2", "v2-definition", "v3", "v2 pre-registered",
@@ -177,15 +210,27 @@ def test_number_scan_rejects_untagged_number():
     (107, "float", "107"), (-5, "float", "-5"),
     (0.5, "float", "0.50"), (0.125, "float", "0.13"),
     (-0.125, "float", "-0.13"), (0.12345, "probability", "0.123"),
-    (1, "probability", "1"), (-0.004, "float", "-0.00"),
+    (1, "probability", "1"), (-0.004, "float", "-0.0040"),
     ([-0.25, 0.125], "float", "-0.25 to 0.13"),
+    (-0.000053, "float", "-0.000053"), (9.96e-5, "float", "0.00010"),
+    (0.0049, "float", "0.0049"), (0.005, "float", "0.01"),
+    (-0.005, "float", "-0.01"),
+    (0.0004, "probability", "0.00040"), (0.00049, "probability", "0.00049"),
+    (0.0005, "probability", "0.001"), (-0.0004, "rate", "-0.00040"),
+    ([-0.00005, 0.00007], "float", "-0.000050 to 0.000070"),
+    (0.0, "float", "0"), (5e-7, "float", "0.00000050"),
 ])
 def test_display_format_vectors(value, kind, expected):
     assert display(value, kind) == expected
 
 
-def test_display_full_precision():
-    assert display(0.1, full=True) == "0.1"
+@pytest.mark.parametrize(("value", "expected"), [
+    (0.1, "0.1"), (5e-7, "0.0000005"), (-5e-7, "-0.0000005"),
+    (-6.319702746596795e-05, "-0.00006319702746596795"),
+    (1.5e-10, "0.00000000015"), (2.0, "2"),
+])
+def test_display_full_precision(value, expected):
+    assert display(value, full=True) == expected
 
 
 def test_javascript_format_matches_python_mirror():
@@ -199,6 +244,13 @@ def test_javascript_format_matches_python_mirror():
         (0.125, "float"), (-0.125, "float"), (0.12345, "probability"),
         (1, "probability"), (-0.004, "float"),
         ([-0.25, 0.125], "float"), (0.1, "full"),
+        (-0.000053, "float"), (9.96e-5, "float"), (0.0049, "float"),
+        (0.005, "float"), (-0.005, "float"), (0.0, "float"),
+        (0.0004, "probability"), (0.00049, "probability"),
+        (0.0005, "probability"), (-0.0004, "rate"), (5e-7, "float"),
+        ([-0.00005, 0.00007], "float"), (-6.3197e-05, "float"),
+        (5e-7, "full"), (-5e-7, "full"), (1.5e-10, "full"),
+        ([-5e-7, 5e-7], "full"), (2.0, "full"), (1e21, "full"),
     ]
     script = "import {formatValue, formatFull} from './web/format.js'; " \
         "const v = " + json.dumps(vectors) + "; " \
@@ -473,15 +525,19 @@ def test_sendhold_decision_table(open_page):
         low_rows += bool(low)
         assert ("low n" in row.inner_text()) is bool(low)
     assert low_rows > 0
-    metadata = decision.locator("xpath=ancestor::section[1]/p[1]")
-    # Each number appears once as display text and once in its disclosure.
-    assert metadata.locator(
-        f'[data-src="{data["min_cell_n"]["source"]}"]'
-    ).count() == 2
-    for index in (0, 1):
-        assert metadata.locator(
-            f'[data-src="{data[f"speed_cut_{index}"]["source"]}"]'
-        ).count() == 2
+    section = decision.locator("xpath=ancestor::section[1]")
+    metadata = section.locator("xpath=./p[1]")
+    group = section.locator("xpath=./details[1]")
+    assert tab.evaluate(
+        "([p, d]) => p.nextElementSibling === d",
+        [metadata.element_handle(), group.element_handle()],
+    )
+    # Each number appears once as display text and once in the group's
+    # single disclosure.
+    for key in ("min_cell_n", "speed_cut_0", "speed_cut_1"):
+        selector = f'[data-src="{data[key]["source"]}"]'
+        assert metadata.locator(selector).count() == 1
+        assert group.locator(selector).count() == 1
     assert "mean_p_safe" not in decision.evaluate("e => e.outerHTML")
     wrap = tab.locator(".decision-table-wrap")
     assert wrap.evaluate("el => getComputedStyle(el).overflowX == 'auto'")
@@ -825,8 +881,13 @@ def test_milbfa_ranking_table_matches_published_values(open_page):
             ]
         expected.append(data[f"{ranking}_auroc"]["source"])
         assert display_sources(row) == expected
-        # Every rate is shown beside its n and positives, with full values.
-        assert row.locator("details").count() == len(expected)
+        # Every rate is shown beside its n and positives, with full values
+        # in the row's single disclosure.
+        assert row.locator("details").count() == 1
+        assert [
+            e.get_attribute("data-src")
+            for e in row.locator("details [data-format='full']").all()
+        ] == expected
     assert data["comparator"]["value"] in RANKINGS
     assert tab.locator("[data-src*='calibration']").count() == 0
 
@@ -856,7 +917,13 @@ def test_milbfa_bootstrap_table_matches_published_values(open_page):
         ).text_content() == str(resamples)
         interval = row.locator("td").nth(3)
         assert interval.locator("[data-format='display']").count() == 2
-        assert "\nto " in interval.inner_text()
+        lower = data[f"boot_{baseline}_lower"]["value"]
+        upper = data[f"boot_{baseline}_upper"]["value"]
+        # Inline "lo to hi": no line break between the numbers.
+        assert interval.inner_text() == (
+            f"{display(lower, 'probability')} to "
+            f"{display(upper, 'probability')}"
+        )
 
 
 @pytest.mark.e2e
@@ -1610,3 +1677,203 @@ def test_rendered_alerts_have_text(path, overrides, expected, open_page):
     texts = tab.locator('[role="alert"]').all_inner_texts()
     assert len(texts) == expected
     assert all(text.strip() for text in texts)
+
+
+# ---- readability: small values, one disclosure per row, header words -------
+
+NEGATIVE_ZERO = re.compile(r"(?<![\w.])-0(?:\.0+)?(?![\d.])")
+DISPLAY_TAGS = """() => [...document.querySelectorAll(
+  '[data-src][data-format="display"]')].map(
+  e => ({src: e.dataset.src, text: e.textContent,
+         small: e.dataset.small === 'true'}))"""
+
+
+def reads_as_zero(text, value):
+    """True when ``text`` is a zero form but the source ``value`` is not."""
+    if isinstance(value, list) and len(value) == 2:
+        parts = text.split(" to ")
+        return len(parts) == 2 and any(
+            reads_as_zero(t, v) for t, v in zip(parts, value)
+        )
+    return (
+        isinstance(value, (int, float)) and not isinstance(value, bool)
+        and value != 0 and text in ZERO_FORMS
+    )
+
+
+def test_zero_form_helper_flags_only_nonzero_sources():
+    assert reads_as_zero("-0.00", -0.00005)
+    assert reads_as_zero("0.000", 0.0004)
+    assert reads_as_zero("-0.00 to 0.00", [-0.00005, 0.00004])
+    assert reads_as_zero("0.50 to 0.00", [0.5, 0.00004])
+    assert not reads_as_zero("-0.000053", -0.000053)
+    assert not reads_as_zero("0", 0)
+    assert not reads_as_zero("0.00", "0.00")
+    assert not reads_as_zero("-0.00 to 0.00", [0.0, 0])
+
+
+def test_negative_zero_pattern():
+    for text in ("-0", "-0.00", "x -0.000 y", "(-0)"):
+        assert NEGATIVE_ZERO.search(text), text
+    for text in ("-0.000053", "2026-03-04", "a1-0b", "-0.5", "1.-0", "0.00"):
+        assert not NEGATIVE_ZERO.search(text), text
+
+
+@pytest.mark.e2e
+@pytest.mark.parametrize("page", PAGES, ids=PAGE_IDS)
+def test_no_number_reads_as_zero_while_its_source_is_not(page, open_page):
+    tab = open_page(page.path)
+    tags = tab.evaluate(DISPLAY_TAGS)
+    assert tags
+    failures = [
+        t for t in tags if reads_as_zero(t["text"], resolve_source(t["src"]))
+    ]
+    assert failures == []
+    body = tab.evaluate("() => document.body.textContent")
+    assert NEGATIVE_ZERO.findall(body) == []
+
+
+@pytest.mark.e2e
+def test_small_value_override_is_shown_to_two_significant_figures(open_page):
+    data = json.loads((WEB / "data/about.json").read_text())
+    data["request_count"]["value"] = -0.000053
+    tab = open_page("/about.html", overrides={"data/about.json": data})
+    shown = tab.locator(
+        f'[data-src="{data["request_count"]["source"]}"]'
+        "[data-format='display']"
+    )
+    assert shown.text_content() == "-0.000053"
+    full = tab.locator(
+        f'[data-src="{data["request_count"]["source"]}"]'
+        "[data-format='full']"
+    )
+    assert full.text_content() == "-0.000053"
+    assert SMALL_NOTE in tab.locator("body").inner_text()
+    assert NEGATIVE_ZERO.findall(tab.evaluate(
+        "() => document.body.textContent")) == []
+
+
+@pytest.mark.e2e
+def test_ordinary_float_does_not_claim_small_values(open_page):
+    data = json.loads((WEB / "data/about.json").read_text())
+    data["request_count"]["value"] = 0.5
+    tab = open_page("/about.html", overrides={"data/about.json": data})
+    body = tab.locator("body").inner_text()
+    assert "shown to two decimals" in body
+    assert SMALL_NOTE not in body
+
+
+@pytest.mark.e2e
+@pytest.mark.parametrize("page", PAGES, ids=PAGE_IDS)
+def test_pages_with_small_values_say_so_in_the_panel(page, open_page):
+    tab = open_page(page.path)
+    has_small = any(t["small"] for t in tab.evaluate(DISPLAY_TAGS))
+    assert (SMALL_NOTE in tab.locator("body").inner_text()) is has_small
+    if page.path == "/sendhold.html":
+        assert has_small
+    unnoted = tab.evaluate("""note => [...document.querySelectorAll(
+      '.panel, .card')].filter(s => s.querySelector('[data-small]')
+        && ![...s.querySelectorAll('[data-provenance="format-note"]')]
+          .some(n => n.textContent.includes(note))).length""", SMALL_NOTE)
+    assert unnoted == 0
+
+
+FULL_GROUPS = """() => {
+  const label = d => d.querySelector(':scope > summary').textContent.trim();
+  const full = d => label(d) === 'Full published value';
+  const srcs = (el, fmt) => [...el.querySelectorAll(
+    `[data-src][data-format="${fmt}"]`)].map(e => e.dataset.src);
+  const rows = [...document.querySelectorAll('tbody tr')].map(tr => ({
+    details: [...tr.querySelectorAll('details')].filter(full).length,
+    full: srcs(tr, 'full'), display: srcs(tr, 'display')}));
+  const groups = [...document.querySelectorAll('details')]
+    .filter(d => full(d) && !d.closest('table')).map(d => {
+      const before = d.previousElementSibling;
+      return {inParagraph: !!d.closest('p'),
+        previous: before && before.tagName,
+        stacked: [d.previousElementSibling, d.nextElementSibling].some(
+          n => n && n.tagName === 'DETAILS' && full(n)),
+        full: srcs(d, 'full'), display: before ? srcs(before, 'display') : []};
+    });
+  return {rows, groups};
+}"""
+
+
+def numeric_source(pointer):
+    value = resolve_source(pointer)
+    return isinstance(value, (int, float)) and not isinstance(value, bool)
+
+
+@pytest.mark.e2e
+@pytest.mark.parametrize("page", PAGES, ids=PAGE_IDS)
+def test_one_full_value_disclosure_per_row_or_group(page, open_page):
+    shapes = open_page(page.path).evaluate(FULL_GROUPS)
+    for row in shapes["rows"]:
+        assert row["details"] <= 1, row
+        numbers = [s for s in row["display"] if numeric_source(s)]
+        if numbers:
+            assert row["details"] == 1, row
+        assert set(numbers) <= set(row["full"]), row
+    for group in shapes["groups"]:
+        assert not group["inParagraph"] and not group["stacked"], group
+        assert group["previous"] == "P", group
+        numbers = [s for s in group["display"] if numeric_source(s)]
+        assert numbers and set(numbers) <= set(group["full"]), group
+    if page.path in {"/sendhold.html", "/milbfa.html"}:
+        assert shapes["rows"] and shapes["groups"]
+
+
+WORDS_BREAK = """() => [...document.querySelectorAll('th')].flatMap(th => {
+  const walker = document.createTreeWalker(th, NodeFilter.SHOW_TEXT);
+  const broken = [];
+  while (walker.nextNode()) {
+    const node = walker.currentNode;
+    // A hyphen is a normal break point, so each hyphenated part is a word.
+    for (const match of node.nodeValue.matchAll(/[^\\s-]+/g)) {
+      const range = document.createRange();
+      range.setStart(node, match.index);
+      range.setEnd(node, match.index + match[0].length);
+      const tops = [...range.getClientRects()].map(r => r.top);
+      if (tops.length && Math.max(...tops) - Math.min(...tops) > 2) {
+        broken.push(match[0]);
+      }
+    }
+  }
+  return broken;
+})"""
+
+
+@pytest.mark.e2e
+@pytest.mark.parametrize("page", PAGES, ids=PAGE_IDS)
+@pytest.mark.parametrize("width", WIDTHS)
+def test_table_headers_never_break_inside_a_word(page, width, open_page):
+    tab = open_page(page.path, width)
+    assert tab.evaluate(WORDS_BREAK) == []
+    wraps = tab.locator(".table-wrap")
+    assert wraps.count() == tab.locator("table").count()
+    for wrap in wraps.all():
+        assert wrap.evaluate(
+            "el => getComputedStyle(el).overflowX == 'auto'"
+        )
+        assert wrap.evaluate(
+            "el => el.getBoundingClientRect().right <= innerWidth + 1"
+        )
+    if width < 900:
+        for wrap in wraps.all():
+            assert wrap.locator("table").evaluate(
+                "table => table.scrollWidth > table.parentElement.clientWidth"
+            )
+    assert tab.evaluate(
+        "() => document.documentElement.scrollWidth"
+        " <= document.documentElement.clientWidth"
+    )
+
+
+@pytest.mark.e2e
+def test_header_word_break_check_detects_a_broken_word(open_page):
+    tab = open_page("/sendhold.html", 375)
+    tab.add_style_tag(content=(
+        "table { min-width: 0 !important; table-layout: fixed; } "
+        "th { overflow-wrap: anywhere; }"
+    ))
+    assert tab.evaluate(WORDS_BREAK)
