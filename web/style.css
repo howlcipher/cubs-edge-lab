@@ -18,16 +18,19 @@ h1 { line-height: 1.15; }
 .verdict { font-size: 1.2rem; font-weight: 750; }
 .notice { background: #fff7e6; border-left: .35rem solid #9a5b00; padding: 1rem; }
 .card, .panel, .table-wrap { max-width: 100%; min-width: 0; }
-.table-wrap { overflow-x: auto; width: 100%; }
+.table-wrap { overflow-x: auto; width: 100%; container-type: inline-size; }
 .decision-table-wrap { max-height: 32rem; overflow: auto; }
-table caption { caption-side: top; text-align: left; font-weight: 700; padding: .5rem 0; }
-.decision-table-wrap table { min-width: 62rem; }
-.ranking-table { min-width: 56rem; }
+.scroll-cue { margin: .25rem 0; font-size: .875rem; font-weight: 650; color: #18232d; }
+.scroll-cue[hidden] { display: none; }
+table caption { caption-side: top; text-align: left; font-weight: 700; padding: .5rem 0; position: sticky; left: 0; width: 100cqw; }
+.ranking-table { min-width: max-content; }
 .decision-caveat { font-weight: 700; }
 .brier-note { margin: .75rem 0 0; }
 table { border-collapse: collapse; width: 100%; }
-th, td { border-bottom: 1px solid #c8d2d9; padding: .6rem; text-align: left; overflow-wrap: anywhere; }
+th, td { border-bottom: 1px solid #c8d2d9; padding: .6rem; text-align: left; overflow-wrap: normal; word-break: normal; hyphens: manual; }
+th *, td * { overflow-wrap: normal; word-break: normal; hyphens: manual; }
 th { background: #eaf0f3; }
+td [data-format], th [data-format], .no-wrap { white-space: nowrap; }
 details { margin: .75rem 0; border: 1px solid #aebbc4; border-radius: .35rem; padding: .6rem; background: white; }
 summary { cursor: pointer; font-weight: 650; }
 li { overflow-wrap: anywhere; }
